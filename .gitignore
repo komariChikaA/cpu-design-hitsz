@@ -1,2 +1,4 @@
 .mirror-staging/
+.sync-staging/
 .tmp-upstream-cpu/
+materials/
