@@ -1,0 +1,1233 @@
+{
+    "schema_version":  1,
+    "base_url":  "https://cpu-design.p.cs-lab.top/",
+    "file_count":  172,
+    "files":  [
+                  {
+                      "path":  "lab1/assets/t5-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t5-3.png",
+                      "bytes":  32705,
+                      "sha256":  "58085cd4456aea5c3f21f1cb3b67ebeedeadff38b0cdc2b9a192da8943a91e8e",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/5-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/5-1.png",
+                      "bytes":  117330,
+                      "sha256":  "956dd8d0d6fd60feda66ee8077a3c076833059ff2d03eaaf92f28328801b05e6",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/div_test.zip",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/div_test.zip",
+                      "bytes":  5412,
+                      "sha256":  "002361e7c02cd5a97e66409bf744e649148b503a6505923e83af897b64d3e23c",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "lab1/assets/8-1b.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-1b.png",
+                      "bytes":  77498,
+                      "sha256":  "d4f27a9e49c17df6cd9ecf170f541c1d10d7f3f0ea1423a52b64df46655fa644",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/8-1a.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-1a.png",
+                      "bytes":  93809,
+                      "sha256":  "600fecf047ad7dc361f93a31291615560c36171d6f1dd4934b5cdc347566b593",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-9.png",
+                      "bytes":  13193,
+                      "sha256":  "19b6065e2f3546e241853012b8643bd9b38eb7a030650c6620fe2d20855385b5",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-8.png",
+                      "bytes":  37748,
+                      "sha256":  "24d9de34eae6330f73526869b0b9d3621ba7bf5f49b14a457f368a4fd59be68e",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/t4-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t4-1.png",
+                      "bytes":  62667,
+                      "sha256":  "5805395a62469338e1876c6d5627255f263f05aa6e07e9d05d3d6c5e33cfe9ed",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/t5-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t5-2.png",
+                      "bytes":  69886,
+                      "sha256":  "d91c5dc31a643736ccb1344d4b1557a830d105fb744b7ba47ef1c46ec4081712",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/4-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/4-1.png",
+                      "bytes":  24848,
+                      "sha256":  "1d6db59161bad1cf4dfadcf05a283149a3c8ab2fa62d41e23199afbfef9e9ec8",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/8-2a.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-2a.png",
+                      "bytes":  74177,
+                      "sha256":  "660dc40661f13f8dbe8ea95a0553546feb39a03d7bd6539c15a8e47bfe71e45e",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/10-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/10-2.png",
+                      "bytes":  59405,
+                      "sha256":  "b28ebea0b754be96264ed81cd406b05a58550e9f3f0e218b6bbbd3cec75c556e",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/10-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/10-1.png",
+                      "bytes":  24708,
+                      "sha256":  "1c5550c1d1043df3609d32f6c46c5238c085b30ec145e2bc17689da46dd3e682",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/11-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/11-1.png",
+                      "bytes":  72138,
+                      "sha256":  "2cb63b230b72b8a5b82c6d71878697be698f66d9c6e7b8c2871460c5ade82f66",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/remote-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/remote-1.png",
+                      "bytes":  13429,
+                      "sha256":  "3345f8c6da0fdccf28528a849ba3fcb7561cc32987b5dca4d17a4d0b969cb6d6",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/B-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/B-1.png",
+                      "bytes":  31339,
+                      "sha256":  "2708ea4f576809fcefc3eee01389f64bb477657e63e900a1e1f7e2f0458096f3",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/8-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-3.png",
+                      "bytes":  25229,
+                      "sha256":  "228676f18d02d4fd5b570025a4d9eb4c63058f6e8912920070f461e88a973297",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/8-2b.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-2b.png",
+                      "bytes":  35741,
+                      "sha256":  "1cd569644184c6960134c1a4185a44775a5b93262603c97dd6198461f39c10a9",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/9-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/9-1.png",
+                      "bytes":  84348,
+                      "sha256":  "91ad7edaddd076b8bde623f1a6be24844f145681fa6e695eba6597fa0a52a06e",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/9-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/9-3.png",
+                      "bytes":  135250,
+                      "sha256":  "1d311a184e689239f077055d97e7cae7623735a0f07511912fea41b869323661",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/9-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/9-2.png",
+                      "bytes":  133292,
+                      "sha256":  "733e90bff0cb2d7eef531fe575411ea99c1808efa7ffc733213962875fa781f4",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-7.png",
+                      "bytes":  69226,
+                      "sha256":  "4b2c850e9255aa354425b4c3c61849c29c8bbf6f78d50ac6621b29f1140d166d",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-12.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-12.png",
+                      "bytes":  23196,
+                      "sha256":  "ac841e5a411de753fb324c87c0699a25bfad4c12aab50fffd41bd4bf28c4423b",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-11.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-11.png",
+                      "bytes":  20701,
+                      "sha256":  "fa14d8adacced7a5605949132ce64d5ffdee664cd4d8d598016ee6852ca2a6fb",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-13.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-13.png",
+                      "bytes":  28322,
+                      "sha256":  "d2cd02b67ccfe5acd2e29ca45e21f4f0e27614720c68866b3557262d886004d6",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-15.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-15.png",
+                      "bytes":  27762,
+                      "sha256":  "bb08d9359a7e3bdc1e9bdb3f7f380cae10b8445275bc152ff047eb6d7f54ac63",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-14.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-14.png",
+                      "bytes":  19054,
+                      "sha256":  "5226c6cb8203e82a1a03337019ab7f002f83e6eea1de53df0be9fae75e9f78ae",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-7.png",
+                      "bytes":  90273,
+                      "sha256":  "172a1a74cb053b903defaab442bd332f0e4857105d831248de22d44f716ee9e0",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-6.png",
+                      "bytes":  27050,
+                      "sha256":  "ccc8374578afd2ffe9fb43a5a255c58807ce656ad08f62f3fa4a1572621021a5",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-8.png",
+                      "bytes":  16823,
+                      "sha256":  "b2f6bf83b2a0da793c15a8a8ce349c3853ab35355e806ca58128208c35958465",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-10.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-10.png",
+                      "bytes":  17228,
+                      "sha256":  "75be5acc79b3044f7df763a8f22fe0b82eb22d1914a8661ec066241cf1655cfb",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-9.png",
+                      "bytes":  8452,
+                      "sha256":  "0445366cd617b5039c0d9caa1d1b799675cda8dce6d678599bc77e4b256779ab",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-16.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-16.png",
+                      "bytes":  18079,
+                      "sha256":  "69a9d99a810d51ebc172e6a9c6ea928dc3be21ee3a8b3e7bc7e36867d93041b9",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-3.png",
+                      "bytes":  40484,
+                      "sha256":  "73fab0b6006f2eed7ac7824c64acd272cb6afbb05a049dea5f61584d4c400b2d",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-2.png",
+                      "bytes":  38850,
+                      "sha256":  "dd606c6217f4f64cb4eb74c7c4871e8632fc64e676cc429332b493f65c9f6043",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-4.png",
+                      "bytes":  7341,
+                      "sha256":  "fc623551b55efc6e95b116294465597f33d5fd25766e46be6b3cf5a65866d82c",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-6.png",
+                      "bytes":  103488,
+                      "sha256":  "dd4c91027233e773caee1af908086975d11ae7a7cf70e611bbc1fbffd8f7f763",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-5.png",
+                      "bytes":  14391,
+                      "sha256":  "7ca324196115b3e47f5f510abc8f4318b12b10b587b4bd7e7dbb034c2b6b4aa8",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/2-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/2-1.png",
+                      "bytes":  108256,
+                      "sha256":  "d3d37114d377b36f4c56a0f7b8c30606375859c151ed5caafc02fab370040f82",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-17.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-17.png",
+                      "bytes":  20932,
+                      "sha256":  "192ae89c6115d02852be66a362cb2a0a6f82a6e37570c101a6a33479f6940782",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/t2-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t2-2.png",
+                      "bytes":  245502,
+                      "sha256":  "10d140224f6a8d85cf25557df896f3c4c627401a1ecf297ac2153e4f1a0b9cdc",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/3-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-1.png",
+                      "bytes":  90337,
+                      "sha256":  "a7bf73d00c0d211c4606d015278e838ef54235dd9f72ea2a370d380d2c3129a7",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/t2-2A.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t2-2A.png",
+                      "bytes":  248794,
+                      "sha256":  "7efc8ab2638b70d54440a0cca2512479411c46b1c8924f6c65e6450498305322",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "verify/assets/v-4.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-4.jpg",
+                      "bytes":  67200,
+                      "sha256":  "1313f46f134b87873753b4bd43149ff18b14110d0bc4384083331bd63ca59644",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-3.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-3.jpg",
+                      "bytes":  51831,
+                      "sha256":  "7d7f8db6d9c4f5ed9985ceec10a2e40efefe28d660f191eaf021b73c2cd978d2",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-5.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-5.jpg",
+                      "bytes":  38354,
+                      "sha256":  "44090e6316ceaf6f4fd641fff5a4ac66498b714b9f72f5f897c170face6c1a37",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-7.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-7.jpg",
+                      "bytes":  94250,
+                      "sha256":  "bfff58c8da3d511adfec81312a9ea055f5d2523f62dc48d5bd4fe3a9d3ddeee9",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-6.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-6.jpg",
+                      "bytes":  36413,
+                      "sha256":  "0327bf6ba3491c8ed275941216fbd5823c09d605b7aaf74291be980464f6ff74",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-1(1).jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(1).jpg",
+                      "bytes":  15964,
+                      "sha256":  "e94db7bae1ae1d55a725592253b310f38e528a1cb892ca1ad2fc264099f96caa",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "trace/assets/surfer-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-5.png",
+                      "bytes":  123241,
+                      "sha256":  "2934e994568c538aa2ccd103be88a0948c04d8d03ec18d44fa49085b348f27b9",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "verify/assets/v-1(2).jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(2).jpg",
+                      "bytes":  8941,
+                      "sha256":  "69295b9908cb6aee09207858936d0581aca97c33b09d7491b67576b4bd6d4c52",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-2.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-2.jpg",
+                      "bytes":  18355,
+                      "sha256":  "5ffd65dc5fbf897670862b865a1ef33a7dd9561a77b0d3ab69fab28ca5533f99",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-1(3).jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(3).jpg",
+                      "bytes":  11167,
+                      "sha256":  "baae27f547076124435fbac1a35ce4361e78f6ee04aa4986b905c2e51ee4a954",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-8.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-8.jpg",
+                      "bytes":  21432,
+                      "sha256":  "9b6f4374dd1c7298f8804c4a9638c7e29139c1f6551fc356f094eeb0864003a9",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-15.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-15.jpg",
+                      "bytes":  26396,
+                      "sha256":  "c4a8f43e9826e156609c835e16f1c2e57d05650778fdb35bf01c6ee472f188aa",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-14.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-14.jpg",
+                      "bytes":  25129,
+                      "sha256":  "76c70586f450a52929e2e0f57ee7e7fc0e3db38744b43dde4793e0d61c667f1c",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-16.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-16.jpg",
+                      "bytes":  35001,
+                      "sha256":  "76d849b4020876ece5525f024dbeab5f003df471a376f60f48b89f0f076c9fea",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-18.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-18.jpg",
+                      "bytes":  81037,
+                      "sha256":  "fbf1d77c477bcc13819833ba82758d57b8262946b2c8402c848b865d498a4ee2",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-17.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-17.jpg",
+                      "bytes":  74934,
+                      "sha256":  "f67a2d635703ffc3d15f909ecf2fddcec63bf4b0edb31bbc01a88ed84f08da4a",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-10.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-10.jpg",
+                      "bytes":  52922,
+                      "sha256":  "6bb922416e0b02a1aff85330c0afee982ff40c750c8cecd401e74cb1d7ac7c1b",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-9.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-9.jpg",
+                      "bytes":  78950,
+                      "sha256":  "ab2878ddd185ebe87a7ecc1bc9b81b25e61fad03caa510a830f5abd3112f9023",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-11.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-11.jpg",
+                      "bytes":  86288,
+                      "sha256":  "5950577db53d867e5d006c5d964800b34e0209718772c5bb578b93c0dab8d053",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-13.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-13.jpg",
+                      "bytes":  53136,
+                      "sha256":  "83922e3abe9ea04766d99b9c0e76e59095e19d12c82ac2cf33efb7898ab2a3c5",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "verify/assets/v-12.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-12.jpg",
+                      "bytes":  90068,
+                      "sha256":  "1bcc73ab9885523ce0c1aebf4e2c6bf88b3e2f8186f545d8f3ae38ca1731fc8b",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "trace/assets/surfer-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-4.png",
+                      "bytes":  17562,
+                      "sha256":  "cfa2918f9f1a0fa8a681d06045cfdcf8760f9ad3410a47c08b5b3ccff30c7662",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/mobaxterm-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/mobaxterm-3.png",
+                      "bytes":  43849,
+                      "sha256":  "cbf8354f121f156c56b63f517733929a1705128f5defded051f1c4ee4241a311",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/mobaxterm-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/mobaxterm-2.png",
+                      "bytes":  22453,
+                      "sha256":  "7fa94b69df0e46fc83baa31d0e31b2b01b9325f06cf3de0f2e52ad51ae445a68",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/mobaxterm-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/mobaxterm-4.png",
+                      "bytes":  2499,
+                      "sha256":  "ef5aa47a1bd22a147e9d4bd8e216e1f95b1f2aabe2f845d7d9e207f7985710bb",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/mobaxterm-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/mobaxterm-6.png",
+                      "bytes":  36910,
+                      "sha256":  "23af8890d3ac56cc3d91537a49e963eaac98e77c9cc2d556912d49878d3d6681",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/mobaxterm-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/mobaxterm-5.png",
+                      "bytes":  20773,
+                      "sha256":  "92b30debdbd72376ae30a65b78d274f2a996cc049e184fa8517454dda020447f",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/ssh_add_host.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/ssh_add_host.png",
+                      "bytes":  9308,
+                      "sha256":  "62bd02a12758d2af886804389459687c504db3d00ff9feaf055c8c437e2681c7",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/icon.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/icon.png",
+                      "bytes":  1846,
+                      "sha256":  "a9927a895f64e71ec2f5dcd049a99a1534fa687308d8f3325d945bada40c9b39",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/connect1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/connect1.png",
+                      "bytes":  9637,
+                      "sha256":  "ab67bc8a3e6fedb238df0c70f8c3e1277ab0a78b1d1de4b383e0b8c8146c3d11",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/mobaxterm-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/mobaxterm-1.png",
+                      "bytes":  88866,
+                      "sha256":  "18b5f23025816af7cabddf088e8a10487a9be6f00b46f03874dd7c285ac67252",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/passwd.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/passwd.png",
+                      "bytes":  8513,
+                      "sha256":  "676aeebef1e0e973d924e273e296a74aecb98216a57a67bf7cfe063fe28076e8",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/ssh_keygen.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/ssh_keygen.png",
+                      "bytes":  31126,
+                      "sha256":  "5363ca5def3b75dfb2103b9772b1f8336d908c9cf48322320dd32f77e4196194",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/vm-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-6.png",
+                      "bytes":  86758,
+                      "sha256":  "530167b4de5cebe3ddf003614559b48f1d6b1ddd591bdc357add7e20b89201a7",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/vm-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-5.png",
+                      "bytes":  66595,
+                      "sha256":  "014e3f36bd5271fd3fb0db59dd9f670f4d986c8414643b38c2fce897712d9c75",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/surfer-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-1.png",
+                      "bytes":  143715,
+                      "sha256":  "759ed0ac185d227882b3ae1393204e7fa1fd3252737b1a26222cb68a92f876ca",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/surfer-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-3.png",
+                      "bytes":  38753,
+                      "sha256":  "405e3c81fbe7f817dc70152255a847d2a1b00d8522512fc7f4f0e0aa2e12c147",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/surfer-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-2.png",
+                      "bytes":  18315,
+                      "sha256":  "b3ad7a1c217886ac7de19e13b4274ac90f0c5b573aaabd8b6af15d90a485ee98",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/vm-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-1.png",
+                      "bytes":  71935,
+                      "sha256":  "ffaa792e193657d9a556d902f025ab765db24fe37d3a7816cfa849ffb4113e52",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/char.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/char.png",
+                      "bytes":  27313,
+                      "sha256":  "3838ae8f850ad336351309ff3a0569ee60b6e85055e91f613cb7f2a9a1544369",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/vm-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-2.png",
+                      "bytes":  33216,
+                      "sha256":  "b44fd5afa7856a90d8917b2bcd6df5ff16612284eb7d32d51a6163a2fbf6eec7",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/vm-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-4.png",
+                      "bytes":  26202,
+                      "sha256":  "4d3438789b4bbcff5754a37234ab5167bcf97e477e67d2f7bccf1b2a37bb32e7",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/vm-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-3.png",
+                      "bytes":  73031,
+                      "sha256":  "2874b4acf53dc7cc797447aa8e45e3147cbd5d0f0d65ab61ed10b4d96799d9d2",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/remote_env/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/remote_env/",
+                      "bytes":  51616,
+                      "sha256":  "3e344c4d9444b6539b387557f1296397208836a65383c446b240cdf206fe61a0",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/B-constr/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/B-constr/",
+                      "bytes":  39208,
+                      "sha256":  "658708b47a794b9ce69be4acefd1e57b29d3596906555404d6c8fe9643c98287",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "trace/vm/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/vm/",
+                      "bytes":  37150,
+                      "sha256":  "cbbae4610ac691cf53925ef23f159804346a0a6bb7ce5c64b0050fa10f6e5130",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "trace/surfer/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/surfer/",
+                      "bytes":  38414,
+                      "sha256":  "7b64197ddc8dced251cae83baf3e96edb26a68cfe279305f308788000533934c",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "trace/env_diy/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/env_diy/",
+                      "bytes":  35034,
+                      "sha256":  "4d531ed123288d1782e738890b131af5a7c78778baafc628171d06bd098e1003",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/10-verify/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/10-verify/",
+                      "bytes":  35064,
+                      "sha256":  "3023fc69a54599e56dbb1a34bb69485e9657bb1fa76736294b11dce2844a414b",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/9-timing/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/9-timing/",
+                      "bytes":  39453,
+                      "sha256":  "44ca6bc193d3406de2ead36de4358a7179b724785cb98f24827e941d31dfbb67",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/11-performance/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/11-performance/",
+                      "bytes":  34125,
+                      "sha256":  "84c2f81c88a39d084fb485d6139443a6df0311f65dc61c897046c13d3e0617d2",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/A-macro/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/A-macro/",
+                      "bytes":  38828,
+                      "sha256":  "654262e2ec4af87c45aa8d2965fe5bf5665737b4c96b45b71734a3f955311e2d",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/12-step/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/12-step/",
+                      "bytes":  33873,
+                      "sha256":  "b46911ba73cdbf96f495c386414446ade8e9043781825ee0f937fbc7aa588441",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "verify/online-debug/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/online-debug/",
+                      "bytes":  46596,
+                      "sha256":  "5b8db6a61f3602cce606d5b9c2a3a6217c0cc287cac9c3ef64c616149c2e00af",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "home/assets/b-3.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-3.jpg",
+                      "bytes":  574084,
+                      "sha256":  "c959cdce6cf7c12a3ed34733ac823d2e092e314f89eb8ce159e4128a30191cc6",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "home/assets/EGO1开发板用户手册.pdf",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/EGO1%E5%BC%80%E5%8F%91%E6%9D%BF%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf",
+                      "bytes":  2029159,
+                      "sha256":  "b1de9e02f1e7085fdd67c7cbd35bf66614df5eb4fc2eced2960df62d00f4e7f8",
+                      "content_type":  "application/pdf"
+                  },
+                  {
+                      "path":  "home/assets/minisys_pin.xdc",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/minisys_pin.xdc",
+                      "bytes":  5983,
+                      "sha256":  "161efaf3eaeb9a390b79ef5b15280c1ab1897c3b2d6426c235e4019149d31a5e",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "lab1/assets/t0-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t0-1.png",
+                      "bytes":  93616,
+                      "sha256":  "bd5a735634f8b39fe97efdb443c75a5870fddfb408f7b9e767e3f557115aaf2e",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/Minisys开发板用户手册.pdf",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/Minisys%E5%BC%80%E5%8F%91%E6%9D%BF%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf",
+                      "bytes":  1875756,
+                      "sha256":  "7f9dd9cfd768b59eeacf5fc32f58d858d44996ee46e19ae05ba528d8f7c18797",
+                      "content_type":  "application/pdf"
+                  },
+                  {
+                      "path":  "assets/javascripts/bundle.a7c05c9e.min.js",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/javascripts/bundle.a7c05c9e.min.js",
+                      "bytes":  107750,
+                      "sha256":  "87420f873fa72d4947835c0f326fdc1bcbd2dea40a23049d524544c476fda7e3",
+                      "content_type":  "text/javascript; charset=utf-8"
+                  },
+                  {
+                      "path":  "time_tbl.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/time_tbl.png",
+                      "bytes":  92215,
+                      "sha256":  "c105849645c1e5ac60795340a18a4374914e265d925b905465a364458db89288",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/b-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-1.png",
+                      "bytes":  2981596,
+                      "sha256":  "f1409c7527f1182a894bd53f24cde7438a90af1b3fe0328219ceb81114e5e4f7",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/ego1_pin.xdc",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/ego1_pin.xdc",
+                      "bytes":  5503,
+                      "sha256":  "38b556922068c8ae011e9e3cc0cc11e1e5c8d5244f14d9eb49a36576b9ed52e7",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/b-2.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-2.jpg",
+                      "bytes":  699935,
+                      "sha256":  "f5f601fed3e1993185d43dac5fd515e131ffc74f7f9e34772d4a1a18f0a8d790",
+                      "content_type":  "image/jpeg"
+                  },
+                  {
+                      "path":  "lab1/8-divider/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/8-divider/",
+                      "bytes":  44692,
+                      "sha256":  "8152c02e3172b2e9af66163f4fa426206f2afc5ef634780502d1b3ea51bd5981",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "assets/stylesheets/palette.06af60db.min.css",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/stylesheets/palette.06af60db.min.css",
+                      "bytes":  12522,
+                      "sha256":  "06af60dbce60d47a167fcab982f7cfa8d2d654a2f2a13d68e5a5fe5ae66df6c0",
+                      "content_type":  "text/css; charset=utf-8"
+                  },
+                  {
+                      "path":  "assets/stylesheets/main.66ac8b77.min.css",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/stylesheets/main.66ac8b77.min.css",
+                      "bytes":  131356,
+                      "sha256":  "66ac8b7785c87019ca75bbf91927b3a3cd6691a7e52811a3b60fab4b5a91ef05",
+                      "content_type":  "text/css; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/0-overview/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/0-overview/",
+                      "bytes":  36290,
+                      "sha256":  "21ca4cafe7610e70307b591eb0cabc367ad4d7e2b9aed85660c60be242fc37b4",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "verify/trace-debug/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/trace-debug/",
+                      "bytes":  38046,
+                      "sha256":  "53d7c35db2974f7ff1f04f854426c5fb651161b87cffb3734397b76e9640368f",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "trace/trace/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/trace/",
+                      "bytes":  65819,
+                      "sha256":  "859ed090eb1ca4e78517f1daaa165b1886da57edfc961842d59331f694624bf0",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "search/search_index.json",
+                      "source":  "https://cpu-design.p.cs-lab.top/search/search_index.json",
+                      "bytes":  315373,
+                      "sha256":  "191705bee5bc2072d8a8ed02970e67451c2aaedc14e6961baebe527b67a8f378",
+                      "content_type":  "application/json"
+                  },
+                  {
+                      "path":  "index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/",
+                      "bytes":  39876,
+                      "sha256":  "46f7fba0050b316250d966803f5785bf517e1211508497aef5a61fa60e854d7f",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "sitemap.xml",
+                      "source":  "https://cpu-design.p.cs-lab.top/sitemap.xml",
+                      "bytes":  109,
+                      "sha256":  "33f57ce73974cb669d46fcc9027a02c65647fc797b4cb9c86f503eea5ff11a62",
+                      "content_type":  "text/xml; charset=utf-8"
+                  },
+                  {
+                      "path":  "assets/images/favicon.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/images/favicon.png",
+                      "bytes":  1870,
+                      "sha256":  "023854c43fc4b25b795ee4951c8019e3de0593ffeb6f918b5d1f2a9b47a57cfe",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/fpga/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/fpga/",
+                      "bytes":  40732,
+                      "sha256":  "b146ff48e6437d51d270c2c3516e974e12d8d03c8b09f7ab05daefa138359ef3",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "home/codingstyle/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/codingstyle/",
+                      "bytes":  52692,
+                      "sha256":  "2e045aba8af010c3b2d985937ef5b96aa8ef21ecb45b0eeb4cc85f63e65e1273",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/4-datpth/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/4-datpth/",
+                      "bytes":  35682,
+                      "sha256":  "e0be9c1094824796117cb80c11de6d091ec05854fcde96f94d0e97c2eb1c085d",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/3-parts/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/3-parts/",
+                      "bytes":  64033,
+                      "sha256":  "9a2b694c5988dc28346730febc17bada725b6e68d8fb99c642ed7968fcf8ed51",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/5-ctrler/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/5-ctrler/",
+                      "bytes":  38853,
+                      "sha256":  "eb8bdbd1c400225ca980f25a5d8f3ca8ef9d2407b255db508c3630588460efa8",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/7-muldiv/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/7-muldiv/",
+                      "bytes":  46063,
+                      "sha256":  "e665cb6b1351624353e3c73035434876241385537ed293040dd5c727efb4c339",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/6-multcycle/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/6-multcycle/",
+                      "bytes":  47497,
+                      "sha256":  "999aa2fa511597d2b023de20bdb2e243ae23e147ed13bc9524c98ad76bcf15a4",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "home/operation/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/operation/",
+                      "bytes":  37730,
+                      "sha256":  "87b0c2c14d2c5aea2141d566cf9d846a23b8e80d055b5082cc2e23dd07e47371",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "home/problems/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/problems/",
+                      "bytes":  65688,
+                      "sha256":  "21ebc75615e2876cd5c57dd2cb639c5547839bd7ef2cc9f757cda8fdb2c35185",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/1-warmup/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/1-warmup/",
+                      "bytes":  67508,
+                      "sha256":  "45a27bfb5d3737066e326670348e96af8870e4f717b669efd608a17b1f64bd16",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/2-inst_LA/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/2-inst_LA/",
+                      "bytes":  92274,
+                      "sha256":  "a3f70be41acd1c0c7cc94ca0701d4805ce91d4dcce8b81a978e0f4724a0716dd",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "lab1/2-inst/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/2-inst/",
+                      "bytes":  90577,
+                      "sha256":  "8951104f5ebb051c391caef34672b4fdca7f5836c0faf66ec38c8d39b5da784d",
+                      "content_type":  "text/html; charset=utf-8"
+                  },
+                  {
+                      "path":  "home/assets/s-4.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-4.bmp",
+                      "bytes":  2732310,
+                      "sha256":  "b8fd5cdb04b620368ef3cc7516b2659e780d59bb0d27e52799e1b65df69fc77d",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-3.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-3.bmp",
+                      "bytes":  2763654,
+                      "sha256":  "813f26d9caf7f537cae49a004048d04dd163d3bf7621ff8c5a64d13f54ac0620",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-5.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-5.bmp",
+                      "bytes":  3213810,
+                      "sha256":  "33dfa485bd41848dc9a1549e417f4233eeaeff59786daeb121ccb8d291fb40c6",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-7.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-7.bmp",
+                      "bytes":  2324298,
+                      "sha256":  "f52edeabdbf73647f087264132fb1a705fcb93ac918db9f4d567d7973a6b58ec",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-6.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-6.bmp",
+                      "bytes":  1921074,
+                      "sha256":  "661578e5a6c340eafa5c9b962c5cba00cd7b3320539e606456d302b9b63d9a35",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-3.png",
+                      "bytes":  32476,
+                      "sha256":  "476f14f810c846e3b6c006668eb9cae238534686f383d5cc1e21b33cb757b38c",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-2.png",
+                      "bytes":  12128,
+                      "sha256":  "b1cb96c3a825b3ab2cd48216a7009a86e52154bc371e8f6cce0e5110c8a94f59",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-4.png",
+                      "bytes":  31299,
+                      "sha256":  "0eaca6165941ca24c2921a2bfa2d86f88be4c88db93ba27401d03d937e831e94",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/s-2.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-2.bmp",
+                      "bytes":  3016294,
+                      "sha256":  "d28d3e2b2b4770dcf4d77a7e0b5de9cae1a6951454fdd6ff224c7c4d268a5326",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-1.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-1.bmp",
+                      "bytes":  2865174,
+                      "sha256":  "9c830b8a7bea5f9a333286ea4c47390fb5daf398aa91d075e94f23779766b03a",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-8.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-8.bmp",
+                      "bytes":  2369946,
+                      "sha256":  "721a2f36b29ebc98b71e1029d6a113eafe9a51d032ab024e9b3cc023c71cf3ab",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "lab1/assets/1-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-2.png",
+                      "bytes":  15984,
+                      "sha256":  "e238af3c9ef979189001664222feec1615d090a3d36d4865c83a14bf37782d3d",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-1.png",
+                      "bytes":  59769,
+                      "sha256":  "3fae4f71fb3f8dde7a74ccfabc82d14e7738c1c2192c1ae9c0596aca553591bc",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-3.png",
+                      "bytes":  6816,
+                      "sha256":  "8176012af2134f55eef9f490d2ef876d291dd9a037d2ed5e07b6af643def5564",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-5.png",
+                      "bytes":  16484,
+                      "sha256":  "7514c78742247a802ac9d039aebef049000e5be851cdd2ae28f52924e7e3e403",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/1-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-4.png",
+                      "bytes":  60214,
+                      "sha256":  "9253936e7731c7acaf93ec90fc40c983e8c9e7928c4a7d3416ec9ed475b08aad",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/s-10.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-10.bmp",
+                      "bytes":  2643834,
+                      "sha256":  "acad9c9273589985089b59d1d087dad9c1cf0adb3ecb9c5ac96aabc9937f5a6e",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-9.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-9.bmp",
+                      "bytes":  2363494,
+                      "sha256":  "8041e42a22d1387790efa9f9a2d9b39c838dfce070a490559bb91c61b981ae39",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-11.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-11.bmp",
+                      "bytes":  2358534,
+                      "sha256":  "4f99e577ed6649a7559a4e48539b4b8d919ae5298443d64de4a75ffdb6d7fd88",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-13.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-13.bmp",
+                      "bytes":  1997154,
+                      "sha256":  "3e01eb75ec5f3a66925a906849b4ac4ef71e9bf19b80f99be871f0a3b2b39ba6",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/s-12.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-12.bmp",
+                      "bytes":  1469790,
+                      "sha256":  "d60d51e127339c35b23e7e3f31303185e86ef013431ddaab5f970c1d09c3a716",
+                      "content_type":  ""
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-1.png",
+                      "bytes":  17997,
+                      "sha256":  "f403027b7af05cfa9445953a182035b59496bdbf0da8b6b2e964a5f7a67b5242",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-6.png",
+                      "bytes":  115864,
+                      "sha256":  "2f23588aa2099a9e97061ccdf6f08ac93c1902209d343a1b16ec3d451624e8ab",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-5.png",
+                      "bytes":  38415,
+                      "sha256":  "7716e99f739824ece76323234103d06bf1ca2e2b4466212fab420b1390c9bfee",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-7.png",
+                      "bytes":  37600,
+                      "sha256":  "03337e222af9281a91d857407f99a636364b03df3a11935a7a4b3134ae165480",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-9.png",
+                      "bytes":  65380,
+                      "sha256":  "91d0c703a0be27efad6278d9f4569779430e1d438b80e9bf7eab680e6bd7e365",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-8.png",
+                      "bytes":  27688,
+                      "sha256":  "017d9bf6d5c9425249eaeda10836a6d693fb81cd5bf373a43ba63c773220d59d",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-1.png",
+                      "bytes":  80030,
+                      "sha256":  "0705a0adeba1bba0f3aab7bb2621140fdfb70206b4185e4a5aad69e91e4cb9e1",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "lab1/assets/t0-1A.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t0-1A.png",
+                      "bytes":  118709,
+                      "sha256":  "ba8eab04bb131dae9046ae0fe68d60de3b7c952cf1338c5e5fa018af53b0b98d",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-2.png",
+                      "bytes":  179499,
+                      "sha256":  "c473c70ae9f1083d82c1d9fc7681b4a21b10e7648d3ed50cecb556f643f858bd",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-4.png",
+                      "bytes":  38288,
+                      "sha256":  "ec3b278315aef72a38f1309dde42ff9076e3fe18ca7fc3dc24098db42e9bc5d2",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-3.png",
+                      "bytes":  28260,
+                      "sha256":  "b8ea91a5f3b5844611c3d5744228e0de1647956ba0aa88c28b2af38bfcd752fd",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-10.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-10.png",
+                      "bytes":  63637,
+                      "sha256":  "17b271ed06c67c72c1146d088605c81d03d639ec63566bc0db265ec9851c4f05",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-1.7-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-3.png",
+                      "bytes":  115494,
+                      "sha256":  "b56cc967322ba8f0837d764fd2930b3e7768ddb14005c917c0b7ad0c4b49b707",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-1.7-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-2.png",
+                      "bytes":  51401,
+                      "sha256":  "0928abdece256f77f3d1a55f420e56ba86d79d7e7eef829701762cb7f01632e6",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-1.7-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-4.png",
+                      "bytes":  265299,
+                      "sha256":  "a275e273cc0e4149d6aba3b9d713d5192cd9faf2cdabd198097f579f3c408fe0",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-2.15-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-2.15-1.png",
+                      "bytes":  3900,
+                      "sha256":  "433755e74eda7eef45b6eb6c7875b7b98a9713fb7bf671a66cab0671b1d26d19",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-2.14-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-2.14-1.png",
+                      "bytes":  15175,
+                      "sha256":  "0f63bec25567e5d878782473d66b3a3b3cd396cdc187067f3e30dc37a5065219",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-12.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-12.png",
+                      "bytes":  9651,
+                      "sha256":  "e6f7bf509a9a53ce4afced5a6d6519586fb5f54760fd2639cbe1ca30b62a5d66",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "trace/assets/trace-11.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-11.png",
+                      "bytes":  9083,
+                      "sha256":  "733dcf658b9aa195d4aaab46ab0ff29277c868c3d4bef467c24772748452bb53",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "verify/assets/t-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/t-1.png",
+                      "bytes":  4748,
+                      "sha256":  "a315a266cf78c0b4d69a40dd1442dde7f4aa103e1e80f5ceee898be102bf9043",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "home/assets/p-1.7-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-1.png",
+                      "bytes":  22601,
+                      "sha256":  "365d6bad2d08004958a5f9d3105256fb2dd8bb93eaf50d8adc32ff9723e54d36",
+                      "content_type":  "image/png"
+                  },
+                  {
+                      "path":  "verify/assets/t-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/t-2.png",
+                      "bytes":  5657,
+                      "sha256":  "33c1a89ef9e657b01d3dada8eac51727aaed140370d83640e548e9725c0248f4",
+                      "content_type":  "image/png"
+                  }
+              ],
+    "missing":  [
+                    {
+                        "source":  "https://cpu-design.p.cs-lab.top/lab2-B/5-ioupg/",
+                        "status":  404
+                    },
+                    {
+                        "source":  "https://cpu-design.p.cs-lab.top/lab1/6-muldiv/",
+                        "status":  404
+                    },
+                    {
+                        "source":  "https://cpu-design.p.cs-lab.top/lab2-A/7-step/",
+                        "status":  404
+                    },
+                    {
+                        "source":  "https://cpu-design.p.cs-lab.top/robots.txt",
+                        "status":  404
+                    },
+                    {
+                        "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-5.png",
+                        "status":  404
+                    }
+                ]
+}

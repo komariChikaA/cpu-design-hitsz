@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+if [ "${CPU_MIRROR_SKIP_HOOK:-}" = "1" ]; then
+    exit 0
+fi
+
+repo_root=$(git rev-parse --show-toplevel)
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "$repo_root/scripts/sync-and-publish.ps1" -Push
