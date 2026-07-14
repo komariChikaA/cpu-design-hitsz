@@ -7,7 +7,8 @@ param(
     [ValidateRange(1, 600)]
     [int]$TimeoutSec = 30,
     [ValidateRange(0, 10)]
-    [int]$Retries = 2
+    [int]$Retries = 2,
+    [switch]$Incremental
 )
 
 $ErrorActionPreference = "Stop"
@@ -16,14 +17,42 @@ $ProgressPreference = "SilentlyContinue"
 
 $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
 $outputPath = [IO.Path]::GetFullPath((Join-Path $repoRoot $OutputDir))
-$stagingPath = [IO.Path]::GetFullPath((Join-Path $repoRoot ".mirror-staging"))
+$stagingRoot = [IO.Path]::GetFullPath((Join-Path $repoRoot ".sync-staging"))
+$sha256 = [Security.Cryptography.SHA256]::Create()
+try {
+    $stagingKey = ([BitConverter]::ToString(
+        $sha256.ComputeHash([Text.Encoding]::UTF8.GetBytes($outputPath))
+    )).Replace("-", "").Substring(0, 16).ToLowerInvariant()
+} finally {
+    $sha256.Dispose()
+}
+$stagingPath = Join-Path $stagingRoot $stagingKey
 $repoPrefix = $repoRoot.TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar
 
 if (-not $outputPath.StartsWith($repoPrefix, [StringComparison]::OrdinalIgnoreCase)) {
     throw "OutputDir must be inside the repository: $repoRoot"
 }
-if ($outputPath -eq $stagingPath) {
-    throw "OutputDir cannot be the reserved .mirror-staging directory."
+if ($outputPath -eq $stagingRoot -or $outputPath.StartsWith(
+    $stagingRoot.TrimEnd([IO.Path]::DirectorySeparatorChar) + [IO.Path]::DirectorySeparatorChar,
+    [StringComparison]::OrdinalIgnoreCase
+)) {
+    throw "OutputDir cannot be inside the reserved .sync-staging directory."
+}
+
+$previousEntries = @{}
+if ($Incremental) {
+    $previousManifestPath = Join-Path $outputPath "mirror-manifest.json"
+    if (Test-Path -LiteralPath $previousManifestPath) {
+        try {
+            $previousManifest = Get-Content -LiteralPath $previousManifestPath -Raw | ConvertFrom-Json
+            foreach ($entry in @($previousManifest.files)) {
+                if ($entry.source) { $previousEntries[[string]$entry.source] = $entry }
+            }
+        } catch {
+            Write-Warning "Existing manifest could not be read; performing a full download."
+            $previousEntries = @{}
+        }
+    }
 }
 
 $baseBuilder = [UriBuilder]::new($BaseUri)
@@ -125,7 +154,7 @@ function Get-LinksFromText {
 if (Test-Path -LiteralPath $stagingPath) {
     Remove-Item -LiteralPath $stagingPath -Recurse -Force
 }
-New-Item -ItemType Directory -Path $stagingPath | Out-Null
+New-Item -ItemType Directory -Force -Path $stagingPath | Out-Null
 
 $queue = [Collections.Generic.Queue[uri]]::new()
 $queued = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
@@ -156,6 +185,41 @@ try {
         $destination = Join-Path $stagingPath $relativePath
         $parent = Split-Path -Parent $destination
         New-Item -ItemType Directory -Force -Path $parent | Out-Null
+
+        $previousEntry = $previousEntries[$current.AbsoluteUri]
+        if ($Incremental -and $null -ne $previousEntry -and
+            [string]$previousEntry.content_type -notmatch "text/html|application/xhtml|text/css") {
+            $previousFile = Join-Path $outputPath $relativePath
+            if (Test-Path -LiteralPath $previousFile) {
+                try {
+                    $head = Invoke-WebRequest -Uri $current -UseBasicParsing -Method Head -TimeoutSec $TimeoutSec
+                    $headEtag = [string]$head.Headers["ETag"]
+                    $headModified = [string]$head.Headers["Last-Modified"]
+                    $headLength = [long]$head.Headers["Content-Length"]
+                    $etagMatches = $headEtag -and [string]$previousEntry.etag -and
+                        $headEtag -eq [string]$previousEntry.etag
+                    $modifiedMatches = $headModified -and [string]$previousEntry.last_modified -and
+                        $headModified -eq [string]$previousEntry.last_modified -and
+                        $headLength -eq [long]$previousEntry.bytes
+                    if ($etagMatches -or $modifiedMatches) {
+                        Copy-Item -LiteralPath $previousFile -Destination $destination
+                        $entries.Add([ordered]@{
+                            path = $relativePath.Replace([IO.Path]::DirectorySeparatorChar, "/")
+                            source = $current.AbsoluteUri
+                            bytes = [long]$previousEntry.bytes
+                            sha256 = [string]$previousEntry.sha256
+                            content_type = [string]$head.Headers["Content-Type"]
+                            etag = $headEtag
+                            last_modified = $headModified
+                        })
+                        Write-Host ("[{0}/{1}] {2} [cached]" -f $entries.Count, ($entries.Count + $queue.Count), $current.AbsoluteUri)
+                        continue
+                    }
+                } catch {
+                    Write-Warning "Incremental check failed; downloading file again: $current"
+                }
+            }
+        }
 
         $response = $null
         $lastError = $null
@@ -200,6 +264,8 @@ try {
             bytes = $fileInfo.Length
             sha256 = $hash
             content_type = $contentType
+            etag = [string]$response.Headers["ETag"]
+            last_modified = [string]$response.Headers["Last-Modified"]
         })
         Write-Host ("[{0}/{1}] {2}" -f $entries.Count, ($entries.Count + $queue.Count), $current.AbsoluteUri)
 

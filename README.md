@@ -77,6 +77,18 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-site.ps1 
 
 完整抓取成功后才会替换旧的 `mirror/`。网络中断、站点不可达或超过文件数量限制时，已有镜像不会被删除。
 
+## 按需同步课程资料
+
+课程资料来自校内站点 <http://10.249.14.10:2012/>，保存在 `materials/`。每次需要更新时运行：
+
+```powershell
+.\scripts\sync-materials.cmd
+```
+
+Agent 读到“爬取课程资料”“更新课程资料”“同步 materials”等请求时，也应直接运行上述命令。
+同步按需触发，不安装定时任务或后台进程。目录页会重新抓取；带有 `ETag` 或
+`Last-Modified` 且未变化的大文件直接复用本地副本，避免重复下载。网络失败不会删除已有资料。
+
 ## 注意
 
 - GitHub Actions 的云端机器通常无法访问校园内网站点，所以抓取在本机执行。
