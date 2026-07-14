@@ -10,6 +10,22 @@
 
 抓取结果保存在 `mirror/`。脚本以**当前网站**为准，递归保存站内页面、图片、样式、脚本和下载附件；往年仓库只用于理解课程资料的大体组织方式。
 
+## 新设备初始化（用户和 Agent 必读）
+
+在 Windows 新设备上首次 clone 或打开本仓库后，必须在仓库根目录运行一次：
+
+```powershell
+.\scripts\install-hooks.cmd
+```
+
+如果 Codex 或其他自动化 Agent 读取到本 README，并且当前 clone 尚未配置 `.githooks`，Agent 应主动运行上述命令完成初始化。可用下面的命令检查是否已经配置：
+
+```powershell
+git config --get core.hooksPath
+```
+
+输出 `.githooks` 即表示已经安装，无需重复执行。该 hook 会在 `git pull` 实际更新分支后自动抓取网站；检测到镜像变化时，还会自动创建提交并推送当前分支。
+
 ## 推荐用法：pull 后自动同步
 
 在 PowerShell 中运行：
