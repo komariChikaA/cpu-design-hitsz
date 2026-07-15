@@ -2,3 +2,4 @@
 .sync-staging/
 .tmp-upstream-cpu/
 materials/
+outputs/
