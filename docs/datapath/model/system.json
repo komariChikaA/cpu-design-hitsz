@@ -1,0 +1,79 @@
+{
+  "id": "minirv-system",
+  "title": "miniRV 系统接口图",
+  "subtitle": "cpu_top：指令与数据存储器通过请求/应答接口连接 cpu_core",
+  "direction": "RIGHT",
+  "stages": [
+    { "id": "instruction", "label": "Instruction memory", "color": "#e0f2fe" },
+    { "id": "core", "label": "CPU core", "color": "#eef2ff" },
+    { "id": "data", "label": "Data memory", "color": "#ecfdf5" }
+  ],
+  "nodes": [
+    {
+      "id": "irom",
+      "label": "Inst_ROM",
+      "subtitle": "取指接口适配 + IROM",
+      "stage": "instruction",
+      "kind": "memory",
+      "ports": [
+        { "id": "inst_rreq", "label": "inst_rreq", "side": "EAST" },
+        { "id": "inst_addr", "label": "inst_addr [31:0]", "side": "EAST" },
+        { "id": "inst_valid", "label": "inst_valid", "side": "EAST" },
+        { "id": "inst_out", "label": "inst_out [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "core",
+      "label": "cpu_core",
+      "subtitle": "IF · ID · EX · MEM · WB",
+      "stage": "core",
+      "kind": "core",
+      "ports": [
+        { "id": "ifetch_req", "label": "ifetch_req", "side": "WEST" },
+        { "id": "ifetch_addr", "label": "ifetch_addr [31:0]", "side": "WEST" },
+        { "id": "ifetch_valid", "label": "ifetch_valid", "side": "WEST" },
+        { "id": "ifetch_inst", "label": "ifetch_inst [31:0]", "side": "WEST" },
+        { "id": "daccess_ren", "label": "daccess_ren [3:0]", "side": "EAST" },
+        { "id": "daccess_addr", "label": "daccess_addr [31:0]", "side": "EAST" },
+        { "id": "daccess_rvalid", "label": "daccess_rvalid", "side": "EAST" },
+        { "id": "daccess_rdata", "label": "daccess_rdata [31:0]", "side": "EAST" },
+        { "id": "daccess_wen", "label": "daccess_wen [3:0]", "side": "EAST" },
+        { "id": "daccess_wdata", "label": "daccess_wdata [31:0]", "side": "EAST" },
+        { "id": "daccess_wresp", "label": "daccess_wresp", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "dram",
+      "label": "Data_RAM",
+      "subtitle": "访存接口适配 + DRAM",
+      "stage": "data",
+      "kind": "memory",
+      "ports": [
+        { "id": "data_ren", "label": "data_ren [3:0]", "side": "WEST" },
+        { "id": "data_addr", "label": "data_addr [31:0]", "side": "WEST" },
+        { "id": "data_valid", "label": "data_valid", "side": "WEST" },
+        { "id": "data_rdata", "label": "data_rdata [31:0]", "side": "WEST" },
+        { "id": "data_wen", "label": "data_wen [3:0]", "side": "WEST" },
+        { "id": "data_wdata", "label": "data_wdata [31:0]", "side": "WEST" },
+        { "id": "data_wresp", "label": "data_wresp", "side": "WEST" }
+      ]
+    }
+  ],
+  "edges": [
+    { "id": "if_req", "from": "core.ifetch_req", "to": "irom.inst_rreq", "label": "request", "type": "handshake" },
+    { "id": "if_addr", "from": "core.ifetch_addr", "to": "irom.inst_addr", "label": "取指地址", "type": "data" },
+    { "id": "if_valid", "from": "irom.inst_valid", "to": "core.ifetch_valid", "label": "valid", "type": "handshake" },
+    { "id": "if_inst", "from": "irom.inst_out", "to": "core.ifetch_inst", "label": "指令", "type": "data" },
+    { "id": "d_ren", "from": "core.daccess_ren", "to": "dram.data_ren", "label": "read enable", "type": "control" },
+    { "id": "d_addr", "from": "core.daccess_addr", "to": "dram.data_addr", "label": "访存地址", "type": "data" },
+    { "id": "d_rvalid", "from": "dram.data_valid", "to": "core.daccess_rvalid", "label": "read valid", "type": "handshake" },
+    { "id": "d_rdata", "from": "dram.data_rdata", "to": "core.daccess_rdata", "label": "读数据", "type": "data" },
+    { "id": "d_wen", "from": "core.daccess_wen", "to": "dram.data_wen", "label": "write enable", "type": "control" },
+    { "id": "d_wdata", "from": "core.daccess_wdata", "to": "dram.data_wdata", "label": "写数据", "type": "data" },
+    { "id": "d_wresp", "from": "dram.data_wresp", "to": "core.daccess_wresp", "label": "write response", "type": "handshake" }
+  ],
+  "notes": [
+    "cpu_clk 与高有效 cpu_rst 同时送入三个模块，图中为降低拥挤统一省略。",
+    "紫色虚线表示跨周期握手；蓝色粗线表示数据总线；橙色表示控制/使能。"
+  ]
+}

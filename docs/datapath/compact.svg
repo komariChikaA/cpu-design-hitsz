@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3992 962.5" role="img" aria-labelledby="title desc">
+  <title id="title">miniRV 紧凑教学数据通路</title>
+  <desc id="desc">目标逻辑结构：省略握手、多周期状态与全局 clk/rst</desc>
+  <metadata>{&quot;model&quot;:&quot;minirv-compact&quot;,&quot;nodes&quot;:14,&quot;edges&quot;:42}</metadata>
+  <defs>
+    <marker id="arrow-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="arrow-control" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706"/></marker>
+<marker id="arrow-handshake" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+<marker id="arrow-target" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker>
+<marker id="arrow-current" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+    <filter id="node-shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.12"/></filter>
+    <style><![CDATA[
+      text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif; }
+      .edge { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .edge-label text { font-size: 10px; font-weight: 650; letter-spacing: .2px; }
+      .stage-band rect { opacity: .64; stroke: #cbd5e1; stroke-width: 1; stroke-dasharray: 5 6; }
+      .stage-band text { font-size: 13px; font-weight: 750; fill: #475569; letter-spacing: .8px; }
+      .node { filter: url(#node-shadow); }
+      .node-body { fill: #ffffff; stroke: #334155; stroke-width: 1.5; }
+      .node-header { fill: #f8fafc; stroke: none; }
+      .header-cut { stroke: #e2e8f0; stroke-width: 1; }
+      .node-title { font-size: 16px; font-weight: 760; fill: #0f172a; }
+      .node-subtitle { font-size: 10.5px; fill: #64748b; }
+      .port circle { fill: #ffffff; stroke: #475569; stroke-width: 1.5; }
+      .port text { font-size: 10.5px; font-weight: 700; fill: #334155; }
+      .node-core .node-body { stroke: #4f46e5; stroke-width: 2.2; }
+      .node-memory .node-body { stroke: #0284c7; }
+      .node-register .node-body { stroke: #7c3aed; }
+      .node-mux .node-body { stroke: #d97706; }
+      .node-external .node-body { stroke: #64748b; stroke-dasharray: 7 5; }
+      .node-constant .node-body { stroke: #64748b; stroke-dasharray: 3 3; }
+      .status-partial .node-body { stroke: #f59e0b; stroke-dasharray: 8 5; }
+      .badge { font-size: 10px; font-weight: 800; fill: #b45309; }
+      .legend text { font-size: 11px; fill: #475569; }
+      .note { font-size: 11px; fill: #64748b; }
+    ]]></style>
+  </defs>
+  <rect width="3992" height="962.5" fill="#ffffff"/>
+  <g transform="translate(70 0)">
+    <text x="0" y="42" font-size="26" font-weight="800" fill="#0f172a">miniRV 紧凑教学数据通路</text>
+    <text x="0" y="68" font-size="13" fill="#64748b">目标逻辑结构：省略握手、多周期状态与全局 clk/rst</text>
+    <g transform="translate(0 91)"><g class="legend"><g transform="translate(0 0)"><path d="M 0 8 H 28" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/><text x="38" y="12">32-bit data / 数据</text></g><g transform="translate(172 0)"><path d="M 0 8 H 28" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/><text x="38" y="12">control / 控制</text></g><g transform="translate(318 0)"><path d="M 0 8 H 28" stroke="#7c3aed" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow-handshake)"/><text x="38" y="12">handshake / 跨周期握手</text></g><g transform="translate(510 0)"><path d="M 0 8 H 28" stroke="#dc2626" stroke-width="2.1" stroke-dasharray="9 6" marker-end="url(#arrow-target)"/><text x="38" y="12">target only / 目标连接</text></g><g transform="translate(704 0)"><path d="M 0 8 H 28" stroke="#475569" stroke-width="2" stroke-dasharray="3 4" marker-end="url(#arrow-current)"/><text x="38" y="12">current special case / 当前特例</text></g></g></g>
+  </g>
+  <g transform="translate(70 138)">
+    <g class="stage-band"><rect x="56" y="0" width="798" height="726.5" rx="18" fill="#eff6ff"/><text x="72" y="25">IF · 取指</text></g>
+<g class="stage-band"><rect x="890" y="0" width="1415" height="726.5" rx="18" fill="#f5f3ff"/><text x="906" y="25">ID/WB · 译码与写回</text></g>
+<g class="stage-band"><rect x="2341" y="0" width="520" height="726.5" rx="18" fill="#fff7ed"/><text x="2357" y="25">EX · 执行</text></g>
+<g class="stage-band"><rect x="2897" y="0" width="919" height="726.5" rx="18" fill="#ecfdf5"/><text x="2913" y="25">MEM · 访存</text></g>
+    <g class="edges"><path class="edge edge-data" d="M 558 319.5 L 630 319.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 836 319.5 L 908 319.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 280 565.5 L 298 565.5 L 298 319.5 L 352 319.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 558 319.5 L 576 319.5 L 576 240.5 L 56 240.5 L 56 565.5 L 74 565.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 1723 526.5 L 1751 526.5 L 1751 678.5 L 46 678.5 L 46 591.5 L 74 591.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 2843 358.5 L 2861 358.5 L 2861 689.5 L 36 689.5 L 36 617.5 L 74 617.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1435 105 L 1463 105 L 1463 667.5 L 56 667.5 L 56 643.5 L 74 643.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1157 247.5 L 1175 247.5 L 1175 105 L 1229 105" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1157 271.5 L 1185 271.5 L 1185 199 L 1229 199" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1157 295.5 L 1175 295.5 L 1175 293 L 1229 293" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1157 319.5 L 2023 319.5 L 2023 451.5 L 2077 451.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1157 343.5 L 1195 343.5 L 1195 610.5 L 2023 610.5 L 2023 476.5 L 2077 476.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1157 367.5 L 1185 367.5 L 1185 621.5 L 2033 621.5 L 2033 501.5 L 2077 501.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 1157 391.5 L 1175 391.5 L 1175 632.5 L 1473 632.5 L 1473 509.5 L 1507 509.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 128.5 L 1483 128.5 L 1483 543.5 L 1507 543.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 2287 451.5 L 2305 451.5 L 2305 142.5 L 2359 142.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 558 319.5 L 576 319.5 L 576 36 L 2315 36 L 2315 170.5 L 2359 170.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 175.5 L 1473 175.5 L 1473 198.5 L 2359 198.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 2565 170.5 L 2583 170.5 L 2583 302.5 L 2637 302.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 2287 551.5 L 2315 551.5 L 2315 302.5 L 2359 302.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 1723 526.5 L 1751 526.5 L 1751 330.5 L 2359 330.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 199 L 1453 199 L 1453 211.5 L 2325 211.5 L 2325 358.5 L 2359 358.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 2565 330.5 L 2637 330.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 152 L 1473 152 L 1473 73.5 L 2593 73.5 L 2593 358.5 L 2637 358.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 2843 302.5 L 2871 302.5 L 2871 474.5 L 2915 474.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 222.5 L 2891 222.5 L 2891 500.5 L 2915 500.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-control" d="M 1435 246 L 1473 246 L 1473 233.5 L 2881 233.5 L 2881 526.5 L 2915 526.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 2287 551.5 L 2315 551.5 L 2315 552.5 L 2915 552.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<g class="edge-label" transform="translate(2424 556.5)"><rect width="76" height="20" rx="6" fill="#ffffff" fill-opacity="0.94" stroke="#2563eb" stroke-opacity="0.28"/><text x="38" y="13.5" text-anchor="middle" fill="#2563eb">store data</text></g>
+<path class="edge edge-control" d="M 3157 474.5 L 3229 474.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 3157 500.5 L 3229 500.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 3157 526.5 L 3229 526.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 3157 552.5 L 3229 552.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 3484 513.5 L 3502 513.5 L 3502 520.5 L 3556 520.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 222.5 L 3512 222.5 L 3512 548.5 L 3556 548.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 2843 302.5 L 2871 302.5 L 2871 576.5 L 3556 576.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 2843 302.5 L 2871 302.5 L 2871 382.5 L 1771 382.5 L 1771 476.5 L 1795 476.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 280 643.5 L 1761 643.5 L 1761 501.5 L 1795 501.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 1723 526.5 L 1795 526.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-data" d="M 3798 548.5 L 3816 548.5 L 3816 600.5 L 1771 600.5 L 1771 551.5 L 1795 551.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 293 L 1453 293 L 1453 308.5 L 1741 308.5 L 1741 576.5 L 1795 576.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/>
+<path class="edge edge-data" d="M 2005 526.5 L 2077 526.5" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/>
+<path class="edge edge-control" d="M 1435 269.5 L 1473 269.5 L 1473 297.5 L 2043 297.5 L 2043 551.5 L 2077 551.5" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/></g>
+    <g class="nodes"><g id="node-irom" class="node node-memory" transform="translate(638 250.5)"><rect class="node-body" width="190" height="94" rx="14"/><rect class="node-header" x="1" y="1" width="188" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 189"/><text class="node-title" x="16" y="23">Inst_ROM</text><text class="node-subtitle" x="16" y="38">instruction memory</text><g class="port port-west"><circle cx="-4" cy="69" r="4"/><text x="14" y="73" text-anchor="start">取指地址</text></g>
+<g class="port port-east"><circle cx="194" cy="69" r="4"/><text x="176" y="73" text-anchor="end">指令 [31:0]</text></g></g>
+<g id="node-npc" class="node node-logic" transform="translate(82 507.5)"><rect class="node-body" width="190" height="150" rx="14"/><rect class="node-header" x="1" y="1" width="188" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 189"/><text class="node-title" x="16" y="23">NPC</text><text class="node-subtitle" x="16" y="38">next PC + PC+4</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">pc</text></g>
+<g class="port port-west"><circle cx="-4" cy="84" r="4"/><text x="14" y="88" text-anchor="start">offset</text></g>
+<g class="port port-west"><circle cx="-4" cy="110" r="4"/><text x="14" y="114" text-anchor="start">br</text></g>
+<g class="port port-west"><circle cx="-4" cy="136" r="4"/><text x="14" y="140" text-anchor="start">npc_op</text></g>
+<g class="port port-east"><circle cx="194" cy="58" r="4"/><text x="176" y="62" text-anchor="end">npc</text></g>
+<g class="port port-east"><circle cx="194" cy="136" r="4"/><text x="176" y="140" text-anchor="end">pc4</text></g></g>
+<g id="node-pc" class="node node-register" transform="translate(360 250.5)"><rect class="node-body" width="190" height="94" rx="14"/><rect class="node-header" x="1" y="1" width="188" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 189"/><text class="node-title" x="16" y="23">PC</text><text class="node-subtitle" x="16" y="38">program counter</text><g class="port port-west"><circle cx="-4" cy="69" r="4"/><text x="14" y="73" text-anchor="start">npc</text></g>
+<g class="port port-east"><circle cx="194" cy="69" r="4"/><text x="176" y="73" text-anchor="end">pc [31:0]</text></g></g>
+<g id="node-decode" class="node node-splitter" transform="translate(916 189.5)"><rect class="node-body" width="233" height="216" rx="14"/><rect class="node-header" x="1" y="1" width="231" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 232"/><text class="node-title" x="16" y="23">Instruction fields</text><text class="node-subtitle" x="16" y="38">instruction bus taps</text><g class="port port-west"><circle cx="-4" cy="130" r="4"/><text x="14" y="134" text-anchor="start">inst [31:0]</text></g>
+<g class="port port-east"><circle cx="237" cy="58" r="4"/><text x="219" y="62" text-anchor="end">opcode [6:0]</text></g>
+<g class="port port-east"><circle cx="237" cy="82" r="4"/><text x="219" y="86" text-anchor="end">funct3 [14:12]</text></g>
+<g class="port port-east"><circle cx="237" cy="106" r="4"/><text x="219" y="110" text-anchor="end">funct7 [31:25]</text></g>
+<g class="port port-east"><circle cx="237" cy="130" r="4"/><text x="219" y="134" text-anchor="end">rs1 [19:15]</text></g>
+<g class="port port-east"><circle cx="237" cy="154" r="4"/><text x="219" y="158" text-anchor="end">rs2 [24:20]</text></g>
+<g class="port port-east"><circle cx="237" cy="178" r="4"/><text x="219" y="182" text-anchor="end">rd [11:7]</text></g>
+<g class="port port-east"><circle cx="237" cy="202" r="4"/><text x="219" y="206" text-anchor="end">imm [31:7]</text></g></g>
+<g id="node-controller" class="node node-logic" transform="translate(1237 47)"><rect class="node-body" width="190" height="260" rx="14"/><rect class="node-header" x="1" y="1" width="188" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 189"/><text class="node-title" x="16" y="23">Controller</text><text class="node-subtitle" x="16" y="38">decode + control</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">opcode</text></g>
+<g class="port port-west"><circle cx="-4" cy="152" r="4"/><text x="14" y="156" text-anchor="start">funct3</text></g>
+<g class="port port-west"><circle cx="-4" cy="246" r="4"/><text x="14" y="250" text-anchor="start">funct7</text></g>
+<g class="port port-east"><circle cx="194" cy="58" r="4"/><text x="176" y="62" text-anchor="end">npc_op</text></g>
+<g class="port port-east"><circle cx="194" cy="81.5" r="4"/><text x="176" y="85.5" text-anchor="end">sext_op</text></g>
+<g class="port port-east"><circle cx="194" cy="105" r="4"/><text x="176" y="109" text-anchor="end">alu_op</text></g>
+<g class="port port-east"><circle cx="194" cy="128.5" r="4"/><text x="176" y="132.5" text-anchor="end">alua_sel</text></g>
+<g class="port port-east"><circle cx="194" cy="152" r="4"/><text x="176" y="156" text-anchor="end">alub_sel</text></g>
+<g class="port port-east"><circle cx="194" cy="175.5" r="4"/><text x="176" y="179.5" text-anchor="end">ram_rop</text></g>
+<g class="port port-east"><circle cx="194" cy="199" r="4"/><text x="176" y="203" text-anchor="end">ram_wop</text></g>
+<g class="port port-east"><circle cx="194" cy="222.5" r="4"/><text x="176" y="226.5" text-anchor="end">rf_we</text></g>
+<g class="port port-east"><circle cx="194" cy="246" r="4"/><text x="176" y="250" text-anchor="end">rf_wsel</text></g></g>
+<g id="node-rf" class="node node-register" transform="translate(2085 393.5)"><rect class="node-body" width="194" height="172" rx="14"/><rect class="node-header" x="1" y="1" width="192" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 193"/><text class="node-title" x="16" y="23">RF</text><text class="node-subtitle" x="16" y="38">register file</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">rR1</text></g>
+<g class="port port-west"><circle cx="-4" cy="83" r="4"/><text x="14" y="87" text-anchor="start">rR2</text></g>
+<g class="port port-west"><circle cx="-4" cy="108" r="4"/><text x="14" y="112" text-anchor="start">wR</text></g>
+<g class="port port-west"><circle cx="-4" cy="133" r="4"/><text x="14" y="137" text-anchor="start">wD [31:0]</text></g>
+<g class="port port-west"><circle cx="-4" cy="158" r="4"/><text x="14" y="162" text-anchor="start">we</text></g>
+<g class="port port-east"><circle cx="198" cy="58" r="4"/><text x="180" y="62" text-anchor="end">rD1 [31:0]</text></g>
+<g class="port port-east"><circle cx="198" cy="158" r="4"/><text x="180" y="162" text-anchor="end">rD2 [31:0]</text></g></g>
+<g id="node-sext" class="node node-logic" transform="translate(1515 451.5)"><rect class="node-body" width="200" height="106" rx="14"/><rect class="node-header" x="1" y="1" width="198" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 199"/><text class="node-title" x="16" y="23">SEXT</text><text class="node-subtitle" x="16" y="38">immediate extension</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">imm [31:7]</text></g>
+<g class="port port-west"><circle cx="-4" cy="92" r="4"/><text x="14" y="96" text-anchor="start">sext_op</text></g>
+<g class="port port-east"><circle cx="204" cy="75" r="4"/><text x="186" y="79" text-anchor="end">ext [31:0]</text></g></g>
+<g id="node-muxa" class="node node-mux" transform="translate(2367 84.5)"><rect class="node-body" width="190" height="128" rx="14"/><rect class="node-header" x="1" y="1" width="188" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 189"/><text class="node-title" x="16" y="23">MUX A</text><text class="node-subtitle" x="16" y="38">RS1 / PC</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">0 · rs1</text></g>
+<g class="port port-west"><circle cx="-4" cy="86" r="4"/><text x="14" y="90" text-anchor="start">1 · pc</text></g>
+<g class="port port-west"><circle cx="-4" cy="114" r="4"/><text x="14" y="118" text-anchor="start">sel</text></g>
+<g class="port port-east"><circle cx="194" cy="86" r="4"/><text x="176" y="90" text-anchor="end">alu_a</text></g></g>
+<g id="node-muxb" class="node node-mux" transform="translate(2367 244.5)"><rect class="node-body" width="190" height="128" rx="14"/><rect class="node-header" x="1" y="1" width="188" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 189"/><text class="node-title" x="16" y="23">MUX B</text><text class="node-subtitle" x="16" y="38">RS2 / EXT</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">0 · rs2</text></g>
+<g class="port port-west"><circle cx="-4" cy="86" r="4"/><text x="14" y="90" text-anchor="start">1 · ext</text></g>
+<g class="port port-west"><circle cx="-4" cy="114" r="4"/><text x="14" y="118" text-anchor="start">sel</text></g>
+<g class="port port-east"><circle cx="194" cy="86" r="4"/><text x="176" y="90" text-anchor="end">alu_b</text></g></g>
+<g id="node-alu" class="node node-logic" transform="translate(2645 244.5)"><rect class="node-body" width="190" height="128" rx="14"/><rect class="node-header" x="1" y="1" width="188" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 189"/><text class="node-title" x="16" y="23">ALU</text><text class="node-subtitle" x="16" y="38">arithmetic + branch</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">a</text></g>
+<g class="port port-west"><circle cx="-4" cy="86" r="4"/><text x="14" y="90" text-anchor="start">b</text></g>
+<g class="port port-west"><circle cx="-4" cy="114" r="4"/><text x="14" y="118" text-anchor="start">alu_op</text></g>
+<g class="port port-east"><circle cx="194" cy="58" r="4"/><text x="176" y="62" text-anchor="end">c [31:0]</text></g>
+<g class="port port-east"><circle cx="194" cy="114" r="4"/><text x="176" y="118" text-anchor="end">br</text></g></g>
+<g id="node-mreq" class="node node-logic" transform="translate(2923 416.5)"><rect class="node-body" width="226" height="150" rx="14"/><rect class="node-header" x="1" y="1" width="224" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 225"/><text class="node-title" x="16" y="23">MREQ</text><text class="node-subtitle" x="16" y="38">memory request formatting</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">ram_addr</text></g>
+<g class="port port-west"><circle cx="-4" cy="84" r="4"/><text x="14" y="88" text-anchor="start">ram_rop</text></g>
+<g class="port port-west"><circle cx="-4" cy="110" r="4"/><text x="14" y="114" text-anchor="start">ram_wop</text></g>
+<g class="port port-west"><circle cx="-4" cy="136" r="4"/><text x="14" y="140" text-anchor="start">ram_wdata</text></g>
+<g class="port port-east"><circle cx="230" cy="58" r="4"/><text x="212" y="62" text-anchor="end">da_ren [3:0]</text></g>
+<g class="port port-east"><circle cx="230" cy="84" r="4"/><text x="212" y="88" text-anchor="end">da_addr [31:0]</text></g>
+<g class="port port-east"><circle cx="230" cy="110" r="4"/><text x="212" y="114" text-anchor="end">da_wen [3:0]</text></g>
+<g class="port port-east"><circle cx="230" cy="136" r="4"/><text x="212" y="140" text-anchor="end">da_wdata [31:0]</text></g></g>
+<g id="node-dram" class="node node-memory" transform="translate(3237 416.5)"><rect class="node-body" width="239" height="150" rx="14"/><rect class="node-header" x="1" y="1" width="237" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 238"/><text class="node-title" x="16" y="23">Data_RAM</text><text class="node-subtitle" x="16" y="38">data memory</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">读使能 [3:0]</text></g>
+<g class="port port-west"><circle cx="-4" cy="84" r="4"/><text x="14" y="88" text-anchor="start">读写地址 [31:0]</text></g>
+<g class="port port-west"><circle cx="-4" cy="110" r="4"/><text x="14" y="114" text-anchor="start">写使能 [3:0]</text></g>
+<g class="port port-west"><circle cx="-4" cy="136" r="4"/><text x="14" y="140" text-anchor="start">写数据 [31:0]</text></g>
+<g class="port port-east"><circle cx="243" cy="97" r="4"/><text x="225" y="101" text-anchor="end">读数据 [31:0]</text></g></g>
+<g id="node-mext" class="node node-logic" transform="translate(3564 462.5)"><rect class="node-body" width="226" height="128" rx="14"/><rect class="node-header" x="1" y="1" width="224" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 225"/><text class="node-title" x="16" y="23">MEXT</text><text class="node-subtitle" x="16" y="38">load extension</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">din [31:0]</text></g>
+<g class="port port-west"><circle cx="-4" cy="86" r="4"/><text x="14" y="90" text-anchor="start">ram_rop</text></g>
+<g class="port port-west"><circle cx="-4" cy="114" r="4"/><text x="14" y="118" text-anchor="start">c [1:0]</text></g>
+<g class="port port-east"><circle cx="230" cy="86" r="4"/><text x="212" y="90" text-anchor="end">ram_ext [31:0]</text></g></g>
+<g id="node-wbmux" class="node node-mux" transform="translate(1803 418.5)"><rect class="node-body" width="194" height="172" rx="14"/><rect class="node-header" x="1" y="1" width="192" height="43" rx="13"/><path class="header-cut" d="M 1 43 H 193"/><text class="node-title" x="16" y="23">WB MUX</text><text class="node-subtitle" x="16" y="38">ALU / PC+4 / EXT / RAM</text><g class="port port-west"><circle cx="-4" cy="58" r="4"/><text x="14" y="62" text-anchor="start">alu_c</text></g>
+<g class="port port-west"><circle cx="-4" cy="83" r="4"/><text x="14" y="87" text-anchor="start">pc4</text></g>
+<g class="port port-west"><circle cx="-4" cy="108" r="4"/><text x="14" y="112" text-anchor="start">ext</text></g>
+<g class="port port-west"><circle cx="-4" cy="133" r="4"/><text x="14" y="137" text-anchor="start">ram_ext</text></g>
+<g class="port port-west"><circle cx="-4" cy="158" r="4"/><text x="14" y="162" text-anchor="start">rf_wsel</text></g>
+<g class="port port-east"><circle cx="198" cy="108" r="4"/><text x="180" y="112" text-anchor="end">rf_wD [31:0]</text></g></g></g>
+  </g>
+  <g transform="translate(70 899.5)">
+    <text class="note" x="0" y="0">• 本图用于讲解综合数据通路，省略 ifetch/daccess 握手、多周期缓存、完成控制和全局 clk/rst。</text>
+<text class="note" x="0" y="21">• 图中采用目标连接 RF.rD2 → MREQ.ram_wdata；当前 starter RTL 仍接 32&apos;h0。</text>
+  </g>
+</svg>

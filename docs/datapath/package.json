@@ -1,0 +1,17 @@
+{
+  "name": "minirv-datapath-diagrams",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node generate.mjs",
+    "render": "node render.mjs",
+    "check": "node check.mjs",
+    "build": "npm run generate && npm run render && npm run check"
+  },
+  "dependencies": {
+    "elkjs": "0.11.1"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

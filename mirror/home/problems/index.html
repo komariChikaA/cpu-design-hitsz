@@ -698,6 +698,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#217-startmemory-access-out-of-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.17 其他测试都过了，start测试报错Memory Access out of bound？
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1540,32 +1549,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../trace/remote_env/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    A. 远程平台使用指南
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../trace/vm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    B. 虚拟机使用指南
+    A. 虚拟机使用指南
   </span>
   
 
@@ -1586,7 +1574,7 @@
         
   
   <span class="md-ellipsis">
-    C. 实验环境部署指南
+    B. 实验环境部署指南
   </span>
   
 
@@ -1607,7 +1595,7 @@
         
   
   <span class="md-ellipsis">
-    D. Surfer使用指南
+    C. Surfer使用指南
   </span>
   
 
@@ -1986,6 +1974,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#217-startmemory-access-out-of-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.17 其他测试都过了，start测试报错Memory Access out of bound？
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2170,6 +2167,8 @@
 <p>&emsp;&emsp;执行make前，先确保已经通过<code>cd</code>命令进入了<code>cdp-tests</code>目录。如果目录没问题，则检查<code>cdp-tests</code>目录是否包含<code>Makefile</code>文件。如果包含，但仍然提示“No rule to make”，则备份好个人代码，删除现有<code>cdp-tests</code>目录并重新下载和编译。</p>
 <h4 id="216-cachetrace">2.16 我的Cache和乘法器已经通过测试，为什么Trace测试过不了</h4>
 <p>&emsp;&emsp;如果ICache、DCache、乘法器模块都能跑通计算机组成原理实验的测试，但是在Trace测试时不通过，是正常现象，毕竟不同测试的严格程度不一样。与其怀疑测试框架有问题，不如根据波形细心完成调试。</p>
+<h4 id="217-startmemory-access-out-of-bound">2.17 其他测试都过了，<code>start</code>测试报错Memory Access out of bound？</h4>
+<p>&emsp;&emsp;保存好个人代码，删除<code>cdp-tests</code>目录并重新克隆仓库，然后再次重试。</p>
 <h2 id="3">3. 下板</h2>
 <h4 id="31-auto-connect">3.1 开发板Auto Connect失败，是开发板坏了吗？</h4>
 <p>&emsp;&emsp;确保USB数据线正确连接开发板的JTAG接口 —— 对于Micro USB接口的Minisys开发板，JTAG接口在数码管右上方。</p>
