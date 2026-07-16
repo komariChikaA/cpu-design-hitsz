@@ -1,0 +1,268 @@
+{
+  "id": "minirv-compact",
+  "title": "miniRV 紧凑教学数据通路",
+  "subtitle": "目标逻辑结构：省略握手、多周期状态与全局 clk/rst",
+  "direction": "RIGHT",
+  "layout": {
+    "nodeNode": 34,
+    "nodeNodeBetweenLayers": 72,
+    "edgeNodeBetweenLayers": 18,
+    "edgeEdgeBetweenLayers": 10
+  },
+  "stages": [
+    { "id": "if", "label": "IF · 取指", "color": "#eff6ff" },
+    { "id": "id", "label": "ID/WB · 译码与写回", "color": "#f5f3ff" },
+    { "id": "ex", "label": "EX · 执行", "color": "#fff7ed" },
+    { "id": "mem", "label": "MEM · 访存", "color": "#ecfdf5" }
+  ],
+  "nodes": [
+    {
+      "id": "irom",
+      "label": "Inst_ROM",
+      "subtitle": "instruction memory",
+      "stage": "if",
+      "kind": "memory",
+      "ports": [
+        { "id": "addr", "label": "取指地址", "side": "WEST" },
+        { "id": "inst", "label": "指令 [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "npc",
+      "label": "NPC",
+      "subtitle": "next PC + PC+4",
+      "stage": "if",
+      "ports": [
+        { "id": "pc", "label": "pc", "side": "WEST" },
+        { "id": "offset", "label": "offset", "side": "WEST" },
+        { "id": "br", "label": "br", "side": "WEST" },
+        { "id": "op", "label": "npc_op", "side": "WEST" },
+        { "id": "npc", "label": "npc", "side": "EAST" },
+        { "id": "pc4", "label": "pc4", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "pc",
+      "label": "PC",
+      "subtitle": "program counter",
+      "stage": "if",
+      "kind": "register",
+      "ports": [
+        { "id": "npc", "label": "npc", "side": "WEST" },
+        { "id": "pc", "label": "pc [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "decode",
+      "label": "Instruction fields",
+      "subtitle": "instruction bus taps",
+      "stage": "id",
+      "kind": "splitter",
+      "ports": [
+        { "id": "inst", "label": "inst [31:0]", "side": "WEST" },
+        { "id": "opcode", "label": "opcode [6:0]", "side": "EAST" },
+        { "id": "funct3", "label": "funct3 [14:12]", "side": "EAST" },
+        { "id": "funct7", "label": "funct7 [31:25]", "side": "EAST" },
+        { "id": "rs1", "label": "rs1 [19:15]", "side": "EAST" },
+        { "id": "rs2", "label": "rs2 [24:20]", "side": "EAST" },
+        { "id": "rd", "label": "rd [11:7]", "side": "EAST" },
+        { "id": "imm", "label": "imm [31:7]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "controller",
+      "label": "Controller",
+      "subtitle": "decode + control",
+      "stage": "id",
+      "ports": [
+        { "id": "opcode", "label": "opcode", "side": "WEST" },
+        { "id": "funct3", "label": "funct3", "side": "WEST" },
+        { "id": "funct7", "label": "funct7", "side": "WEST" },
+        { "id": "npc_op", "label": "npc_op", "side": "EAST" },
+        { "id": "sext_op", "label": "sext_op", "side": "EAST" },
+        { "id": "alu_op", "label": "alu_op", "side": "EAST" },
+        { "id": "alua_sel", "label": "alua_sel", "side": "EAST" },
+        { "id": "alub_sel", "label": "alub_sel", "side": "EAST" },
+        { "id": "ram_rop", "label": "ram_rop", "side": "EAST" },
+        { "id": "ram_wop", "label": "ram_wop", "side": "EAST" },
+        { "id": "rf_we", "label": "rf_we", "side": "EAST" },
+        { "id": "rf_wsel", "label": "rf_wsel", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "rf",
+      "label": "RF",
+      "subtitle": "register file",
+      "stage": "id",
+      "kind": "register",
+      "ports": [
+        { "id": "rR1", "label": "rR1", "side": "WEST" },
+        { "id": "rR2", "label": "rR2", "side": "WEST" },
+        { "id": "wR", "label": "wR", "side": "WEST" },
+        { "id": "wD", "label": "wD [31:0]", "side": "WEST" },
+        { "id": "we", "label": "we", "side": "WEST" },
+        { "id": "rD1", "label": "rD1 [31:0]", "side": "EAST" },
+        { "id": "rD2", "label": "rD2 [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "sext",
+      "label": "SEXT",
+      "subtitle": "immediate extension",
+      "stage": "id",
+      "ports": [
+        { "id": "imm", "label": "imm [31:7]", "side": "WEST" },
+        { "id": "op", "label": "sext_op", "side": "WEST" },
+        { "id": "ext", "label": "ext [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "muxa",
+      "label": "MUX A",
+      "subtitle": "RS1 / PC",
+      "stage": "ex",
+      "kind": "mux",
+      "ports": [
+        { "id": "rs1", "label": "0 · rs1", "side": "WEST" },
+        { "id": "pc", "label": "1 · pc", "side": "WEST" },
+        { "id": "sel", "label": "sel", "side": "WEST" },
+        { "id": "out", "label": "alu_a", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "muxb",
+      "label": "MUX B",
+      "subtitle": "RS2 / EXT",
+      "stage": "ex",
+      "kind": "mux",
+      "ports": [
+        { "id": "rs2", "label": "0 · rs2", "side": "WEST" },
+        { "id": "ext", "label": "1 · ext", "side": "WEST" },
+        { "id": "sel", "label": "sel", "side": "WEST" },
+        { "id": "out", "label": "alu_b", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "alu",
+      "label": "ALU",
+      "subtitle": "arithmetic + branch",
+      "stage": "ex",
+      "ports": [
+        { "id": "a", "label": "a", "side": "WEST" },
+        { "id": "b", "label": "b", "side": "WEST" },
+        { "id": "op", "label": "alu_op", "side": "WEST" },
+        { "id": "c", "label": "c [31:0]", "side": "EAST" },
+        { "id": "br", "label": "br", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "mreq",
+      "label": "MREQ",
+      "subtitle": "memory request formatting",
+      "stage": "mem",
+      "ports": [
+        { "id": "addr", "label": "ram_addr", "side": "WEST" },
+        { "id": "rop", "label": "ram_rop", "side": "WEST" },
+        { "id": "wop", "label": "ram_wop", "side": "WEST" },
+        { "id": "wdata", "label": "ram_wdata", "side": "WEST" },
+        { "id": "ren", "label": "da_ren [3:0]", "side": "EAST" },
+        { "id": "da_addr", "label": "da_addr [31:0]", "side": "EAST" },
+        { "id": "wen", "label": "da_wen [3:0]", "side": "EAST" },
+        { "id": "da_wdata", "label": "da_wdata [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "dram",
+      "label": "Data_RAM",
+      "subtitle": "data memory",
+      "stage": "mem",
+      "kind": "memory",
+      "ports": [
+        { "id": "ren", "label": "读使能 [3:0]", "side": "WEST" },
+        { "id": "addr", "label": "读写地址 [31:0]", "side": "WEST" },
+        { "id": "wen", "label": "写使能 [3:0]", "side": "WEST" },
+        { "id": "wdata", "label": "写数据 [31:0]", "side": "WEST" },
+        { "id": "rdata", "label": "读数据 [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "mext",
+      "label": "MEXT",
+      "subtitle": "load extension",
+      "stage": "mem",
+      "ports": [
+        { "id": "din", "label": "din [31:0]", "side": "WEST" },
+        { "id": "op", "label": "ram_rop", "side": "WEST" },
+        { "id": "offs", "label": "c [1:0]", "side": "WEST" },
+        { "id": "ext", "label": "ram_ext [31:0]", "side": "EAST" }
+      ]
+    },
+    {
+      "id": "wbmux",
+      "label": "WB MUX",
+      "subtitle": "ALU / PC+4 / EXT / RAM",
+      "stage": "id",
+      "kind": "mux",
+      "ports": [
+        { "id": "alu", "label": "alu_c", "side": "WEST" },
+        { "id": "pc4", "label": "pc4", "side": "WEST" },
+        { "id": "ext", "label": "ext", "side": "WEST" },
+        { "id": "ram", "label": "ram_ext", "side": "WEST" },
+        { "id": "sel", "label": "rf_wsel", "side": "WEST" },
+        { "id": "out", "label": "rf_wD [31:0]", "side": "EAST" }
+      ]
+    }
+  ],
+  "edges": [
+    { "id": "pc_irom", "from": "pc.pc", "to": "irom.addr", "type": "data" },
+    { "id": "irom_decode", "from": "irom.inst", "to": "decode.inst", "type": "data" },
+    { "id": "npc_pc", "from": "npc.npc", "to": "pc.npc", "type": "data" },
+    { "id": "pc_npc", "from": "pc.pc", "to": "npc.pc", "type": "data" },
+    { "id": "ext_npc", "from": "sext.ext", "to": "npc.offset", "type": "data" },
+    { "id": "br_npc", "from": "alu.br", "to": "npc.br", "type": "control" },
+    { "id": "npcop", "from": "controller.npc_op", "to": "npc.op", "type": "control" },
+
+    { "id": "opcode", "from": "decode.opcode", "to": "controller.opcode", "type": "control" },
+    { "id": "funct3", "from": "decode.funct3", "to": "controller.funct3", "type": "control" },
+    { "id": "funct7", "from": "decode.funct7", "to": "controller.funct7", "type": "control" },
+    { "id": "rs1", "from": "decode.rs1", "to": "rf.rR1", "type": "control" },
+    { "id": "rs2", "from": "decode.rs2", "to": "rf.rR2", "type": "control" },
+    { "id": "rd", "from": "decode.rd", "to": "rf.wR", "type": "control" },
+    { "id": "imm", "from": "decode.imm", "to": "sext.imm", "type": "data" },
+    { "id": "sextop", "from": "controller.sext_op", "to": "sext.op", "type": "control" },
+
+    { "id": "rd1_muxa", "from": "rf.rD1", "to": "muxa.rs1", "type": "data" },
+    { "id": "pc_muxa", "from": "pc.pc", "to": "muxa.pc", "type": "data" },
+    { "id": "sel_a", "from": "controller.alua_sel", "to": "muxa.sel", "type": "control" },
+    { "id": "muxa_alu", "from": "muxa.out", "to": "alu.a", "type": "data" },
+    { "id": "rd2_muxb", "from": "rf.rD2", "to": "muxb.rs2", "type": "data" },
+    { "id": "ext_muxb", "from": "sext.ext", "to": "muxb.ext", "type": "data" },
+    { "id": "sel_b", "from": "controller.alub_sel", "to": "muxb.sel", "type": "control" },
+    { "id": "muxb_alu", "from": "muxb.out", "to": "alu.b", "type": "data" },
+    { "id": "aluop", "from": "controller.alu_op", "to": "alu.op", "type": "control" },
+
+    { "id": "alu_mreq", "from": "alu.c", "to": "mreq.addr", "type": "data" },
+    { "id": "rop_mreq", "from": "controller.ram_rop", "to": "mreq.rop", "type": "control" },
+    { "id": "wop_mreq", "from": "controller.ram_wop", "to": "mreq.wop", "type": "control" },
+    { "id": "store_data", "from": "rf.rD2", "to": "mreq.wdata", "label": "store data", "type": "data" },
+    { "id": "ren", "from": "mreq.ren", "to": "dram.ren", "type": "control" },
+    { "id": "addr", "from": "mreq.da_addr", "to": "dram.addr", "type": "data" },
+    { "id": "wen", "from": "mreq.wen", "to": "dram.wen", "type": "control" },
+    { "id": "wdata", "from": "mreq.da_wdata", "to": "dram.wdata", "type": "data" },
+    { "id": "rdata", "from": "dram.rdata", "to": "mext.din", "type": "data" },
+    { "id": "mextop", "from": "controller.ram_rop", "to": "mext.op", "type": "control" },
+    { "id": "offset", "from": "alu.c", "to": "mext.offs", "type": "data" },
+
+    { "id": "alu_wb", "from": "alu.c", "to": "wbmux.alu", "type": "data" },
+    { "id": "pc4_wb", "from": "npc.pc4", "to": "wbmux.pc4", "type": "data" },
+    { "id": "ext_wb", "from": "sext.ext", "to": "wbmux.ext", "type": "data" },
+    { "id": "ram_wb", "from": "mext.ext", "to": "wbmux.ram", "type": "data" },
+    { "id": "wbsel", "from": "controller.rf_wsel", "to": "wbmux.sel", "type": "control" },
+    { "id": "wb_rf", "from": "wbmux.out", "to": "rf.wD", "type": "data" },
+    { "id": "rfwe", "from": "controller.rf_we", "to": "rf.we", "type": "control" }
+  ],
+  "notes": [
+    "本图用于讲解综合数据通路，省略 ifetch/daccess 握手、多周期缓存、完成控制和全局 clk/rst。",
+    "图中采用目标连接 RF.rD2 → MREQ.ram_wdata；当前 starter RTL 仍接 32'h0。"
+  ]
+}
