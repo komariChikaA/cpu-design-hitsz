@@ -16,3 +16,20 @@ for a `/materials/` URL path.
 After syncing, verify `materials/mirror-manifest.json`, report the downloaded file
 count, and mention warnings only when they affect course files. Do not create a
 scheduled task, background watcher, commit, or push unless the user explicitly asks.
+
+## Mirror update requests
+
+When the user says "更新 mirror" or otherwise asks to sync or update `mirror/`,
+immediately run:
+
+```powershell
+.\scripts\sync-site.cmd
+```
+
+The authoritative source is `https://cpu-design.p.cs-lab.top/`, and the local
+destination is `mirror/`. Do not substitute the course-material sync command or
+the historical Gitee repository.
+
+After syncing, verify `mirror/mirror-manifest.json`, report the downloaded file
+count, and mention warnings only when they affect mirrored site files. Do not
+commit or push unless the user explicitly asks.
