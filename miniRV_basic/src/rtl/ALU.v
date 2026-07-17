@@ -24,10 +24,14 @@ module ALU (
     reg  [ 4:0] op_r;
 
     always @(*) begin
-        case (op_r != 4'h0 ? op_r : op)
+        case (op_r != 5'h0 ? op_r : op)
             `ALU_ADD  : c = a + b;
+            `ALU_SUB  : c = a - b;
             `ALU_OR   : c = a | b;
+            `ALU_XOR  : c = a ^ b;
             `ALU_SLL  : c = a << b[4:0];
+            `ALU_SRL  : c = a >> b[4:0];
+            `ALU_SRA  : c = $signed(a) >>> b[4:0];
             default   : c = 32'h0;
         endcase
     end
@@ -47,11 +51,13 @@ module ALU (
     // assign busy      = mul_busy | mulu_busy | div_busy | divu_busy;
     assign busy      = 1'b0;
 
-    always @(posedge clk) begin
-        if (mul_flag | mulu_flag | div_flag | divu_flag)
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            op_r <= 5'h0;
+        else if (mul_flag | mulu_flag | div_flag | divu_flag)
             op_r <= op;
         else if (!busy)
-            op_r <= 4'h0;
+            op_r <= 5'h0;
     end
 
     multiplier #(32) U_mul (
