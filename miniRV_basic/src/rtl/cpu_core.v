@@ -90,6 +90,7 @@ module cpu_core(
         .op         (npc_op),
         .pc         (pc),
         .offset     (ext),
+        .jalr_addr  (alu_c),
         .br         (br),
         .npc        (npc),
         .pc4        (pc4)
@@ -189,7 +190,7 @@ module cpu_core(
         .da_addr    (da_addr),
 
         .ram_wop    (ram_wop),
-        .ram_wdata  (32'h0),
+        .ram_wdata  (rf_rd2),
         .da_wen     (da_wen),
         .da_wdata   (da_wdata)
     );
