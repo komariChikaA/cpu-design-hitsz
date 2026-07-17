@@ -49,34 +49,73 @@ module Controller (
     wire SH    = (opcode == 7'b0100011) && (funct3 == 3'b001);
     wire JALR  = (opcode == 7'b1100111) && (funct3 == 3'b000);
 
-    wire load_inst  = LB | LBU | LH | LHU | LW;
-    wire store_inst = SB | SH | SW;
-    wire reg_alu_inst = ADD_R | SUB | XOR_R | SLL_R | SRL_R | SRA_R;
-    wire imm_alu_inst = ADDI | ORI | XORI | SLLI | SRLI | SRAI;
+    // miniRV group B instructions.
+    wire AND_R = (opcode == 7'b0110011) && (funct3 == 3'b111) && (funct7 == 7'b0000000);
+    wire OR_R  = (opcode == 7'b0110011) && (funct3 == 3'b110) && (funct7 == 7'b0000000);
+    wire SLT   = (opcode == 7'b0110011) && (funct3 == 3'b010) && (funct7 == 7'b0000000);
+    wire SLTU  = (opcode == 7'b0110011) && (funct3 == 3'b011) && (funct7 == 7'b0000000);
+    wire SLTI  = (opcode == 7'b0010011) && (funct3 == 3'b010);
+    wire SLTIU = (opcode == 7'b0010011) && (funct3 == 3'b011);
+    wire ANDI  = (opcode == 7'b0010011) && (funct3 == 3'b111);
+    wire BLT   = (opcode == 7'b1100011) && (funct3 == 3'b100);
+    wire BGE   = (opcode == 7'b1100011) && (funct3 == 3'b101);
+    wire BLTU  = (opcode == 7'b1100011) && (funct3 == 3'b110);
+    wire BGEU  = (opcode == 7'b1100011) && (funct3 == 3'b111);
+    wire MUL   = (opcode == 7'b0110011) && (funct3 == 3'b000) && (funct7 == 7'b0000001);
+    wire MULH  = (opcode == 7'b0110011) && (funct3 == 3'b001) && (funct7 == 7'b0000001);
+    wire MULHU = (opcode == 7'b0110011) && (funct3 == 3'b011) && (funct7 == 7'b0000001);
+    wire DIV   = (opcode == 7'b0110011) && (funct3 == 3'b100) && (funct7 == 7'b0000001);
+    wire DIVU  = (opcode == 7'b0110011) && (funct3 == 3'b101) && (funct7 == 7'b0000001);
+    wire REM   = (opcode == 7'b0110011) && (funct3 == 3'b110) && (funct7 == 7'b0000001);
+    wire REMU  = (opcode == 7'b0110011) && (funct3 == 3'b111) && (funct7 == 7'b0000001);
+
+    wire load_inst    = LB | LBU | LH | LHU | LW;
+    wire store_inst   = SB | SH | SW;
+    wire branch_inst  = BEQ | BNE | BLT | BGE | BLTU | BGEU;
+    wire reg_alu_inst = ADD_R | SUB | XOR_R | SLL_R | SRL_R | SRA_R |
+                        AND_R | OR_R | SLT | SLTU;
+    wire imm_alu_inst = ADDI | ORI | XORI | SLLI | SRLI | SRAI |
+                        SLTI | SLTIU | ANDI;
+    wire mul_div_inst = MUL | MULH | MULHU | DIV | DIVU | REM | REMU;
 
     assign npc_op = JALR       ? `NPC_JALR :
-                    (BEQ|BNE)  ? `NPC_BRA  :
-                    JAL        ? `NPC_JMP  : `NPC_PC4;
+                    branch_inst ? `NPC_BRA  :
+                    JAL         ? `NPC_JMP  : `NPC_PC4;
 
-    assign rf_we = reg_alu_inst | imm_alu_inst | AUIPC | load_inst | LUI | JAL | JALR;
+    assign rf_we = reg_alu_inst | imm_alu_inst | mul_div_inst | AUIPC |
+                   load_inst | LUI | JAL | JALR;
 
-    assign rf_wsel = load_inst       ? `WB_RAM :
-                     (JAL | JALR)    ? `WB_PC4 :
-                     LUI             ? `WB_EXT : `WB_ALU;
+    assign rf_wsel = load_inst    ? `WB_RAM :
+                     (JAL | JALR) ? `WB_PC4 :
+                     LUI          ? `WB_EXT : `WB_ALU;
 
-    assign sext_op = store_inst      ? `EXT_S :
-                     (BEQ | BNE)     ? `EXT_B :
-                     (LUI | AUIPC)   ? `EXT_U :
-                     JAL             ? `EXT_J : `EXT_I;
+    assign sext_op = store_inst    ? `EXT_S :
+                     branch_inst   ? `EXT_B :
+                     (LUI | AUIPC) ? `EXT_U :
+                     JAL           ? `EXT_J : `EXT_I;
 
-    assign alu_op = SUB              ? `ALU_SUB :
-                    (ORI)            ? `ALU_OR  :
-                    (XOR_R | XORI)   ? `ALU_XOR :
-                    (SLL_R | SLLI)   ? `ALU_SLL :
-                    (SRL_R | SRLI)   ? `ALU_SRL :
-                    (SRA_R | SRAI)   ? `ALU_SRA :
-                    BEQ              ? `ALU_EQ  :
-                    BNE              ? `ALU_NE  : `ALU_ADD;
+    assign alu_op = SUB              ? `ALU_SUB  :
+                    (ORI | OR_R)     ? `ALU_OR   :
+                    (XOR_R | XORI)   ? `ALU_XOR  :
+                    (SLL_R | SLLI)   ? `ALU_SLL  :
+                    (SRL_R | SRLI)   ? `ALU_SRL  :
+                    (SRA_R | SRAI)   ? `ALU_SRA  :
+                    (AND_R | ANDI)   ? `ALU_AND  :
+                    (SLT | SLTI)     ? `ALU_SLT  :
+                    (SLTU | SLTIU)   ? `ALU_SLTU :
+                    MUL               ? `ALU_MUL  :
+                    MULH              ? `ALU_MULH :
+                    MULHU             ? `ALU_MULHU:
+                    DIV               ? `ALU_DIV  :
+                    DIVU              ? `ALU_DIVU :
+                    REM               ? `ALU_REM  :
+                    REMU              ? `ALU_REMU :
+                    BEQ               ? `ALU_EQ   :
+                    BNE               ? `ALU_NE   :
+                    BLT               ? `ALU_LT   :
+                    BGE               ? `ALU_GE   :
+                    BLTU              ? `ALU_LTU  :
+                    BGEU              ? `ALU_GEU  : `ALU_ADD;
 
     assign alua_sel = AUIPC ? `ALU_A_PC : `ALU_A_RS1;
     assign alub_sel = (imm_alu_inst | AUIPC | load_inst | store_inst | JALR)
@@ -92,7 +131,7 @@ module Controller (
                       SH ? `RAM_WE_H :
                       SW ? `RAM_WE_W : `RAM_WE_N;
 
-    assign is_mul = 1'b0;
-    assign is_div = 1'b0;
+    assign is_mul = MUL | MULH | MULHU;
+    assign is_div = DIV | DIVU | REM | REMU;
 
 endmodule

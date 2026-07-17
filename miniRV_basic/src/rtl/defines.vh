@@ -14,6 +14,20 @@
 `define ALU_SRA     5'h07
 `define ALU_EQ      5'h08
 `define ALU_NE      5'h09
+`define ALU_AND     5'h0A
+`define ALU_SLT     5'h0B
+`define ALU_SLTU    5'h0C
+`define ALU_MUL     5'h0D
+`define ALU_DIV     5'h0E
+`define ALU_REM     5'h0F
+`define ALU_LT      5'h10
+`define ALU_GE      5'h11
+`define ALU_LTU     5'h12
+`define ALU_GEU     5'h13
+`define ALU_MULH    5'h14
+`define ALU_MULHU   5'h15
+`define ALU_DIVU    5'h16
+`define ALU_REMU    5'h17
     
 `define NPC_PC4     2'b00
 `define NPC_JALR    2'b01
