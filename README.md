@@ -1,14 +1,41 @@
-# HITSZ 计算机设计与实践实验指导镜像
+# HITSZ 计算机设计与实践 CPU 课程设计
 
 > [!WARNING]
 > 本项目及镜像资料仅供课程学习与个人研究使用，禁止传播、转载、再分发或用于商业用途。原始课程内容、图片和附件的权利归原作者及课程相关方所有；如相关权利方要求移除，将及时处理。
 
-本仓库用于在能够访问校园内网的电脑上，抓取并保存当年《计算机设计与实践》实验指导网站：
+## 项目简介
 
-- 当前网站：<https://cpu-design.p.cs-lab.top/>
-- 往年资料参考：<https://gitee.com/hitsz-cslab/cpu>
+本仓库是《计算机设计与实践》课程的学生 CPU 实验课程设计仓库，主要用于保存和迭代 miniRV CPU 的 RTL 实现、Trace 测试、仿真波形及相关实验材料。同时，仓库也保存了课程实验指导网站的本地镜像，方便在网站无法访问时查阅实验要求、原理说明和配套附件。
 
-抓取结果保存在 `mirror/`。脚本以**当前网站**为准，递归保存站内页面、图片、样式、脚本和下载附件；往年仓库只用于理解课程资料的大体组织方式。
+仓库中的两部分内容分别是：
+
+- **CPU 课程设计**：包含单周期 CPU 工程、A/B 组指令实现、Trace 测试脚本与报告，以及单指令 VCD 仿真波形；
+- **实验指导镜像**：保存在 `mirror/`，从当前课程网站递归同步页面、图片、样式、脚本和下载附件。
+
+课程资料来源：
+
+- 当前网站：[https://cpu-design.p.cs-lab.top/](https://cpu-design.p.cs-lab.top/)
+- 往年资料参考：[https://gitee.com/hitsz-cslab/cpu](https://gitee.com/hitsz-cslab/cpu)
+
+镜像脚本以**当前网站**为准；往年仓库只用于理解课程资料的大体组织方式。
+
+## 当前进度与目标
+
+目前已完成**实验一：支持完整 miniRV 指令集的单周期 CPU**，并完成 Basic Trace 验证。现有 Trace 脚本会自动发现测试程序，当前 **45/45 项测试全部通过**；相应的单指令 VCD 波形保存在 `waveform/single/`。
+
+下面的路线图根据实验指导书中的实验目的、实验内容和实验步骤整理：
+
+- [x] 熟悉 miniRV 指令集、模板工程以及 CPU 的取指、译码、执行和访存过程；
+- [x] 完成 A/B 组指令的数据通路与控制信号设计，整合完整单周期 CPU；
+- [x] 实现支持完整 miniRV 指令集的单周期 CPU；
+- [x] 使用 Basic Trace 完成单周期 CPU 功能验证，并保存单指令仿真波形；
+- [ ] 将单周期 CPU 改造为至少五级流水线 CPU；
+- [ ] 实现静态分支预测、流水线暂停与数据前递，解决控制冒险和数据冒险，并通过流水线 Basic Trace；
+- [ ] 为 CPU 集成 ICache、DCache、AXI 总线控制器、总线桥和主存；
+- [ ] 实现拨码开关、LED、数码管、UART、计时器等 I/O 接口，并通过 AXI Trace；
+- [ ] 将 CPU 集成到 SoC，在 FPGA 开发板上运行 CoreMark 或 LLaMA2，并继续进行频率、访存及时序优化。
+
+路线图依据：[实验一概述](mirror/lab1/0-overview/index.html)、[实验一步骤](mirror/lab1/12-step/index.html)、[实验二 A 概述](mirror/lab2-A/0-overview/index.html)和[实验二 B 概述](mirror/lab2-B/0-overview/index.html)。
 
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 
@@ -79,7 +106,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\sync-site.ps1 
 
 ## 按需同步课程资料
 
-课程资料来自校内站点 <http://10.249.14.10:2012/>，保存在 `materials/`。每次需要更新时运行：
+课程资料来自校内站点 [http://10.249.14.10:2012/](http://10.249.14.10:2012/)，保存在 `materials/`。每次需要更新时运行：
 
 ```powershell
 .\scripts\sync-materials.cmd

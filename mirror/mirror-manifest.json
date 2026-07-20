@@ -1,601 +1,286 @@
 {
     "schema_version":  1,
     "base_url":  "https://cpu-design.p.cs-lab.top/",
-    "file_count":  158,
+    "file_count":  251,
     "files":  [
                   {
-                      "path":  "lab1/assets/3-6.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-6.png",
-                      "bytes":  103488,
-                      "sha256":  "dd4c91027233e773caee1af908086975d11ae7a7cf70e611bbc1fbffd8f7f763",
+                      "path":  "lab2-A/assets/4-10.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-10.png",
+                      "bytes":  96716,
+                      "sha256":  "cda0b0af0fb5d9b58cfab34fb5f7f51576fa6fe71afc37818e43fb29c913805d",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon127uo\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga8522mk\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-5.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-5.png",
-                      "bytes":  14391,
-                      "sha256":  "7ca324196115b3e47f5f510abc8f4318b12b10b587b4bd7e7dbb034c2b6b4aa8",
+                      "path":  "lab2-A/assets/4-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-9.png",
+                      "bytes":  69591,
+                      "sha256":  "7300a30cfb1ef47b19314ffc4208312f82fa2bd51bbeacff7bcae277774cad5d",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1b3r\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851hp3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-8.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-8.png",
-                      "bytes":  37748,
-                      "sha256":  "24d9de34eae6330f73526869b0b9d3621ba7bf5f49b14a457f368a4fd59be68e",
+                      "path":  "lab2-A/assets/4-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-8.png",
+                      "bytes":  98545,
+                      "sha256":  "7fd5e6b284cb9998d237ac8987edbb145440d49cc9bb36e83999b8d3d3bcde74",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1t4k\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85241d\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-7.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-7.png",
-                      "bytes":  69226,
-                      "sha256":  "4b2c850e9255aa354425b4c3c61849c29c8bbf6f78d50ac6621b29f1140d166d",
+                      "path":  "lab2-A/assets/5-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/5-1.png",
+                      "bytes":  8535,
+                      "sha256":  "89367f7b1a7396e2d4667b999037a6c78a4a42c8dec7b612b259449139616c06",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11hey\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga856l3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-4.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-4.png",
-                      "bytes":  7341,
-                      "sha256":  "fc623551b55efc6e95b116294465597f33d5fd25766e46be6b3cf5a65866d82c",
+                      "path":  "lab2-A/assets/5-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/5-4.png",
+                      "bytes":  43364,
+                      "sha256":  "34e8fbab9fb8d8550ac974fd17c80dc7b241a2018bafd7b6a85ad54f0c1deb36",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon15nx\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85xgk\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-1.png",
-                      "bytes":  90337,
-                      "sha256":  "a7bf73d00c0d211c4606d015278e838ef54235dd9f72ea2a370d380d2c3129a7",
+                      "path":  "lab2-A/assets/5-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/5-3.png",
+                      "bytes":  38030,
+                      "sha256":  "4de962ccc8e4b6c0634e4457f5298c9d8f8ab931dede8ccec678d93e64ce9d28",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11xpd\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85tce\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/t2-2A.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t2-2A.png",
-                      "bytes":  248794,
-                      "sha256":  "7efc8ab2638b70d54440a0cca2512479411c46b1c8924f6c65e6450498305322",
+                      "path":  "lab2-A/assets/5-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/5-2.png",
+                      "bytes":  51791,
+                      "sha256":  "c18500373852c685930e816dd18564430c5563614c067fd686f7639f6e28ae5c",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon15byy\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga8513yn\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-3.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-3.png",
-                      "bytes":  40484,
-                      "sha256":  "73fab0b6006f2eed7ac7824c64acd272cb6afbb05a049dea5f61584d4c400b2d",
+                      "path":  "lab2-A/assets/4-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-7.png",
+                      "bytes":  37797,
+                      "sha256":  "1271a7f736a56e6544294e157369ee0a50ecd1b1bc8a80a695dddc9519bcf70d",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1v8k\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85t5x\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-2.png",
-                      "bytes":  38850,
-                      "sha256":  "dd606c6217f4f64cb4eb74c7c4871e8632fc64e676cc429332b493f65c9f6043",
+                      "path":  "lab2-A/assets/4-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-1.png",
+                      "bytes":  59390,
+                      "sha256":  "f38d25e2cc651bb343ef4d9e0bc9daeb3ef8390ec3d029e22d5b560de9f03be8",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1tz6\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga8519tq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/3-9.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-9.png",
-                      "bytes":  13193,
-                      "sha256":  "19b6065e2f3546e241853012b8643bd9b38eb7a030650c6620fe2d20855385b5",
+                      "path":  "lab2-A/assets/3-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/3-2.png",
+                      "bytes":  109277,
+                      "sha256":  "d472c167c32450eeafb0db3c0d264391119f230e5cb511f60bb27401c144917c",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1a6h\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga852cbh\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/8-1a.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-1a.png",
-                      "bytes":  93809,
-                      "sha256":  "600fecf047ad7dc361f93a31291615560c36171d6f1dd4934b5cdc347566b593",
+                      "path":  "lab2-A/assets/3-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/3-1.png",
+                      "bytes":  117760,
+                      "sha256":  "1fcd4f0fe160dae5c04d2f6c1bda25aab6f46b0e170f9434a63d6aff34601339",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon120dt\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga852iv4\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/div_test.zip",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/div_test.zip",
-                      "bytes":  5412,
-                      "sha256":  "002361e7c02cd5a97e66409bf744e649148b503a6505923e83af897b64d3e23c",
+                      "path":  "lab2-A/assets/4-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-2.png",
+                      "bytes":  50523,
+                      "sha256":  "e63676ca3626dcbf78856e1ab5665d98cf3e680293e8ba482e80a7acaf7c51c1",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8512zf\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/4-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-6.png",
+                      "bytes":  92148,
+                      "sha256":  "9a89839100260f97e3d966455418093e2d1a108aa3b403af081442ee1d39a90b",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851z3o\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/4-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-4.png",
+                      "bytes":  52331,
+                      "sha256":  "1467e503fad57c4357a6b41eb945287b498503dc561ba98754df7c790371a0d5",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8514dn\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/4-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/4-3.png",
+                      "bytes":  49627,
+                      "sha256":  "cbc1dedfc7bb07b04f7910adcabe20706737282cb3286963b174799427c4b035",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8512aj\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/5-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/5-5.png",
+                      "bytes":  130127,
+                      "sha256":  "f5662ccaa4eb13bfe8bdd135d928d64e1c52af84784afb605d5050ccb2d8ae43",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852sen\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-4A.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-4A.png",
+                      "bytes":  901994,
+                      "sha256":  "ba0d2a45722ffca1a585bd3c35ec9d685366ebea8a52d7e3882cf004316dd41b",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85jbze\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-4.png",
+                      "bytes":  242832,
+                      "sha256":  "32cf6bf42b8b7bd565ba66643387262ce98c3c776fc89043a398a21f41577c3c",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8557dc\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-3.png",
+                      "bytes":  46502,
+                      "sha256":  "72d9fdee4488510aff3b52d3fed877e64020ee7ef0a59add91f2570b2737edea",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85zvq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-5.png",
+                      "bytes":  73492,
+                      "sha256":  "edad8100e29479dc55b0bffe8559b853bb9eb4f243fdb94516bba46579174275",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851kpg\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-8.png",
+                      "bytes":  65286,
+                      "sha256":  "63220834b2c179f7c94fddd534b9d5e1f417a6302b4e1ef21b78dfcf2ed3641c",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851edi\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-7.png",
+                      "bytes":  8707,
+                      "sha256":  "7423f4fbdc0f269cfe14844a67d0abe07bc3a247bb0bd5fca0a2cf23f1340016",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga856pv\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-6.png",
+                      "bytes":  108213,
+                      "sha256":  "91e1ed2f918bc4672a57d9df1b581890043627d8e53c379a4be4d43a331d7fdc",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852bhx\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-2.png",
+                      "bytes":  10963,
+                      "sha256":  "528c8b02e011ae9275ad7ee6220fbe17c4fc3a3f5cc51e5f56d6274bd595d2ba",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga858gj\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/1-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/1-1.png",
+                      "bytes":  43930,
+                      "sha256":  "c4e664ef36dedc41f68935636e4d35fd19c0bf598868f6a449aa876438aed34a",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85xwa\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/3-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/3-1.png",
+                      "bytes":  47220,
+                      "sha256":  "ffa4ceff9afda1c7af6ccbe64d9c5b4264c812c0751c828bcefdbdc9aa6d2cb3",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8510fo\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/bin2coe.py",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/bin2coe.py",
+                      "bytes":  1731,
+                      "sha256":  "faafd96a730cb28b170c9ad9f96f7c9d3d67c614311060007b89864f28bf9cc4",
                       "content_type":  "",
-                      "etag":  "\"tiaon146c\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851c3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/8-2a.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-2a.png",
-                      "bytes":  74177,
-                      "sha256":  "660dc40661f13f8dbe8ea95a0553546feb39a03d7bd6539c15a8e47bfe71e45e",
+                      "path":  "lab2-B/assets/1-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/1-2.png",
+                      "bytes":  52184,
+                      "sha256":  "50a41475759f07564f01f2686e4fdd1fc9170abd66af4758d7bd89361a4d8ef4",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11l8h\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85149k\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/8-1b.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-1b.png",
-                      "bytes":  77498,
-                      "sha256":  "d4f27a9e49c17df6cd9ecf170f541c1d10d7f3f0ea1423a52b64df46655fa644",
+                      "path":  "lab2-B/assets/2-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-1.png",
+                      "bytes":  32755,
+                      "sha256":  "a1554b8300973621625f07eb5da34fc1f8df4d37d78e0a6250c712e4c63ac1a3",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11nsq\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85p9v\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/t5-3.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t5-3.png",
-                      "bytes":  32705,
-                      "sha256":  "58085cd4456aea5c3f21f1cb3b67ebeedeadff38b0cdc2b9a192da8943a91e8e",
+                      "path":  "lab2-B/assets/1-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/1-4.png",
+                      "bytes":  450901,
+                      "sha256":  "e1166b2d8ba737d08ddf41af004880553dd6aea9e57ca2c723a5f44b55412af8",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1p8h\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga859nx1\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/assets/4-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/4-1.png",
-                      "bytes":  24848,
-                      "sha256":  "1d6db59161bad1cf4dfadcf05a283149a3c8ab2fa62d41e23199afbfef9e9ec8",
+                      "path":  "lab2-B/assets/1-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/1-3.png",
+                      "bytes":  485567,
+                      "sha256":  "3f758450f71ee668797c6d6b93e5966768805f160f067da972037b5a74fec68a",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1j68\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/t4-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t4-1.png",
-                      "bytes":  62667,
-                      "sha256":  "5805395a62469338e1876c6d5627255f263f05aa6e07e9d05d3d6c5e33cfe9ed",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11ccr\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/5-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/5-1.png",
-                      "bytes":  117330,
-                      "sha256":  "956dd8d0d6fd60feda66ee8077a3c076833059ff2d03eaaf92f28328801b05e6",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon12ij6\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/t5-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t5-2.png",
-                      "bytes":  69886,
-                      "sha256":  "d91c5dc31a643736ccb1344d4b1557a830d105fb744b7ba47ef1c46ec4081712",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11hxa\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/t2-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t2-2.png",
-                      "bytes":  245502,
-                      "sha256":  "10d140224f6a8d85cf25557df896f3c4c627401a1ecf297ac2153e4f1a0b9cdc",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon159fi\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-6.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-6.png",
-                      "bytes":  27050,
-                      "sha256":  "ccc8374578afd2ffe9fb43a5a255c58807ce656ad08f62f3fa4a1572621021a5",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1kve\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-5.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-5.png",
-                      "bytes":  16484,
-                      "sha256":  "7514c78742247a802ac9d039aebef049000e5be851cdd2ae28f52924e7e3e403",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1cpw\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-8.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-8.png",
-                      "bytes":  16823,
-                      "sha256":  "b2f6bf83b2a0da793c15a8a8ce349c3853ab35355e806ca58128208c35958465",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1czb\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-7.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-7.png",
-                      "bytes":  90273,
-                      "sha256":  "172a1a74cb053b903defaab442bd332f0e4857105d831248de22d44f716ee9e0",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11xnl\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-4.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-4.png",
-                      "bytes":  60214,
-                      "sha256":  "9253936e7731c7acaf93ec90fc40c983e8c9e7928c4a7d3416ec9ed475b08aad",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11agm\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-1.png",
-                      "bytes":  59769,
-                      "sha256":  "3fae4f71fb3f8dde7a74ccfabc82d14e7738c1c2192c1ae9c0596aca553591bc",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11a49\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-13.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-13.bmp",
-                      "bytes":  1997154,
-                      "sha256":  "3e01eb75ec5f3a66925a906849b4ac4ef71e9bf19b80f99be871f0a3b2b39ba6",
-                      "content_type":  "",
-                      "etag":  "\"tiaon116t0i\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-3.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-3.png",
-                      "bytes":  6816,
-                      "sha256":  "8176012af2134f55eef9f490d2ef876d291dd9a037d2ed5e07b6af643def5564",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon159c\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-2.png",
-                      "bytes":  15984,
-                      "sha256":  "e238af3c9ef979189001664222feec1615d090a3d36d4865c83a14bf37782d3d",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1cc0\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-9.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-9.png",
-                      "bytes":  8452,
-                      "sha256":  "0445366cd617b5039c0d9caa1d1b799675cda8dce6d678599bc77e4b256779ab",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon16is\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-16.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-16.png",
-                      "bytes":  18079,
-                      "sha256":  "69a9d99a810d51ebc172e6a9c6ea928dc3be21ee3a8b3e7bc7e36867d93041b9",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1dy7\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-15.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-15.png",
-                      "bytes":  27762,
-                      "sha256":  "bb08d9359a7e3bdc1e9bdb3f7f380cae10b8445275bc152ff047eb6d7f54ac63",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1lf6\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/2-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/2-1.png",
-                      "bytes":  108256,
-                      "sha256":  "d3d37114d377b36f4c56a0f7b8c30606375859c151ed5caafc02fab370040f82",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon12bj4\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-17.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-17.png",
-                      "bytes":  20932,
-                      "sha256":  "192ae89c6115d02852be66a362cb2a0a6f82a6e37570c101a6a33479f6940782",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1g5g\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-14.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-14.png",
-                      "bytes":  19054,
-                      "sha256":  "5226c6cb8203e82a1a03337019ab7f002f83e6eea1de53df0be9fae75e9f78ae",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1epa\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-11.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-11.png",
-                      "bytes":  20701,
-                      "sha256":  "fa14d8adacced7a5605949132ce64d5ffdee664cd4d8d598016ee6852ca2a6fb",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1fz1\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-10.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-10.png",
-                      "bytes":  17228,
-                      "sha256":  "75be5acc79b3044f7df763a8f22fe0b82eb22d1914a8661ec066241cf1655cfb",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1dak\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-13.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-13.png",
-                      "bytes":  28322,
-                      "sha256":  "d2cd02b67ccfe5acd2e29ca45e21f4f0e27614720c68866b3557262d886004d6",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1luq\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/1-12.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-12.png",
-                      "bytes":  23196,
-                      "sha256":  "ac841e5a411de753fb324c87c0699a25bfad4c12aab50fffd41bd4bf28c4423b",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1hwc\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/8-2b.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-2b.png",
-                      "bytes":  35741,
-                      "sha256":  "1cd569644184c6960134c1a4185a44775a5b93262603c97dd6198461f39c10a9",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1rkt\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-6.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-6.jpg",
-                      "bytes":  36413,
-                      "sha256":  "0327bf6ba3491c8ed275941216fbd5823c09d605b7aaf74291be980464f6ff74",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1s3h\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-5.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-5.jpg",
-                      "bytes":  38354,
-                      "sha256":  "44090e6316ceaf6f4fd641fff5a4ac66498b714b9f72f5f897c170face6c1a37",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1tle\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-8.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-8.jpg",
-                      "bytes":  21432,
-                      "sha256":  "9b6f4374dd1c7298f8804c4a9638c7e29139c1f6551fc356f094eeb0864003a9",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1gjc\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-7.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-7.jpg",
-                      "bytes":  94250,
-                      "sha256":  "bfff58c8da3d511adfec81312a9ea055f5d2523f62dc48d5bd4fe3a9d3ddeee9",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon120q2\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-4.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-4.jpg",
-                      "bytes":  67200,
-                      "sha256":  "1313f46f134b87873753b4bd43149ff18b14110d0bc4384083331bd63ca59644",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon11fuo\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-1(3).jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(3).jpg",
-                      "bytes":  11167,
-                      "sha256":  "baae27f547076124435fbac1a35ce4361e78f6ee04aa4986b905c2e51ee4a954",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon18m7\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-1(2).jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(2).jpg",
-                      "bytes":  8941,
-                      "sha256":  "69295b9908cb6aee09207858936d0581aca97c33b09d7491b67576b4bd6d4c52",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon16wd\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-3.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-3.jpg",
-                      "bytes":  51831,
-                      "sha256":  "7d7f8db6d9c4f5ed9985ceec10a2e40efefe28d660f191eaf021b73c2cd978d2",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon113zr\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-2.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-2.jpg",
-                      "bytes":  18355,
-                      "sha256":  "5ffd65dc5fbf897670862b865a1ef33a7dd9561a77b0d3ab69fab28ca5533f99",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1e5v\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-9.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-9.jpg",
-                      "bytes":  78950,
-                      "sha256":  "ab2878ddd185ebe87a7ecc1bc9b81b25e61fad03caa510a830f5abd3112f9023",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon11ox2\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-16.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-16.jpg",
-                      "bytes":  35001,
-                      "sha256":  "76d849b4020876ece5525f024dbeab5f003df471a376f60f48b89f0f076c9fea",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1r09\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-15.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-15.jpg",
-                      "bytes":  26396,
-                      "sha256":  "c4a8f43e9826e156609c835e16f1c2e57d05650778fdb35bf01c6ee472f188aa",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1kd8\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-18.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-18.jpg",
-                      "bytes":  81037,
-                      "sha256":  "fbf1d77c477bcc13819833ba82758d57b8262946b2c8402c848b865d498a4ee2",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon11qj1\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-17.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-17.jpg",
-                      "bytes":  74934,
-                      "sha256":  "f67a2d635703ffc3d15f909ecf2fddcec63bf4b0edb31bbc01a88ed84f08da4a",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon11lti\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-14.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-14.jpg",
-                      "bytes":  25129,
-                      "sha256":  "76c70586f450a52929e2e0f57ee7e7fc0e3db38744b43dde4793e0d61c667f1c",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1je1\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-11.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-11.jpg",
-                      "bytes":  86288,
-                      "sha256":  "5950577db53d867e5d006c5d964800b34e0209718772c5bb578b93c0dab8d053",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon11ukw\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-10.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-10.jpg",
-                      "bytes":  52922,
-                      "sha256":  "6bb922416e0b02a1aff85330c0afee982ff40c750c8cecd401e74cb1d7ac7c1b",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon114u2\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-13.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-13.jpg",
-                      "bytes":  53136,
-                      "sha256":  "83922e3abe9ea04766d99b9c0e76e59095e19d12c82ac2cf33efb7898ab2a3c5",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon11500\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-12.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-12.jpg",
-                      "bytes":  90068,
-                      "sha256":  "1bcc73ab9885523ce0c1aebf4e2c6bf88b3e2f8186f545d8f3ae38ca1731fc8b",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon11xhw\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/assets/v-1(1).jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(1).jpg",
-                      "bytes":  15964,
-                      "sha256":  "e94db7bae1ae1d55a725592253b310f38e528a1cb892ca1ad2fc264099f96caa",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1cbg\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/11-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/11-1.png",
-                      "bytes":  72138,
-                      "sha256":  "2cb63b230b72b8a5b82c6d71878697be698f66d9c6e7b8c2871460c5ade82f66",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11jnu\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/10-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/10-2.png",
-                      "bytes":  59405,
-                      "sha256":  "b28ebea0b754be96264ed81cd406b05a58550e9f3f0e218b6bbbd3cec75c556e",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon119u5\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "trace/assets/vm-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-1.png",
-                      "bytes":  71935,
-                      "sha256":  "ffaa792e193657d9a556d902f025ab765db24fe37d3a7816cfa849ffb4113e52",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11ji7\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/B-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/B-1.png",
-                      "bytes":  31339,
-                      "sha256":  "2708ea4f576809fcefc3eee01389f64bb477657e63e900a1e1f7e2f0458096f3",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1o6j\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/10-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/10-1.png",
-                      "bytes":  24708,
-                      "sha256":  "1c5550c1d1043df3609d32f6c46c5238c085b30ec145e2bc17689da46dd3e682",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1j2c\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/assets/9-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/9-1.png",
-                      "bytes":  84348,
-                      "sha256":  "91ad7edaddd076b8bde623f1a6be24844f145681fa6e695eba6597fa0a52a06e",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11t30\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85aenz\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "lab1/assets/8-3.png",
@@ -603,8 +288,44 @@
                       "bytes":  25229,
                       "sha256":  "228676f18d02d4fd5b570025a4d9eb4c63058f6e8912920070f461e88a973297",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1jgt\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85jgt\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/8-2b.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-2b.png",
+                      "bytes":  35741,
+                      "sha256":  "1cd569644184c6960134c1a4185a44775a5b93262603c97dd6198461f39c10a9",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85rkt\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/8-2a.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-2a.png",
+                      "bytes":  74177,
+                      "sha256":  "660dc40661f13f8dbe8ea95a0553546feb39a03d7bd6539c15a8e47bfe71e45e",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851l8h\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/9-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/9-1.png",
+                      "bytes":  84348,
+                      "sha256":  "91ad7edaddd076b8bde623f1a6be24844f145681fa6e695eba6597fa0a52a06e",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851t30\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/10-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/10-1.png",
+                      "bytes":  24708,
+                      "sha256":  "1c5550c1d1043df3609d32f6c46c5238c085b30ec145e2bc17689da46dd3e682",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85j2c\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "lab1/assets/9-3.png",
@@ -612,8 +333,8 @@
                       "bytes":  135250,
                       "sha256":  "1d311a184e689239f077055d97e7cae7623735a0f07511912fea41b869323661",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon12wcy\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga852wcy\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "lab1/assets/9-2.png",
@@ -621,35 +342,233 @@
                       "bytes":  133292,
                       "sha256":  "733e90bff0cb2d7eef531fe575411ea99c1808efa7ffc733213962875fa781f4",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon12uuk\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga852uuk\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/vm-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-2.png",
-                      "bytes":  33216,
-                      "sha256":  "b44fd5afa7856a90d8917b2bcd6df5ff16612284eb7d32d51a6163a2fbf6eec7",
+                      "path":  "lab1/assets/8-1b.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-1b.png",
+                      "bytes":  77498,
+                      "sha256":  "d4f27a9e49c17df6cd9ecf170f541c1d10d7f3f0ea1423a52b64df46655fa644",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1pmo\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851nsq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/surfer-3.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-3.png",
-                      "bytes":  38753,
-                      "sha256":  "405e3c81fbe7f817dc70152255a847d2a1b00d8522512fc7f4f0e0aa2e12c147",
+                      "path":  "lab1/assets/t5-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t5-2.png",
+                      "bytes":  69886,
+                      "sha256":  "d91c5dc31a643736ccb1344d4b1557a830d105fb744b7ba47ef1c46ec4081712",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1twh\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851hxa\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/surfer-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-2.png",
-                      "bytes":  18315,
-                      "sha256":  "b3ad7a1c217886ac7de19e13b4274ac90f0c5b573aaabd8b6af15d90a485ee98",
+                      "path":  "lab1/assets/4-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/4-1.png",
+                      "bytes":  24848,
+                      "sha256":  "1d6db59161bad1cf4dfadcf05a283149a3c8ab2fa62d41e23199afbfef9e9ec8",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1e4r\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85j68\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/t4-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t4-1.png",
+                      "bytes":  62667,
+                      "sha256":  "5805395a62469338e1876c6d5627255f263f05aa6e07e9d05d3d6c5e33cfe9ed",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851ccr\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/5-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/5-1.png",
+                      "bytes":  117330,
+                      "sha256":  "956dd8d0d6fd60feda66ee8077a3c076833059ff2d03eaaf92f28328801b05e6",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852ij6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/8-1a.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/8-1a.png",
+                      "bytes":  93809,
+                      "sha256":  "600fecf047ad7dc361f93a31291615560c36171d6f1dd4934b5cdc347566b593",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8520dt\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/div_test.zip",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/div_test.zip",
+                      "bytes":  5412,
+                      "sha256":  "002361e7c02cd5a97e66409bf744e649148b503a6505923e83af897b64d3e23c",
+                      "content_type":  "",
+                      "etag":  "\"tiga8546c\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/t5-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t5-3.png",
+                      "bytes":  32705,
+                      "sha256":  "58085cd4456aea5c3f21f1cb3b67ebeedeadff38b0cdc2b9a192da8943a91e8e",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85p8h\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/10-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/10-2.png",
+                      "bytes":  59405,
+                      "sha256":  "b28ebea0b754be96264ed81cd406b05a58550e9f3f0e218b6bbbd3cec75c556e",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8519u5\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/2-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/2-3.png",
+                      "bytes":  71369,
+                      "sha256":  "49b5b81e5af3c76158db9044ba7a089d1d78af2b9c00b51acd4bc4873c961aa0",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851j2h\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/2-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/2-1.png",
+                      "bytes":  62504,
+                      "sha256":  "367e69d2aecadf315f847fb7573c42a46981f1863f2969597c403996a9494082",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851c88\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/1-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/1-7.png",
+                      "bytes":  4186,
+                      "sha256":  "5a96ea1c42e1aa8a894c5bca7e14baae5e7ed65baad82ce30dae53317a02c460",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8538a\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/2-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/2-4.png",
+                      "bytes":  72225,
+                      "sha256":  "79c7712775c74a9c9944d42859cd73b5794c5c2d02b346de91bdfd950e75e67e",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851jq9\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/2-5A.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/2-5A.png",
+                      "bytes":  108351,
+                      "sha256":  "ccf9160aa1ef0a8e0f0186cec356a116ed5b7020a9730c9bd2b78bd8baf213de",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852blr\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/2-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/2-6.png",
+                      "bytes":  216261,
+                      "sha256":  "4f4b3f0032fbf4f81e914a3b3d2dac90030991fbd520911fc8c00ba3975c0b68",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga854mv9\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/2-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/2-5.png",
+                      "bytes":  57316,
+                      "sha256":  "a31dff5c17aab1f68b2bb4070339af6f1e4ad638129f606c1ff9a783d22ad370",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851884\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/1-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/1-6.png",
+                      "bytes":  6082,
+                      "sha256":  "64b827da4a5556ce17bac2f2a550e78b29d1379ebc618eeeab02bb1f83de312f",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga854oy\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/1-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/1-1.png",
+                      "bytes":  27965,
+                      "sha256":  "2a4deab5eb0ec582aa917fa57f14877036b7f4991df7a06290f9389d3ad1d769",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85lkt\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/B-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/B-1.png",
+                      "bytes":  31339,
+                      "sha256":  "2708ea4f576809fcefc3eee01389f64bb477657e63e900a1e1f7e2f0458096f3",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85o6j\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/11-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/11-1.png",
+                      "bytes":  72138,
+                      "sha256":  "2cb63b230b72b8a5b82c6d71878697be698f66d9c6e7b8c2871460c5ade82f66",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851jnu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/1-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/1-2.png",
+                      "bytes":  36128,
+                      "sha256":  "49cf8691e489fbd9a3984274858e3b01fa97e0af4e9ffbf9f401a3cf580f0327",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85rvk\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/1-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/1-5.png",
+                      "bytes":  6007,
+                      "sha256":  "ba601cdf8fca7069576c5ba0e532d6f2417a9fd2c0f9219f156f4a928370e50a",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga854mv\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/1-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/1-4.png",
+                      "bytes":  6753,
+                      "sha256":  "868d6ec22d917244c7ed8881a7fccb4540d18addc6e1ebbb2eafe2a0c809f4db",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8557l\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/1-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/1-3.png",
+                      "bytes":  82286,
+                      "sha256":  "a1dc03e29fdfd3a527b130b9de8cd336645e3ffae9fe23a3e5cf80e8e612ae77",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851rhq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-9.png",
+                      "bytes":  75579,
+                      "sha256":  "01d5c299ae68588a069d64b585ca5ab2f24b86e8da78b70c37a779a0ad3dcbde",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851mbf\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/surfer-5.png",
@@ -657,8 +576,8 @@
                       "bytes":  123241,
                       "sha256":  "2934e994568c538aa2ccd103be88a0948c04d8d03ec18d44fa49085b348f27b9",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon12n3d\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga852n3d\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/surfer-4.png",
@@ -666,26 +585,62 @@
                       "bytes":  17562,
                       "sha256":  "cfa2918f9f1a0fa8a681d06045cfdcf8760f9ad3410a47c08b5b3ccff30c7662",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1dju\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85dju\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/surfer-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-1.png",
-                      "bytes":  143715,
-                      "sha256":  "759ed0ac185d227882b3ae1393204e7fa1fd3252737b1a26222cb68a92f876ca",
+                      "path":  "trace/assets/surfer-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-3.png",
+                      "bytes":  38753,
+                      "sha256":  "405e3c81fbe7f817dc70152255a847d2a1b00d8522512fc7f4f0e0aa2e12c147",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon132w3\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85twh\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/vm-4.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-4.png",
-                      "bytes":  26202,
-                      "sha256":  "4d3438789b4bbcff5754a37234ab5167bcf97e477e67d2f7bccf1b2a37bb32e7",
+                      "path":  "verify/assets/v-1(1).jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(1).jpg",
+                      "bytes":  15964,
+                      "sha256":  "e94db7bae1ae1d55a725592253b310f38e528a1cb892ca1ad2fc264099f96caa",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85cbg\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-2.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-2.jpg",
+                      "bytes":  18355,
+                      "sha256":  "5ffd65dc5fbf897670862b865a1ef33a7dd9561a77b0d3ab69fab28ca5533f99",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85e5v\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-1(3).jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(3).jpg",
+                      "bytes":  11167,
+                      "sha256":  "baae27f547076124435fbac1a35ce4361e78f6ee04aa4986b905c2e51ee4a954",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga858m7\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-1(2).jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-1(2).jpg",
+                      "bytes":  8941,
+                      "sha256":  "69295b9908cb6aee09207858936d0581aca97c33b09d7491b67576b4bd6d4c52",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga856wd\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/surfer-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-2.png",
+                      "bytes":  18315,
+                      "sha256":  "b3ad7a1c217886ac7de19e13b4274ac90f0c5b573aaabd8b6af15d90a485ee98",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1k7u\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85e4r\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/vm-3.png",
@@ -693,8 +648,44 @@
                       "bytes":  73031,
                       "sha256":  "2874b4acf53dc7cc797447aa8e45e3147cbd5d0f0d65ab61ed10b4d96799d9d2",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11kcn\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851kcn\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/vm-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-2.png",
+                      "bytes":  33216,
+                      "sha256":  "b44fd5afa7856a90d8917b2bcd6df5ff16612284eb7d32d51a6163a2fbf6eec7",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85pmo\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/vm-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-1.png",
+                      "bytes":  71935,
+                      "sha256":  "ffaa792e193657d9a556d902f025ab765db24fe37d3a7816cfa849ffb4113e52",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851ji7\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/vm-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/vm-4.png",
+                      "bytes":  26202,
+                      "sha256":  "4d3438789b4bbcff5754a37234ab5167bcf97e477e67d2f7bccf1b2a37bb32e7",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85k7u\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/surfer-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/surfer-1.png",
+                      "bytes":  143715,
+                      "sha256":  "759ed0ac185d227882b3ae1393204e7fa1fd3252737b1a26222cb68a92f876ca",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8532w3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/vm-6.png",
@@ -702,8 +693,8 @@
                       "bytes":  86758,
                       "sha256":  "530167b4de5cebe3ddf003614559b48f1d6b1ddd591bdc357add7e20b89201a7",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11uxy\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851uxy\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/vm-5.png",
@@ -711,593 +702,584 @@
                       "bytes":  66595,
                       "sha256":  "014e3f36bd5271fd3fb0db59dd9f670f4d986c8414643b38c2fce897712d9c75",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11fdv\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851fdv\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/A-macro/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/A-macro/",
-                      "bytes":  38552,
-                      "sha256":  "6ec8cf9db743538705661429eb8587fe94812788105e88b420b89f2a1e8364d8",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1tqw\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-3.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-3.jpg",
+                      "bytes":  51831,
+                      "sha256":  "7d7f8db6d9c4f5ed9985ceec10a2e40efefe28d660f191eaf021b73c2cd978d2",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga8513zr\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/12-step/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/12-step/",
-                      "bytes":  33597,
-                      "sha256":  "d8ecd9a68df07703e1b87c98404197b5fee2493054b5c6e5d08c3e6284c2099a",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1px9\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-14.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-14.jpg",
+                      "bytes":  25129,
+                      "sha256":  "76c70586f450a52929e2e0f57ee7e7fc0e3db38744b43dde4793e0d61c667f1c",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85je1\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/vm/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/vm/",
-                      "bytes":  36878,
-                      "sha256":  "76cb82ff56f3d5bc8d3831734bf7b00f083c0aba2d662ff58a4262c747d6c569",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1sge\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-13.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-13.jpg",
+                      "bytes":  53136,
+                      "sha256":  "83922e3abe9ea04766d99b9c0e76e59095e19d12c82ac2cf33efb7898ab2a3c5",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga851500\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/B-constr/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/B-constr/",
-                      "bytes":  38932,
-                      "sha256":  "9c0bf643af343c4978fff534831383628258cc723cf88664fa4389ce7b9a7ce3",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1u1g\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-12.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-12.jpg",
+                      "bytes":  90068,
+                      "sha256":  "1bcc73ab9885523ce0c1aebf4e2c6bf88b3e2f8186f545d8f3ae38ca1731fc8b",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga851xhw\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/11-performance/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/11-performance/",
-                      "bytes":  33849,
-                      "sha256":  "2d5065f66dba8a5e17389316dd47ae7356bd41d66386011d2dc643e434081a7d",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1q49\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-15.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-15.jpg",
+                      "bytes":  26396,
+                      "sha256":  "c4a8f43e9826e156609c835e16f1c2e57d05650778fdb35bf01c6ee472f188aa",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85kd8\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/8-divider/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/8-divider/",
-                      "bytes":  44416,
-                      "sha256":  "8589ed542382f4f6fb882d7c38c3882f5da44940924e08a2b9dba5ab2fab31d6",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1y9s\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-18.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-18.jpg",
+                      "bytes":  81037,
+                      "sha256":  "fbf1d77c477bcc13819833ba82758d57b8262946b2c8402c848b865d498a4ee2",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga851qj1\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/7-muldiv/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/7-muldiv/",
-                      "bytes":  45787,
-                      "sha256":  "59b7e78f9b868db1ba3f48a58625427e6852c2358577801291dbb4a1983f0df4",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1zbv\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-17.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-17.jpg",
+                      "bytes":  74934,
+                      "sha256":  "f67a2d635703ffc3d15f909ecf2fddcec63bf4b0edb31bbc01a88ed84f08da4a",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga851lti\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/10-verify/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/10-verify/",
-                      "bytes":  34788,
-                      "sha256":  "66818a7b0175057ec6f4d4fbd6ccce8e7f9d44e92a2bd97cd669704a97657011",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1quc\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "verify/assets/v-16.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-16.jpg",
+                      "bytes":  35001,
+                      "sha256":  "76d849b4020876ece5525f024dbeab5f003df471a376f60f48b89f0f076c9fea",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85r09\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "lab1/9-timing/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/9-timing/",
-                      "bytes":  39177,
-                      "sha256":  "04c8a4ea7bc1163d59a286355d55af96ace2f8d81f27e49574d24f5561e0e526",
+                      "path":  "verify/assets/v-11.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-11.jpg",
+                      "bytes":  86288,
+                      "sha256":  "5950577db53d867e5d006c5d964800b34e0209718772c5bb578b93c0dab8d053",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga851ukw\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-6.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-6.jpg",
+                      "bytes":  36413,
+                      "sha256":  "0327bf6ba3491c8ed275941216fbd5823c09d605b7aaf74291be980464f6ff74",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85s3h\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-5.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-5.jpg",
+                      "bytes":  38354,
+                      "sha256":  "44090e6316ceaf6f4fd641fff5a4ac66498b714b9f72f5f897c170face6c1a37",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85tle\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-4.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-4.jpg",
+                      "bytes":  67200,
+                      "sha256":  "1313f46f134b87873753b4bd43149ff18b14110d0bc4384083331bd63ca59644",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga851fuo\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-7.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-7.jpg",
+                      "bytes":  94250,
+                      "sha256":  "bfff58c8da3d511adfec81312a9ea055f5d2523f62dc48d5bd4fe3a9d3ddeee9",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga8520q2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-10.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-10.jpg",
+                      "bytes":  52922,
+                      "sha256":  "6bb922416e0b02a1aff85330c0afee982ff40c750c8cecd401e74cb1d7ac7c1b",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga8514u2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-9.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-9.jpg",
+                      "bytes":  78950,
+                      "sha256":  "ab2878ddd185ebe87a7ecc1bc9b81b25e61fad03caa510a830f5abd3112f9023",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga851ox2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/assets/v-8.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/assets/v-8.jpg",
+                      "bytes":  21432,
+                      "sha256":  "9b6f4374dd1c7298f8804c4a9638c7e29139c1f6551fc356f094eeb0864003a9",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85gjc\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/lab2_IOtest_miniRV_ego1.bit",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/lab2_IOtest_miniRV_ego1.bit",
+                      "bytes":  2192118,
+                      "sha256":  "fcbbfe3815c278050f4fdf51585da8863c90a53bf55818aa3879b3c2b26130ac",
+                      "content_type":  "",
+                      "etag":  "\"tiga851azg6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/c_test_la_stu.tar.gz",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/c_test_la_stu.tar.gz",
+                      "bytes":  373649,
+                      "sha256":  "75407368fee5f87de907ca68ceff646a6bb9bd41c5cb17314939d431a43997a4",
+                      "content_type":  "",
+                      "etag":  "\"tiga8580b5\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/c_test_rv_stu.tar.gz",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/c_test_rv_stu.tar.gz",
+                      "bytes":  374841,
+                      "sha256":  "1b685c2334d2fac3d1f188ab1c420b670af3b37a3e3bb7748efe7ebc51612686",
+                      "content_type":  "",
+                      "etag":  "\"tiga858189\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/lab2_IOtest_miniRV_minisys.bit",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/lab2_IOtest_miniRV_minisys.bit",
+                      "bytes":  3825895,
+                      "sha256":  "4ec0d244cad544113c971a614313eb59665944b249d3ce7f35c6d050ee86ce3c",
+                      "content_type":  "",
+                      "etag":  "\"tiga852a02v\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/5-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/5-1.png",
+                      "bytes":  14103,
+                      "sha256":  "d5e9f85c112a44efe6b7cff39a8fcc6020dc3e45c1c5d9794db9e3f3ada45320",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85avr\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/lab2_IOtest_miniLA_minisys.bit",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/lab2_IOtest_miniLA_minisys.bit",
+                      "bytes":  3825895,
+                      "sha256":  "28ce7e8f82a8693a9dbb9a8429a03b8b1af3ad32cd957b7b634d64f488f8ee44",
+                      "content_type":  "",
+                      "etag":  "\"tiga852a02v\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/lab2_IOtest_miniLA_ego1.bit",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/lab2_IOtest_miniLA_ego1.bit",
+                      "bytes":  2192118,
+                      "sha256":  "5a51e92dbd839c7a752bd7ac0ad8e98ee6f26220aa23541917d96e4566910412",
+                      "content_type":  "",
+                      "etag":  "\"tiga851azg6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/t5-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/t5-3.png",
+                      "bytes":  37266,
+                      "sha256":  "ee6839da6f1475b1e40bc0b6ed85e67e80de350c479dc65516727c69fe0dead9",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85sr6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/4-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/4-2.png",
+                      "bytes":  130324,
+                      "sha256":  "793f7bc9b67b2284e603e94c1ef8f61a44fc90ecb8a4439bfc393096e68499ad",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852sk4\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/4-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/4-1.png",
+                      "bytes":  83824,
+                      "sha256":  "0230f0990f3d780e60a7cdec887c49f763871397e65342ea1a06fb7e0e4153c9",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851sog\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/2-10.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/2-10.png",
+                      "bytes":  60443,
+                      "sha256":  "3a1660f8000e054539c0747b6530c055932085e120cef28222004e16d64f6490",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851amz\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/4-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/4-3.png",
+                      "bytes":  16962,
+                      "sha256":  "97867c0b5c964a0f1b36b7bb706e67529a9a5fc22414b0a260bac9d8cbcaa340",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85d36\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/t5-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/t5-2.png",
+                      "bytes":  53702,
+                      "sha256":  "adbcd55d4071256021eb9917f47c4f7e120c5791f3e0530cd636926ea9ffb81b",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8515fq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/t5-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/t5-1.png",
+                      "bytes":  26247,
+                      "sha256":  "57bf5d07e9eb07de737c5ae3737ba5d526f3325155fe9c97a4e0d49d22ec8121",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85k93\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/4-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/4-4.png",
+                      "bytes":  60266,
+                      "sha256":  "26ab2d18be4ba228d219e6ab7f705a0cb8fe013f30822f165716be387cea0dd9",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851ai2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/5-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/5-2.png",
+                      "bytes":  18880,
+                      "sha256":  "e290e0e6c04234834453c7b81025d169b22e6baeb45af92836b3fe39ec521777",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85ekg\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/DDR3_Minisys_1.35V.ucf",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/DDR3_Minisys_1.35V.ucf",
+                      "bytes":  6615,
+                      "sha256":  "a6f4f2fb25e55cd5d7cedf82c039410fd62392271f7f6f4e3343c4c37f2f6694",
+                      "content_type":  "",
+                      "etag":  "\"tiga8553r\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/6-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/6-6.png",
+                      "bytes":  44435,
+                      "sha256":  "61d13eab45d523415cfcf67ae48654d657585e335ebc2c18c17c8459aafa1774",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85yab\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/6-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/6-5.png",
+                      "bytes":  124679,
+                      "sha256":  "203403bdc6ff514f4f22de88bc6e93fe87dafae1b5b6f5a8888db30e15572116",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852o7b\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/7-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/7-1.png",
+                      "bytes":  41048,
+                      "sha256":  "5980d6fa3c954004a660bbb02f7e1c3b16615885a604dc5af16241c873d42d02",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85vo8\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/7-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/7-3.png",
+                      "bytes":  20126,
+                      "sha256":  "8653bb4823db2f83ac14d466efdd44091865e353825c91cacea70d78056c63df",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85fj2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/ddr_test.bit",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/ddr_test.bit",
+                      "bytes":  3825895,
+                      "sha256":  "c6652143a22d83d511463daa470979dedc0a0cdc01bbe7f8324e3fbedacf8643",
+                      "content_type":  "",
+                      "etag":  "\"tiga852a02v\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/7-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/7-2.png",
+                      "bytes":  39415,
+                      "sha256":  "50d9497cb69af818c7493263ffabf694b4e45d4f10a8f6e6151c09795059bb69",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85uev\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/6-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/6-4.png",
+                      "bytes":  22009,
+                      "sha256":  "ddb52f6f7725ef35f9325f03bb76d18f6f2a58e2cab6c22e665cb76ff8729e5b",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85gzd\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/5-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/5-5.png",
+                      "bytes":  88952,
+                      "sha256":  "372d3a4952d3857f4040a9196e8ea1ede70c403b08f83816e1385956a833eb00",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851wmw\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/5-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/5-4.png",
+                      "bytes":  10363,
+                      "sha256":  "13c88ff3f72945c27b330eadff6c490f31573666ba8cd68deb269a7ca7a764c1",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga857zv\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/5-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/5-3.png",
+                      "bytes":  57525,
+                      "sha256":  "b23af846a1b534250eb64cbcb13055ca182f99646f49731f556a62d9aaa828a3",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8518dx\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/6-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/6-1.png",
+                      "bytes":  119958,
+                      "sha256":  "d56ed4155b5aa4aa1f364a7b3d66d7bb17a046df2e41c08a407440b2f67a8523",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852kk6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/t6-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/t6-1.png",
+                      "bytes":  54652,
+                      "sha256":  "0a43473bf5721722f9769caa2ee0895d0c27b2ab840f35c156336863162ea381",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851664\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/6-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/6-3.png",
+                      "bytes":  42057,
+                      "sha256":  "e4c71b28077c786fb07f52a0173f1a54a6673605b80e44b680e3a82c7f84a4fe",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85wg9\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/assets/6-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/6-2.png",
+                      "bytes":  86821,
+                      "sha256":  "cbb5ec489cc9e78d1e2097713aa819609c14ac27ac41109609d0fc9d5f9afbc1",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851uzp\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-9.png",
+                      "bytes":  13193,
+                      "sha256":  "19b6065e2f3546e241853012b8643bd9b38eb7a030650c6620fe2d20855385b5",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85a6h\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/5-ioupg/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/5-ioupg/",
+                      "bytes":  53118,
+                      "sha256":  "0512aeb5624b8bcb7539b87a9f661958c2d5634f66c7cdc8c4116d5c8128fd05",
                       "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1u89\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga8614zi\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/4-bus_impl/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/4-bus_impl/",
+                      "bytes":  108573,
+                      "sha256":  "9fbfa42720577f694eb04d6be452ed297c42bc4d46b1d940f5353cd0f83d931f",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga862brx\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/3-step/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/3-step/",
+                      "bytes":  45694,
+                      "sha256":  "49d653f98d271a86a68719e150a10d011218d253b0de001df68bc22a31a4900b",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86z9a\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/6-ioitf_impl/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/6-ioitf_impl/",
+                      "bytes":  132343,
+                      "sha256":  "5570e3128bf2f1e1eb3e02b9e66f7e2b70bdac93ba5e7f8ad89c339e867abf46",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga862u47\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
                   },
                   {
                       "path":  "trace/env_diy/index.html",
                       "source":  "https://cpu-design.p.cs-lab.top/trace/env_diy/",
-                      "bytes":  34767,
-                      "sha256":  "40b3d30e921d2ac5bc56692d4b28e19ce20b256b7727fc989caa43d923adfef9",
+                      "bytes":  44207,
+                      "sha256":  "be8afe4d2c936087f61bd4d6dd7af99a5a098d98db041e31a9a16e71cc5dd150",
                       "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1qtr\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga86y3z\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
                   },
                   {
-                      "path":  "home/assets/ego1_pin.xdc",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/ego1_pin.xdc",
-                      "bytes":  5503,
-                      "sha256":  "38b556922068c8ae011e9e3cc0cc11e1e5c8d5244f14d9eb49a36576b9ed52e7",
-                      "content_type":  "",
-                      "etag":  "\"tiaon148v\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/b-2.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-2.jpg",
-                      "bytes":  699935,
-                      "sha256":  "f5f601fed3e1993185d43dac5fd515e131ffc74f7f9e34772d4a1a18f0a8d790",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1f02n\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/b-3.jpg",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-3.jpg",
-                      "bytes":  574084,
-                      "sha256":  "c959cdce6cf7c12a3ed34733ac823d2e092e314f89eb8ce159e4128a30191cc6",
-                      "content_type":  "image/jpeg",
-                      "etag":  "\"tiaon1cays\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/EGO1开发板用户手册.pdf",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/EGO1%E5%BC%80%E5%8F%91%E6%9D%BF%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf",
-                      "bytes":  2029159,
-                      "sha256":  "b1de9e02f1e7085fdd67c7cbd35bf66614df5eb4fc2eced2960df62d00f4e7f8",
-                      "content_type":  "application/pdf",
-                      "etag":  "\"tiaon117hpj\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/b-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-1.png",
-                      "bytes":  2981596,
-                      "sha256":  "f1409c7527f1182a894bd53f24cde7438a90af1b3fe0328219ceb81114e5e4f7",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11rwm4\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/online-debug/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/online-debug/",
-                      "bytes":  46320,
-                      "sha256":  "5b84a563f25aa12308be8f9298c0746f564ad598b99c79e61bad6481c0cfc37e",
+                      "path":  "trace/vm/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/vm/",
+                      "bytes":  46318,
+                      "sha256":  "1080f97d2b6332ab1759eb2886697937bf9896b89970db01934c3fc38bdd4168",
                       "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1zqo\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga86zqm\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/7-llama/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/7-llama/",
+                      "bytes":  99199,
+                      "sha256":  "3dcb7ae760e29c8dcf2706eca2d5a11e9099799f9f380258bd5c6edda0fc3c40",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8624jj\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/2-ioitf/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/2-ioitf/",
+                      "bytes":  70507,
+                      "sha256":  "8b6505a75ba3693753e6d5551ccd1bd114672335bd25fef780f7b2de294f296e",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861iej\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/4-handleDH/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/4-handleDH/",
+                      "bytes":  67400,
+                      "sha256":  "7e11fdd05d79b5e01d8e16589ac91d2682508a000353f0cfccfefd576b511fda",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861g08\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/3-hazard/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/3-hazard/",
+                      "bytes":  51266,
+                      "sha256":  "b028810a9ab00ca0ee00a73669943cff803713ad06a223731201529f5bb1a96e",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8613k2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/2-idealpl/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/2-idealpl/",
+                      "bytes":  55142,
+                      "sha256":  "314a226223d0ee74dbadda358cb7618ecb95e4e55b8b8cc9ca54a82aa2f357b2",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8616jq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/5-handleCH/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/5-handleCH/",
+                      "bytes":  55745,
+                      "sha256":  "699c4fad38f772be77e617e8079392d24521f074058c27acc377a1145a3e9797",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86170h\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/1-sysbus/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/1-sysbus/",
+                      "bytes":  75104,
+                      "sha256":  "ebb0b263d11751511722a1593de57aed9a617df427e1dda2c15d47f4ceb0b1ca",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861ly8\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/7-step/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/7-step/",
+                      "bytes":  45913,
+                      "sha256":  "aaa1991cc46615bdd795627cecfb1c8ed2cc2b40d7b03db5e63161ec9594e2a3",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86zfd\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/6-ifetch/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/6-ifetch/",
+                      "bytes":  53981,
+                      "sha256":  "7f0390c6c6c372b96f8401f877d0f93776f42ad54a250dde224c613d44b1a71a",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8615nh\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
                   },
                   {
                       "path":  "trace/surfer/index.html",
                       "source":  "https://cpu-design.p.cs-lab.top/trace/surfer/",
-                      "bytes":  38147,
-                      "sha256":  "44328676977f336f1c14a13bbe3c2b1cbd509a6634059d55f560cd678ec91f7d",
+                      "bytes":  47587,
+                      "sha256":  "7918b01d0d515f7ff5fd657d8ac7a1f9507cabb5c937df4b3e7e40cea167ffea",
                       "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1tfn\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "assets/javascripts/bundle.a7c05c9e.min.js",
-                      "source":  "https://cpu-design.p.cs-lab.top/assets/javascripts/bundle.a7c05c9e.min.js",
-                      "bytes":  107750,
-                      "sha256":  "87420f873fa72d4947835c0f326fdc1bcbd2dea40a23049d524544c476fda7e3",
-                      "content_type":  "text/javascript; charset=utf-8",
-                      "etag":  "\"tiaon12b52\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "time_tbl.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/time_tbl.png",
-                      "bytes":  92215,
-                      "sha256":  "c105849645c1e5ac60795340a18a4374914e265d925b905465a364458db89288",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11z5j\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/6-multcycle/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/6-multcycle/",
-                      "bytes":  47221,
-                      "sha256":  "ee34e7acd0f94b59b24fa1662493f8738c34968996e40e123c6f91581d72bc62",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon110fp\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "assets/stylesheets/palette.06af60db.min.css",
-                      "source":  "https://cpu-design.p.cs-lab.top/assets/stylesheets/palette.06af60db.min.css",
-                      "bytes":  12522,
-                      "sha256":  "06af60dbce60d47a167fcab982f7cfa8d2d654a2f2a13d68e5a5fe5ae66df6c0",
-                      "content_type":  "text/css; charset=utf-8",
-                      "etag":  "\"tiaon19nu\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "assets/stylesheets/main.66ac8b77.min.css",
-                      "source":  "https://cpu-design.p.cs-lab.top/assets/stylesheets/main.66ac8b77.min.css",
-                      "bytes":  131356,
-                      "sha256":  "66ac8b7785c87019ca75bbf91927b3a3cd6691a7e52811a3b60fab4b5a91ef05",
-                      "content_type":  "text/css; charset=utf-8",
-                      "etag":  "\"tiaon12tcs\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "trace/trace/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/trace/",
-                      "bytes":  65703,
-                      "sha256":  "fdaa9e0472c18fd678662a1c4dc2163610ed6f4ab404602c451d83c10055f225",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon11ep3\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/0-overview/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/0-overview/",
-                      "bytes":  36014,
-                      "sha256":  "277d84f493adfd56099ce7251a047d67a66d865757e385ac486ee0b0803aa624",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1rse\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "assets/images/favicon.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/assets/images/favicon.png",
-                      "bytes":  1870,
-                      "sha256":  "023854c43fc4b25b795ee4951c8019e3de0593ffeb6f918b5d1f2a9b47a57cfe",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11fy\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "search/search_index.json",
-                      "source":  "https://cpu-design.p.cs-lab.top/search/search_index.json",
-                      "bytes":  305668,
-                      "sha256":  "d32675751a71d5a95a2c7f8bd83c3f46d878ba773f9a949ffd3c0272fe15d84f",
-                      "content_type":  "application/json",
-                      "etag":  "\"tiaon16jus\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/",
-                      "bytes":  39606,
-                      "sha256":  "f36f42e3e42b4a695a578eb695cbb4ff41d206d0d06f8406289f4275965ccf9f",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1uk6\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/fpga/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/fpga/",
-                      "bytes":  40456,
-                      "sha256":  "b78a5b45806bb7ffe5300e47302816ba3479eea311022c57a9ee4aa235a854a3",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1v7s\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "sitemap.xml",
-                      "source":  "https://cpu-design.p.cs-lab.top/sitemap.xml",
-                      "bytes":  109,
-                      "sha256":  "33f57ce73974cb669d46fcc9027a02c65647fc797b4cb9c86f503eea5ff11a62",
-                      "content_type":  "text/xml; charset=utf-8",
-                      "etag":  "\"tiaon131\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "verify/trace-debug/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/verify/trace-debug/",
-                      "bytes":  37770,
-                      "sha256":  "b9cf42a2250d920c9252882af2c3a14d24f6bf6648b6dc811afd11a247cf7910",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1t56\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/3-parts/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/3-parts/",
-                      "bytes":  63757,
-                      "sha256":  "fbc51b29007be4ef4afb433151b8530fcde6baf9d09e9cab5107d964e37ff359",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon11d71\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/2-inst_LA/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/2-inst_LA/",
-                      "bytes":  91998,
-                      "sha256":  "4e47212ad9a4bd727f0a83a8024064d81e5a57905e9f514dba88d32e2f8787cd",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon11yzi\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/5-ctrler/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/5-ctrler/",
-                      "bytes":  38577,
-                      "sha256":  "ebef00516ebedea03c601b6a945e0257160adf022e884de4807a8a050059b848",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1trl\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/4-datpth/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/4-datpth/",
-                      "bytes":  35406,
-                      "sha256":  "2eb5db6d5e71a25691b39d305ad02710044d7b15fa3d404d88da06dcd0c6f8b3",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1rbi\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/2-inst/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/2-inst/",
-                      "bytes":  90301,
-                      "sha256":  "026dfed5a7c905317f12158083d877dff0abd7220cdd1401fcea743965e18afe",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon11xod\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/problems/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/problems/",
-                      "bytes":  66188,
-                      "sha256":  "2be8fa73e962b8043e5d752597baf8980a520d49b69dd4df7513c2e305ace0e7",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon11f2k\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/codingstyle/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/codingstyle/",
-                      "bytes":  52416,
-                      "sha256":  "4243a0a1f58ee2d15fe1d08cb73b5ff62b95f6f48ef790413a65c7e9160299f9",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon114g0\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "lab1/1-warmup/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/lab1/1-warmup/",
-                      "bytes":  67232,
-                      "sha256":  "21defbe964a59588b788a76859d47c3264224ca77f05c976f5a2b31be1e8df25",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon11fvk\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/operation/index.html",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/operation/",
-                      "bytes":  37454,
-                      "sha256":  "78d2ea58e3f57b01f4cb2f981b44ff486262204567e17e219c2ae446191752f2",
-                      "content_type":  "text/html; charset=utf-8",
-                      "etag":  "\"tiaon1swe\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/minisys_pin.xdc",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/minisys_pin.xdc",
-                      "bytes":  5983,
-                      "sha256":  "161efaf3eaeb9a390b79ef5b15280c1ab1897c3b2d6426c235e4019149d31a5e",
-                      "content_type":  "",
-                      "etag":  "\"tiaon14m7\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-3.1-4.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-4.png",
-                      "bytes":  31299,
-                      "sha256":  "0eaca6165941ca24c2921a2bfa2d86f88be4c88db93ba27401d03d937e831e94",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1o5f\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-3.1-3.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-3.png",
-                      "bytes":  32476,
-                      "sha256":  "476f14f810c846e3b6c006668eb9cae238534686f383d5cc1e21b33cb757b38c",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1p24\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-2.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-2.bmp",
-                      "bytes":  3016294,
-                      "sha256":  "d28d3e2b2b4770dcf4d77a7e0b5de9cae1a6951454fdd6ff224c7c4d268a5326",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11sndy\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-1.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-1.bmp",
-                      "bytes":  2865174,
-                      "sha256":  "9c830b8a7bea5f9a333286ea4c47390fb5daf398aa91d075e94f23779766b03a",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11pes6\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-3.1-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-2.png",
-                      "bytes":  12128,
-                      "sha256":  "b1cb96c3a825b3ab2cd48216a7009a86e52154bc371e8f6cce0e5110c8a94f59",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon19cw\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-2.14-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-2.14-1.png",
-                      "bytes":  15175,
-                      "sha256":  "0f63bec25567e5d878782473d66b3a3b3cd396cdc187067f3e30dc37a5065219",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1bpj\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-1.7-4.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-4.png",
-                      "bytes":  265299,
-                      "sha256":  "a275e273cc0e4149d6aba3b9d713d5192cd9faf2cdabd198097f579f3c408fe0",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon15opf\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-3.1-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-1.png",
-                      "bytes":  17997,
-                      "sha256":  "f403027b7af05cfa9445953a182035b59496bdbf0da8b6b2e964a5f7a67b5242",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1dvx\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-2.15-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-2.15-1.png",
-                      "bytes":  3900,
-                      "sha256":  "433755e74eda7eef45b6eb6c7875b7b98a9713fb7bf671a66cab0671b1d26d19",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon130c\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-3.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-3.bmp",
-                      "bytes":  2763654,
-                      "sha256":  "813f26d9caf7f537cae49a004048d04dd163d3bf7621ff8c5a64d13f54ac0620",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11n8g6\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-10.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-10.bmp",
-                      "bytes":  2643834,
-                      "sha256":  "acad9c9273589985089b59d1d087dad9c1cf0adb3ecb9c5ac96aabc9937f5a6e",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11knzu\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-9.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-9.bmp",
-                      "bytes":  2363494,
-                      "sha256":  "8041e42a22d1387790efa9f9a2d9b39c838dfce070a490559bb91c61b981ae39",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11enom\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-12.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-12.bmp",
-                      "bytes":  1469790,
-                      "sha256":  "d60d51e127339c35b23e7e3f31303185e86ef013431ddaab5f970c1d09c3a716",
-                      "content_type":  "",
-                      "etag":  "\"tiaon1vi3i\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-11.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-11.bmp",
-                      "bytes":  2358534,
-                      "sha256":  "4f99e577ed6649a7559a4e48539b4b8d919ae5298443d64de4a75ffdb6d7fd88",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11ejuu\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-8.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-8.bmp",
-                      "bytes":  2369946,
-                      "sha256":  "721a2f36b29ebc98b71e1029d6a113eafe9a51d032ab024e9b3cc023c71cf3ab",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11esnu\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-5.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-5.bmp",
-                      "bytes":  3213810,
-                      "sha256":  "33dfa485bd41848dc9a1549e417f4233eeaeff59786daeb121ccb8d291fb40c6",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11wvsi\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-4.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-4.bmp",
-                      "bytes":  2732310,
-                      "sha256":  "b8fd5cdb04b620368ef3cc7516b2659e780d59bb0d27e52799e1b65df69fc77d",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11mk9i\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-7.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-7.bmp",
-                      "bytes":  2324298,
-                      "sha256":  "f52edeabdbf73647f087264132fb1a705fcb93ac918db9f4d567d7973a6b58ec",
-                      "content_type":  "",
-                      "etag":  "\"tiaon11dtfu\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/s-6.bmp",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-6.bmp",
-                      "bytes":  1921074,
-                      "sha256":  "661578e5a6c340eafa5c9b962c5cba00cd7b3320539e606456d302b9b63d9a35",
-                      "content_type":  "",
-                      "etag":  "\"tiaon1156b6\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-1.7-3.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-3.png",
-                      "bytes":  115494,
-                      "sha256":  "b56cc967322ba8f0837d764fd2930b3e7768ddb14005c917c0b7ad0c4b49b707",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon12h46\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "trace/assets/trace-4.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-4.png",
-                      "bytes":  38288,
-                      "sha256":  "ec3b278315aef72a38f1309dde42ff9076e3fe18ca7fc3dc24098db42e9bc5d2",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1tjk\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "trace/assets/trace-3.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-3.png",
-                      "bytes":  28260,
-                      "sha256":  "b8ea91a5f3b5844611c3d5744228e0de1647956ba0aa88c28b2af38bfcd752fd",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1lt0\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "trace/assets/trace-6.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-6.png",
-                      "bytes":  115864,
-                      "sha256":  "2f23588aa2099a9e97061ccdf6f08ac93c1902209d343a1b16ec3d451624e8ab",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon12heg\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "trace/assets/trace-5.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-5.png",
-                      "bytes":  38415,
-                      "sha256":  "7716e99f739824ece76323234103d06bf1ca2e2b4466212fab420b1390c9bfee",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1tn3\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "trace/assets/trace-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-2.png",
-                      "bytes":  179499,
-                      "sha256":  "c473c70ae9f1083d82c1d9fc7681b4a21b10e7648d3ed50cecb556f643f858bd",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon13ui3\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga8610pv\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
                   },
                   {
                       "path":  "lab1/assets/t0-1.png",
@@ -1305,8 +1287,8 @@
                       "bytes":  93616,
                       "sha256":  "bd5a735634f8b39fe97efdb443c75a5870fddfb408f7b9e767e3f557115aaf2e",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1208g\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85208g\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "home/assets/Minisys开发板用户手册.pdf",
@@ -1314,17 +1296,17 @@
                       "bytes":  1875756,
                       "sha256":  "7f9dd9cfd768b59eeacf5fc32f58d858d44996ee46e19ae05ba528d8f7c18797",
                       "content_type":  "application/pdf",
-                      "etag":  "\"tiaon1147cc\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85147cc\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/trace-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-1.png",
-                      "bytes":  80030,
-                      "sha256":  "0705a0adeba1bba0f3aab7bb2621140fdfb70206b4185e4a5aad69e91e4cb9e1",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon11pr2\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "path":  "home/assets/minisys_pin.xdc",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/minisys_pin.xdc",
+                      "bytes":  5983,
+                      "sha256":  "161efaf3eaeb9a390b79ef5b15280c1ab1897c3b2d6426c235e4019149d31a5e",
+                      "content_type":  "",
+                      "etag":  "\"tiga854m7\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "lab1/assets/t0-1A.png",
@@ -1332,17 +1314,674 @@
                       "bytes":  118709,
                       "sha256":  "ba8eab04bb131dae9046ae0fe68d60de3b7c952cf1338c5e5fa018af53b0b98d",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon12jlh\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga852jlh\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/trace-7.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-7.png",
-                      "bytes":  37600,
-                      "sha256":  "03337e222af9281a91d857407f99a636364b03df3a11935a7a4b3134ae165480",
+                      "path":  "trace/assets/trace-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-2.png",
+                      "bytes":  179499,
+                      "sha256":  "c473c70ae9f1083d82c1d9fc7681b4a21b10e7648d3ed50cecb556f643f858bd",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1t0g\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga853ui3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-1.png",
+                      "bytes":  80030,
+                      "sha256":  "0705a0adeba1bba0f3aab7bb2621140fdfb70206b4185e4a5aad69e91e4cb9e1",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851pr2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/assets/0-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/assets/0-1.png",
+                      "bytes":  252157,
+                      "sha256":  "76192b88ac06e9b6e383bbab10d87146b4bfd801225d2012798f8d5726d64f0f",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga855ekd\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/b-3.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-3.jpg",
+                      "bytes":  574084,
+                      "sha256":  "c959cdce6cf7c12a3ed34733ac823d2e092e314f89eb8ce159e4128a30191cc6",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85cays\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "assets/javascripts/bundle.a7c05c9e.min.js",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/javascripts/bundle.a7c05c9e.min.js",
+                      "bytes":  107750,
+                      "sha256":  "87420f873fa72d4947835c0f326fdc1bcbd2dea40a23049d524544c476fda7e3",
+                      "content_type":  "text/javascript; charset=utf-8",
+                      "etag":  "\"tiga852b52\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "time_tbl.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/time_tbl.png",
+                      "bytes":  64541,
+                      "sha256":  "f39399b667a36ac997e2e28401f7a9e11d8f93b34a2269286b8c5cce57bf12df",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851dst\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "verify/online-debug/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/online-debug/",
+                      "bytes":  55760,
+                      "sha256":  "2f874fd527441b65bbd5d4c52d7c2263f5c978c4ced05feafd911431b56d63d0",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86170w\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "home/assets/b-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-1.png",
+                      "bytes":  2981596,
+                      "sha256":  "f1409c7527f1182a894bd53f24cde7438a90af1b3fe0328219ceb81114e5e4f7",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851rwm4\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/EGO1开发板用户手册.pdf",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/EGO1%E5%BC%80%E5%8F%91%E6%9D%BF%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf",
+                      "bytes":  2029159,
+                      "sha256":  "b1de9e02f1e7085fdd67c7cbd35bf66614df5eb4fc2eced2960df62d00f4e7f8",
+                      "content_type":  "application/pdf",
+                      "etag":  "\"tiga8517hpj\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/ego1_pin.xdc",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/ego1_pin.xdc",
+                      "bytes":  5503,
+                      "sha256":  "38b556922068c8ae011e9e3cc0cc11e1e5c8d5244f14d9eb49a36576b9ed52e7",
+                      "content_type":  "",
+                      "etag":  "\"tiga8548v\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/b-2.jpg",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/b-2.jpg",
+                      "bytes":  699935,
+                      "sha256":  "f5f601fed3e1993185d43dac5fd515e131ffc74f7f9e34772d4a1a18f0a8d790",
+                      "content_type":  "image/jpeg",
+                      "etag":  "\"tiga85f02n\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/trace/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/trace/",
+                      "bytes":  75144,
+                      "sha256":  "a06269d4caff9669cec84bb65d16d5f779f7c38d3a4bf9bfecf6b616eec37d91",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861lzc\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-B/0-overview/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-B/0-overview/",
+                      "bytes":  45607,
+                      "sha256":  "1eb2c18d28c92fedf9a009da36f4a7e77777f066e884e09a0a2eb5bd17850ee1",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86z6v\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/0-overview/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/0-overview/",
+                      "bytes":  45252,
+                      "sha256":  "84f03b558d443e9409d9d516f13c1ed4ea778f776787940ad7598edd35125daa",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86yx0\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "verify/trace-debug/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/verify/trace-debug/",
+                      "bytes":  47210,
+                      "sha256":  "63b004630b525842f2faf62e844171f42b88667e36378151e0786008603ce59b",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8610fe\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "home/operation/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/operation/",
+                      "bytes":  46894,
+                      "sha256":  "1dd72c63b34ceeb54bb36042bee1df5e65057fe7ac7625f7bb184adef6fe9150",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86106m\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "home/problems/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/problems/",
+                      "bytes":  75628,
+                      "sha256":  "5f220ccc2dd9b6f50179723b99965ed9020fbe89679c9a0eb12cbf4a231b50dc",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861mcs\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "home/codingstyle/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/codingstyle/",
+                      "bytes":  61856,
+                      "sha256":  "761edfd17098dbba2227845ca765a7e6324de7398d2746508a558bc21a8a4b47",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861bq8\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/0-overview/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/0-overview/",
+                      "bytes":  45454,
+                      "sha256":  "72b6b77275e20cd97e4e89fd35c7e7f43acdcca558b7129cb008dd40e21ef808",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86z2m\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "sitemap.xml",
+                      "source":  "https://cpu-design.p.cs-lab.top/sitemap.xml",
+                      "bytes":  109,
+                      "sha256":  "33f57ce73974cb669d46fcc9027a02c65647fc797b4cb9c86f503eea5ff11a62",
+                      "content_type":  "text/xml; charset=utf-8",
+                      "etag":  "\"tiga8531\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "search/search_index.json",
+                      "source":  "https://cpu-design.p.cs-lab.top/search/search_index.json",
+                      "bytes":  521778,
+                      "sha256":  "9c6ca3ae4630939c23a33608a59463dec1ffea280dd574c3e470bfe827f771a7",
+                      "content_type":  "application/json",
+                      "etag":  "\"tiga86b6lu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/",
+                      "bytes":  48938,
+                      "sha256":  "b234bac2bd1538e642effd532f3f3cb624cc663095f4dec8c383ae0c64c10beb",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8611re\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "home/fpga/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/fpga/",
+                      "bytes":  49896,
+                      "sha256":  "81107b723db1468e0c647b14541b66ae23c714b4a4637de68b3a1d7a5c66766c",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8612i0\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "assets/stylesheets/palette.06af60db.min.css",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/stylesheets/palette.06af60db.min.css",
+                      "bytes":  12522,
+                      "sha256":  "06af60dbce60d47a167fcab982f7cfa8d2d654a2f2a13d68e5a5fe5ae66df6c0",
+                      "content_type":  "text/css; charset=utf-8",
+                      "etag":  "\"tiga859nu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "assets/stylesheets/main.66ac8b77.min.css",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/stylesheets/main.66ac8b77.min.css",
+                      "bytes":  131356,
+                      "sha256":  "66ac8b7785c87019ca75bbf91927b3a3cd6691a7e52811a3b60fab4b5a91ef05",
+                      "content_type":  "text/css; charset=utf-8",
+                      "etag":  "\"tiga852tcs\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "assets/images/favicon.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/assets/images/favicon.png",
+                      "bytes":  1870,
+                      "sha256":  "023854c43fc4b25b795ee4951c8019e3de0593ffeb6f918b5d1f2a9b47a57cfe",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851fy\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/1-warmup/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/1-warmup/",
+                      "bytes":  76672,
+                      "sha256":  "923b0e6b7824f6afa298e7abecd5fb8e0d7fb6c4040b9b668012ee20b4da0f54",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861n5s\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/11-performance/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/11-performance/",
+                      "bytes":  43289,
+                      "sha256":  "268aff5443e907640337ea088f814f15683f4988b4738764297605ee78fe05ca",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86xeh\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/10-verify/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/10-verify/",
+                      "bytes":  44228,
+                      "sha256":  "7c6d53e977f36e75f1c5b4bb66992fc4d9e8ddefed25c81e65a0325b239ed7fd",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86y4k\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/9-timing/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/9-timing/",
+                      "bytes":  48617,
+                      "sha256":  "031f7ae3768e9f819f0d08df6ec41d4b958804645e60d01630282de366ef5f52",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8611ih\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/12-step/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/12-step/",
+                      "bytes":  43037,
+                      "sha256":  "548f2530701efad1f0ac82853119b1b677f6baa98fe8a428e5d8c57ad31f1a2e",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86x7h\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab2-A/1-pipeline/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab2-A/1-pipeline/",
+                      "bytes":  60554,
+                      "sha256":  "0e53352c9bc3f21a0f2064560a725c5cf9bb8c76b82a1a3e30174c28774854c6",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861aq2\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/B-constr/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/B-constr/",
+                      "bytes":  48378,
+                      "sha256":  "52e80c771fc7bf27485bf2d9e04ae1ff4ba59ceaf4296f2cbff23ad8bfe447ed",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8611bu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/A-macro/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/A-macro/",
+                      "bytes":  47992,
+                      "sha256":  "b39b0bcf6f6d3ce876e2d9670f1ea6b668efe4c82b13c60aae1f98582c4ac9ad",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861114\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/8-divider/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/8-divider/",
+                      "bytes":  53856,
+                      "sha256":  "0777d91843ffa176e42e6fd37a53f45e2dd93a445ec5530437f33007d7efc746",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8615k0\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/3-parts/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/3-parts/",
+                      "bytes":  73197,
+                      "sha256":  "d11bc13d358156f47249d75b22610a68a9661a033c35decc33d16fa0a81729ad",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga861kh9\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/2-inst_LA/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/2-inst_LA/",
+                      "bytes":  101438,
+                      "sha256":  "fad8209a8368f4c69a00e2b2ca18dc3c73c4a862f270bd0cb3cc9d369f1b2653",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86269q\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/2-inst/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/2-inst/",
+                      "bytes":  99741,
+                      "sha256":  "78ea300a3bfde742d1bf757430d0608be6ca21599d04d44a0c4d98bd0185e8a0",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8624yl\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/4-datpth/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/4-datpth/",
+                      "bytes":  44846,
+                      "sha256":  "a7ada717e55c72219941c96a2c37ffb7e95d78ce6748323d6f67d02f9f847558",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86ylq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/7-muldiv/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/7-muldiv/",
+                      "bytes":  55227,
+                      "sha256":  "937b771928ab42a8be56f4b1b3ff1f474ced246864eefeea6d19d5da831a624b",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8616m3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/6-multcycle/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/6-multcycle/",
+                      "bytes":  56661,
+                      "sha256":  "e4b51dbd8c36f21e14c970b634779af7a103cad611ea4aa4c6cd101150eac6e2",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga8617px\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "lab1/5-ctrler/index.html",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/5-ctrler/",
+                      "bytes":  48017,
+                      "sha256":  "1a7329bceb04283f3c6b1537faa652378d4584a837f77e1d124a81a7e4d1f19c",
+                      "content_type":  "text/html; charset=utf-8",
+                      "etag":  "\"tiga86111t\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:42 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-3.png",
+                      "bytes":  28260,
+                      "sha256":  "b8ea91a5f3b5844611c3d5744228e0de1647956ba0aa88c28b2af38bfcd752fd",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85lt0\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-8.png",
+                      "bytes":  16823,
+                      "sha256":  "b2f6bf83b2a0da793c15a8a8ce349c3853ab35355e806ca58128208c35958465",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85czb\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-7.png",
+                      "bytes":  90273,
+                      "sha256":  "172a1a74cb053b903defaab442bd332f0e4857105d831248de22d44f716ee9e0",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851xnl\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-6.png",
+                      "bytes":  27050,
+                      "sha256":  "ccc8374578afd2ffe9fb43a5a255c58807ce656ad08f62f3fa4a1572621021a5",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85kve\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-9.png",
+                      "bytes":  8452,
+                      "sha256":  "0445366cd617b5039c0d9caa1d1b799675cda8dce6d678599bc77e4b256779ab",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga856is\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-12.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-12.png",
+                      "bytes":  23196,
+                      "sha256":  "ac841e5a411de753fb324c87c0699a25bfad4c12aab50fffd41bd4bf28c4423b",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85hwc\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-11.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-11.png",
+                      "bytes":  20701,
+                      "sha256":  "fa14d8adacced7a5605949132ce64d5ffdee664cd4d8d598016ee6852ca2a6fb",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85fz1\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-10.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-10.png",
+                      "bytes":  17228,
+                      "sha256":  "75be5acc79b3044f7df763a8f22fe0b82eb22d1914a8661ec066241cf1655cfb",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85dak\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-5.png",
+                      "bytes":  16484,
+                      "sha256":  "7514c78742247a802ac9d039aebef049000e5be851cdd2ae28f52924e7e3e403",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85cpw\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-13.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-13.bmp",
+                      "bytes":  1997154,
+                      "sha256":  "3e01eb75ec5f3a66925a906849b4ac4ef71e9bf19b80f99be871f0a3b2b39ba6",
+                      "content_type":  "",
+                      "etag":  "\"tiga8516t0i\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-12.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-12.bmp",
+                      "bytes":  1469790,
+                      "sha256":  "d60d51e127339c35b23e7e3f31303185e86ef013431ddaab5f970c1d09c3a716",
+                      "content_type":  "",
+                      "etag":  "\"tiga85vi3i\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-11.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-11.bmp",
+                      "bytes":  2358534,
+                      "sha256":  "4f99e577ed6649a7559a4e48539b4b8d919ae5298443d64de4a75ffdb6d7fd88",
+                      "content_type":  "",
+                      "etag":  "\"tiga851ejuu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-1.png",
+                      "bytes":  59769,
+                      "sha256":  "3fae4f71fb3f8dde7a74ccfabc82d14e7738c1c2192c1ae9c0596aca553591bc",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851a49\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-4.png",
+                      "bytes":  60214,
+                      "sha256":  "9253936e7731c7acaf93ec90fc40c983e8c9e7928c4a7d3416ec9ed475b08aad",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851agm\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-3.png",
+                      "bytes":  6816,
+                      "sha256":  "8176012af2134f55eef9f490d2ef876d291dd9a037d2ed5e07b6af643def5564",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8559c\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-2.png",
+                      "bytes":  15984,
+                      "sha256":  "e238af3c9ef979189001664222feec1615d090a3d36d4865c83a14bf37782d3d",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85cc0\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-13.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-13.png",
+                      "bytes":  28322,
+                      "sha256":  "d2cd02b67ccfe5acd2e29ca45e21f4f0e27614720c68866b3557262d886004d6",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85luq\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-4.png",
+                      "bytes":  7341,
+                      "sha256":  "fc623551b55efc6e95b116294465597f33d5fd25766e46be6b3cf5a65866d82c",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga855nx\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-3.png",
+                      "bytes":  40484,
+                      "sha256":  "73fab0b6006f2eed7ac7824c64acd272cb6afbb05a049dea5f61584d4c400b2d",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85v8k\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-2.png",
+                      "bytes":  38850,
+                      "sha256":  "dd606c6217f4f64cb4eb74c7c4871e8632fc64e676cc429332b493f65c9f6043",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85tz6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-5.png",
+                      "bytes":  14391,
+                      "sha256":  "7ca324196115b3e47f5f510abc8f4318b12b10b587b4bd7e7dbb034c2b6b4aa8",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85b3r\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-8.png",
+                      "bytes":  37748,
+                      "sha256":  "24d9de34eae6330f73526869b0b9d3621ba7bf5f49b14a457f368a4fd59be68e",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85t4k\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-7.png",
+                      "bytes":  69226,
+                      "sha256":  "4b2c850e9255aa354425b4c3c61849c29c8bbf6f78d50ac6621b29f1140d166d",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851hey\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-6.png",
+                      "bytes":  103488,
+                      "sha256":  "dd4c91027233e773caee1af908086975d11ae7a7cf70e611bbc1fbffd8f7f763",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8527uo\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/3-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/3-1.png",
+                      "bytes":  90337,
+                      "sha256":  "a7bf73d00c0d211c4606d015278e838ef54235dd9f72ea2a370d380d2c3129a7",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851xpd\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-16.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-16.png",
+                      "bytes":  18079,
+                      "sha256":  "69a9d99a810d51ebc172e6a9c6ea928dc3be21ee3a8b3e7bc7e36867d93041b9",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85dy7\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-15.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-15.png",
+                      "bytes":  27762,
+                      "sha256":  "bb08d9359a7e3bdc1e9bdb3f7f380cae10b8445275bc152ff047eb6d7f54ac63",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85lf6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-14.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-14.png",
+                      "bytes":  19054,
+                      "sha256":  "5226c6cb8203e82a1a03337019ab7f002f83e6eea1de53df0be9fae75e9f78ae",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85epa\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/1-17.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/1-17.png",
+                      "bytes":  20932,
+                      "sha256":  "192ae89c6115d02852be66a362cb2a0a6f82a6e37570c101a6a33479f6940782",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85g5g\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/t2-2A.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t2-2A.png",
+                      "bytes":  248794,
+                      "sha256":  "7efc8ab2638b70d54440a0cca2512479411c46b1c8924f6c65e6450498305322",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga855byy\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/t2-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/t2-2.png",
+                      "bytes":  245502,
+                      "sha256":  "10d140224f6a8d85cf25557df896f3c4c627401a1ecf297ac2153e4f1a0b9cdc",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8559fi\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "lab1/assets/2-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/lab1/assets/2-1.png",
+                      "bytes":  108256,
+                      "sha256":  "d3d37114d377b36f4c56a0f7b8c30606375859c151ed5caafc02fab370040f82",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852bj4\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "verify/assets/t-2.png",
@@ -1350,8 +1989,8 @@
                       "bytes":  5657,
                       "sha256":  "33c1a89ef9e657b01d3dada8eac51727aaed140370d83640e548e9725c0248f4",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon14d5\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga854d5\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "verify/assets/t-1.png",
@@ -1359,26 +1998,8 @@
                       "bytes":  4748,
                       "sha256":  "a315a266cf78c0b4d69a40dd1442dde7f4aa103e1e80f5ceee898be102bf9043",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon13nw\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-1.7-2.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-2.png",
-                      "bytes":  51401,
-                      "sha256":  "0928abdece256f77f3d1a55f420e56ba86d79d7e7eef829701762cb7f01632e6",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon113nt\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
-                  },
-                  {
-                      "path":  "home/assets/p-1.7-1.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-1.png",
-                      "bytes":  22601,
-                      "sha256":  "365d6bad2d08004958a5f9d3105256fb2dd8bb93eaf50d8adc32ff9723e54d36",
-                      "content_type":  "image/png",
-                      "etag":  "\"tiaon1hft\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga853nw\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/trace-12.png",
@@ -1386,26 +2007,44 @@
                       "bytes":  9651,
                       "sha256":  "e6f7bf509a9a53ce4afced5a6d6519586fb5f54760fd2639cbe1ca30b62a5d66",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon17g3\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga857g3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/trace-9.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-9.png",
-                      "bytes":  65380,
-                      "sha256":  "91d0c703a0be27efad6278d9f4569779430e1d438b80e9bf7eab680e6bd7e365",
+                      "path":  "home/assets/p-1.7-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-1.png",
+                      "bytes":  22601,
+                      "sha256":  "365d6bad2d08004958a5f9d3105256fb2dd8bb93eaf50d8adc32ff9723e54d36",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11eg4\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga85hft\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
-                      "path":  "trace/assets/trace-8.png",
-                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-8.png",
-                      "bytes":  27688,
-                      "sha256":  "017d9bf6d5c9425249eaeda10836a6d693fb81cd5bf373a43ba63c773220d59d",
+                      "path":  "home/assets/p-1.7-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-4.png",
+                      "bytes":  265299,
+                      "sha256":  "a275e273cc0e4149d6aba3b9d713d5192cd9faf2cdabd198097f579f3c408fe0",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon1ld4\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga855opf\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-1.7-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-3.png",
+                      "bytes":  115494,
+                      "sha256":  "b56cc967322ba8f0837d764fd2930b3e7768ddb14005c917c0b7ad0c4b49b707",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852h46\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-1.7-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-1.7-2.png",
+                      "bytes":  51401,
+                      "sha256":  "0928abdece256f77f3d1a55f420e56ba86d79d7e7eef829701762cb7f01632e6",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8513nt\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/trace-11.png",
@@ -1413,8 +2052,44 @@
                       "bytes":  9083,
                       "sha256":  "733dcf658b9aa195d4aaab46ab0ff29277c868c3d4bef467c24772748452bb53",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon170b\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga8570b\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-6.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-6.png",
+                      "bytes":  115864,
+                      "sha256":  "2f23588aa2099a9e97061ccdf6f08ac93c1902209d343a1b16ec3d451624e8ab",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga852heg\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-5.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-5.png",
+                      "bytes":  38415,
+                      "sha256":  "7716e99f739824ece76323234103d06bf1ca2e2b4466212fab420b1390c9bfee",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85tn3\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-4.png",
+                      "bytes":  38288,
+                      "sha256":  "ec3b278315aef72a38f1309dde42ff9076e3fe18ca7fc3dc24098db42e9bc5d2",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85tjk\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-7.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-7.png",
+                      "bytes":  37600,
+                      "sha256":  "03337e222af9281a91d857407f99a636364b03df3a11935a7a4b3134ae165480",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85t0g\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   },
                   {
                       "path":  "trace/assets/trace-10.png",
@@ -1422,21 +2097,179 @@
                       "bytes":  63637,
                       "sha256":  "17b271ed06c67c72c1146d088605c81d03d639ec63566bc0db265ec9851c4f05",
                       "content_type":  "image/png",
-                      "etag":  "\"tiaon11d3p\"",
-                      "last_modified":  "Fri, 17 Jul 2026 01:11:25 GMT"
+                      "etag":  "\"tiga851d3p\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-9.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-9.png",
+                      "bytes":  65380,
+                      "sha256":  "91d0c703a0be27efad6278d9f4569779430e1d438b80e9bf7eab680e6bd7e365",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga851eg4\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "trace/assets/trace-8.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/trace/assets/trace-8.png",
+                      "bytes":  27688,
+                      "sha256":  "017d9bf6d5c9425249eaeda10836a6d693fb81cd5bf373a43ba63c773220d59d",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85ld4\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-2.14-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-2.14-1.png",
+                      "bytes":  15175,
+                      "sha256":  "0f63bec25567e5d878782473d66b3a3b3cd396cdc187067f3e30dc37a5065219",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85bpj\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-6.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-6.bmp",
+                      "bytes":  1921074,
+                      "sha256":  "661578e5a6c340eafa5c9b962c5cba00cd7b3320539e606456d302b9b63d9a35",
+                      "content_type":  "",
+                      "etag":  "\"tiga85156b6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-5.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-5.bmp",
+                      "bytes":  3213810,
+                      "sha256":  "33dfa485bd41848dc9a1549e417f4233eeaeff59786daeb121ccb8d291fb40c6",
+                      "content_type":  "",
+                      "etag":  "\"tiga851wvsi\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-4.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-4.bmp",
+                      "bytes":  2732310,
+                      "sha256":  "b8fd5cdb04b620368ef3cc7516b2659e780d59bb0d27e52799e1b65df69fc77d",
+                      "content_type":  "",
+                      "etag":  "\"tiga851mk9i\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-7.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-7.bmp",
+                      "bytes":  2324298,
+                      "sha256":  "f52edeabdbf73647f087264132fb1a705fcb93ac918db9f4d567d7973a6b58ec",
+                      "content_type":  "",
+                      "etag":  "\"tiga851dtfu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-10.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-10.bmp",
+                      "bytes":  2643834,
+                      "sha256":  "acad9c9273589985089b59d1d087dad9c1cf0adb3ecb9c5ac96aabc9937f5a6e",
+                      "content_type":  "",
+                      "etag":  "\"tiga851knzu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-9.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-9.bmp",
+                      "bytes":  2363494,
+                      "sha256":  "8041e42a22d1387790efa9f9a2d9b39c838dfce070a490559bb91c61b981ae39",
+                      "content_type":  "",
+                      "etag":  "\"tiga851enom\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-8.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-8.bmp",
+                      "bytes":  2369946,
+                      "sha256":  "721a2f36b29ebc98b71e1029d6a113eafe9a51d032ab024e9b3cc023c71cf3ab",
+                      "content_type":  "",
+                      "etag":  "\"tiga851esnu\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-3.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-3.bmp",
+                      "bytes":  2763654,
+                      "sha256":  "813f26d9caf7f537cae49a004048d04dd163d3bf7621ff8c5a64d13f54ac0620",
+                      "content_type":  "",
+                      "etag":  "\"tiga851n8g6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-2.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-2.png",
+                      "bytes":  12128,
+                      "sha256":  "b1cb96c3a825b3ab2cd48216a7009a86e52154bc371e8f6cce0e5110c8a94f59",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga859cw\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-1.png",
+                      "bytes":  17997,
+                      "sha256":  "f403027b7af05cfa9445953a182035b59496bdbf0da8b6b2e964a5f7a67b5242",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85dvx\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-2.15-1.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-2.15-1.png",
+                      "bytes":  3900,
+                      "sha256":  "433755e74eda7eef45b6eb6c7875b7b98a9713fb7bf671a66cab0671b1d26d19",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga8530c\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-3.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-3.png",
+                      "bytes":  32476,
+                      "sha256":  "476f14f810c846e3b6c006668eb9cae238534686f383d5cc1e21b33cb757b38c",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85p24\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-2.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-2.bmp",
+                      "bytes":  3016294,
+                      "sha256":  "d28d3e2b2b4770dcf4d77a7e0b5de9cae1a6951454fdd6ff224c7c4d268a5326",
+                      "content_type":  "",
+                      "etag":  "\"tiga851sndy\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/s-1.bmp",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/s-1.bmp",
+                      "bytes":  2865174,
+                      "sha256":  "9c830b8a7bea5f9a333286ea4c47390fb5daf398aa91d075e94f23779766b03a",
+                      "content_type":  "",
+                      "etag":  "\"tiga851pes6\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
+                  },
+                  {
+                      "path":  "home/assets/p-3.1-4.png",
+                      "source":  "https://cpu-design.p.cs-lab.top/home/assets/p-3.1-4.png",
+                      "bytes":  31299,
+                      "sha256":  "0eaca6165941ca24c2921a2bfa2d86f88be4c88db93ba27401d03d937e831e94",
+                      "content_type":  "image/png",
+                      "etag":  "\"tiga85o5f\"",
+                      "last_modified":  "Mon, 20 Jul 2026 01:45:41 GMT"
                   }
               ],
     "missing":  [
-                    {
-                        "source":  "https://cpu-design.p.cs-lab.top/lab2-B/5-ioupg/",
-                        "status":  404
-                    },
                     {
                         "source":  "https://cpu-design.p.cs-lab.top/lab1/6-muldiv/",
                         "status":  404
                     },
                     {
-                        "source":  "https://cpu-design.p.cs-lab.top/lab2-A/7-step/",
+                        "source":  "https://cpu-design.p.cs-lab.top/lab2-B/assets/bin2coe.py",
                         "status":  404
                     },
                     {
