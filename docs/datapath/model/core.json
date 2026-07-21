@@ -1,7 +1,7 @@
 {
   "id": "minirv-core",
   "title": "miniRV 核心数据通路",
-  "subtitle": "当前 RTL 结构 + 尚未完成的目标连接（红色虚线）",
+  "subtitle": "最终 RTL 结构：完整数据通路、跨周期状态与完成控制",
   "direction": "RIGHT",
   "stages": [
     { "id": "if", "label": "IF · 取指", "color": "#eff6ff" },
@@ -72,7 +72,6 @@
       "label": "Controller",
       "subtitle": "译码与控制信号",
       "stage": "id",
-      "status": "partial",
       "ports": [
         { "id": "opcode", "label": "opcode", "side": "WEST" },
         { "id": "funct3", "label": "funct3", "side": "WEST" },
@@ -86,7 +85,7 @@
         { "id": "ram_wop", "label": "ram_wop", "side": "EAST" },
         { "id": "rf_we", "label": "rf_we", "side": "EAST" },
         { "id": "rf_wsel", "label": "rf_wsel", "side": "EAST" },
-        { "id": "muldiv", "label": "is_mul / is_div = 0", "side": "EAST" }
+        { "id": "muldiv", "label": "is_mul / is_div", "side": "EAST" }
       ]
     },
     {
@@ -147,14 +146,13 @@
       "label": "ALU",
       "subtitle": "整数运算 + 乘除法单元",
       "stage": "ex",
-      "status": "partial",
       "ports": [
         { "id": "a", "label": "a", "side": "WEST" },
         { "id": "b", "label": "b", "side": "WEST" },
         { "id": "op", "label": "alu_op", "side": "WEST" },
         { "id": "c", "label": "c [31:0]", "side": "EAST" },
         { "id": "br", "label": "br", "side": "EAST" },
-        { "id": "busy", "label": "busy = 0", "side": "EAST" }
+        { "id": "busy", "label": "mul_div_busy", "side": "EAST" }
       ]
     },
     {
@@ -179,7 +177,6 @@
       "label": "MREQ",
       "subtitle": "字节使能与写数据对齐",
       "stage": "mem",
-      "status": "partial",
       "ports": [
         { "id": "addr", "label": "ram_addr", "side": "WEST" },
         { "id": "rop", "label": "ram_rop", "side": "WEST" },
@@ -212,22 +209,11 @@
       "label": "MEXT",
       "subtitle": "读数据移位与符号扩展",
       "stage": "mem",
-      "status": "partial",
       "ports": [
         { "id": "din", "label": "din [31:0]", "side": "WEST" },
         { "id": "op", "label": "ram_rop_r", "side": "WEST" },
         { "id": "offs", "label": "alu_c_r [1:0]", "side": "WEST" },
         { "id": "ext", "label": "ram_ext [31:0]", "side": "EAST" }
-      ]
-    },
-    {
-      "id": "zero",
-      "label": "32'h0",
-      "subtitle": "当前 RTL 常量",
-      "stage": "mem",
-      "kind": "constant",
-      "ports": [
-        { "id": "out", "label": "0", "side": "EAST" }
       ]
     },
     {
@@ -301,8 +287,7 @@
     { "id": "alu_mreq", "from": "alu.c", "to": "mreq.addr", "type": "data" },
     { "id": "rop_mreq", "from": "controller.ram_rop", "to": "mreq.rop", "type": "control" },
     { "id": "wop_mreq", "from": "controller.ram_wop", "to": "mreq.wop", "type": "control" },
-    { "id": "zero_mreq", "from": "zero.out", "to": "mreq.wdata", "label": "CURRENT RTL", "type": "current" },
-    { "id": "target_store", "from": "rf.rD2", "to": "mreq.wdata", "label": "TARGET: store data", "type": "target" },
+    { "id": "store_data", "from": "rf.rD2", "to": "mreq.wdata", "label": "store data", "type": "data" },
 
     { "id": "mreq_ren", "from": "mreq.ren", "to": "dataif.ren", "type": "control" },
     { "id": "mreq_addr", "from": "mreq.da_addr", "to": "dataif.addr", "type": "data" },
@@ -316,7 +301,7 @@
 
     { "id": "alu_state", "from": "alu.c", "to": "state.alu_c", "type": "data" },
     { "id": "rop_state", "from": "controller.ram_rop", "to": "state.ram_rop", "type": "control" },
-    { "id": "start_state", "from": "controller.muldiv", "to": "state.start", "label": "target mul/div", "type": "target" },
+    { "id": "start_state", "from": "controller.muldiv", "to": "state.start", "label": "mul/div start", "type": "control" },
     { "id": "busy_finish", "from": "alu.busy", "to": "finish.busy", "type": "handshake" },
     { "id": "flags_finish", "from": "state.flags", "to": "finish.flags", "type": "handshake" },
 
@@ -330,8 +315,9 @@
     { "id": "finish_rf", "from": "finish.rf_we1", "to": "rf.we", "type": "control" }
   ],
   "notes": [
-    "红色虚线是目标连接，不代表当前 RTL 已完成；当前 MREQ.ram_wdata 实际接 32'h0。",
-    "Controller 的 is_mul/is_div 与 ALU.busy 当前均固定为 0，乘除法路径保留为待完成结构。",
+    "Store 数据由 RF.rD2 送入 MREQ；MREQ 根据地址低位和 sb/sh/sw 生成字节使能与对齐写数据。",
+    "Controller 已产生 is_mul/is_div，ALU 通过迭代乘除法单元与 busy 信号完成跨周期运算。",
+    "访存与乘除法期间保存 rd、地址和读类型；Completion control 在应答或 busy 结束后写回并推进 PC。",
     "clk/rst 为全局时序信号，为避免遮挡主数据流未逐线绘制。"
   ]
 }

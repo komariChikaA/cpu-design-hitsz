@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3992 962.5" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3992 983.5" role="img" aria-labelledby="title desc">
   <title id="title">miniRV 紧凑教学数据通路</title>
-  <desc id="desc">目标逻辑结构：省略握手、多周期状态与全局 clk/rst</desc>
+  <desc id="desc">最终实现逻辑结构：省略握手、多周期状态与全局 clk/rst</desc>
   <metadata>{&quot;model&quot;:&quot;minirv-compact&quot;,&quot;nodes&quot;:14,&quot;edges&quot;:42}</metadata>
   <defs>
     <marker id="arrow-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
@@ -36,11 +36,11 @@
       .note { font-size: 11px; fill: #64748b; }
     ]]></style>
   </defs>
-  <rect width="3992" height="962.5" fill="#ffffff"/>
+  <rect width="3992" height="983.5" fill="#ffffff"/>
   <g transform="translate(70 0)">
     <text x="0" y="42" font-size="26" font-weight="800" fill="#0f172a">miniRV 紧凑教学数据通路</text>
-    <text x="0" y="68" font-size="13" fill="#64748b">目标逻辑结构：省略握手、多周期状态与全局 clk/rst</text>
-    <g transform="translate(0 91)"><g class="legend"><g transform="translate(0 0)"><path d="M 0 8 H 28" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/><text x="38" y="12">32-bit data / 数据</text></g><g transform="translate(172 0)"><path d="M 0 8 H 28" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/><text x="38" y="12">control / 控制</text></g><g transform="translate(318 0)"><path d="M 0 8 H 28" stroke="#7c3aed" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow-handshake)"/><text x="38" y="12">handshake / 跨周期握手</text></g><g transform="translate(510 0)"><path d="M 0 8 H 28" stroke="#dc2626" stroke-width="2.1" stroke-dasharray="9 6" marker-end="url(#arrow-target)"/><text x="38" y="12">target only / 目标连接</text></g><g transform="translate(704 0)"><path d="M 0 8 H 28" stroke="#475569" stroke-width="2" stroke-dasharray="3 4" marker-end="url(#arrow-current)"/><text x="38" y="12">current special case / 当前特例</text></g></g></g>
+    <text x="0" y="68" font-size="13" fill="#64748b">最终实现逻辑结构：省略握手、多周期状态与全局 clk/rst</text>
+    <g transform="translate(0 91)"><g class="legend"><g transform="translate(0 0)"><path d="M 0 8 H 28" stroke="#2563eb" stroke-width="2.8" stroke-dasharray="" marker-end="url(#arrow-data)"/><text x="38" y="12">32-bit data / 数据</text></g><g transform="translate(172 0)"><path d="M 0 8 H 28" stroke="#d97706" stroke-width="1.8" stroke-dasharray="" marker-end="url(#arrow-control)"/><text x="38" y="12">control / 控制</text></g></g></g>
   </g>
   <g transform="translate(70 138)">
     <g class="stage-band"><rect x="56" y="0" width="798" height="726.5" rx="18" fill="#eff6ff"/><text x="72" y="25">IF · 取指</text></g>
@@ -168,7 +168,8 @@
 <g class="port port-east"><circle cx="198" cy="108" r="4"/><text x="180" y="112" text-anchor="end">rf_wD [31:0]</text></g></g></g>
   </g>
   <g transform="translate(70 899.5)">
-    <text class="note" x="0" y="0">• 本图用于讲解综合数据通路，省略 ifetch/daccess 握手、多周期缓存、完成控制和全局 clk/rst。</text>
-<text class="note" x="0" y="21">• 图中采用目标连接 RF.rD2 → MREQ.ram_wdata；当前 starter RTL 仍接 32&apos;h0。</text>
+    <text class="note" x="0" y="0">• 本图用于验收讲解功能数据通路；IF/ID/EX/MEM/WB 是逻辑分区，不代表流水线。</text>
+<text class="note" x="0" y="21">• 为保持紧凑，省略 ifetch/daccess 握手、多周期状态、完成控制和全局 clk/rst。</text>
+<text class="note" x="0" y="42">• Store 数据已按最终 RTL 由 RF.rD2 送入 MREQ，MREQ 负责字节使能与写数据对齐。</text>
   </g>
 </svg>

@@ -1,6 +1,6 @@
 # miniRV 数据通路图
 
-这里保存两张由结构化模型生成的 SVG：
+这里保存三张由结构化模型生成的 SVG：
 
 - `system.svg`：`cpu_top` 层级的 `Inst_ROM ↔ cpu_core ↔ Data_RAM` 接口图。
 - `core.svg`：`cpu_core` 内部的 IF、ID、EX、MEM、WB 数据通路和多周期状态。
@@ -30,18 +30,15 @@ node generate.mjs compact
 - 蓝色粗线：数据总线。
 - 橙色线：控制信号或使能。
 - 紫色虚线：跨周期请求、应答、busy、完成信号。
-- 红色虚线：目标设计连接，当前 RTL 尚未实现。
-- 灰色点线：当前 RTL 中为了占位或尚未完成而存在的特殊连接。
-- 橙色虚线模块边框和 `TODO` 徽标：模块已有结构，但功能仍不完整。
 
-当前必须保留的实现差异：
+## 与最终 RTL 的对应关系
 
-1. `cpu_core.v` 中 `MREQ.ram_wdata` 当前接 `32'h0`；目标设计应接 `RF.rD2`。
-2. `Controller.v` 中 `is_mul`、`is_div` 当前固定为 0。
-3. `ALU.v` 中 `busy` 当前固定为 0，乘除法单元虽然已实例化，但控制路径尚未接通。
-4. `MREQ.v` 与 `MEXT.v` 仍有访存类型相关的 TODO。
+1. Store 数据由寄存器堆第二读口 `RF.rD2` 送入 `MREQ.ram_wdata`。
+2. `Controller` 产生 `is_mul`、`is_div`，`ALU` 内的迭代乘除法单元通过 `busy` 参与跨周期完成控制。
+3. `MREQ` 完成字节/半字/字的写使能和写数据对齐，`MEXT` 完成读取结果的移位及符号/零扩展。
+4. `core.svg` 展示握手、多周期状态和完成控制；`compact.svg` 为验收讲解而省略这些实现细节。
 
-因此 `core.svg` 同时显示当前实线连接与红色目标连接，避免把目标结构误认为已经实现。
+三张图均以当前实验一最终 RTL 为准，不再包含旧 starter 版本的占位连接或 `TODO` 标记。
 
 ## 视觉精修
 
