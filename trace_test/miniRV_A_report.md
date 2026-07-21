@@ -1,5 +1,7 @@
 # miniRV A 组 Basic Trace 测试报告
 
+> 现场答辩请配合阅读 [`miniRV_A_defense_guide.md`](./miniRV_A_defense_guide.md)，其中包含 18 条指令的控制信号速查、六类数据通路讲法、RTL 对应关系和 `jalr` 波形实例。
+
 - 开始时间：`2026-07-17 03:03:06 +0000`
 - 结束时间：`2026-07-17 03:03:09 +0000`
 - 测试目录：`/root/cdp-tests`

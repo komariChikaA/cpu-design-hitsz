@@ -1,5 +1,7 @@
 # miniRV B 组 Basic Trace 测试报告
 
+> 现场答辩请配合阅读 [`miniRV_B_defense_guide.md`](./miniRV_B_defense_guide.md)，其中包含 B 组 18 条指令的逐条讲解、控制信号、RTL 对应关系和波形验证方法。
+
 - 开始时间：`2026-07-17 14:09:05 +0000`
 - 结束时间：`2026-07-17 14:09:13 +0000`
 - 测试目录：`/root/cdp-tests`
