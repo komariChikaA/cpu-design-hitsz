@@ -204,14 +204,15 @@ function markers() {
   ).join("\n");
 }
 
-function renderLegend() {
+function renderLegend(model) {
+  const usedTypes = new Set(model.edges.map(edge => edge.type));
   const items = [
     ["data", "32-bit data / 数据"],
     ["control", "control / 控制"],
     ["handshake", "handshake / 跨周期握手"],
     ["target", "target only / 目标连接"],
     ["current", "current special case / 当前特例"]
-  ];
+  ].filter(([type]) => usedTypes.has(type));
   let x = 0;
   return `<g class="legend">${items.map(([type, label]) => {
     const style = palette[type];
@@ -273,7 +274,7 @@ function renderSvg(layout, model) {
   <g transform="translate(${offsetX} 0)">
     <text x="0" y="42" font-size="26" font-weight="800" fill="#0f172a">${escapeXml(model.title)}</text>
     <text x="0" y="68" font-size="13" fill="#64748b">${escapeXml(model.subtitle)}</text>
-    <g transform="translate(0 91)">${renderLegend()}</g>
+    <g transform="translate(0 91)">${renderLegend(model)}</g>
   </g>
   <g transform="translate(${offsetX} ${offsetY})">
     ${renderStageBands(layout, model)}

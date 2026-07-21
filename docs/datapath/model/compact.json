@@ -1,7 +1,7 @@
 {
   "id": "minirv-compact",
   "title": "miniRV 紧凑教学数据通路",
-  "subtitle": "目标逻辑结构：省略握手、多周期状态与全局 clk/rst",
+  "subtitle": "最终实现逻辑结构：省略握手、多周期状态与全局 clk/rst",
   "direction": "RIGHT",
   "layout": {
     "nodeNode": 34,
@@ -262,7 +262,8 @@
     { "id": "rfwe", "from": "controller.rf_we", "to": "rf.we", "type": "control" }
   ],
   "notes": [
-    "本图用于讲解综合数据通路，省略 ifetch/daccess 握手、多周期缓存、完成控制和全局 clk/rst。",
-    "图中采用目标连接 RF.rD2 → MREQ.ram_wdata；当前 starter RTL 仍接 32'h0。"
+    "本图用于验收讲解功能数据通路；IF/ID/EX/MEM/WB 是逻辑分区，不代表流水线。",
+    "为保持紧凑，省略 ifetch/daccess 握手、多周期状态、完成控制和全局 clk/rst。",
+    "Store 数据已按最终 RTL 由 RF.rD2 送入 MREQ，MREQ 负责字节使能与写数据对齐。"
   ]
 }
