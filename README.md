@@ -37,6 +37,15 @@
 
 路线图依据：[实验一概述](mirror/lab1/0-overview/index.html)、[实验一步骤](mirror/lab1/12-step/index.html)、[实验二 A 概述](mirror/lab2-A/0-overview/index.html)和[实验二 B 概述](mirror/lab2-B/0-overview/index.html)。
 
+### 后续实验基础工程
+
+为避免流水线、AXI 和 Cache 改造相互干扰，仓库从已验证的 `miniRV_basic/` 单周期 CPU 基线派生两个独立工程：
+
+- `miniRV_pipeline/`：流水线 CPU 实验基线，后续在其中完成五级流水线、冒险处理、暂停、前递和流水线 Basic Trace；
+- `miniRV_singlecycle_axi/`：单周期 AXI SoC 实验基线，后续在其中完成 AXI Master、总线桥、Cache、I/O 和 AXI Trace。
+
+两个目录刚建立时均与 `miniRV_basic/` 功能一致，尚不表示流水线或 AXI 功能已经实现。具体改造边界和验收顺序见各工程内的 `README.md`。
+
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 
 ## 新设备初始化（用户和 Agent 必读）
