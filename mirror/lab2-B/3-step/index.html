@@ -2007,7 +2007,7 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">如果需要在Vivado中运行功能仿真</p>
-<p>&emsp;&emsp;使用<a href="../assets/bin2coe.py" target=_blank>bin2coe.py</a>脚本，可将Trace测试框架中的 <code>cdp-tests</code> / <code>bin</code> 文件夹下的.bin文件转换成.coe文件。</p>
+<p>&emsp;&emsp;使用<a href="../../lab2-A/assets/bin2coe.py" target=_blank>bin2coe.py</a>脚本，可将Trace测试框架中的 <code>cdp-tests</code> / <code>bin</code> 文件夹下的.bin文件转换成.coe文件。</p>
 <p>&emsp;&emsp;参考<a href="../../lab1/3-parts/#32-block-memory" target=_blank>实验1-实验原理-功能部件设计-3.2 Block Memory的初始化-图3-8</a>，把.coe文件导入<code>bram_axi</code>的IP核当中，再运行功能仿真即可。</p>
 </div>
 <p>&emsp;&emsp;（7）与组员讨论协作，把流水线CPU集成到SoC，并使用AXI Trace调试和验证流水线SoC；</p>
@@ -2029,6 +2029,7 @@
 <span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="hll"><span class="cp">#define MHZ 50     </span><span class="c1">// CPU Clock Frequency</span>
 </span><span class="cp">#define CLOCKS_PER_SEC (1000000 * MHZ)</span>
 </code></pre></div></td></tr></table></div>
+<p>&emsp;&emsp;此外，提升频率后，还需相应地调整UART IP核的输入时钟频率，详见<a href="../../lab2-B/6-ioitf_impl/#3-uartio" target=_blank>UART的I/O接口实现</a>。</p>
 </div>
 
 
