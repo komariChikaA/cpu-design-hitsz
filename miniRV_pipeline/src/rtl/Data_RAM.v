@@ -1,31 +1,42 @@
 `timescale 1ns / 1ps
 
-`include "defines.vh"
-
+// Trace loads meminit.bin directly; the FPGA build uses the DRAM XCI.
 module Data_RAM (
     input  wire         cpu_clk,
-    input  wire         cpu_rst,        // high active
-    // Interface to CPU
+    input  wire         cpu_rst,
     input  wire [ 3:0]  data_ren,
     input  wire [31:0]  data_addr,
-    output reg          data_valid,
+    output wire         data_valid,
     output wire [31:0]  data_rdata,
     input  wire [ 3:0]  data_wen,
     input  wire [31:0]  data_wdata,
-    output reg          data_wresp
+    output wire         data_wresp
 );
 
-    always @(posedge cpu_clk or posedge cpu_rst) begin
-        data_valid <= cpu_rst ? 1'b0 : |data_ren;
-        data_wresp <= cpu_rst ? 1'b0 : |data_wen;
-    end
-
-    DRAM U_dram (
-        .clka   (cpu_clk),
-        .addra  (data_addr[31:2]),
-        .douta  (data_rdata),
-        .wea    (data_wen),
-        .dina   (data_wdata)
+`ifdef RUN_TRACE
+    Data_RAM_trace U_impl (
+        .cpu_clk    (cpu_clk),
+        .cpu_rst    (cpu_rst),
+        .data_ren   (data_ren),
+        .data_addr  (data_addr),
+        .data_valid (data_valid),
+        .data_rdata (data_rdata),
+        .data_wen   (data_wen),
+        .data_wdata (data_wdata),
+        .data_wresp (data_wresp)
     );
+`else
+    Data_RAM_fpga U_impl (
+        .cpu_clk    (cpu_clk),
+        .cpu_rst    (cpu_rst),
+        .data_ren   (data_ren),
+        .data_addr  (data_addr),
+        .data_valid (data_valid),
+        .data_rdata (data_rdata),
+        .data_wen   (data_wen),
+        .data_wdata (data_wdata),
+        .data_wresp (data_wresp)
+    );
+`endif
 
 endmodule

@@ -1,25 +1,33 @@
 `timescale 1ns / 1ps
 
-`include "defines.vh"
-
+// Trace loads meminit.bin directly; the FPGA build uses the IROM XCI.
 module Inst_ROM (
     input  wire         cpu_clk,
-    input  wire         cpu_rst,        // high active
-    // Interface to CPU
+    input  wire         cpu_rst,
     input  wire         inst_rreq,
     input  wire [31:0]  inst_addr,
-    output reg          inst_valid,
+    output wire         inst_valid,
     output wire [31:0]  inst_out
 );
 
-    always @(posedge cpu_clk or posedge cpu_rst) begin
-        inst_valid <= cpu_rst ? 1'b0 : inst_rreq;
-    end
-
-    IROM U_irom (
-        .clka   (cpu_clk),
-        .addra  (inst_addr[31:2]),
-        .douta  (inst_out)
+`ifdef RUN_TRACE
+    Inst_ROM_trace U_impl (
+        .cpu_clk    (cpu_clk),
+        .cpu_rst    (cpu_rst),
+        .inst_rreq  (inst_rreq),
+        .inst_addr  (inst_addr),
+        .inst_valid (inst_valid),
+        .inst_out   (inst_out)
     );
+`else
+    Inst_ROM_fpga U_impl (
+        .cpu_clk    (cpu_clk),
+        .cpu_rst    (cpu_rst),
+        .inst_rreq  (inst_rreq),
+        .inst_addr  (inst_addr),
+        .inst_valid (inst_valid),
+        .inst_out   (inst_out)
+    );
+`endif
 
 endmodule

@@ -90,14 +90,10 @@ miniRV.runs/impl_1/miniRV_SoC.bit
 
 ## 与流水线组员的后续衔接
 
-当前单周期 AXI/EGO1 阶段已经完成，不再继续改动 CPU 行为。下一步只需等待组员
-完成 `miniRV_pipeline/` 的 Basic Trace。
-
-收到流水线结果后再进行下一阶段：
+当前单周期 AXI/EGO1 阶段已经完成，`miniRV_pipeline/` 也已通过 45/45 Basic
+Trace。下一阶段：
 
 1. 核对流水线工程的 Basic Trace 报告和 RTL 层级。
 2. 保留本工程已经验证的 AXI Master、板级 AXI 从设备、IROM/DRAM、UART 和约束。
 3. 将流水线 CPU 的取指/访存接口接入 AXI 路径，不直接覆盖本目录。
 4. 依次回归 Basic Trace、AXI Trace、Vivado 和 EGO1 上板。
-
-在组员结果到达前，不需要继续修改本目录。
