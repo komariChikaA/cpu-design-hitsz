@@ -1,3 +1,4 @@
 .githooks/* text eol=lf
 *.ps1 text eol=crlf
 *.cmd text eol=crlf
+trace_test/*_run_all_tests.log -whitespace

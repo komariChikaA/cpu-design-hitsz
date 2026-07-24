@@ -96,6 +96,22 @@ scp -P 6666 -r <本地rtl目录>\* <你的学号>@10.249.12.98:~/cdp-tests/mySoC
 
 执行前请再次确认本地目录和远程目标目录，避免覆盖错误位置。
 
+### 流水线工程
+
+`miniRV_pipeline/src/rtl/pipeline/` 中还有流水寄存器、前递单元以及
+Trace/FPGA 两套实现。课程 Makefile 默认只编译 `mySoC/*.v`，因此不能只把
+该目录原样嵌套上传。将完整仓库放到 Linux 服务器后可直接运行：
+
+```bash
+bash miniRV_pipeline/prepare_trace.sh ~/cdp-tests
+cd ~/cdp-tests
+make clean
+make
+python3 run_all_tests.py
+```
+
+脚本会先备份原有 `mySoC`，再把根 RTL 和流水线专用模块平铺到测试目录。
+
 ## 6. 编译和运行测试
 
 在远程终端进入测试框架：

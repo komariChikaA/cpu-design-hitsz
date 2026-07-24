@@ -35,8 +35,8 @@ VCD 波形保存在 `waveform/single/`。EGO1 实板已经完成 UART、拨码�
 - [x] 使用 Basic Trace 完成单周期 CPU 功能验证，并保存单指令仿真波形；
 - [x] 为单周期 CPU 接入 AXI Master、板级主存和 UART/拨码/LED/数码管等 I/O；
 - [x] 通过单周期 AXI Trace，并在 EGO1 上完成 Vivado 和实板验证；
-- [ ] 将单周期 CPU 改造为至少五级流水线 CPU；
-- [ ] 实现静态分支预测、流水线暂停与数据前递，解决控制冒险和数据冒险，并通过流水线 Basic Trace；
+- [x] 将单周期 CPU 改造为五级流水线 CPU；
+- [x] 实现流水线暂停、冲刷与数据前递，解决控制冒险和数据冒险，并通过流水线 Basic Trace；
 - [ ] 在流水线 CPU 上集成 ICache、DCache、AXI 总线控制器、总线桥和主存；
 - [ ] 将 CPU 集成到 SoC，在 FPGA 开发板上运行 CoreMark 或 LLaMA2，并继续进行频率、访存及时序优化。
 
@@ -46,13 +46,13 @@ VCD 波形保存在 `waveform/single/`。EGO1 实板已经完成 UART、拨码�
 
 为避免流水线、AXI 和 Cache 改造相互干扰，仓库从已验证的 `miniRV_basic/` 单周期 CPU 基线派生两个独立工程：
 
-- `miniRV_pipeline/`：流水线 CPU 实验基线，由组员继续完成五级流水线、冒险处理、暂停、前递和流水线 Basic Trace；
+- `miniRV_pipeline/`：已通过 45/45 Basic Trace 的五级流水线 CPU，包含冒险处理、暂停、冲刷和数据前递；
 - `miniRV_singlecycle_axi/`：已通过 AXI Trace 的单周期 AXI SoC 工程；
 - `miniRV_singlecycle_axi_ego1/`：已完成 Vivado、bitstream 和 EGO1 实板验收的独立板级工程。
 
-当前单周期 AXI/EGO1 阶段已经收尾。下一阶段等待组员交付流水线 Basic Trace
-结果，再把已验证的流水线 CPU 接入现有 AXI 与板级外设路径；在此之前不继续修改
-单周期板级工程。具体改造边界和验收顺序见各工程内的 `README.md`。
+当前单周期 AXI/EGO1 和流水线 Basic Trace 两条基础开发线均已完成。下一阶段是
+把已验证的流水线 CPU 接入现有 AXI 与板级外设路径，并依次回归 Basic Trace、
+AXI Trace、Vivado 和 EGO1。具体改造边界和验收顺序见各工程内的 `README.md`。
 
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 
