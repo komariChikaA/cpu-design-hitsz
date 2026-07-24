@@ -30,7 +30,7 @@ module ALU_multicycle (
     wire [31:0] div_rem , divu_rem ;
     wire        div_busy, divu_busy;
     reg  [ 4:0] op_r;
-    reg         busy_d;
+    reg         operation_issued;
     reg sign_ab_r;
     reg a_sign_r;
     reg [31:0]  b_r;
@@ -38,36 +38,39 @@ module ALU_multicycle (
 
     wire [63:0] mul_res_signed = sign_ab_r ? (~mul_res + 1'b1) : mul_res;
 
-    // 多周期结果选择 (op_r) / 单周期默认路径 (op)
+    // Select the latched multi-cycle result only while that instruction owns
+    // the EX stage. A separate valid bit avoids overloading ALU_ADD (5'h00)
+    // as an "empty" sentinel.
     always @(*) begin
-        case (op_r)
-            `ALU_MUL   : c = mul_res_signed[31:0];
-            `ALU_MULH  : c = mul_res_signed[63:32];
-            `ALU_MULHU : c = mulu_res[63:32];
+        if (operation_issued) begin
+            case (op_r)
+                `ALU_MUL   : c = mul_res_signed[31:0];
+                `ALU_MULH  : c = mul_res_signed[63:32];
+                `ALU_MULHU : c = mulu_res[63:32];
 
-            `ALU_DIV   : c = (b_r == 32'd0) ? 32'hFFFFFFFF
-                            : (sign_ab_r ? (~div_quo + 1'b1) : div_quo);
-            `ALU_DIVU  : c = (b_r == 32'd0) ? 32'hFFFFFFFF : divu_quo;
-            `ALU_REM   : c = (b_r == 32'd0) ? a_r
-                            : (a_sign_r ? (~div_rem + 1'b1) : div_rem);
-            `ALU_REMU  : c = (b_r == 32'd0) ? a_r : divu_rem;
-
-            default    : begin
-                case (op)
-                    `ALU_ADD  : c = a + b;
-                    `ALU_SUB  : c = a - b;
-                    `ALU_OR   : c = a | b;
-                    `ALU_XOR  : c = a ^ b;
-                    `ALU_SLL  : c = a << b[4:0];
-                    `ALU_SRL  : c = a >> b[4:0];
-                    `ALU_SRA  : c = $signed(a) >>> b[4:0];
-                    `ALU_AND  : c = a & b;
-                    `ALU_SLT  : c = ($signed(a) < $signed(b)) ? 32'd1 : 32'd0;
-                    `ALU_SLTU : c = (a < b) ? 32'd1 : 32'd0;
-                    default   : c = 32'h0;
-                endcase
-            end
-        endcase
+                `ALU_DIV   : c = (b_r == 32'd0) ? 32'hFFFFFFFF
+                                : (sign_ab_r ? (~div_quo + 1'b1) : div_quo);
+                `ALU_DIVU  : c = (b_r == 32'd0) ? 32'hFFFFFFFF : divu_quo;
+                `ALU_REM   : c = (b_r == 32'd0) ? a_r
+                                : (a_sign_r ? (~div_rem + 1'b1) : div_rem);
+                `ALU_REMU  : c = (b_r == 32'd0) ? a_r : divu_rem;
+                default    : c = 32'h0;
+            endcase
+        end else begin
+            case (op)
+                `ALU_ADD  : c = a + b;
+                `ALU_SUB  : c = a - b;
+                `ALU_OR   : c = a | b;
+                `ALU_XOR  : c = a ^ b;
+                `ALU_SLL  : c = a << b[4:0];
+                `ALU_SRL  : c = a >> b[4:0];
+                `ALU_SRA  : c = $signed(a) >>> b[4:0];
+                `ALU_AND  : c = a & b;
+                `ALU_SLT  : c = ($signed(a) < $signed(b)) ? 32'd1 : 32'd0;
+                `ALU_SLTU : c = (a < b) ? 32'd1 : 32'd0;
+                default   : c = 32'h0;
+            endcase
+        end
     end
 
     always @(*) begin
@@ -82,12 +85,22 @@ module ALU_multicycle (
         endcase
     end
 
-    assign mul_flag  = (op == `ALU_MUL  || op == `ALU_MULH)  && ~busy && (op_r == 5'h0);
-    assign mulu_flag = (op == `ALU_MULHU)                    && ~busy && (op_r == 5'h0);
-    assign div_flag  = (op == `ALU_DIV  || op == `ALU_REM)  && ~busy && (op_r == 5'h0);
-    assign divu_flag = (op == `ALU_DIVU || op == `ALU_REMU) && ~busy && (op_r == 5'h0);
+    wire unit_busy = mul_busy | mulu_busy | div_busy | divu_busy;
+    wire operation_start = mul_flag | mulu_flag | div_flag | divu_flag;
 
-    assign busy = mul_busy | mulu_busy | div_busy | divu_busy;
+    // Assert busy in the launch cycle as well as while a worker is active.
+    // Without the launch term the EX/MEM register can consume the old result
+    // on the same edge that starts the multiplier or divider.
+    assign mul_flag  = (op == `ALU_MUL  || op == `ALU_MULH) &&
+                       !operation_issued && !unit_busy;
+    assign mulu_flag = (op == `ALU_MULHU) &&
+                       !operation_issued && !unit_busy;
+    assign div_flag  = (op == `ALU_DIV  || op == `ALU_REM) &&
+                       !operation_issued && !unit_busy;
+    assign divu_flag = (op == `ALU_DIVU || op == `ALU_REMU) &&
+                       !operation_issued && !unit_busy;
+
+    assign busy = operation_start | unit_busy;
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
@@ -95,7 +108,7 @@ module ALU_multicycle (
             a_sign_r  <= 1'b0;
             b_r       <= 32'h0;
             a_r       <= 32'h0;
-        end else if (mul_flag | mulu_flag | div_flag | divu_flag) begin
+        end else if (operation_start) begin
             sign_ab_r <= sign_ab;
             a_sign_r  <= a[31];
             b_r       <= b;
@@ -105,21 +118,16 @@ module ALU_multicycle (
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            busy_d <= 1'b0;
-        end else begin
-            busy_d <= busy;
-        end
-    end
-
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            op_r <= 5'h0;
-        end else if (mul_flag | mulu_flag | div_flag | divu_flag) begin
+            op_r             <= `ALU_ADD;
+            operation_issued <= 1'b0;
+        end else if (operation_start) begin
             op_r <= op;
-        end else if (busy_d && !busy) begin
-            op_r <= op_r;
-        end else if (!busy && (op != op_r)) begin
-            op_r <= 5'h0;
+            operation_issued <= 1'b1;
+        end else if (operation_issued && !unit_busy) begin
+            // The result is consumed by EX/MEM on this edge. Clearing the
+            // issued bit here also permits an identical back-to-back M
+            // instruction to launch immediately after the edge.
+            operation_issued <= 1'b0;
         end
     end
 

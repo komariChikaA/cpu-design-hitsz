@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 
 `include "defines.vh"
+`default_nettype none
 
 module cpu_core(
     input  wire         cpu_rst,
@@ -257,19 +258,14 @@ module cpu_core(
                           (ex_alu_op == `ALU_DIVU)  || (ex_alu_op == `ALU_REM)  ||
                           (ex_alu_op == `ALU_REMU))  && ex_valid;
 
-    reg mul_div_suspend;
     reg ex_mul_div_busy_d;
-    always @(posedge cpu_clk) ex_mul_div_busy_d <= ex_mul_div_busy;
-    wire mul_div_done = ex_mul_div_busy_d && !ex_mul_div_busy;
-
     always @(posedge cpu_clk or posedge cpu_rst) begin
         if (cpu_rst)
-            mul_div_suspend <= 1'b0;
-        else if (id_is_mul_div && ex_mul_div_busy)
-            mul_div_suspend <= 1'b1;
-        else if (mul_div_done)
-            mul_div_suspend <= 1'b0;
+            ex_mul_div_busy_d <= 1'b0;
+        else
+            ex_mul_div_busy_d <= ex_mul_div_busy;
     end
+    wire mul_div_done = ex_mul_div_busy_d && !ex_mul_div_busy;
 
     wire ex_is_branch = (ex_npc_op == `NPC_BRA) && ex_valid;
     wire ex_is_jal    = (ex_npc_op == `NPC_JMP) && ex_valid;
@@ -285,8 +281,8 @@ module cpu_core(
 
     wire stall_if, stall_id, stall_ex, stall_mem;
 
-    wire effective_freeze = (ld_st_suspend || mul_div_suspend || ex_mul_div_busy)
-                            && !ld_st_done;
+    wire memory_freeze = ld_st_suspend && !ld_st_done;
+    wire effective_freeze = memory_freeze || ex_mul_div_busy;
 
     wire load_entering_id = id_is_ld_st   && !ex_is_ld_st;
     wire mul_entering_id  = id_is_mul_div && !ex_is_mul_div;
@@ -327,17 +323,16 @@ module cpu_core(
     wire [31:0] fwd_a;
     wire [31:0] fwd_b;
 
-    assign fwd_a = ex_mul_div_busy ? ex_rf_rd1 :
-                   (forward_a_sel == 2'b01) ? mem_wb_data :
+    // The multi-cycle ALU latches these forwarded operands on its launch
+    // edge. Bypassing forwarding during that cycle captures stale RF data.
+    assign fwd_a = (forward_a_sel == 2'b01) ? mem_wb_data :
                    (forward_a_sel == 2'b10) ? rf_wD       : ex_rf_rd1;
 
-    assign fwd_b = ex_mul_div_busy ? ex_rf_rd2 :
-                   (forward_b_sel == 2'b01) ? mem_wb_data :
+    assign fwd_b = (forward_b_sel == 2'b01) ? mem_wb_data :
                    (forward_b_sel == 2'b10) ? rf_wD       : ex_rf_rd2;
 
     wire [31:0] fwd_store_data;
-    assign fwd_store_data = ex_mul_div_busy ? ex_rf_rd2 :
-                            (forward_b_sel == 2'b01) ? mem_wb_data :
+    assign fwd_store_data = (forward_b_sel == 2'b01) ? mem_wb_data :
                             (forward_b_sel == 2'b10) ? rf_wD       : ex_rf_rd2;
 
     wire [31:0] alu_a;
@@ -349,10 +344,14 @@ module cpu_core(
     assign alu_a = ex_alua_sel ? ex_pc : fwd_a;
     assign alu_b = ex_alub_sel ? ex_ext : fwd_b;
 
+    // Invalid bubbles retain their previous control bits in the pipeline
+    // registers. Mask the opcode so a bubble cannot relaunch an M operation.
+    wire [4:0] active_alu_op = ex_valid ? ex_alu_op : `ALU_ADD;
+
     ALU U_ALU (
         .rst        (cpu_rst),
         .clk        (cpu_clk),
-        .op         (ex_alu_op),
+        .op         (active_alu_op),
         .a          (alu_a),
         .b          (alu_b),
         .br         (br),
@@ -407,7 +406,7 @@ module cpu_core(
                         load_entering_id ||
                         ((ld_st_suspend || ex_is_ld_st) && !ld_st_done) ||
                         mul_entering_id ||
-                        mul_div_suspend;
+                        ex_mul_div_busy;
 
     wire resume_ifetch = ld_st_done || mul_div_done;
 
@@ -441,3 +440,5 @@ module cpu_core(
 `endif
 
 endmodule
+
+`default_nettype wire

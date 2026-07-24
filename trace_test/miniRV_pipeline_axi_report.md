@@ -49,6 +49,26 @@ Yosys `hierarchy -check`、`proc` 和 `check`，结果为 `0 problems`。流水�
 已通过 45/45 Basic Trace 的 `miniRV_pipeline/`；单事务 AXI Master 仍来自已通过
 45/45 单周期 AXI Trace 的 `miniRV_singlecycle_axi/`。
 
+## 合并前补充回归
+
+代码复审发现 FPGA 构建使用的多周期 ALU 原先只在乘法器/除法器进入忙状态后才暂停
+EX，启动边沿可能把旧 ALU 结果送入 EX/MEM；启动拍还会绕过正常前递，空泡可能根据
+保留的控制位重复启动旧 M 扩展指令。修复后：
+
+- `busy` 同时覆盖启动拍和内部运算忙周期；
+- 多周期单元在启动时锁存前递后的源操作数；
+- 使用独立有效状态保存多周期操作，不再把 `ALU_ADD` 编码当作空状态；
+- 无效 EX 空泡会屏蔽旧 ALU 操作码；
+- 访存完成不会意外解除仍在进行的乘除法暂停。
+
+新增 Icarus Verilog 定向回归，覆盖多周期 ALU、完整流水线 M 扩展写回、
+`RUN_TRACE` 组合实现、AXI Master 背压、跳转后的旧取指响应丢弃和两种
+`cpu_top` 展开模式。该回归由 GitHub Actions 自动运行；本地运行命令为：
+
+```bash
+bash miniRV_pipeline_axi/tests/run_iverilog.sh
+```
+
 ## 验收边界
 
 本报告证明无 Cache 流水线 CPU 已通过 AXI Trace。它不代表 Vivado 综合、实现、
