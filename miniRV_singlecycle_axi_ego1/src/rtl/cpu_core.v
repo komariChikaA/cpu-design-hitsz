@@ -60,7 +60,9 @@ module cpu_core(
     wire [31:0] alu_a;
     wire [31:0] alu_b;
     wire [31:0] alu_c;
-    reg  [31:0] alu_c_r;
+    // Only the byte offset is needed when the delayed load response arrives.
+    // Keeping the full ALU result here caused Vivado to trim 30 unused bits.
+    reg  [ 1:0] ram_byte_offs_r;
     wire        br;
     wire        mul_div_busy;
     
@@ -198,18 +200,27 @@ module cpu_core(
     MEXT U_MEM_EXT (
         .op             (ram_rop_r),
         .din            (daccess_rdata),
-        .byte_offs      (alu_c_r[1:0]),
+        .byte_offs      (ram_byte_offs_r),
         .ext            (ram_ext)
     );
 
-    always @(posedge cpu_clk) if (is_ld_st) alu_c_r   <= alu_c;
-    always @(posedge cpu_clk) if (is_ld_st) ram_rop_r <= ram_rop;
+    always @(posedge cpu_clk or posedge cpu_rst) begin
+        if (cpu_rst) begin
+            ram_byte_offs_r <= 2'b00;
+            ram_rop_r       <= `RAM_EXT_N;
+        end else if (is_ld_st) begin
+            ram_byte_offs_r <= alu_c[1:0];
+            ram_rop_r       <= ram_rop;
+        end
+    end
 
     // Interface to Bus
     always @(posedge cpu_clk or posedge cpu_rst) begin
         if (cpu_rst) begin
             daccess_ren   <= 4'h0;
+            daccess_addr  <= 32'h0;
             daccess_wen   <= 4'h0;
+            daccess_wdata <= 32'h0;
         end else begin
             daccess_ren   <= da_ren;
             daccess_addr  <= da_addr;
@@ -242,7 +253,10 @@ module cpu_core(
                            ifetch_valid & !is_ld_st & !is_mul_div;  // 其他指令单周期完成（即取到指令的同时执行完成）
 
     always @(posedge cpu_clk or posedge cpu_rst) begin
-        inst_finished_r <= cpu_rst ? 1'b0 : inst_finished;
+        if (cpu_rst)
+            inst_finished_r <= 1'b0;
+        else
+            inst_finished_r <= inst_finished;
     end
 
 
