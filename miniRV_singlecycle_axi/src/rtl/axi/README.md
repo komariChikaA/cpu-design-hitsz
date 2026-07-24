@@ -1,10 +1,11 @@
-# AXI 与 SoC 模块规划
+# AXI 与 SoC 模块说明
 
-此目录用于后续添加单周期 AXI SoC 专用 RTL，建议至少区分：
+AXI/板级模块已放在上一级 `src/rtl/`，以便直接复制全部 HDL 到 Trace 框架：
 
-- `axi_master.v`：CPU 请求到 AXI 读写通道的状态机；
-- `request_arbiter.v`：取指请求和数据访问请求仲裁；
-- `axi_bridge.v`：主存与外设地址译码及总线桥；
-- `io_*`：UART、LED、数码管、开关和计时器等外设接口。
+- `axi_master.v`：CPU 请求仲裁与单拍 AXI4 主设备。
+- `axi_board_soc.v`：EGO1 使用的统一 BRAM、地址译码和 AXI 从设备。
+- `simple_uart.v`：50 MHz、115200 baud 的单字节缓冲 UART。
+- `sevenseg_display.v`：八位十六进制数码管扫描显示。
+- `miniRV_SoC.v`：在 `RUN_TRACE` 下连接 `bram_axi U_bram`，否则连接 EGO1 板级从设备。
 
-首次 AXI Trace 应关闭 Cache；总线基本功能稳定后，再加入 ICache 和 DCache。新增 RTL 或 IP 后需要在 Vivado 工程中显式加入，并更新本说明记录实际模块和地址映射。
+当前为无 Cache 的 AXI Trace 首通配置。后续 ICache/DCache 应插入 CPU 访存接口和 `axi_master` 之间，不需要改动 SoC 对外的 AXI 通道。
