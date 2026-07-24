@@ -4,6 +4,21 @@
 main=$(grep -l "main[[:space:]]*(" *.c 2>/dev/null)
 base=$(basename "$main" .c)
 
+if [ -n "$CROSS_COMPILE" ]; then
+    tool_prefix=$CROSS_COMPILE
+elif command -v riscv32-unknown-elf-gcc >/dev/null 2>&1; then
+    tool_prefix=riscv32-unknown-elf-
+elif command -v riscv64-unknown-elf-gcc >/dev/null 2>&1; then
+    tool_prefix=riscv64-unknown-elf-
+else
+    echo "Compile Failed: install a RISC-V GNU bare-metal toolchain"
+    exit 1
+fi
+
+cc=${tool_prefix}gcc
+objdump=${tool_prefix}objdump
+objcopy=${tool_prefix}objcopy
+
 cat > startup.h << 'EOF'
 #ifndef STARTUP_H
 #define STARTUP_H
@@ -87,9 +102,10 @@ SECTIONS
 }
 EOF
 
-riscv32-unknown-elf-gcc -T link.ld \
-                        -nostartfiles -fno-builtin -mabi=ilp32 -march=rv32im \
-                        -o "$base" temp_main.c
+"$cc" -T link.ld \
+      -nostdlib -nostartfiles -ffreestanding -fno-builtin \
+      -mabi=ilp32 -march=rv32im -Wl,-e,_start \
+      -o "$base" temp_main.c
 rm startup.h temp_main.c link.ld
 
 if [ ! -e "$base" ]; then
@@ -97,8 +113,8 @@ if [ ! -e "$base" ]; then
     exit 1
 fi
 
-riscv32-unknown-elf-objdump -d -M no-aliases -j .text -j .data -j .rodata -j .sdata "$base" > "$base.s"
-riscv32-unknown-elf-objcopy -O verilog "$base" "$base.hex"
+"$objdump" -d -M no-aliases -j .text -j .data -j .rodata -j .sdata "$base" > "$base.s"
+"$objcopy" -O verilog "$base" "$base.hex"
 rm "$base"
 
 awk -v base="$base" '

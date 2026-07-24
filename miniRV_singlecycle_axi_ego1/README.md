@@ -57,6 +57,11 @@
 software/c_test/0_uart_test/
 ```
 
+如需在 Linux 服务器重新编译，可在该目录运行 `./compile.sh`。脚本会依次检测
+`riscv32-unknown-elf-*` 和 `riscv64-unknown-elf-*` 工具链，并使用
+`-nostdlib` 构建不依赖 libc/newlib 的裸机程序，因此不会再因缺少 `-lc` 或
+`-lgloss` 而失败。也可以通过 `CROSS_COMPILE` 显式指定工具前缀。
+
 其中 `main.coe` 是服务器编译结果，`src/coe/main.mem` 是固定补齐为 38,400 个
 32 位字的统一映像。替换程序后先重新生成 `main.mem`：
 

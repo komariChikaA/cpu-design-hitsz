@@ -268,15 +268,16 @@ Implementation 和 Generate Bitstream。
 这些警告当前没有阻止综合和实现。后续应分别检查复位优先级、未使用地址低位和
 被裁剪的 ALU 结果位，但不应在首次上板前进行大范围 CPU 行为修改。
 
-### 4.3 时钟约束重复
+### 4.3 时钟约束重复（已解决）
 
 ```text
 [Constraints 18-619] A clock with name 'fpga_clk' already exists
 [Synth 8-565] redefining clock 'fpga_clk'
 ```
 
-`src/xdc/clock.xdc` 和 `src/xdc/miniRV_SoC.xdc` 都定义了 `fpga_clk`。
-该问题当前表现为覆盖警告；后续应只保留一处 `create_clock`。
+旧工程中 `src/xdc/clock.xdc` 和 `src/xdc/miniRV_SoC.xdc` 都定义了
+`fpga_clk`。当前工程已经只在 `clock.xdc` 中保留一处 `create_clock`，
+`miniRV_SoC.xdc` 仅保存引脚和 I/O 电平约束，因此该警告已经消除。
 
 ### 4.4 REQP-1839
 

@@ -23,8 +23,9 @@
 
 目前已完成支持完整 miniRV 指令集的单周期 CPU、Basic Trace、单周期 AXI Trace
 和 EGO1 上板。Basic Trace 与 AXI Trace 均为 **45/45 项通过**；相应的单指令
-VCD 波形保存在 `waveform/single/`。EGO1 实板已经完成 UART、拨码、LED/数码管
-程序验证，输入字符 `A` 时数码管正确显示其 ASCII 值 `00000041`。
+VCD 波形保存在 `waveform/single/`。EGO1 实板已经完成 UART、拨码和数码管
+程序验证，输入字符 `A` 时数码管正确显示其 ASCII 值 `00000041`；验收程序同时
+会把该字符写入 LED 寄存器。
 
 下面的路线图根据实验指导书中的实验目的、实验内容和实验步骤整理：
 
