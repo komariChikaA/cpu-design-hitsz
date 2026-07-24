@@ -3,3 +3,17 @@
 .tmp-upstream-cpu/
 materials/
 outputs/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Vivado generated project state
+.Xil/
+*.cache/
+*.gen/
+*.ip_user_files/
+*.runs/
+vivado*.jou
+vivado*.log
+vivado*.str
