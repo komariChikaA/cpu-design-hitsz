@@ -52,10 +52,11 @@ ASCII 值 `00000041`；验收程序同时会把该字符写入 LED 寄存器。
 - `miniRV_singlecycle_axi/`：已通过 AXI Trace 的单周期 AXI SoC 工程；
 - `miniRV_singlecycle_axi_ego1/`：已完成 Vivado、bitstream 和 EGO1 实板验收的独立板级工程。
 - `miniRV_pipeline_axi/`：已通过 45/45 AXI Trace 的无 Cache 五级流水线 AXI 工程。
+- `miniRV_pipeline_axi_ego1/`：已完成板级工程、IP/约束、程序和自动构建脚本准备，等待实验室 Vivado 与 EGO1 实测。
 
 当前单周期 AXI/EGO1、流水线 Basic Trace 和流水线 AXI Trace 均已完成。下一阶段是
-以已经验证的单周期板级工程为基础，建立流水线 AXI EGO1 工程并完成 Vivado、时序
-和实板回归；之后再进入 ICache/DCache 改造。具体边界见各工程内的 `README.md`。
+使用 `miniRV_pipeline_axi_ego1/` 完成 Vivado 综合、时序和实板回归；之后再进入
+ICache/DCache 改造。具体边界见各工程内的 `README.md`。
 
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 
