@@ -24,14 +24,13 @@ bitstream 和 EGO1 实板验收使用。它由两条已经验证的基线组合�
 - `BOARD_BRINGUP.md`：实验室逐步操作清单。
 - `BOARD_VALIDATION_TEMPLATE.md`：需要带回仓库的验收记录。
 
-## 默认程序与流水线专项程序
+## 当前程序与备用 UART 程序
 
-仓库当前的 `main.mem` 与 `0_uart_test/main.coe` 对应，可直接用于第一次 UART、
-拨码、LED 和数码管基线测试。
-
-流水线还应运行 `1_pipeline_mext_test/main.c`。该程序会先执行真实的
+仓库当前的 `main.mem` 已由 `1_pipeline_mext_test/main.c` 生成。该程序会先执行真实的
 `MUL/MULH/MULHU/DIV/DIVU/REM/REMU`、除零和有符号溢出指令，再进入 UART
-交互。由于生成 RISC-V 程序需要 Linux 工具链，去实验室前在 Linux 服务器运行：
+交互，可直接用于流水线 AXI EGO1 验收。
+
+如果修改了测试程序，需要在 Linux 服务器重新生成镜像：
 
 ```bash
 cd ~/miniRV_pipeline_axi_ego1
@@ -39,7 +38,7 @@ bash prepare_program.sh 1_pipeline_mext_test
 ```
 
 脚本会调用目录中的 `compile.sh`，然后把结果转换为 38,400 行
-`src/coe/main.mem`。若只想恢复原 UART 程序：
+`src/coe/main.mem`。若只想恢复不含 M 扩展自检的 UART 基础程序：
 
 ```bash
 bash prepare_program.sh 0_uart_test

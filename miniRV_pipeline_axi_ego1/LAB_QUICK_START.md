@@ -9,9 +9,9 @@
 C:\Workspace\miniRV_pipeline_axi_ego1
 ```
 
-当前压缩包内置的是已经验证过的 `0_uart_test` 镜像，可先检查 AXI 访存、UART、
-LED、拨码和数码管。若要同时验收流水线多周期 M 扩展，应在去实验室前把完整目录
-复制到 Linux 服务器并执行：
+当前压缩包已经内置 `1_pipeline_mext_test` 镜像，可以同时检查 AXI 访存、流水线
+多周期 M 扩展、UART、LED、拨码和数码管。只有修改测试程序后才需要在 Linux
+服务器重新执行：
 
 ```bash
 cd ~/miniRV_pipeline_axi_ego1
@@ -46,7 +46,7 @@ outputs/vivado/miniRV_pipeline_axi_ego1.bit
 2. Program Device，选择上述 `.bit`。
 3. 串口使用 `115200 8N1`，关闭流控。
 4. `S6 RST` 是 CPU 复位；不要按 `S5 PROG#`，后者会清除 FPGA 配置。
-5. 若已生成流水线专项程序，通过时应显示：
+5. 流水线专项程序通过时应显示：
 
 ```text
 串口：<Phase 0> M-extension self-test: PASS
@@ -56,9 +56,9 @@ LED：00A5
 
 随后输入 `A`，应回显且数码管显示 `00000041`。
 
-若直接使用压缩包内置的 UART 程序，则串口首先输出
-`miniRV AXI EGO1 Test #0 - UART simple test`，输入 `A` 后同样应回显并显示
-`00000041`，但它不包含 M 扩展自检。
+若之后主动执行 `bash prepare_program.sh 0_uart_test` 恢复 UART 基础程序，则
+串口首先输出 `miniRV AXI EGO1 Test #0 - UART simple test`，输入 `A` 后同样
+应回显并显示 `00000041`，但它不包含 M 扩展自检。
 
 ## 离开实验室前
 
