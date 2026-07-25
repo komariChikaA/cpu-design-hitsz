@@ -21,11 +21,11 @@
 
 ## 当前进度与目标
 
-目前已完成支持完整 miniRV 指令集的单周期 CPU、Basic Trace、单周期 AXI Trace
-和 EGO1 上板。Basic Trace 与 AXI Trace 均为 **45/45 项通过**；相应的单指令
-VCD 波形保存在 `waveform/single/`。EGO1 实板已经完成 UART、拨码和数码管
-程序验证，输入字符 `A` 时数码管正确显示其 ASCII 值 `00000041`；验收程序同时
-会把该字符写入 LED 寄存器。
+目前已完成支持完整 miniRV 指令集的单周期 CPU、单周期 Basic/AXI Trace、
+单周期 EGO1 上板，以及五级流水线 CPU 的 Basic/AXI Trace。四组 Trace 回归均为
+**45/45 项通过**；相应的单指令 VCD 波形保存在 `waveform/single/`。单周期 EGO1
+实板已经完成 UART、拨码和数码管程序验证，输入字符 `A` 时数码管正确显示其
+ASCII 值 `00000041`；验收程序同时会把该字符写入 LED 寄存器。
 
 下面的路线图根据实验指导书中的实验目的、实验内容和实验步骤整理：
 
@@ -37,6 +37,8 @@ VCD 波形保存在 `waveform/single/`。EGO1 实板已经完成 UART、拨码�
 - [x] 通过单周期 AXI Trace，并在 EGO1 上完成 Vivado 和实板验证；
 - [x] 将单周期 CPU 改造为五级流水线 CPU；
 - [x] 实现流水线暂停、冲刷与数据前递，解决控制冒险和数据冒险，并通过流水线 Basic Trace；
+- [x] 将无 Cache 流水线 CPU 接入 AXI Master，并通过流水线 AXI Trace；
+- [ ] 完成流水线 AXI 工程的 Vivado 综合、时序检查和 EGO1 实板验证；
 - [ ] 在流水线 CPU 上集成 ICache、DCache、AXI 总线控制器、总线桥和主存；
 - [ ] 将 CPU 集成到 SoC，在 FPGA 开发板上运行 CoreMark 或 LLaMA2，并继续进行频率、访存及时序优化。
 
@@ -44,15 +46,16 @@ VCD 波形保存在 `waveform/single/`。EGO1 实板已经完成 UART、拨码�
 
 ### 后续实验基础工程
 
-为避免流水线、AXI 和 Cache 改造相互干扰，仓库从已验证的 `miniRV_basic/` 单周期 CPU 基线派生两个独立工程：
+为避免流水线、AXI 和 Cache 改造相互干扰，仓库保留以下独立工程：
 
 - `miniRV_pipeline/`：已通过 45/45 Basic Trace 的五级流水线 CPU，包含冒险处理、暂停、冲刷和数据前递；
 - `miniRV_singlecycle_axi/`：已通过 AXI Trace 的单周期 AXI SoC 工程；
 - `miniRV_singlecycle_axi_ego1/`：已完成 Vivado、bitstream 和 EGO1 实板验收的独立板级工程。
+- `miniRV_pipeline_axi/`：已通过 45/45 AXI Trace 的无 Cache 五级流水线 AXI 工程。
 
-当前单周期 AXI/EGO1 和流水线 Basic Trace 两条基础开发线均已完成。下一阶段是
-把已验证的流水线 CPU 接入现有 AXI 与板级外设路径，并依次回归 Basic Trace、
-AXI Trace、Vivado 和 EGO1。具体改造边界和验收顺序见各工程内的 `README.md`。
+当前单周期 AXI/EGO1、流水线 Basic Trace 和流水线 AXI Trace 均已完成。下一阶段是
+以已经验证的单周期板级工程为基础，建立流水线 AXI EGO1 工程并完成 Vivado、时序
+和实板回归；之后再进入 ICache/DCache 改造。具体边界见各工程内的 `README.md`。
 
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 

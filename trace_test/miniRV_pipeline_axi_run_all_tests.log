@@ -1,0 +1,586 @@
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000274, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x0000031c, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000078, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004f0, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000005c4, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000204, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002a8, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000120, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000120, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000508, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x0000037c, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000070, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002e8, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000005ac, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000000fc, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004e0, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004a0, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x0000020c, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004ec, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002e0, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002b4, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x0000029c, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+Digit: 0x25000000
+Digit: 0x25000001
+Digit: 0x25000002
+Digit: 0x25000003
+Digit: 0x25000004
+Digit: 0x25000005
+Digit: 0x25000006
+Digit: 0x25000007
+Digit: 0x25000008
+Digit: 0x25000009
+Digit: 0x2500000a
+Digit: 0x2500000b
+Digit: 0x2500000c
+Digit: 0x2500000d
+Digit: 0x2500000e
+Digit: 0x2500000f
+Digit: 0x25000010
+Digit: 0x25000011
+Digit: 0x25000012
+Digit: 0x25000013
+Digit: 0x25000014
+Digit: 0x25000015
+Digit: 0x25000016
+Digit: 0x25000017
+Digit: 0x25000018
+Digit: 0x25000019
+Digit: 0x2500001a
+Digit: 0x2500001b
+Digit: 0x2500001c
+Digit: 0x2500001d
+Digit: 0x2500001e
+Digit: 0x2500001f
+Digit: 0x25000020
+Digit: 0x25000021
+Digit: 0x25000022
+Digit: 0x25000023
+Digit: 0x25000024
+Digit: 0x25000025
+ECALL at PC = 0x00000268, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002e8, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004ac, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000088, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002ec, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002ac, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000578, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004e8, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x0000041c, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000120, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000120, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004f0, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000120, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000001e8, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000004e8, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000120, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000120, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000348, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002b0, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000274, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x0000029c, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x000002c8, Stop now.
+Test Point Pass!
+Peripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+Peripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+ECALL at PC = 0x00000294, Stop now.
+Test Point Pass!
+
+
+==================== Testing lb ====================
+==================== lb END ==================== 
+
+
+==================== Testing bltu ====================
+==================== bltu END ==================== 
+
+
+==================== Testing jal ====================
+==================== jal END ==================== 
+
+
+==================== Testing slt ====================
+==================== slt END ==================== 
+
+
+==================== Testing sra ====================
+==================== sra END ==================== 
+
+
+==================== Testing ori ====================
+==================== ori END ==================== 
+
+
+==================== Testing lhu ====================
+==================== lhu END ==================== 
+
+
+==================== Testing rem ====================
+==================== rem END ==================== 
+
+
+==================== Testing div ====================
+==================== div END ==================== 
+
+
+==================== Testing add ====================
+==================== add END ==================== 
+
+
+==================== Testing bgeu ====================
+==================== bgeu END ==================== 
+
+
+==================== Testing auipc ====================
+==================== auipc END ==================== 
+
+
+==================== Testing beq ====================
+==================== beq END ==================== 
+
+
+==================== Testing srl ====================
+==================== srl END ==================== 
+
+
+==================== Testing jalr ====================
+==================== jalr END ==================== 
+
+
+==================== Testing and ====================
+==================== and END ==================== 
+
+
+==================== Testing sh ====================
+==================== sh END ==================== 
+
+
+==================== Testing xori ====================
+==================== xori END ==================== 
+
+
+==================== Testing or ====================
+==================== or END ==================== 
+
+
+==================== Testing srai ====================
+==================== srai END ==================== 
+
+
+==================== Testing lw ====================
+==================== lw END ==================== 
+
+
+==================== Testing slti ====================
+==================== slti END ==================== 
+
+
+==================== Testing start ====================
+==================== start END ==================== 
+
+
+==================== Testing blt ====================
+==================== blt END ==================== 
+
+
+==================== Testing sw ====================
+==================== sw END ==================== 
+
+
+==================== Testing lui ====================
+==================== lui END ==================== 
+
+
+==================== Testing bne ====================
+==================== bne END ==================== 
+
+
+==================== Testing slli ====================
+==================== slli END ==================== 
+
+
+==================== Testing sll ====================
+==================== sll END ==================== 
+
+
+==================== Testing sub ====================
+==================== sub END ==================== 
+
+
+==================== Testing sb ====================
+==================== sb END ==================== 
+
+
+==================== Testing remu ====================
+==================== remu END ==================== 
+
+
+==================== Testing mul ====================
+==================== mul END ==================== 
+
+
+==================== Testing sltu ====================
+==================== sltu END ==================== 
+
+
+==================== Testing mulhu ====================
+==================== mulhu END ==================== 
+
+
+==================== Testing andi ====================
+==================== andi END ==================== 
+
+
+==================== Testing xor ====================
+==================== xor END ==================== 
+
+
+==================== Testing mulh ====================
+==================== mulh END ==================== 
+
+
+==================== Testing divu ====================
+==================== divu END ==================== 
+
+
+==================== Testing bge ====================
+==================== bge END ==================== 
+
+
+==================== Testing addi ====================
+==================== addi END ==================== 
+
+
+==================== Testing lbu ====================
+==================== lbu END ==================== 
+
+
+==================== Testing sltiu ====================
+==================== sltiu END ==================== 
+
+
+==================== Testing srli ====================
+==================== srli END ==================== 
+
+
+==================== Testing lh ====================
+==================== lh END ==================== 
+
+
+==================== SUMMARY ==================== 
+Passed Tests (45):
+lb, bltu, jal, slt, sra, ori, lhu, rem, div, add, bgeu, auipc, beq, srl, jalr, and, sh, xori, or, srai, lw, slti, start, blt, sw, lui, bne, slli, sll, sub, sb, remu, mul, sltu, mulhu, andi, xor, mulh, divu, bge, addi, lbu, sltiu, srli, lh
+------------------------------------------------- 
+Failed Tests (0):
+

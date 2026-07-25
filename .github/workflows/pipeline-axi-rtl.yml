@@ -1,0 +1,26 @@
+name: Pipeline AXI RTL
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/pipeline-axi-rtl.yml"
+      - "miniRV_pipeline_axi/**"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/pipeline-axi-rtl.yml"
+      - "miniRV_pipeline_axi/**"
+
+permissions:
+  contents: read
+
+jobs:
+  iverilog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Run directed RTL regressions
+        run: bash miniRV_pipeline_axi/tests/run_iverilog.sh

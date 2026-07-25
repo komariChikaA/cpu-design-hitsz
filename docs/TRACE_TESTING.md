@@ -112,6 +112,22 @@ python3 run_all_tests.py
 
 脚本会先备份原有 `mySoC`，再把根 RTL 和流水线专用模块平铺到测试目录。
 
+### 流水线 AXI 工程
+
+流水线 AXI Trace 使用独立目录和准备脚本：
+
+```bash
+bash miniRV_pipeline_axi/prepare_trace.sh ~/cdp-tests
+cd ~/cdp-tests
+make clean
+make
+python3 run_all_tests.py
+```
+
+运行前应确认测试框架使用 `vsrc/bram_axi.v`，并在构建输出中显示 AXI Trace，
+不能仅根据测试名称中的 `BasicTests` 判断总线类型。当前验收基线是运行时发现的
+45 个测试全部通过。
+
 ## 6. 编译和运行测试
 
 在远程终端进入测试框架：

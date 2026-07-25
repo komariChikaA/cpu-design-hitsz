@@ -55,8 +55,9 @@ python3 run_all_tests.py
 `cpu_core`。已验证的单周期 AXI Master、板级 BRAM 和外设仍保存在
 `miniRV_singlecycle_axi/` 与 `miniRV_singlecycle_axi_ego1/`。
 
-下一阶段是在保持本工程 Basic Trace 回归的前提下，将流水线 CPU 接入现有 AXI
-路径，再依次验证 AXI Trace、Vivado 综合/时序和 EGO1 上板。
+流水线 AXI 接入已经在独立的 `miniRV_pipeline_axi/` 中完成，并通过 45/45 AXI
+Trace。本目录继续作为 Basic Trace 基线保留；后续板级工作应从
+`miniRV_pipeline_axi/` 和 `miniRV_singlecycle_axi_ego1/` 派生，不直接覆盖本目录。
 
 ## 验收边界
 
