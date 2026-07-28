@@ -21,7 +21,12 @@ module simple_uart #(
     input  wire       rx_clear,
     output reg  [7:0] rx_data,
     output reg        rx_valid,
-    output wire [3:0] status
+    output wire [3:0] status,
+
+    output wire       debug_rx_sync,
+    output wire [1:0] debug_rx_state,
+    output wire       debug_rx_valid,
+    output wire [7:0] debug_rx_data
 );
 
     localparam integer CLKS_PER_BIT = CLK_FREQ / BAUD;
@@ -148,5 +153,9 @@ module simple_uart #(
     end
 
     assign status = {tx_active, !tx_active, rx_valid, rx_valid};
+    assign debug_rx_sync  = rx_sync[1];
+    assign debug_rx_state = rx_state;
+    assign debug_rx_valid = rx_valid;
+    assign debug_rx_data  = rx_data;
 
 endmodule

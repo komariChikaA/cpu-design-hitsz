@@ -18,10 +18,13 @@ module cpu_core(
     input  wire [31:0]  daccess_rdata,
     output wire [ 3:0]  daccess_wen,
     output wire [31:0]  daccess_wdata,
-    input  wire         daccess_wresp
+    input  wire         daccess_wresp,
+
+    output wire [31:0]  board_debug_pc
 );
 
     reg [31:0] pc;
+    assign board_debug_pc = pc;
 
     always @(posedge cpu_clk or posedge cpu_rst) begin
         if (cpu_rst)
@@ -275,9 +278,20 @@ module cpu_core(
     assign ex_bj_target = ex_is_jalr ? {alu_c[31:1], 1'b0} : (ex_pc + ex_ext);
 
     wire ex_bj_target_in_id = id_valid && (id_pc == ex_bj_target);
+    wire ex_bj_taken = (ex_is_branch && br) || ex_is_jal || ex_is_jalr;
     wire ex_bj_f;
-    assign ex_bj_f = ((ex_is_branch && br) || ex_is_jal || ex_is_jalr)
-                     && !ex_bj_target_in_id;
+`ifdef RUN_TRACE
+    // The zero-latency Trace memory can already have the target instruction
+    // in ID when the branch resolves, so keep the original duplicate-flush
+    // suppression for the course Trace contract.
+    assign ex_bj_f = ex_bj_taken && !ex_bj_target_in_id;
+`else
+    // AXI fetch responses arrive later and can be discarded after a redirect.
+    // Treating a transient ID address match as proof that the target is safely
+    // resident leaves PC and ifetch_addr on different control-flow paths.
+    // Always redirect taken control flow on the physical-board AXI build.
+    assign ex_bj_f = ex_bj_taken;
+`endif
 
     wire stall_if, stall_id, stall_ex, stall_mem;
 
@@ -286,14 +300,24 @@ module cpu_core(
 
     wire load_entering_id = id_is_ld_st   && !ex_is_ld_st;
     wire mul_entering_id  = id_is_mul_div && !ex_is_mul_div;
+    wire load_duplicate   = id_is_ld_st   && ex_is_ld_st;
+    wire mul_duplicate    = id_is_mul_div && ex_is_mul_div;
 
-    assign stall_if  = load_use_hazard || load_entering_id || mul_entering_id || effective_freeze;
+    // A load/store or M instruction entering EX must be consumed from ID.
+    // Stalling IF on load_entering_id/mul_entering_id kept that same
+    // instruction resident in ID; after the long-latency operation completed
+    // it entered EX a second time.  For loads, WB forwarding then replaced the
+    // original base register with the just-loaded value, turning a UART status
+    // poll into reads from 0x8, then from instruction words such as 0x07c000ef.
+    //
+    // Hold IF only for a real dependency, a genuinely adjacent operation of
+    // the same long-latency class, or while the active operation is frozen.
+    assign stall_if  = load_use_hazard || load_duplicate || mul_duplicate ||
+                       effective_freeze;
     assign stall_id  = effective_freeze;
     assign stall_ex  = effective_freeze;
     assign stall_mem = (ld_st_suspend) && !ld_st_done;
 
-    wire load_duplicate = id_is_ld_st   && ex_is_ld_st;
-    wire mul_duplicate  = id_is_mul_div && ex_is_mul_div;
     wire id_valid_for_ex;
     assign id_valid_for_ex = id_valid && !load_use_hazard && !load_duplicate && !mul_duplicate;
 

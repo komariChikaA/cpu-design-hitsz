@@ -4,6 +4,13 @@ module axi_master_tb;
     reg clk = 1'b0;
     always #5 clk = !clk;
 
+`ifdef DUMP_VCD
+    initial begin
+        $dumpfile("06_no_cache_axi_transaction.vcd");
+        $dumpvars(0, axi_master_tb);
+    end
+`endif
+
     reg rst = 1'b1;
     reg ic_req = 1'b0;
     reg [31:0] ic_addr = 32'h0;

@@ -8,6 +8,12 @@ set script_dir [file dirname [file normalize [info script]]]
 set output_dir [file join $script_dir outputs vivado]
 file mkdir $output_dir
 
+set enable_ila 0
+if {[info exists ::MINIRV_ENABLE_ILA] && $::MINIRV_ENABLE_ILA} {
+    set enable_ila 1
+    puts "ILA debug build enabled."
+}
+
 set expected_part "xc7a35tcsg324-1"
 set actual_part [get_property PART [current_project]]
 if {$actual_part ne $expected_part} {
@@ -241,6 +247,14 @@ set ramb18_equivalents [expr {$ramb18_count + (2 * $ramb36_count)}]
 if {$ramb18_equivalents > 100} {
     error "Block RAM usage exceeds the 100 RAMB18-equivalent sites available on xc7a35t."
 }
+
+if {$enable_ila} {
+    set ila_setup_script [file join $script_dir setup_ila_ego1.tcl]
+    if {![file exists $ila_setup_script]} {
+        error "ILA setup script was not found: $ila_setup_script"
+    }
+    source $ila_setup_script
+}
 close_design
 
 reset_run impl_1
@@ -277,11 +291,23 @@ set built_bitstream [file join $run_dir miniRV_SoC.bit]
 if {![file exists $built_bitstream]} {
     error "Bitstream was not found at $built_bitstream"
 }
-set packaged_bitstream [file join $output_dir miniRV_pipeline_axi_ego1.bit]
+if {$enable_ila} {
+    set packaged_bitstream [file join $output_dir miniRV_pipeline_axi_ego1_ila.bit]
+} else {
+    set packaged_bitstream [file join $output_dir miniRV_pipeline_axi_ego1.bit]
+}
 file copy -force $built_bitstream $packaged_bitstream
+
+if {$enable_ila} {
+    set probes_file [file join $output_dir miniRV_pipeline_axi_ego1_ila.ltx]
+    write_debug_probes -force $probes_file
+}
 
 puts "EGO1 build finished."
 puts "Bitstream: [file normalize $packaged_bitstream]"
+if {$enable_ila} {
+    puts "ILA probes: [file normalize $probes_file]"
+}
 puts "Timing report: [file normalize $timing_report]"
 puts "Utilization report: [file normalize $utilization_report]"
 puts "DRC report: [file normalize $drc_report]"

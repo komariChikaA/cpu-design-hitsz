@@ -39,7 +39,11 @@ module cpu_top(
     input  wire [31:0]  m_axi_rdata,
     input  wire [ 1:0]  m_axi_rresp,
     input  wire         m_axi_rlast,
-    input  wire         m_axi_rvalid
+    input  wire         m_axi_rvalid,
+
+    output wire [31:0]  board_debug_pc,
+    output wire         board_debug_ifetch_req,
+    output wire         board_debug_ifetch_valid
 );
 
     wire        cpu2ic_rreq;
@@ -60,6 +64,9 @@ module cpu_top(
     wire        ic_dev_rrdy;
     wire        dc_dev_rrdy;
     wire        dc_dev_wrdy;
+
+    assign board_debug_ifetch_req   = cpu2ic_rreq;
+    assign board_debug_ifetch_valid = ic2cpu_valid;
 
     // The master returns to IDLE in the same cycle that it raises a response,
     // while the pipelined core removes the completed request at the following
@@ -102,7 +109,8 @@ module cpu_top(
         .daccess_rdata  (dc2cpu_rdata),
         .daccess_wen    (cpu2dc_wen),
         .daccess_wdata  (cpu2dc_wdata),
-        .daccess_wresp  (dc2cpu_wresp)
+        .daccess_wresp  (dc2cpu_wresp),
+        .board_debug_pc (board_debug_pc)
     );
 
     axi_master U_aximaster (

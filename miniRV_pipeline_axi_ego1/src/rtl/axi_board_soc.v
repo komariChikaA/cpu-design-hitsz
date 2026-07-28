@@ -48,7 +48,12 @@ module axi_board_soc #(
     output wire [ 7:0]  dig_en,
     output wire [ 7:0]  dig_seg,
     input  wire         rx,
-    output wire         tx
+    output wire         tx,
+
+    output wire         uart_debug_rx_sync,
+    output wire [ 1:0]  uart_debug_rx_state,
+    output wire         uart_debug_rx_valid,
+    output wire [ 7:0]  uart_debug_rx_data
 );
 
     reg [15:0] led_reg;
@@ -93,7 +98,11 @@ module axi_board_soc #(
         .rx_clear (uart_rx_clear),
         .rx_data  (uart_rx_data),
         .rx_valid (uart_rx_valid),
-        .status   (uart_status)
+        .status   (uart_status),
+        .debug_rx_sync  (uart_debug_rx_sync),
+        .debug_rx_state (uart_debug_rx_state),
+        .debug_rx_valid (uart_debug_rx_valid),
+        .debug_rx_data  (uart_debug_rx_data)
     );
 
     wire write_accept = s_axi_awvalid && s_axi_wvalid &&

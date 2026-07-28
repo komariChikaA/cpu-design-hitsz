@@ -1,99 +1,90 @@
 # miniRV 五级流水线 AXI EGO1 工程
 
-本目录是流水线 AXI 的独立板级工程，供 Vivado 2023.2 综合、实现、生成
-bitstream 和 EGO1 实板验收使用。它由两条已经验证的基线组合而成：
+这是面向 EGO1（`xc7a35tcsg324-1`）的五级流水线 AXI SoC 工程。当前
+`src/coe/main.mem` 已预装正式 CoreMark 程序：
 
-- `miniRV_pipeline_axi/`：45/45 AXI Trace、定向 RTL 回归和云端 CI 均通过；
-- `miniRV_singlecycle_axi_ego1/`：时钟、复位、Block Memory、UART、拨码、
-  LED、数码管和 XDC 已在 EGO1 上验证。
+- CPU：miniRV 五级流水线 AXI，RV32IM
+- CPU 主频：50 MHz
+- CoreMark：1.0，单线程，700 次迭代
+- 学号：`2024311081_2024311453`
+- 程序镜像：38,400 × 32 bit
 
-当前仓库已经完成板级工程准备和离线结构检查，但本目录的 Vivado 时序及实板结果
-必须在实验室实际生成，不能用 AXI Trace 或单周期上板结果替代。
+## 2026-07-29 实板结果
 
-## 目录内容
+本工程已经在 EGO1 上完成实板验证：
 
-- `miniRV.xpr`：EGO1 工程，器件为 `xc7a35tcsg324-1`。
-- `src/rtl/`：流水线 AXI CPU、板级 AXI 从设备和外设。
-- `src/rtl/pipeline/`：流水寄存器、前递和 Trace/FPGA 两套 ALU。
-- `src/rtl/ip/`：`IROM`、`DRAM`、`clk_wiz_0` 三个可重新生成的 XCI。
-- `src/xdc/`：EGO1 引脚、I/O 电平和时钟约束。
-- `src/coe/main.mem`：38,400 × 32 bit 的统一程序映像。
-- `rebuild_ego1.tcl`：重新生成 IP、综合、实现、时序检查和 bitstream。
-- `tests/run_iverilog.sh`：不依赖 Vivado 的流水线 AXI RTL 回归。
-- `LAB_QUICK_START.md`：到实验室后可以直接照做的最短操作清单。
-- `BOARD_BRINGUP.md`：实验室逐步操作清单。
-- `BOARD_VALIDATION_TEMPLATE.md`：需要带回仓库的验收记录。
+- 流水线 M 扩展自检：`PASS`
+- UART 输入 `A`：正确回显，数码管显示 `00000041`
+- CoreMark：700 次迭代，32 秒
+- CoreMark 校验：`Correct operation validated`
+- CoreMark 得分：21.250 CoreMark，0.425 CoreMark/MHz
+- CoreMark 最终数码管：`C0DE600D`
+- 实现后时序：WNS 1.702 ns，TNS 0 ns，失败端点 0
 
-## 当前程序与备用 UART 程序
+详细记录见 [BOARD_ACCEPTANCE_RESULT.md](./BOARD_ACCEPTANCE_RESULT.md)。
 
-仓库当前的 `main.mem` 已由 `1_pipeline_mext_test/main.c` 生成。该程序会先执行真实的
-`MUL/MULH/MULHU/DIV/DIVU/REM/REMU`、除零和有符号溢出指令，再进入 UART
-交互，可直接用于流水线 AXI EGO1 验收。
+到实验室后先阅读 [START_COREMARK_ACCEPTANCE.md](./START_COREMARK_ACCEPTANCE.md)。
+当前镜像无需在 Linux 服务器重新编译，必须重新生成 bitstream，因为程序内容会被初始化进
+FPGA 的 Block RAM。
 
-如果修改了测试程序，需要在 Linux 服务器重新生成镜像：
+## CoreMark 一键构建
 
-```bash
-cd ~/miniRV_pipeline_axi_ego1
-bash prepare_program.sh 1_pipeline_mext_test
-```
-
-脚本会调用目录中的 `compile.sh`，然后把结果转换为 38,400 行
-`src/coe/main.mem`。若只想恢复不含 M 扩展自检的 UART 基础程序：
-
-```bash
-bash prepare_program.sh 0_uart_test
-```
-
-## 本机预检查
-
-Windows PowerShell 中执行：
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verify_package.ps1
-```
-
-有 Icarus Verilog 的 Linux 环境还可执行：
-
-```bash
-bash tests/run_iverilog.sh
-```
-
-## Vivado 一键重建
-
-1. 把整个 `miniRV_pipeline_axi_ego1/` 带到实验室电脑。
-2. 用 Vivado 2023.2 打开 `miniRV.xpr`。
-3. 在 Tcl Console 中执行：
+使用 Vivado 2023.2 打开 `miniRV.xpr`，在 Tcl Console 执行：
 
 ```tcl
 source rebuild_ego1.tcl
 ```
 
-脚本会拒绝错误器件、`RUN_TRACE`、旧单周期源文件、旧多周期 ALU、大型推断数组、
-过期 IP cache、BRAM 超量和负 WNS。成功后产物集中在：
+必须等到 Tcl Console 输出：
 
 ```text
-outputs/vivado/
-├── miniRV_pipeline_axi_ego1.bit
-├── post_synth_utilization.rpt
-├── post_synth_drc.rpt
-├── utilization.rpt
-├── timing_summary.rpt
-├── implementation_drc.rpt
-└── clock_utilization.rpt
+EGO1 build finished.
 ```
 
-完整操作和预期现象见 [BOARD_BRINGUP.md](./BOARD_BRINGUP.md)。
+随后烧录：
 
-## 验收边界
+```text
+outputs/vivado/miniRV_pipeline_axi_ego1.bit
+```
 
-满足以下条件后才能称为流水线 AXI EGO1 验收通过：
+不要烧录旧包中的同名 bit，也不要把 `main.mem` 单独复制到旧 bit 所在目录。正常评分建议使用
+普通构建；只有调试问题时才使用 `source rebuild_ego1_ila.tcl`。
 
-- Vivado Synthesis、Implementation、Generate Bitstream 全部成功；
-- `RAMD64E` 没有再次大规模出现，BRAM/LUT 未超量；
-- `WNS >= 0`，Timing Summary 中没有未约束关键时钟；
-- Hardware Manager 成功烧录；
-- 流水线 M 扩展专项程序打印 `PASS`；
-- UART 输入 `A` 后回显，数码管显示 `00000041`；
-- LED、拨码开关和 S6 复位行为符合说明。
+## 本机检查
 
-不要按 `S5 PROG#` 进行 CPU 复位；它会清除 FPGA 配置。CPU 复位使用 `S6 RST`。
+Windows PowerShell：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verify_coremark_package.ps1
+```
+
+通用工程检查：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verify_package.ps1
+```
+
+## 重新编译 CoreMark（可选）
+
+包内已带正式镜像，不需要为下板执行本节。只有修改 C 源码或迭代次数后才需要在装有
+RISC-V GCC 的 Linux 环境执行：
+
+```bash
+cd software/c_test/4_coremark
+CROSS_COMPILE=riscv32-unknown-elf- COREMARK_ITERATIONS=700 bash compile.sh
+cd ../../..
+python3 tools/bin2mem.py software/c_test/4_coremark/main.coe src/coe/main.mem
+```
+
+也可以把 `CROSS_COMPILE` 改成实际工具链前缀，例如
+`riscv64-unknown-elf-`。重新编译后必须重新执行 Vivado 构建。
+
+## 其他验证入口
+
+- `START_PIPELINE_ACCEPTANCE.md`：流水线 M 扩展/UART 验收的历史流程。
+- `AXI_LONG_LATENCY_REPLAY_FIX.md`：实板 UART 问题的根因及 RTL 修复。
+- `ILA_DEBUG_GUIDE.md`：出现异常时的 ILA 调试方法。
+- `verify_package.ps1`：工程、时钟、存储器、约束和关键 RTL 修复检查。
+
+CoreMark 已由实板串口的 `Correct operation validated` 结果确认。后续修改 RTL、
+时钟、存储器镜像或约束后，必须重新进行时序检查和实板回归，不能沿用本次结论。

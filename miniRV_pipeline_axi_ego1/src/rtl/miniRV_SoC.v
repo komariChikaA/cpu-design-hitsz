@@ -39,6 +39,13 @@ module miniRV_SoC(
     wire [ 1:0] m_axi_rresp;
     wire        m_axi_rlast;
     wire        m_axi_rvalid;
+    wire [31:0] cpu_debug_pc;
+    wire        cpu_debug_ifetch_req;
+    wire        cpu_debug_ifetch_valid;
+    wire        uart_debug_rx_sync;
+    wire [ 1:0] uart_debug_rx_state;
+    wire        uart_debug_rx_valid;
+    wire [ 7:0] uart_debug_rx_data;
 
 `ifdef RUN_TRACE
     wire sys_clk = fpga_clk;
@@ -145,10 +152,46 @@ module miniRV_SoC(
         .dig_en        (dig_en),
         .dig_seg       (dig_seg),
         .rx            (rx),
-        .tx            (tx)
+        .tx            (tx),
+        .uart_debug_rx_sync  (uart_debug_rx_sync),
+        .uart_debug_rx_state (uart_debug_rx_state),
+        .uart_debug_rx_valid (uart_debug_rx_valid),
+        .uart_debug_rx_data  (uart_debug_rx_data)
     );
 
     assign dig_seg1 = dig_seg;
+
+    // One consolidated probe bus keeps the ILA insertion flow deterministic.
+    // Bit mapping is documented in ILA_DEBUG_GUIDE.md.
+    (* keep = "true" *) wire ila_clk = sys_clk;
+    // RX diagnostics occupy new high bits; the existing [173:0] mapping is
+    // intentionally unchanged so previously documented AXI views still work.
+    (* mark_debug = "true", keep = "true" *) wire [186:0] ila_probe = {
+        rx,
+        uart_debug_rx_sync,
+        uart_debug_rx_state,
+        uart_debug_rx_valid,
+        uart_debug_rx_data,
+        pll_lock,
+        sys_rst,
+        cpu_debug_pc,
+        cpu_debug_ifetch_req,
+        cpu_debug_ifetch_valid,
+        m_axi_araddr,
+        m_axi_rdata,
+        m_axi_arvalid,
+        m_axi_arready,
+        m_axi_rvalid,
+        m_axi_rready,
+        m_axi_awaddr,
+        m_axi_wdata,
+        m_axi_awvalid,
+        m_axi_awready,
+        m_axi_wvalid,
+        m_axi_wready,
+        m_axi_bvalid,
+        m_axi_bready
+    };
 `endif
 
     cpu_top U_cpu (
@@ -178,7 +221,10 @@ module miniRV_SoC(
         .m_axi_rdata    (m_axi_rdata),
         .m_axi_rresp    (m_axi_rresp),
         .m_axi_rlast    (m_axi_rlast),
-        .m_axi_rvalid   (m_axi_rvalid)
+        .m_axi_rvalid   (m_axi_rvalid),
+        .board_debug_pc (cpu_debug_pc),
+        .board_debug_ifetch_req   (cpu_debug_ifetch_req),
+        .board_debug_ifetch_valid (cpu_debug_ifetch_valid)
     );
 
 endmodule
