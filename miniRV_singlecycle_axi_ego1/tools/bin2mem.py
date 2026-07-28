@@ -47,7 +47,8 @@ def main() -> None:
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     padded = words + [0] * (args.depth - len(words))
-    args.output.write_text("".join(f"{word:08x}\n" for word in padded), encoding="ascii")
+    with args.output.open("w", encoding="ascii", newline="\n") as output:
+        output.write("".join(f"{word:08x}\n" for word in padded))
     print(f"wrote {len(words)} program words and {args.depth - len(words)} padding words")
 
 

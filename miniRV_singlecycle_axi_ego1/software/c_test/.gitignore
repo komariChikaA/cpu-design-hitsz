@@ -1,0 +1,6 @@
+# Per-test compiler outputs. Rebuild with prepare_program.sh.
+main.bin
+main.coe
+main.elf
+main.map
+main.s

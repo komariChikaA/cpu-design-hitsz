@@ -3,6 +3,10 @@
 #define DLED_BASE 0xFFFF2000
 #define UART_BASE 0xFFFF3000
 
+#ifndef STUDENT_ID
+#define STUDENT_ID "20XXXXXXXX"
+#endif
+
 volatile unsigned int *peri_sw     = (volatile unsigned int*) SW_BASE;
 volatile unsigned int *peri_led    = (volatile unsigned int*) LED_BASE;
 volatile unsigned int *peri_digled = (volatile unsigned int*) DLED_BASE;
@@ -49,7 +53,7 @@ int main()
 {
     uart_init();
 
-    print_str("miniRV AXI EGO1 Test #0 - UART simple test:\n\r");
+    print_str(STUDENT_ID " miniRV AXI EGO1 Test #0 - UART simple test:\n\r");
     print_str("<Phase 0> - Output test:\n\r");
     print_str("Hello World!\n\r");
 

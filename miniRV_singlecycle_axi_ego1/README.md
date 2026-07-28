@@ -1,11 +1,14 @@
 # miniRV 单周期 AXI EGO1 工程
 
+实验室下板时请直接打开 [START_HERE.md](./START_HERE.md)，其中包含
+C_TEST0～2 的完整切换、构建、烧录、输入、预期结果和逐张拍照清单。
+
 本目录是 `miniRV_singlecycle_axi/` 的独立上板工程。原 AXI Trace 工程和
 `miniRV_pipeline/` 流水线工程均保持独立，不在本目录中混合开发。
 
 ## 最终状态
 
-截至 2026-07-24，本阶段已完成：
+截至 2026-07-28，本阶段已完成：
 
 - 单周期 CPU 接入单事务 AXI4 Master；
 - AXI Trace 45/45 通过；
@@ -15,9 +18,15 @@
 - UART 115200 8N1；
 - 串口输入字符 `A` 后，数码管显示 `00000041`；
 - 拨码不全为零时可以连续输入测试；
-- 拨码全部为零时，程序处理当前字符后打印 `Test ended.` 并结束。
+- 拨码全部为零时，程序处理当前字符后打印 `Test ended.` 并结束；
+- C_TEST0、C_TEST1、C_TEST2 均完成 EGO1 实板验证；
+- 三项均保存独立 bitstream、Timing、Utilization、Power 报告和照片；
+- 三项时序均为 WNS 5.055 ns、TNS 0 ns、失败端点0。
 
-详细上板步骤见 [BOARD_BRINGUP.md](./BOARD_BRINGUP.md)，完整问题与修复记录见
+实板结果核验见
+[`../docs/course-report/`](../docs/course-report/)。
+复现实验时先读 [START_HERE.md](./START_HERE.md)，详细上板原理见
+[BOARD_BRINGUP.md](./BOARD_BRINGUP.md)，完整问题与修复记录见
 [VIVADO_BRINGUP_ISSUES.md](./VIVADO_BRINGUP_ISSUES.md)。
 
 ## 板级结构
@@ -51,16 +60,34 @@
 
 ## 程序和 Vivado 重建
 
-最终验收程序位于：
+课程 C_TEST 程序位于：
 
 ```text
 software/c_test/0_uart_test/
+software/c_test/1_formatIO_test/
+software/c_test/2_sort_test/
 ```
 
-如需在 Linux 服务器重新编译，可在该目录运行 `./compile.sh`。脚本会依次检测
-`riscv32-unknown-elf-*` 和 `riscv64-unknown-elf-*` 工具链，并使用
-`-nostdlib` 构建不依赖 libc/newlib 的裸机程序，因此不会再因缺少 `-lc` 或
-`-lgloss` 而失败。也可以通过 `CROSS_COMPILE` 显式指定工具前缀。
+三项测试均已统一接入 `STUDENT_ID` 和38,400字镜像生成流程，并使用
+`2024311081_2024311453` 在 Linux 服务器完成交叉编译；C_TEST0～2 已按顺序
+重新生成 bitstream、烧录并完成 EGO1 实板留证。完整复现步骤、测试输入和
+验收要求见 [C_TEST_GUIDE.md](./C_TEST_GUIDE.md)。
+
+如需在 Linux 服务器重新编译，优先在本目录运行：
+
+```bash
+STUDENT_ID=2024311081_2024311453 bash prepare_program.sh 0_uart_test
+STUDENT_ID=2024311081_2024311453 bash prepare_program.sh 1_formatIO_test
+STUDENT_ID=2024311081_2024311453 bash prepare_program.sh 2_sort_test
+```
+
+脚本会依次检测 `riscv32-unknown-elf-*` 和 `riscv64-unknown-elf-*` 工具链，
+并生成 38,400 字的板级镜像；也可以通过 `CROSS_COMPILE` 显式指定工具前缀。
+C_TEST0～2 不依赖 libc/newlib。
+
+源码克隆后可以先运行 `.\verify_lab_package.ps1` 检查工程结构和当前镜像。三项程序
+都重新生成后，运行 `.\verify_lab_package.ps1 -RequireProgramArtifacts` 可额外核对
+三组 COE/BIN/MEM、学号和当前选中程序。
 
 其中 `main.coe` 是服务器编译结果，`src/coe/main.mem` 是固定补齐为 38,400 个
 32 位字的统一映像。替换程序后先重新生成 `main.mem`：
