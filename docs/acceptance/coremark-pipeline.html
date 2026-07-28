@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>miniRV 最终版流水线 AXI 严格验收台</title>
+  <style>
+    :root{--nav:#101820;--ink:#18222c;--muted:#5c6873;--line:#bcc7d0;--bg:#eef1f4;--paper:#fff;--blue:#005a9c;--orange:#c55a00;--green:#147a3d;--code:#0d171f}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Segoe UI","Microsoft YaHei",sans-serif}
+    a{color:var(--blue)}code{font-family:Consolas,monospace}
+    aside{position:fixed;inset:0 auto 0 0;width:290px;background:var(--nav);color:#dce6ed;padding:20px;overflow:auto;z-index:10}
+    .brand{font:700 22px/1.3 Consolas,"Microsoft YaHei";border-bottom:1px solid #3b4b57;padding-bottom:15px}.brand small{display:block;color:#8ea1af;font:12px/1.5 "Segoe UI";margin-top:6px}
+    #search{width:100%;margin:16px 0 5px;padding:10px;background:#202e38;border:1px solid #526572;color:#fff;font-size:15px}.hint{color:#ffd078;font-size:12px;min-height:20px}
+    nav a{display:block;color:#c3d0d9;text-decoration:none;padding:8px 10px;border-left:4px solid transparent}nav a:hover,nav a.active{background:#21323e;border-color:#42aed0;color:#fff}
+    .status{border:1px solid #42535f;padding:10px;margin-top:18px;font-size:12px;color:#adbdc8}.status b{color:#69da96}
+    main{margin-left:290px}.bar{position:sticky;top:0;z-index:8;background:#ffffffed;border-bottom:1px solid var(--line);padding:9px 28px;display:flex;gap:8px;align-items:center;backdrop-filter:blur(8px)}
+    button,.btn{border:1px solid #8d9ba6;background:#fff;padding:7px 11px;color:#26333c;cursor:pointer;text-decoration:none;font:14px "Segoe UI"}button:hover,.btn:hover{border-color:var(--blue);color:var(--blue)}
+    section{max-width:1360px;margin:auto;padding:48px 38px 24px;scroll-margin-top:55px}.hero{max-width:none;background:#173247;color:#fff;padding-top:58px;padding-bottom:48px}.hero>div{max-width:1284px;margin:auto}
+    .hero h1{font-size:40px;line-height:1.15;margin:8px 0 12px}.hero p{font-size:20px;color:#d4e2ea;max-width:960px}.eyebrow{font:700 13px Consolas;color:#6ed1e9;letter-spacing:1.2px}
+    h2{font-size:30px;border-bottom:3px solid var(--blue);padding-bottom:8px;margin:0 0 20px}h3{font-size:21px;margin:20px 0 8px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+    .card{background:var(--paper);border:1px solid var(--line);padding:18px;box-shadow:0 2px 9px #15253614}.card h3:first-child{margin-top:0}.metric{font:700 29px Consolas;color:var(--blue)}
+    .tag{display:inline-block;border:1px solid #82909a;padding:2px 7px;margin-right:4px;font:12px Consolas}.tag.hot{border-color:#f7a35d;color:#ffd1a8}
+    .callout{border-left:5px solid var(--blue);background:#e7f2fa;padding:14px 17px;margin:16px 0}.callout.warn{border-color:var(--orange);background:#fff0e5}.callout.good{border-color:var(--green);background:#eaf7ef}
+    table{border-collapse:collapse;width:100%;background:#fff}th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}th{background:#e4eaf0;font-size:14px}
+    pre{position:relative;background:var(--code);color:#d8e6ef;padding:17px 19px;overflow:auto;border-left:5px solid #2588a6;font:14px/1.55 Consolas,monospace}pre code{background:none;padding:0}:not(pre)>code{background:#e4eaf0;padding:2px 5px}
+    .copy{position:absolute;right:6px;top:6px;background:#1c2a34;color:#d9e4ea;border-color:#52636f;padding:3px 7px}
+    .tree{white-space:pre;background:#f6f8fa;border:1px solid var(--line);padding:17px;font:15px/1.55 Consolas,monospace;overflow:auto}
+    .figure{background:#fff;border:1px solid var(--line);margin:14px 0}.figure img{width:100%;max-height:690px;display:block;object-fit:contain;cursor:zoom-in}.figure figcaption{border-top:1px solid var(--line);padding:8px 12px;color:var(--muted);font-size:13px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.gallery img{height:240px}
+    details{background:#fff;border:1px solid var(--line);margin:8px 0}summary{cursor:pointer;padding:11px 14px;background:#e9eef2;font-weight:700}details>div{padding:4px 15px 15px}
+    .file{font:13px Consolas;word-break:break-all}.hidden{display:none!important}.pass{color:var(--green);font-weight:700}
+    .light{display:none;position:fixed;inset:0;background:#06111bef;z-index:50;align-items:center;justify-content:center;padding:28px}.light.open{display:flex}.light img{max-width:97vw;max-height:92vh;background:#fff}.light button{position:absolute;right:20px;top:14px;font-size:25px}
+    footer{margin-left:290px;text-align:center;color:#64717b;padding:30px}
+    @media(max-width:980px){aside{position:static;width:auto}aside nav{display:grid;grid-template-columns:repeat(2,1fr)}main,footer{margin-left:0}.c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}.gallery{grid-template-columns:1fr 1fr}}
+    @media(max-width:620px){section{padding:35px 16px}.gallery{grid-template-columns:1fr}aside nav{grid-template-columns:1fr}.hero h1{font-size:32px}}
+    @media print{aside,.bar,.copy,button{display:none!important}main,footer{margin:0}section{break-before:page;padding:18px;max-width:none}.hero{break-before:auto}.card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <aside>
+    <div class="brand">miniRV FINAL<br>DEFENSE CONSOLE<small>CoreMark · 五级流水 · AXI · EGO1</small></div>
+    <input id="search" placeholder="搜：load-use / JALR / UART / WNS">
+    <div id="hint" class="hint">输入问题关键词，自动筛选问答块</div>
+    <nav>
+      <a href="#home">0 / 最终版主线</a><a href="#basic">1 / 基础问题</a>
+      <a href="#framework">2 / 框架与全部代码</a><a href="#pipeline">3 / 五级流水</a>
+      <a href="#hazards">4 / 冒险处理</a><a href="#instructions">5 / 具体指令</a>
+      <a href="#waveform">6 / 波形逐周期</a><a href="#axi">7 / AXI 与 MMIO</a>
+      <a href="#debug">8 / 调试与 ILA</a><a href="#coremark">9 / CoreMark 证据</a>
+      <a href="#qa">10 / 严格追问</a>
+    </nav>
+    <div class="status"><b>最终版本</b><br>Pipeline Basic 45/45<br>Pipeline AXI 45/45<br>CoreMark 32 s / CRC validated<br><br>答题：原理 → 代码 → 信号 → 证据</div>
+  </aside>
+  <main>
+    <div class="bar"><button onclick="move(-1)">← 上一节</button><button onclick="move(1)">下一节 →</button><a class="btn" href="./COREMARK_PIPELINE_AXI_DEFENSE.md">完整代码讲稿</a><a class="btn" href="./WAVEFORM_DEFENSE.md">完整波形讲稿</a><a class="btn" href="./module-waveforms.html">模块＋波形</a><a class="btn" href="./index.html">五项留档</a><button onclick="print()">打印 / PDF</button></div>
+
+    <section class="hero" id="home"><div><div class="eyebrow">STRICT ACCEPTANCE MODE · FINAL VERSION</div><h1>最终版流水线 AXI SoC 严格验收台</h1><p>主讲同学讲完整逻辑；辅助同学用搜索框快速给出文件、行号、信号、指令和证据。</p><span class="tag hot">懂框架</span><span class="tag hot">懂代码</span><span class="tag hot">懂调试</span><span class="tag">具体指令</span><span class="tag">逐周期波形</span></div></section>
+    <section><h2>现场主线</h2><div class="grid"><div class="card c3"><div class="metric">① 框架</div><p>core 与 AXI/板级外设解耦。</p></div><div class="card c3"><div class="metric">② 代码</div><p>valid、forward、stall、flush、freeze。</p></div><div class="card c3"><div class="metric">③ 调试</div><p>PC→AXI→stage→WB/MMIO。</p></div><div class="card c3"><div class="metric">④ 证据</div><p>45/45 + VCD + 实板 CoreMark。</p></div></div><div class="callout good"><b>30 秒总述：</b>最终版是无 Cache、单发射、按序五级 RV32IM 流水线。core 处理数据和控制冒险、AXI 等待与 M 扩展长延迟；cpu_top 解决响应拍重复请求和分支过期取指；板级 AXI Slave 连接 150 KiB BRAM、UART、LED、数码管和计时器。流水线 Basic/AXI Trace 均 45/45，CoreMark 实板 CRC validated。</div></section>
+
+    <section id="basic"><h2>1 / 基础问题</h2><div class="grid">
+      <article class="card c4 find" data-key="流水线 五级 吞吐 延迟 CPI"><h3>流水线是什么？</h3><p>IF/ID/EX/MEM/WB 分工，不同指令并行占用不同级。提高吞吐，不保证单条延迟。理想 CPI≈1，AXI、load-use、M 扩展使实际更高。</p></article>
+      <article class="card c4 find" data-key="valid bubble stall flush 空泡 暂停 冲刷"><h3>valid / bubble / stall / flush</h3><p>valid=真实指令；bubble=valid 0；stall=寄存器保持；flush=错误路径 valid 清零。波形先看 valid。</p></article>
+      <article class="card c4 find" data-key="RAW WAR WAW 数据冒险"><h3>为什么主要是 RAW？</h3><p>按序发射、执行、提交且单 WB 口，年轻指令不能越过老指令，因此处理后读等待前写的 RAW。</p></article>
+      <article class="card c4 find" data-key="控制冒险 分支 预测"><h3>控制冒险</h3><p>无预测，EX 解析；taken flush IF/ID 和 ID/EX，旧 AXI 取指响应被过滤。</p></article>
+      <article class="card c4 find" data-key="结构冒险 AXI 仲裁"><h3>结构冒险</h3><p>唯一 AXI Master 被取指/数据共享；优先级 data write &gt; data read &gt; instruction read。</p></article>
+      <article class="card c4 find" data-key="AXI valid ready 五通道"><h3>VALID/READY</h3><p>同拍都为 1 才握手。AW/W/B 为写地址/数据/响应，AR/R 为读地址/数据；AW/W 可不同拍。</p></article>
+    </div></section>
+
+    <section id="framework"><h2>2 / 框架与全部代码</h2><div class="grid"><div class="card c5"><h3>实例层级</h3><div class="tree">miniRV_SoC
+├─ PLL + reset_sync + ILA
+├─ cpu_top
+│  ├─ cpu_core
+│  │  ├─ pipeline_regs
+│  │  ├─ Controller / RF / SEXT
+│  │  ├─ forward_unit / ALU
+│  │  └─ MREQ / MEXT
+│  └─ axi_master
+└─ axi_board_soc
+   ├─ board_bram (IROM + DRAM)
+   ├─ simple_uart
+   └─ sevenseg_display</div></div><div class="card c7"><figure class="figure"><img src="../course-report/figures/04_pipeline_datapath.png" alt="最终版流水线数据通路"><figcaption>点击放大；先沿粗线讲 IF→WB，再讲红色冒险控制</figcaption></figure></div></div>
+      <table class="find" data-key="全部代码 模块 文件"><thead><tr><th>层</th><th>代码</th><th>必须会说</th></tr></thead><tbody>
+        <tr><td>顶层</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/miniRV_SoC.v">miniRV_SoC.v</a></td><td>Trace/板级、PLL/reset、ILA</td></tr>
+        <tr><td>适配</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/cpu_top.v">cpu_top.v</a></td><td>请求防重、过期取指</td></tr>
+        <tr><td>核心</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/cpu_core.v">cpu_core.v</a></td><td>五级、hazard、forward、freeze、WB</td></tr>
+        <tr><td>级间</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/pipeline/pipeline_regs.v">pipeline_regs.v</a></td><td>四组寄存器、valid/stall/flush</td></tr>
+        <tr><td>译码</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/Controller.v">Controller.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/RF.v">RF.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/SEXT.v">SEXT.v</a></td><td>控制、x0、立即数</td></tr>
+        <tr><td>执行</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/pipeline/forward_unit.v">forward_unit.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/ALU.v">ALU.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/pipeline/ALU_multicycle.v">ALU_multicycle.v</a></td><td>前递、分支、M busy</td></tr>
+        <tr><td>M扩展</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/multiplier.v">multiplier.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/divider.v">divider.v</a></td><td>移位加法、逐位除法</td></tr>
+        <tr><td>访存</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/MREQ.v">MREQ.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/MEXT.v">MEXT.v</a></td><td>WSTRB/lane、符号扩展</td></tr>
+        <tr><td>AXI</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/axi_master.v">axi_master.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/axi_board_soc.v">axi_board_soc.v</a></td><td>五通道、BRAM/MMIO</td></tr>
+        <tr><td>外设</td><td class="file"><a href="../../miniRV_pipeline_axi_ego1/src/rtl/board_bram.v">board_bram.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/simple_uart.v">simple_uart.v</a> · <a href="../../miniRV_pipeline_axi_ego1/src/rtl/sevenseg_display.v">sevenseg_display.v</a></td><td>150 KiB、115200 8N1、扫描</td></tr>
+      </tbody></table><div class="callout"><a href="./COREMARK_PIPELINE_AXI_DEFENSE.md">逐文件完整解释与行号索引</a></div>
+    </section>
+
+    <section id="pipeline"><h2>3 / 五级流水</h2>
+      <article class="find" data-key="IF 取指 地址 PC"><h3>IF：地址什么时候提出？</h3><pre><button class="copy">复制</button><code>// cpu_core.v:29-35, 437-439
+if (ex_bj_f) pc &lt;= ex_bj_target;
+else if (ifetch_valid &amp;&amp; !stall_if) pc &lt;= pc + 4;
+assign ifetch_addr = ex_bj_f ? ex_bj_target : pc;</code></pre><p>地址出现不等于取到指令；AR 握手接受地址，R 握手返回数据，ifetch_valid 周期结束时 IF/ID 才锁存。</p></article>
+      <div class="grid"><article class="card c6 find" data-key="ID 译码 RF SEXT"><h3>ID：什么时候译码？</h3><p>IF/ID 上升沿锁存 id_inst 后，整个周期组合译码、读 RF、扩展立即数；下一上升沿进入 ID/EX。</p></article><article class="card c6 find" data-key="EX ALU 前递 分支"><h3>EX</h3><p>先选前递操作数，再做 ALU/分支/地址计算；taken 当周期产生 target/flush。</p></article><article class="card c6 find" data-key="MEM 访存 MREQ MEXT"><h3>MEM</h3><p>MREQ 形成地址/WSTRB，MEXT 做 load 子字节扩展，memory_freeze 等 AXI 完成。</p></article><article class="card c6 find" data-key="WB 写回 退休"><h3>WB</h3><p><code>wb_valid &amp;&amp; wb_rf_we</code> 时写 RF；结果来自 ALU/RAM/PC+4/EXT。</p></article></div>
+      <pre class="find" data-key="WB 选择"><code>WB_ALU → 算术/AUIPC/M扩展
+WB_RAM → load
+WB_PC4 → JAL/JALR
+WB_EXT → LUI</code></pre>
+    </section>
+
+    <section id="hazards"><h2>4 / 冒险处理</h2><div class="grid">
+      <article class="card c6 find" data-key="RAW 前递 add sub"><h3>普通 RAW</h3><pre><code>add x3,x1,x2
+sub x4,x3,x5</code></pre><p>sub 在 EX、add 在 MEM 时 forward=01；生产者在 WB 时 forward=10。MEM 优先。</p></article>
+      <article class="card c6 find" data-key="load-use lw addi bubble"><h3>load-use</h3><pre><code>lw x2,0(x1)
+addi x3,x2,1</code></pre><p>stall_if 保持 PC/IF-ID，id_valid_for_ex=0 注入 bubble；数据到 WB 后 forward=10。</p></article>
+      <article class="card c4 find" data-key="store 数据前递 sw"><h3>store data</h3><p>rs1 地址和 rs2 写数据分别前递，<code>fwd_store_data</code> 写入 EX/MEM。</p></article>
+      <article class="card c4 find" data-key="分支 flush stale"><h3>控制冒险</h3><p>EX taken→target+flush；pending address 过滤旧 AXI 返回。</p></article>
+      <article class="card c4 find" data-key="M扩展 busy mul div"><h3>M 长延迟</h3><p>启动拍即 busy，锁存前递后操作数；完成后进 MEM，bubble 不重启旧 M。</p></article>
+    </div>
+    <pre class="find" data-key="load_use_hazard 代码"><button class="copy">复制</button><code>wire load_use_hazard = ex_is_load &amp;&amp; ex_rf_we &amp;&amp; (ex_rd != 0) &amp;&amp;
+ ((id_uses_rs1 &amp;&amp; ex_rd == id_rs1) ||
+  (id_uses_rs2 &amp;&amp; ex_rd == id_rs2));</code></pre>
+    <div class="callout warn"><b>实板关键 bug：</b>旧逻辑使进入 EX 的 load/M 仍留在 ID，完成后重复执行，UART 状态轮询会把返回值错误前递成地址。最终区分真实依赖、duplicate 和 active freeze，UART/CoreMark 才通过。</div></section>
+
+    <section id="instructions"><h2>5 / 具体指令</h2><table class="find" data-key="指令 ADDI ADD LW LH LHU SB SH SW BEQ JAL JALR LUI AUIPC MUL DIV REM">
+      <thead><tr><th>指令</th><th>沿数据通路</th><th>追问点</th></tr></thead><tbody>
+      <tr><td><code>addi x3,x0,42</code></td><td>EXT_I→ADD→WB_ALU</td><td>x0 读 0、禁止写</td></tr>
+      <tr><td><code>add x4,x3,x5</code></td><td>两源可前递→EX 加→WB</td><td>MEM/WB 优先级</td></tr>
+      <tr><td><code>lh x5,1(x1)</code></td><td>EX 地址→AXI 对齐读整字→MEXT offset1 符号扩展→WB_RAM</td><td>lh/lhu</td></tr>
+      <tr><td><code>sb x5,2(x1)</code></td><td>WSTRB=0100，低 8 位移到 lane2，等 B</td><td>AWADDR 对齐</td></tr>
+      <tr><td><code>sw x5,0(x1)</code></td><td>store data 前递，WSTRB=1111，B 响应完成</td><td>一次提交</td></tr>
+      <tr><td><code>beq x1,x2,L</code></td><td>EXT_B→EX 前递比较→taken flush</td><td>末位补 0</td></tr>
+      <tr><td><code>jal/jalr</code></td><td>目标 PC+imm / rs1+imm&amp;~1，rd=PC+4</td><td>JALR rs1 前递</td></tr>
+      <tr><td><code>lui/auipc</code></td><td>LUI 写 U-imm；AUIPC 写 PC+U-imm</td><td>WB_EXT/WB_ALU</td></tr>
+      <tr><td><code>mul/div/rem</code></td><td>EX 多周期、busy freeze、完成后 WB_ALU</td><td>除零/连续 M</td></tr>
+    </tbody></table><div class="callout"><a href="./COREMARK_PIPELINE_AXI_DEFENSE.md">完整指令逐级分析</a></div></section>
+
+    <section id="waveform"><h2>6 / 波形逐周期</h2><div class="callout warn"><b>读图纪律：</b>上升沿→valid→stage PC→控制/数据。地址变≠已接受，RDATA 变≠读完成，只有 VALID&&READY 才握手。</div>
+      <figure class="figure"><img src="../course-report/figures/06a_pipeline_load_use_hazard.png" alt="load-use波形"><figcaption>PC=4 的 lw 与 PC=8 的 dependent addi；点击放大</figcaption></figure>
+      <table class="find" data-key="load-use 波形 周期 取指 译码 EX MEM WB"><thead><tr><th>阶段</th><th>指令状态</th><th>波形解释</th></tr></thead><tbody>
+        <tr><td>lw 在 EX，addi 在 ID</td><td>rd2 命中 rs1=2</td><td>load_use=1，stall_if=1，下一拍 EX bubble</td></tr>
+        <tr><td>lw 在 MEM</td><td>addi 保持</td><td>daccess_ren=F、地址 0x10；memory_freeze 等 R</td></tr>
+        <tr><td>R response</td><td>load 数据=42</td><td>daccess_rvalid=1，解除 freeze</td></tr>
+        <tr><td>addi x3 在 EX</td><td>load 在 WB</td><td>forward_a=10，得到 42，算 43</td></tr>
+        <tr><td>addi x4 在 EX</td><td>x3 在 MEM</td><td>forward_a=01，得到 43，算 45</td></tr>
+      </tbody></table>
+      <div class="gallery"><figure class="figure"><img src="../course-report/figures/06b_no_cache_axi_read.png" alt="AXI读"><figcaption>AR 地址→R 数据</figcaption></figure><figure class="figure"><img src="../course-report/figures/06c_no_cache_axi_write.png" alt="AXI写"><figcaption>AW/W 独立→B 响应</figcaption></figure><figure class="figure"><img src="../course-report/figures/05_axi_state_machine.png" alt="AXI状态机"><figcaption>单事务状态机</figcaption></figure></div>
+      <div class="callout"><a href="./WAVEFORM_DEFENSE.md">取地址→译码→EX→MEM→WB、branch、M 扩展、UART 的完整信号字典</a></div></section>
+
+    <section id="axi"><h2>7 / AXI 与 MMIO</h2><pre class="find" data-key="AXI 状态机"><code>IDLE
+├─ READ  → RADDR --AR--> RDATA --R--> IDLE
+└─ WRITE → WSEND --AW和W均完成--> WRESP --B--> IDLE</code></pre>
+      <div class="grid"><article class="card c6 find" data-key="重复事务 response 41 45"><h3>响应拍防重</h3><p>Master response 同拍回 IDLE，core 下一沿才撤旧请求；cpu_top 在 response 拍屏蔽请求，AXI Trace 从 41/45 修到 45/45。</p></article><article class="card c6 find" data-key="过期取指 stale pending"><h3>过期取指</h3><p>接受取指时记录 pending word address，返回时仅在它仍等于当前 core 地址时产生 ifetch_valid。</p></article></div>
+      <table class="find" data-key="MMIO 地址 LED 数码管 UART timer"><tr><th>地址</th><th>内容</th><th>CoreMark</th></tr><tr><td><code>00000000..000257FF</code></td><td>IROM 50 KiB + DRAM 100 KiB</td><td>代码、栈、数据</td></tr><tr><td><code>FFFF1000</code></td><td>LED</td><td>PASS/error</td></tr><tr><td><code>FFFF2000</code></td><td>数码管</td><td>C0DE600D</td></tr><tr><td><code>FFFF3000..C</code></td><td>UART</td><td>结果输出</td></tr><tr><td><code>FFFF4000/+8</code></td><td>64-bit timer</td><td>ticks</td></tr></table></section>
+
+    <section id="debug"><h2>8 / 调试与 ILA</h2><table class="find" data-key="调试 ILA LED 串口 PC reset pll rx 41"><thead><tr><th>现象</th><th>先看</th><th>再查</th></tr></thead><tbody>
+      <tr><td>LED/串口全无</td><td>pll_lock、sys_rst、PC</td><td>第一笔 AR</td></tr><tr><td>AR 握手，R 不来</td><td>ARADDR</td><td>AXI Slave/BRAM pending</td></tr><tr><td>R 握手，ifetch_valid 0</td><td>pending/current addr</td><td>是否正常过滤旧取指</td></tr><tr><td>PC 发 A 无反应</td><td>raw RX→sync→state→valid→data</td><td>CPU 是否读 FFFF3008/3000</td></tr><tr><td>rx_data 一直 41</td><td>UART load 地址</td><td>load duplicate/WB 前递</td></tr><tr><td>MUL 错</td><td>operation_start/busy/a/b</td><td>启动拍 freeze</td></tr>
+    </tbody></table><div class="grid"><div class="card c4"><code>[173]</code> PLL<br><code>[172]</code> reset<br><code>[171:140]</code> PC<br><code>[139:138]</code> ifetch</div><div class="card c4"><code>[137:106]</code> ARADDR<br><code>[105:74]</code> RDATA<br><code>[73:70]</code> AR/R</div><div class="card c4"><code>[69:38]</code> AWADDR<br><code>[37:6]</code> WDATA<br><code>[5:0]</code> AW/W/B</div></div></section>
+
+    <section id="coremark"><h2>9 / CoreMark 证据</h2><div class="grid"><div class="card c5"><table><tr><th>频率</th><td>50 MHz</td></tr><tr><th>运行</th><td>32 s / 700 iterations</td></tr><tr><th>CoreMark</th><td>21.250</td></tr><tr><th>/MHz</th><td>0.425</td></tr><tr><th>校验</th><td class="pass">Correct operation validated</td></tr><tr><th>结束码</th><td><code>C0DE600D</code></td></tr></table><p>高-低-高读 timer，避免低 32 位回卷拼接错误。CoreMark/MHz 不是 IPC/CPI。</p></div><div class="card c7"><figure class="figure"><img src="../course-report/board-evidence/coremark/serial-result.png" alt="CoreMark串口结果"><figcaption>时间、迭代、四组 CRC、validated、得分、FINISH</figcaption></figure></div></div><div class="gallery"><figure class="figure"><img src="../course-report/board-evidence/coremark/board-1.jpg" alt="CoreMark板卡"><figcaption>实板</figcaption></figure><figure class="figure"><img src="../course-report/board-evidence/coremark/board-2.jpg" alt="C0DE600D"><figcaption>C0DE600D</figcaption></figure><figure class="figure"><img src="../course-report/board-evidence/pipeline/implementation-status.png" alt="Vivado实现"><figcaption>WNS 1.702 ns</figcaption></figure></div></section>
+
+    <section id="qa"><h2>10 / 严格追问</h2>
+      <details class="find" data-key="分支罚时 两拍"><summary>分支罚几拍？</summary><div>EX 解析后清两个年轻位置；AXI 取指等待还会增加代价，不能说所有情况固定恰好两拍。无预测。</div></details>
+      <details class="find" data-key="AXI4 Lite"><summary>AXI4 还是 AXI4-Lite？</summary><div>端口保留 AXI4 len/size/burst/last，固定 len=0、单 beat、32 位 INCR，不支持多 outstanding，是单拍 AXI4 子集。</div></details>
+      <details class="find" data-key="CoreMark 分数 低 性能"><summary>分数为什么不高？</summary><div>单发射、无 Cache、单事务 AXI、M 多周期；当前先证明持续正确性，后续优化主频、Cache、总线吞吐和乘除法。</div></details>
+      <details class="find" data-key="WNS TNS 时序"><summary>WNS 1.702 ns 表示什么？</summary><div>最差建立时间仍有正余量；TNS=0、0 failing endpoints 表示满足当前时钟约束，改频必须重新实现。</div></details>
+      <details class="find" data-key="BRAM 96 ILA"><summary>BRAM 为什么 96%？</summary><div>截图来自带 ILA 构建，ILA 占 BRAM；工程还有 150 KiB 存储。不能当纯 CPU 核心面积。</div></details>
+      <details class="find" data-key="Trace 实板 两套 ALU"><summary>为什么 Trace/实板两套 ALU？</summary><div>同一数据通路；Trace 组合 M 匹配参考环境，实板迭代 M 改善时序并用 busy 冻结，不是两套 CPU。</div></details>
+    </section>
+  </main>
+  <div class="light" id="light"><button>×</button><img alt="放大图"></div><footer>miniRV final defense console · offline · 2024311081_2024311453</footer>
+  <script>
+    const nav=[...document.querySelectorAll("nav a")], secs=[...document.querySelectorAll("main section[id]")];
+    function active(){let s=secs[0];for(const x of secs)if(x.getBoundingClientRect().top<150)s=x;nav.forEach(a=>a.classList.toggle("active",a.hash==="#"+s.id))}
+    addEventListener("scroll",active,{passive:true});active();function move(d){let i=nav.findIndex(a=>a.classList.contains("active"));i=Math.max(0,Math.min(nav.length-1,(i<0?0:i)+d));location.hash=nav[i].hash}
+    document.querySelectorAll(".copy").forEach(b=>b.onclick=async()=>{const t=b.parentElement.innerText.replace(/^复制\\s*/,"");try{await navigator.clipboard.writeText(t);b.textContent="已复制";setTimeout(()=>b.textContent="复制",1000)}catch{b.textContent="手动选择"}});
+    const light=document.getElementById("light"),pic=light.querySelector("img");document.querySelectorAll(".figure img").forEach(i=>i.onclick=()=>{pic.src=i.src;pic.alt=i.alt;light.classList.add("open")});function close(){light.classList.remove("open");pic.src=""}light.querySelector("button").onclick=close;light.onclick=e=>{if(e.target===light)close()};addEventListener("keydown",e=>{if(e.key==="Escape")close();if(e.key==="ArrowLeft"&&!light.classList.contains("open"))move(-1);if(e.key==="ArrowRight"&&!light.classList.contains("open"))move(1)});
+    const input=document.getElementById("search"),hint=document.getElementById("hint");input.addEventListener("input",()=>{const q=input.value.trim().toLowerCase();let n=0;document.querySelectorAll(".find").forEach(e=>{const ok=!q||(e.dataset.key+" "+e.innerText).toLowerCase().includes(q);e.classList.toggle("hidden",!ok);if(q&&ok)n++});hint.textContent=q?`找到 ${n} 个相关块；清空恢复全部`:"输入问题关键词，自动筛选问答块"});
+  </script>
+</body>
+</html>

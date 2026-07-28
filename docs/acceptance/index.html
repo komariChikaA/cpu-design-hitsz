@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>miniRV 五项验收台</title>
+  <style>
+    :root{
+      --ink:#17212b;--muted:#5f6b76;--line:#c9d1d9;--paper:#f4f6f8;
+      --panel:#fff;--nav:#111a22;--blue:#005ea8;--cyan:#0d7b8a;--orange:#c75b00;
+      --green:#147d3f;--red:#a33131;--code:#0e1821;--shadow:0 2px 12px #0b172318;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif;font-size:17px;line-height:1.65}
+    a{color:var(--blue)}
+    button{font:inherit}
+    .sidebar{position:fixed;inset:0 auto 0 0;width:280px;background:var(--nav);color:#eaf0f5;padding:22px 18px;overflow:auto;z-index:20}
+    .brand{border-bottom:1px solid #40505e;padding:0 8px 18px;margin-bottom:18px}
+    .brand b{font:700 24px/1.2 Consolas,"Microsoft YaHei";letter-spacing:.5px}
+    .brand span{display:block;color:#9fb0bf;font-size:13px;margin-top:8px}
+    nav a{display:block;color:#c9d5df;text-decoration:none;padding:10px 12px;margin:3px 0;border-left:4px solid transparent}
+    nav a:hover,nav a.active{background:#22313d;color:#fff;border-left-color:#4bb5da}
+    .nav-status{margin:22px 8px 0;padding:12px;border:1px solid #41515e;color:#b9c6d0;font-size:13px}
+    .nav-status strong{color:#70d99a}
+    main{margin-left:280px}
+    .topbar{position:sticky;top:0;z-index:10;background:#fffffff2;border-bottom:1px solid var(--line);backdrop-filter:blur(8px);padding:11px 34px;display:flex;gap:10px;align-items:center}
+    .topbar button,.copy,.open-btn{border:1px solid #9aa8b4;background:#fff;color:#26333e;padding:7px 12px;cursor:pointer}
+    .topbar button:hover,.copy:hover,.open-btn:hover{border-color:var(--blue);color:var(--blue)}
+    .progress{height:4px;background:#d8dee4;flex:1;max-width:340px;margin-left:auto}
+    .progress i{display:block;height:100%;background:var(--blue);width:0}
+    section{max-width:1320px;margin:0 auto;padding:56px 44px 30px;scroll-margin-top:55px}
+    .hero{max-width:none;background:linear-gradient(110deg,#16334b,#0e1a24);color:#fff;padding-top:64px;padding-bottom:54px}
+    .hero-inner{max-width:1230px;margin:auto}
+    .eyebrow{font:700 14px Consolas,monospace;letter-spacing:1.4px;color:#73cce7;text-transform:uppercase}
+    h1{font-size:43px;line-height:1.14;margin:12px 0 12px}
+    h2{font-size:31px;line-height:1.25;border-bottom:3px solid var(--blue);padding-bottom:10px;margin:0 0 22px}
+    h3{font-size:22px;margin:27px 0 10px}
+    .lead{font-size:20px;max-width:940px;color:#d8e5ed}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .badge{border:1px solid #587184;background:#ffffff0e;padding:8px 12px;font:600 14px Consolas,"Microsoft YaHei"}
+    .badge.ok{border-color:#3f9865;color:#87e0a7}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);padding:21px}
+    .span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+    .card h3{margin-top:0}
+    .metric{font:700 35px Consolas,monospace;color:var(--blue)}
+    .metric small{font:500 14px "Segoe UI","Microsoft YaHei";color:var(--muted)}
+    .callout{border-left:5px solid var(--blue);background:#eaf4fb;padding:15px 18px;margin:18px 0}
+    .callout.warn{border-color:var(--orange);background:#fff2e8}
+    .callout.good{border-color:var(--green);background:#edf8f1}
+    .callout strong{display:block;margin-bottom:3px}
+    table{width:100%;border-collapse:collapse;background:#fff}
+    th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+    th{background:#e7edf2;font-size:14px}
+    code,kbd{font-family:Consolas,"SFMono-Regular",monospace}
+    code{background:#e7edf2;padding:2px 5px}
+    pre{position:relative;background:var(--code);color:#d8e6ef;padding:18px 20px;overflow:auto;border-left:5px solid #2d93b2;font:15px/1.55 Consolas,monospace}
+    pre code{background:transparent;padding:0;color:inherit}
+    .copy{position:absolute;right:7px;top:7px;background:#1d2c37;color:#cfe1eb;border-color:#536673;font-size:12px;padding:4px 8px}
+    .path-list{list-style:none;padding:0;margin:0}
+    .path-list li{border-top:1px solid #dce2e7;padding:10px 0}
+    .path-list li:first-child{border-top:0}
+    .path-list a{font-family:Consolas,monospace;font-size:14px;word-break:break-all}
+    .figure{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);margin:18px 0}
+    .figure img{display:block;width:100%;max-height:680px;object-fit:contain;background:#fff;cursor:zoom-in}
+    .figure figcaption{border-top:1px solid var(--line);padding:10px 14px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:10px}
+    .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .gallery .figure{margin:0}
+    .gallery .figure img{height:245px}
+    .steps{counter-reset:step;list-style:none;padding:0}
+    .steps li{counter-increment:step;position:relative;padding:3px 0 18px 52px;min-height:48px}
+    .steps li:before{content:counter(step);position:absolute;left:0;top:0;width:34px;height:34px;border:2px solid var(--blue);color:var(--blue);font:700 18px/30px Consolas;text-align:center;background:#fff}
+    .pass{color:var(--green);font-weight:700}.boundary{color:var(--orange);font-weight:700}
+    .talk{font-size:18px;background:#f7fafc;border:1px dashed #8999a6;padding:18px}
+    details{background:#fff;border:1px solid var(--line);margin:9px 0}
+    summary{cursor:pointer;font-weight:700;padding:12px 16px;background:#eef2f5}
+    details>div{padding:4px 16px 16px}
+    .lightbox{display:none;position:fixed;inset:0;background:#061019ed;z-index:100;align-items:center;justify-content:center;padding:34px}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:96vw;max-height:91vh;object-fit:contain;background:#fff}
+    .lightbox button{position:absolute;right:24px;top:18px;background:#fff;border:0;font-size:28px;width:44px;height:44px;cursor:pointer}
+    .footer{margin-left:280px;padding:28px 44px 45px;color:var(--muted);font-size:14px;text-align:center}
+    @media(max-width:980px){
+      .sidebar{position:static;width:auto}.sidebar nav{display:grid;grid-template-columns:repeat(2,1fr)}main,.footer{margin-left:0}.topbar{top:0}
+      .span-4,.span-5,.span-6,.span-7,.span-8{grid-column:span 12}.gallery{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:620px){section{padding:38px 18px}.topbar{padding:8px 14px}.gallery{grid-template-columns:1fr}.sidebar nav{grid-template-columns:1fr}h1{font-size:34px}}
+    @media print{
+      .sidebar,.topbar,.open-btn,.copy{display:none!important}main,.footer{margin:0}section{break-before:page;padding:22px;max-width:none}.hero{break-before:auto}
+      .card,.figure{box-shadow:none}.figure img{max-height:520px}details>div{display:block!important}
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><b>miniRV 验收台</b><span>RV32IM · AXI · EGO1 · 2026</span></div>
+    <nav id="nav">
+      <a href="#overview">0 / 总览与顺序</a>
+      <a href="#architecture">1 / 数据通路</a>
+      <a href="#single-axi">2 / 单周期 AXI Trace</a>
+      <a href="#pipeline-basic">3 / 流水线 Basic Trace</a>
+      <a href="#pipeline-axi">4 / 流水线 AXI Trace</a>
+      <a href="#ctest">5 / 单周期 C_TEST0～2</a>
+      <a href="#coremark">6 / 流水线 CoreMark</a>
+      <a href="#qa">7 / 老师追问</a>
+      <a href="#checklist">8 / 现场清单</a>
+    </nav>
+    <div class="nav-status"><strong>5 项证据已归档</strong><br>三类 Trace：45/45<br>单周期：C_TEST0～2<br>流水线：CoreMark validated</div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <button onclick="step(-1)">← 上一节</button>
+      <button onclick="step(1)">下一节 →</button>
+      <button onclick="window.print()">打印 / 导出 PDF</button>
+      <a class="open-btn" href="./README.md">完整 Markdown 讲稿</a>
+      <a class="open-btn" href="./coremark-pipeline.html">最终版严格验收台</a>
+      <a class="open-btn" href="./module-waveforms.html">模块＋波形索引</a>
+      <div class="progress"><i id="progress"></i></div>
+    </div>
+
+    <section class="hero" id="overview">
+      <div class="hero-inner">
+        <div class="eyebrow">Computer Design Acceptance Console</div>
+        <h1>miniRV 五项验收：从 RTL 到 EGO1 实板</h1>
+        <p class="lead">用数据通路、关键代码、定向波形、三组 Trace 日志和实板结果解释我们完成了什么，以及每一层证据究竟证明什么。</p>
+        <div class="badges">
+          <span class="badge ok">单周期 AXI Trace · 45/45</span>
+          <span class="badge ok">流水线 Basic Trace · 45/45</span>
+          <span class="badge ok">流水线 AXI Trace · 45/45</span>
+          <span class="badge ok">C_TEST0～2 · BOARD PASS</span>
+          <span class="badge ok">CoreMark · VALIDATED</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>验收顺序与证据边界</h2>
+      <div class="grid">
+        <div class="card span-4"><div class="metric">3 × 45/45</div><p>单周期 AXI、流水线 Basic、流水线 AXI 的真实课程 Trace。</p></div>
+        <div class="card span-4"><div class="metric">C_TEST 0–2</div><p>单周期 SoC 的 UART、格式化 I/O、排序、动态内存和板级 MMIO。</p></div>
+        <div class="card span-4"><div class="metric">21.250 <small>CoreMark</small></div><p>50 MHz 实板，700 次迭代，运行 32 秒，CRC 正确。</p></div>
+        <div class="card span-12">
+          <table>
+            <thead><tr><th>层次</th><th>先展示</th><th>再解释</th><th>最后给结论</th></tr></thead>
+            <tbody>
+              <tr><td>RTL 结构</td><td>数据通路图</td><td>模块边界和关键控制</td><td>设计为何能工作</td></tr>
+              <tr><td>功能验证</td><td>波形 / Trace 日志</td><td>周期级事件和提交语义</td><td>45/45、0 failed</td></tr>
+              <tr><td>物理系统</td><td>Vivado / 实板照片</td><td>时序、UART、MMIO、长时间运行</td><td>板级 PASS</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout warn"><strong>边界必须主动说明</strong>Trace 不等于上板；照片不替代可重建工程；当前无 Cache。AXI 图是直接总线事务，不是 Cache miss。</div>
+    </section>
+
+    <section id="architecture">
+      <h2>1 / 两条数据通路</h2>
+      <div class="grid">
+        <div class="span-6">
+          <figure class="figure"><img src="../course-report/figures/01_singlecycle_datapath.png" alt="单周期数据通路"><figcaption><span>单周期：控制、执行、访存请求在一条指令路径内完成</span><span>点击放大</span></figcaption></figure>
+        </div>
+        <div class="span-6">
+          <figure class="figure"><img src="../course-report/figures/04_pipeline_datapath.png" alt="流水线数据通路"><figcaption><span>流水线：IF / ID / EX / MEM / WB + valid / stall / flush</span><span>点击放大</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="talk"><strong>现场讲：</strong>CPU 核心只暴露 ifetch/daccess 请求响应接口，AXI 五通道由 cpu_top 和 axi_master 负责。流水线版增加四组流水寄存器、前递、load-use 暂停、分支冲刷以及长延迟操作冻结；这个解耦让 Basic 与 AXI 可以分层验收。</div>
+      <div class="grid">
+        <div class="card span-6"><h3>单周期代码入口</h3><ul class="path-list">
+          <li><a href="../../miniRV_singlecycle_axi/src/rtl/cpu_core.v">cpu_core.v — 数据通路与请求</a></li>
+          <li><a href="../../miniRV_singlecycle_axi/src/rtl/cpu_top.v">cpu_top.v — CPU / AXI 边界</a></li>
+          <li><a href="../../miniRV_singlecycle_axi/src/rtl/axi_master.v">axi_master.v — 五通道状态机</a></li>
+        </ul></div>
+        <div class="card span-6"><h3>流水线代码入口</h3><ul class="path-list">
+          <li><a href="../../miniRV_pipeline/src/rtl/cpu_core.v">cpu_core.v — 冒险、暂停与提交</a></li>
+          <li><a href="../../miniRV_pipeline/src/rtl/pipeline/pipeline_regs.v">pipeline_regs.v — 四组级间寄存器</a></li>
+          <li><a href="../../miniRV_pipeline/src/rtl/pipeline/forward_unit.v">forward_unit.v — EX/MEM 与 MEM/WB 前递</a></li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section id="single-axi">
+      <h2>2 / 单周期 AXI Trace</h2>
+      <div class="grid">
+        <div class="card span-5">
+          <h3>现场命令</h3>
+          <p>先按 <a href="../../miniRV_singlecycle_axi/README.md">单周期 AXI README</a> 的 AXI Trace 三步准备 RTL，再执行：</p>
+          <pre><button class="copy">复制</button><code>cd ~/cdp-tests
+make clean
+make
+python3 run_all_tests.py</code></pre>
+          <p class="pass">通过判据：Passed Tests (45)，Failed Tests (0)</p>
+          <ul class="path-list">
+            <li><a href="../../trace_test/miniRV_AXI_report.md">测试报告</a></li>
+            <li><a href="../../trace_test/miniRV_AXI_run_all_tests.log">完整日志</a></li>
+            <li><a href="../../miniRV_singlecycle_axi/src/rtl/axi_master.v">AXI Master RTL</a></li>
+          </ul>
+        </div>
+        <div class="card span-7">
+          <h3>状态机</h3>
+          <figure class="figure"><img src="../course-report/figures/05_axi_state_machine.png" alt="AXI 状态机"><figcaption><span>IDLE → RADDR/RDATA 或 WSEND/WRESP</span><span>点击放大</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="gallery">
+        <figure class="figure"><img src="../course-report/figures/06b_no_cache_axi_read.png" alt="AXI 读波形"><figcaption><span>读：AR 握手后等 R</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/figures/06c_no_cache_axi_write.png" alt="AXI 写波形"><figcaption><span>写：AW/W 独立，最后等 B</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/figures/02_lh_memory_waveform.png" alt="LH 波形"><figcaption><span>代表性访存：LH 符号扩展</span><span>放大</span></figcaption></figure>
+      </div>
+      <div class="talk"><strong>现场讲：</strong>读地址和读数据分两阶段；写地址和写数据可以不同拍握手；等待期间 VALID、地址和数据必须保持稳定。CPU 侧只在事务真正完成时看到一次响应。完整 RV32IM 经这条路径通过 45/45。</div>
+    </section>
+
+    <section id="pipeline-basic">
+      <h2>3 / 流水线 Basic Trace</h2>
+      <div class="grid">
+        <div class="card span-5">
+          <h3>现场命令</h3>
+          <pre><button class="copy">复制</button><code>bash miniRV_pipeline/prepare_trace.sh ~/cdp-tests
+cd ~/cdp-tests
+make clean
+make
+python3 run_all_tests.py</code></pre>
+          <p class="pass">通过判据：Basic Trace 45/45，0 failed</p>
+          <ul class="path-list">
+            <li><a href="../../trace_test/miniRV_pipeline_report.md">测试报告</a></li>
+            <li><a href="../../trace_test/miniRV_pipeline_run_all_tests.log">完整日志</a></li>
+            <li><a href="../../miniRV_pipeline/src/rtl/cpu_core.v">冒险与暂停代码</a></li>
+          </ul>
+        </div>
+        <div class="card span-7">
+          <h3>load-use 只插入必要的一拍</h3>
+          <figure class="figure"><img src="../course-report/figures/06a_pipeline_load_use_hazard.png" alt="load-use 波形"><figcaption><span>PC/IF-ID 保持，ID/EX 注入 bubble，再由写回路径前递</span><span>点击放大</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card span-4"><h3>前递</h3><p>普通 ALU 相关从 EX/MEM 或 MEM/WB 直接送回 EX，避免无意义停顿。</p></div>
+        <div class="card span-4"><h3>暂停</h3><p>load-use、访存等待和多周期乘除法分别产生精确的 stall/freeze。</p></div>
+        <div class="card span-4"><h3>冲刷</h3><p>分支、JAL、JALR 在 EX 重定向；年轻错误路径 valid 被清除，不会提交。</p></div>
+      </div>
+      <div class="talk"><strong>现场讲：</strong>最重要的是 valid 和提交级。停顿不是简单冻结所有信号：load-use 要保留前端并向 EX 插空泡；真正的外部等待才冻结活动流水级。Trace 来自 MEM/WB，确保冲刷指令不会被算作退休。</div>
+    </section>
+
+    <section id="pipeline-axi">
+      <h2>4 / 流水线 AXI Trace</h2>
+      <div class="grid">
+        <div class="card span-5">
+          <h3>现场命令</h3>
+          <pre><button class="copy">复制</button><code>bash miniRV_pipeline_axi/prepare_trace.sh ~/cdp-tests
+cd ~/cdp-tests
+make clean
+make
+python3 run_all_tests.py
+
+# 定向 RTL 回归
+bash miniRV_pipeline_axi/tests/run_iverilog.sh</code></pre>
+          <p class="pass">通过判据：AXI Trace 45/45，0 failed</p>
+          <ul class="path-list">
+            <li><a href="../../trace_test/miniRV_pipeline_axi_report.md">测试报告与 41→45 修复记录</a></li>
+            <li><a href="../../trace_test/miniRV_pipeline_axi_run_all_tests.log">完整日志</a></li>
+          </ul>
+        </div>
+        <div class="card span-7">
+          <h3>AXI 延迟带来的三个约束</h3>
+          <ol class="steps">
+            <li><strong>等待必须冻结：</strong><code>memory_freeze</code> 阻止未完成访存越过 MEM。</li>
+            <li><strong>响应只提交一次：</strong>store 的 <code>debug_mem_we</code> 只在写响应完成时脉冲。</li>
+            <li><strong>过期取指必须丢弃：</strong>分支后旧 PC 的在途 AXI 返回不能进入流水线。</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout good"><strong>41/45 到 45/45 的核心修复</strong>响应拍内屏蔽尚未撤销的旧请求，避免同一 store 被再次接受；同时让 Trace 写事件与 AXI 写响应一一对应。</div>
+      <div class="grid">
+        <div class="card span-6"><h3>关键代码</h3><ul class="path-list">
+          <li><a href="../../miniRV_pipeline_axi/src/rtl/cpu_core.v">cpu_core.v — memory_freeze / 单次写提交</a></li>
+          <li><a href="../../miniRV_pipeline_axi/src/rtl/cpu_top.v">cpu_top.v — 旧请求屏蔽 / 过期取指过滤</a></li>
+          <li><a href="../../miniRV_pipeline_axi/src/rtl/axi_master.v">axi_master.v — AXI 状态机</a></li>
+        </ul></div>
+        <div class="card span-6"><h3>与 Basic 的区别</h3><p>load-use 是内部数据尚未产生；AXI wait 是外部事务尚未完成。前者插入局部空泡，后者必须保持在途指令和请求状态，直到握手完成。</p></div>
+      </div>
+    </section>
+
+    <section id="ctest">
+      <h2>5 / 单周期 C_TEST0～2</h2>
+      <div class="callout"><strong>共用构建口径</strong>每换一个程序都要重新生成 bitstream。串口 115200 8N1、无流控；按 S6 RST，不按 S5 PROG#；Timing 必须 WNS ≥ 0、TNS = 0、0 failing endpoints。</div>
+      <div class="grid">
+        <div class="card span-4"><h3>C_TEST0 · UART/MMIO</h3><p>出现双学号、Test #0、Hello World；输入 A 后回显，数码管 <code>00000041</code>。</p><a href="../../miniRV_singlecycle_axi_ego1/software/c_test/0_uart_test/main.c">打开 main.c</a></div>
+        <div class="card span-4"><h3>C_TEST1 · 格式化 I/O</h3><p><code>123</code>→<code>0000007B</code>；<code>-42</code>→LED0 亮、<code>0000002A</code>；0 结束。</p><a href="../../miniRV_singlecycle_axi_ego1/software/c_test/1_formatIO_test/main.c">打开 main.c</a></div>
+        <div class="card span-4"><h3>C_TEST2 · 排序/动态内存</h3><p>固定数组升序并计时；动态数组排序；最后输出 <code>malloc released.</code>。</p><a href="../../miniRV_singlecycle_axi_ego1/software/c_test/2_sort_test/main.c">打开 main.c</a></div>
+      </div>
+      <div class="gallery">
+        <figure class="figure"><img src="../course-report/board-evidence/singlecycle/ctest0/uart-terminal.png" alt="C_TEST0 终端"><figcaption><span>C_TEST0：UART 双向通信</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/board-evidence/singlecycle/ctest1/terminal.png" alt="C_TEST1 终端"><figcaption><span>C_TEST1：格式化输入输出</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/board-evidence/singlecycle/ctest2/terminal-1.png" alt="C_TEST2 终端"><figcaption><span>C_TEST2：排序与计时</span><span>放大</span></figcaption></figure>
+      </div>
+      <div class="gallery" style="margin-top:14px">
+        <figure class="figure"><img src="../course-report/board-evidence/singlecycle/ctest0/implementation-status-1.png" alt="C_TEST0 实现状态"><figcaption><span>C_TEST0：Vivado 实现证据</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/board-evidence/singlecycle/ctest1/board-2.jpg" alt="C_TEST1 板卡"><figcaption><span>C_TEST1：板卡状态</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/board-evidence/singlecycle/ctest2/terminal-3.png" alt="C_TEST2 释放"><figcaption><span>C_TEST2：动态内存释放完成</span><span>放大</span></figcaption></figure>
+      </div>
+      <div class="talk"><strong>现场讲：</strong>这三项不是三个孤立 C 程序，而是逐步扩大系统覆盖：C_TEST0 验证 UART 双向和基础 MMIO；C_TEST1 验证格式化库、符号数和外设显示；C_TEST2 验证排序、计时器、较复杂控制流和动态内存。</div>
+    </section>
+
+    <section id="coremark">
+      <h2>6 / 流水线 CoreMark</h2>
+      <div class="grid">
+        <div class="card span-5">
+          <h3>有效实板结果</h3>
+          <table>
+            <tr><th>频率</th><td>50 MHz</td></tr>
+            <tr><th>运行</th><td>32 s / 700 iterations</td></tr>
+            <tr><th>CoreMark</th><td>21.250</td></tr>
+            <tr><th>CoreMark/MHz</th><td>0.425</td></tr>
+            <tr><th>校验</th><td class="pass">Correct operation validated</td></tr>
+            <tr><th>板卡结束码</th><td><code>C0DE600D</code></td></tr>
+          </table>
+          <h3>代码入口</h3>
+          <ul class="path-list">
+            <li><a href="../../miniRV_pipeline_axi_ego1/software/c_test/4_coremark/src/coremark/src/core_main.c">core_main.c — workload 与 CRC</a></li>
+            <li><a href="../../miniRV_pipeline_axi_ego1/software/c_test/4_coremark/src/coremark/core_portme.c">core_portme.c — 平台计时</a></li>
+            <li><a href="../../miniRV_pipeline_axi_ego1/software/c_test/4_coremark/src/common/sc_print.c">sc_print.c — UART MMIO</a></li>
+            <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/cpu_core.v">cpu_core.v — 实板流水线修复</a></li>
+          </ul>
+        </div>
+        <div class="card span-7">
+          <figure class="figure"><img src="../course-report/board-evidence/coremark/serial-result.png" alt="CoreMark 串口结果"><figcaption><span>四组 CRC、validated、得分和 FINISH 同屏</span><span>点击放大</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="gallery">
+        <figure class="figure"><img src="../course-report/board-evidence/coremark/board-1.jpg" alt="CoreMark 板卡 1"><figcaption><span>CoreMark 实板运行</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/board-evidence/coremark/board-2.jpg" alt="CoreMark 板卡 2"><figcaption><span>结束码 C0DE600D</span><span>放大</span></figcaption></figure>
+        <figure class="figure"><img src="../course-report/board-evidence/pipeline/implementation-status.png" alt="流水线实现状态"><figcaption><span>WNS 1.702 ns / 0 failing endpoints</span><span>放大</span></figcaption></figure>
+      </div>
+      <div class="talk"><strong>现场讲：</strong>分数不是唯一重点。CoreMark 连续运行 32 秒、完成 700 次迭代，四组 CRC 正确并输出 validated，证明控制流、访存、M 扩展长延迟、计时器和 UART 在持续负载下共同正确。</div>
+      <div class="callout warn"><strong>仍需补回的原始文件</strong>流水线/CoreMark 最终 bitstream、ltx、Timing Summary、Utilization 和 Power 原始报告目前不在仓库；现有截图和照片足以说明已跑通，但现场最好把实验室原始文件一并带上。</div>
+    </section>
+
+    <section id="qa">
+      <h2>7 / 老师追问与标准回答</h2>
+      <details open><summary>单周期 C_TEST0～2 和流水线 CoreMark 的区别？</summary><div>前者验证单周期 SoC 与板级外设联调；后者还要求五级流水、冒险处理、M 扩展长延迟和 AXI 等待在持续负载下同时正确。课程评分表中，单周期 C_TEST0～2 对应“良好”的板级目标，流水线 AXI + CoreMark 对应“优秀”目标。</div></details>
+      <details><summary>为什么 Basic Trace、AXI Trace、上板三个都要？</summary><div>Basic 隔离 CPU/流水线；AXI 加入可变延迟和握手；上板再验证 Vivado 时序、时钟复位、BRAM、UART 与真实引脚。三层定位不同，不能互相替代。</div></details>
+      <details><summary>流水线 AXI 最关键的 bug 是什么？</summary><div>AXI 响应出现时 Master 已可回到 IDLE，但核心到下一拍才撤销旧请求，旧 store 可能被重复接受；分支时还可能收到旧 PC 的在途取指。修复是响应拍屏蔽旧请求、写提交只脉冲一次、过滤过期取指。</div></details>
+      <details><summary>为什么没有 Cache？</summary><div>本次实现目标是无 Cache AXI SoC。CPU 请求接口与 AXI Master 已解耦，为后续插入 ICache/DCache 留出边界，但当前不声称已经实现 Cache。</div></details>
+      <details><summary>CoreMark 分数为什么不高？</summary><div>当前是单发射五级流水，访存走单事务 AXI/BRAM，M 扩展是多周期单元，也没有 Cache。当前先证明正确性；主频、Cache、AXI 吞吐和乘除法结构是后续性能优化方向。</div></details>
+      <details><summary>两位同学怎么分工讲？</summary><div>同学 A 讲单周期 AXI、AXI 状态机和 C_TEST；同学 B 讲五级流水、冒险/冲刷、流水线 AXI 修复和 CoreMark。两人都要能回答 Basic 与 AXI Trace 的边界。</div></details>
+    </section>
+
+    <section id="checklist">
+      <h2>8 / 现场检查清单</h2>
+      <div class="grid">
+        <div class="card span-6"><h3>电脑与工程</h3><ul>
+          <li>本页可离线打开，图片点击后能看清信号和文字；</li>
+          <li>三份日志能搜索到 <code>Passed Tests (45)</code>；</li>
+          <li>Vivado 工程与源码、bitstream 匹配；</li>
+          <li>C_TEST0、1、2、CoreMark 的 bitstream 分开命名；</li>
+          <li>补回流水线/CoreMark 的 bit/ltx/rpt 原始文件。</li>
+        </ul></div>
+        <div class="card span-6"><h3>板卡与演示</h3><ul>
+          <li>串口 115200 8N1、无流控；</li>
+          <li>准备 USB 串口线、JTAG 线、电源和 EGO1；</li>
+          <li>按 S6 RST，不按 S5 PROG#；</li>
+          <li>先说“证明什么”，再操作，最后读出通过判据；</li>
+          <li>两人均能解释 stall、flush 和 AXI VALID/READY。</li>
+        </ul></div>
+      </div>
+      <div class="callout good"><strong>最后一句</strong>三类 Trace 均 45/45，单周期 C_TEST0～2 实板通过，流水线 CoreMark 运行 32 秒且 CRC 校验正确；结构、代码、波形、日志与实板证据能够逐项对应。</div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox"><button aria-label="关闭">×</button><img alt="放大图片"></div>
+  <footer class="footer">miniRV acceptance console · offline repository artifact · 2024311081_2024311453</footer>
+
+  <script>
+    const sections=[...document.querySelectorAll("main section[id]")];
+    const links=[...document.querySelectorAll("#nav a")];
+    const progress=document.getElementById("progress");
+    function active(){
+      let current=sections[0];
+      for(const s of sections){if(s.getBoundingClientRect().top<=150) current=s}
+      links.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current.id));
+      const max=document.documentElement.scrollHeight-innerHeight;
+      progress.style.width=(max?scrollY/max*100:0)+"%";
+    }
+    addEventListener("scroll",active,{passive:true}); active();
+    function step(delta){
+      let i=links.findIndex(a=>a.classList.contains("active")); if(i<0)i=0;
+      i=Math.max(0,Math.min(links.length-1,i+delta));
+      location.hash=links[i].hash;
+    }
+    document.querySelectorAll(".copy").forEach(b=>b.onclick=async()=>{
+      const text=b.parentElement.innerText.replace(/^复制\\s*/,"");
+      try{await navigator.clipboard.writeText(text);b.textContent="已复制";setTimeout(()=>b.textContent="复制",1200)}catch(e){b.textContent="手动选择"}
+    });
+    const box=document.getElementById("lightbox"), boxImg=box.querySelector("img");
+    document.querySelectorAll(".figure img").forEach(img=>img.onclick=()=>{boxImg.src=img.src;boxImg.alt=img.alt;box.classList.add("open")});
+    function closeBox(){box.classList.remove("open");boxImg.src=""}
+    box.querySelector("button").onclick=closeBox;
+    box.onclick=e=>{if(e.target===box)closeBox()};
+    addEventListener("keydown",e=>{if(e.key==="Escape")closeBox();if(e.key==="ArrowRight"&&!box.classList.contains("open"))step(1);if(e.key==="ArrowLeft"&&!box.classList.contains("open"))step(-1)});
+  </script>
+</body>
+</html>
