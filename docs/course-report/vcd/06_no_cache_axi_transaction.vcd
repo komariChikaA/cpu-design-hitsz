@@ -1,0 +1,388 @@
+$date
+	Tue Jul 28 20:12:37 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module axi_master_tb $end
+$var wire 2 ! arburst [1:0] $end
+$var wire 8 " arlen [7:0] $end
+$var wire 3 # arsize [2:0] $end
+$var wire 2 $ awburst [1:0] $end
+$var wire 8 % awlen [7:0] $end
+$var wire 3 & awsize [2:0] $end
+$var wire 1 ' wlast $end
+$var wire 1 ( wvalid $end
+$var wire 4 ) wstrb [3:0] $end
+$var wire 32 * wdata [31:0] $end
+$var wire 1 + rready $end
+$var wire 1 , ic_valid $end
+$var wire 1 - ic_ready $end
+$var wire 32 . ic_data [31:0] $end
+$var wire 1 / dc_write_resp $end
+$var wire 1 0 dc_write_ready $end
+$var wire 1 1 dc_valid $end
+$var wire 1 2 dc_read_ready $end
+$var wire 32 3 dc_data [31:0] $end
+$var wire 1 4 bready $end
+$var wire 1 5 awvalid $end
+$var wire 32 6 awaddr [31:0] $end
+$var wire 1 7 arvalid $end
+$var wire 32 8 araddr [31:0] $end
+$var reg 1 9 arready $end
+$var reg 1 : awready $end
+$var reg 2 ; bresp [1:0] $end
+$var reg 1 < bvalid $end
+$var reg 1 = clk $end
+$var reg 32 > dc_addr [31:0] $end
+$var reg 1 ? dc_read $end
+$var reg 32 @ dc_waddr [31:0] $end
+$var reg 32 A dc_wdata [31:0] $end
+$var reg 4 B dc_wen [3:0] $end
+$var reg 32 C ic_addr [31:0] $end
+$var reg 1 D ic_req $end
+$var reg 32 E rdata [31:0] $end
+$var reg 1 F rlast $end
+$var reg 2 G rresp [1:0] $end
+$var reg 1 H rst $end
+$var reg 1 I rvalid $end
+$var reg 1 J wready $end
+$scope module dut $end
+$var wire 1 = aclk $end
+$var wire 1 H areset $end
+$var wire 32 K dc_cpu_raddr [31:0] $end
+$var wire 1 ? dc_cpu_ren $end
+$var wire 32 L dc_cpu_waddr [31:0] $end
+$var wire 32 M dc_cpu_wdata [31:0] $end
+$var wire 4 N dc_cpu_wen [3:0] $end
+$var wire 32 O ic_cpu_raddr [31:0] $end
+$var wire 1 D ic_cpu_ren $end
+$var wire 2 P m_axi_arburst [1:0] $end
+$var wire 8 Q m_axi_arlen [7:0] $end
+$var wire 1 9 m_axi_arready $end
+$var wire 3 R m_axi_arsize [2:0] $end
+$var wire 2 S m_axi_awburst [1:0] $end
+$var wire 8 T m_axi_awlen [7:0] $end
+$var wire 1 : m_axi_awready $end
+$var wire 3 U m_axi_awsize [2:0] $end
+$var wire 2 V m_axi_bresp [1:0] $end
+$var wire 1 < m_axi_bvalid $end
+$var wire 32 W m_axi_rdata [31:0] $end
+$var wire 1 F m_axi_rlast $end
+$var wire 2 X m_axi_rresp [1:0] $end
+$var wire 1 I m_axi_rvalid $end
+$var wire 1 ' m_axi_wlast $end
+$var wire 1 J m_axi_wready $end
+$var wire 1 Y _unused_ok $end
+$var reg 32 Z dc_dev_rdata [31:0] $end
+$var reg 1 2 dc_dev_rrdy $end
+$var reg 1 1 dc_dev_rvalid $end
+$var reg 1 0 dc_dev_wrdy $end
+$var reg 1 / dc_dev_wresp $end
+$var reg 32 [ ic_dev_rdata [31:0] $end
+$var reg 1 - ic_dev_rrdy $end
+$var reg 1 , ic_dev_rvalid $end
+$var reg 32 \ m_axi_araddr [31:0] $end
+$var reg 1 7 m_axi_arvalid $end
+$var reg 32 ] m_axi_awaddr [31:0] $end
+$var reg 1 5 m_axi_awvalid $end
+$var reg 1 4 m_axi_bready $end
+$var reg 1 + m_axi_rready $end
+$var reg 32 ^ m_axi_wdata [31:0] $end
+$var reg 4 _ m_axi_wstrb [3:0] $end
+$var reg 1 ( m_axi_wvalid $end
+$var reg 1 ` read_is_data $end
+$var reg 3 a state [2:0] $end
+$upscope $end
+$scope task fail $end
+$var reg 768 b message [767:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx b
+bx a
+x`
+bx _
+bx ^
+bx ]
+bx \
+bx [
+bx Z
+0Y
+b0 X
+b0 W
+b0 V
+b10 U
+b0 T
+b1 S
+b10 R
+b0 Q
+b1 P
+b0 O
+b0 N
+b0 M
+b0 L
+b0 K
+0J
+0I
+1H
+b0 G
+1F
+b0 E
+0D
+b0 C
+b0 B
+b0 A
+b0 @
+0?
+b0 >
+0=
+0<
+b0 ;
+0:
+09
+bx 8
+x7
+bx 6
+x5
+x4
+bx 3
+x2
+x1
+x0
+x/
+bx .
+x-
+x,
+x+
+bx *
+bx )
+x(
+1'
+b10 &
+b0 %
+b1 $
+b10 #
+b0 "
+b1 !
+$end
+#5000
+10
+12
+1-
+0+
+07
+b0 8
+b0 \
+04
+0(
+b0 )
+b0 _
+b0 *
+b0 ^
+05
+b0 6
+b0 ]
+0/
+b0 3
+b0 Z
+01
+b0 .
+b0 [
+0,
+0`
+b0 a
+1=
+#10000
+0=
+#15000
+1=
+#20000
+0=
+#25000
+0H
+1=
+#30000
+0=
+#35000
+1D
+b11 C
+b11 O
+1=
+#40000
+0=
+#45000
+00
+02
+0-
+b1 a
+17
+0D
+1=
+#50000
+0=
+#55000
+1=
+#60000
+0=
+#65000
+19
+1=
+#70000
+0=
+#75000
+09
+b10 a
+1+
+07
+1=
+#80000
+0=
+#85000
+1I
+b10010001101000101011001111000 E
+b10010001101000101011001111000 W
+1=
+#90000
+0=
+#95000
+1-
+12
+10
+0I
+b0 a
+1,
+b10010001101000101011001111000 .
+b10010001101000101011001111000 [
+0+
+1=
+#100000
+0=
+#105000
+10
+12
+0-
+0,
+1D
+b1000000 C
+b1000000 O
+1?
+b10010 >
+b10010 K
+1=
+#110000
+0=
+#115000
+00
+02
+0D
+0?
+b1 a
+17
+b10000 8
+b10000 \
+1`
+1=
+#116000
+19
+#120000
+0=
+#125000
+b10 a
+1+
+07
+1I
+b10100101101001010101101001011010 E
+b10100101101001010101101001011010 W
+09
+1=
+#130000
+0=
+#135000
+1-
+12
+10
+0I
+b0 a
+11
+b10100101101001010101101001011010 3
+b10100101101001010101101001011010 Z
+0+
+1=
+#140000
+0=
+#145000
+10
+02
+0-
+01
+b1000 B
+b1000 N
+b11011110101011011011111011101111 A
+b11011110101011011011111011101111 M
+b100011 @
+b100011 L
+1=
+#150000
+0=
+#155000
+00
+b0 B
+b0 N
+b11 a
+1(
+b1000 )
+b1000 _
+b11011110101011011011111011101111 *
+b11011110101011011011111011101111 ^
+15
+b100000 6
+b100000 ]
+1=
+#156000
+1:
+#160000
+0=
+#165000
+05
+0:
+1=
+#170000
+0=
+#175000
+1=
+#180000
+0=
+#185000
+1J
+1=
+#190000
+0=
+#195000
+b100 a
+14
+0(
+0J
+1=
+#200000
+0=
+#205000
+1<
+1=
+#210000
+0=
+#215000
+1-
+12
+10
+b0 a
+1/
+04
+0<
+1=
+#216000

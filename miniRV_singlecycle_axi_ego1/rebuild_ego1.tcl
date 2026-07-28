@@ -178,7 +178,9 @@ if {![string match "*Complete*" $impl_status]} {
 open_run impl_1
 report_timing_summary -file timing_summary.rpt
 report_utilization -file utilization.rpt
+report_power -file power.rpt
 
 puts "EGO1 build finished."
 puts "Timing report: [file normalize timing_summary.rpt]"
 puts "Utilization report: [file normalize utilization.rpt]"
+puts "Power report: [file normalize power.rpt]"

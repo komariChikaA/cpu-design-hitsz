@@ -4,11 +4,16 @@ import { fileURLToPath } from "node:url";
 import { Resvg } from "@resvg/resvg-js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const targets = [
+const requested = new Set(process.argv.slice(2));
+const allTargets = [
   { name: "system", width: 1920 },
   { name: "core", width: 4800 },
-  { name: "compact", width: 3600 }
+  { name: "compact", width: 3600 },
+  { name: "singlecycle-overview", width: 4960 }
 ];
+const targets = requested.size
+  ? allTargets.filter((target) => requested.has(target.name))
+  : allTargets;
 
 for (const target of targets) {
   const svg = await fs.readFile(path.join(here, `${target.name}.svg`), "utf8");

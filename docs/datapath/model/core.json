@@ -30,12 +30,13 @@
       "subtitle": "next PC + PC+4",
       "stage": "if",
       "ports": [
-        { "id": "pc", "label": "pc", "side": "WEST" },
-        { "id": "offset", "label": "offset", "side": "WEST" },
+        { "id": "pc", "label": "pc [31:0]", "side": "WEST" },
+        { "id": "offset", "label": "offset [31:0]", "side": "WEST" },
+        { "id": "jalr", "label": "jalr_addr [31:0]", "side": "WEST" },
         { "id": "br", "label": "br", "side": "WEST" },
-        { "id": "op", "label": "npc_op", "side": "WEST" },
-        { "id": "npc", "label": "npc", "side": "EAST" },
-        { "id": "pc4", "label": "pc4", "side": "EAST" }
+        { "id": "op", "label": "op [1:0]", "side": "WEST" },
+        { "id": "npc", "label": "npc [31:0]", "side": "EAST" },
+        { "id": "pc4", "label": "pc4 [31:0]", "side": "EAST" }
       ]
     },
     {
@@ -45,7 +46,7 @@
       "stage": "if",
       "kind": "register",
       "ports": [
-        { "id": "npc", "label": "npc", "side": "WEST" },
+        { "id": "npc", "label": "npc [31:0]", "side": "WEST" },
         { "id": "fetch", "label": "fetch", "side": "WEST" },
         { "id": "pc", "label": "pc [31:0]", "side": "EAST" }
       ]
@@ -73,18 +74,18 @@
       "subtitle": "译码与控制信号",
       "stage": "id",
       "ports": [
-        { "id": "opcode", "label": "opcode", "side": "WEST" },
-        { "id": "funct3", "label": "funct3", "side": "WEST" },
-        { "id": "funct7", "label": "funct7", "side": "WEST" },
-        { "id": "npc_op", "label": "npc_op", "side": "EAST" },
-        { "id": "sext_op", "label": "sext_op", "side": "EAST" },
-        { "id": "alu_op", "label": "alu_op", "side": "EAST" },
+        { "id": "opcode", "label": "opcode [6:0]", "side": "WEST" },
+        { "id": "funct3", "label": "funct3 [2:0]", "side": "WEST" },
+        { "id": "funct7", "label": "funct7 [6:0]", "side": "WEST" },
+        { "id": "npc_op", "label": "npc_op [1:0]", "side": "EAST" },
+        { "id": "sext_op", "label": "sext_op [2:0]", "side": "EAST" },
+        { "id": "alu_op", "label": "alu_op [4:0]", "side": "EAST" },
         { "id": "alua_sel", "label": "alua_sel", "side": "EAST" },
         { "id": "alub_sel", "label": "alub_sel", "side": "EAST" },
-        { "id": "ram_rop", "label": "ram_rop", "side": "EAST" },
-        { "id": "ram_wop", "label": "ram_wop", "side": "EAST" },
+        { "id": "ram_rop", "label": "ram_r_op [2:0]", "side": "EAST" },
+        { "id": "ram_wop", "label": "ram_w_op [3:0]", "side": "EAST" },
         { "id": "rf_we", "label": "rf_we", "side": "EAST" },
-        { "id": "rf_wsel", "label": "rf_wsel", "side": "EAST" },
+        { "id": "rf_wsel", "label": "rf_wsel [1:0]", "side": "EAST" },
         { "id": "muldiv", "label": "is_mul / is_div", "side": "EAST" }
       ]
     },
@@ -95,9 +96,9 @@
       "stage": "id",
       "kind": "register",
       "ports": [
-        { "id": "rR1", "label": "rR1", "side": "WEST" },
-        { "id": "rR2", "label": "rR2", "side": "WEST" },
-        { "id": "wR", "label": "wR", "side": "WEST" },
+        { "id": "rR1", "label": "rR1 [4:0]", "side": "WEST" },
+        { "id": "rR2", "label": "rR2 [4:0]", "side": "WEST" },
+        { "id": "wR", "label": "wR [4:0]", "side": "WEST" },
         { "id": "wD", "label": "wD [31:0]", "side": "WEST" },
         { "id": "we", "label": "we", "side": "WEST" },
         { "id": "rD1", "label": "rD1 [31:0]", "side": "EAST" },
@@ -111,7 +112,7 @@
       "stage": "id",
       "ports": [
         { "id": "imm", "label": "imm [31:7]", "side": "WEST" },
-        { "id": "op", "label": "sext_op", "side": "WEST" },
+        { "id": "op", "label": "op [2:0]", "side": "WEST" },
         { "id": "ext", "label": "ext [31:0]", "side": "EAST" }
       ]
     },
@@ -147,9 +148,9 @@
       "subtitle": "整数运算 + 乘除法单元",
       "stage": "ex",
       "ports": [
-        { "id": "a", "label": "a", "side": "WEST" },
-        { "id": "b", "label": "b", "side": "WEST" },
-        { "id": "op", "label": "alu_op", "side": "WEST" },
+        { "id": "a", "label": "a [31:0]", "side": "WEST" },
+        { "id": "b", "label": "b [31:0]", "side": "WEST" },
+        { "id": "op", "label": "op [4:0]", "side": "WEST" },
         { "id": "c", "label": "c [31:0]", "side": "EAST" },
         { "id": "br", "label": "br", "side": "EAST" },
         { "id": "busy", "label": "mul_div_busy", "side": "EAST" }
@@ -178,10 +179,10 @@
       "subtitle": "字节使能与写数据对齐",
       "stage": "mem",
       "ports": [
-        { "id": "addr", "label": "ram_addr", "side": "WEST" },
-        { "id": "rop", "label": "ram_rop", "side": "WEST" },
-        { "id": "wop", "label": "ram_wop", "side": "WEST" },
-        { "id": "wdata", "label": "ram_wdata", "side": "WEST" },
+        { "id": "addr", "label": "ram_addr [31:0]", "side": "WEST" },
+        { "id": "rop", "label": "ram_rop [2:0]", "side": "WEST" },
+        { "id": "wop", "label": "ram_wop [3:0]", "side": "WEST" },
+        { "id": "wdata", "label": "ram_wdata [31:0]", "side": "WEST" },
         { "id": "ren", "label": "da_ren [3:0]", "side": "EAST" },
         { "id": "da_addr", "label": "da_addr [31:0]", "side": "EAST" },
         { "id": "wen", "label": "da_wen [3:0]", "side": "EAST" },
@@ -195,12 +196,12 @@
       "stage": "mem",
       "kind": "external",
       "ports": [
-        { "id": "ren", "label": "daccess_ren", "side": "WEST" },
-        { "id": "addr", "label": "daccess_addr", "side": "WEST" },
-        { "id": "wen", "label": "daccess_wen", "side": "WEST" },
-        { "id": "wdata", "label": "daccess_wdata", "side": "WEST" },
+        { "id": "ren", "label": "daccess_ren [3:0]", "side": "WEST" },
+        { "id": "addr", "label": "daccess_addr [31:0]", "side": "WEST" },
+        { "id": "wen", "label": "daccess_wen [3:0]", "side": "WEST" },
+        { "id": "wdata", "label": "daccess_wdata [31:0]", "side": "WEST" },
         { "id": "rvalid", "label": "daccess_rvalid", "side": "EAST" },
-        { "id": "rdata", "label": "daccess_rdata", "side": "EAST" },
+        { "id": "rdata", "label": "daccess_rdata [31:0]", "side": "EAST" },
         { "id": "wresp", "label": "daccess_wresp", "side": "EAST" }
       ]
     },
@@ -211,9 +212,9 @@
       "stage": "mem",
       "ports": [
         { "id": "din", "label": "din [31:0]", "side": "WEST" },
-        { "id": "op", "label": "ram_rop_r", "side": "WEST" },
-        { "id": "offs", "label": "alu_c_r [1:0]", "side": "WEST" },
-        { "id": "ext", "label": "ram_ext [31:0]", "side": "EAST" }
+        { "id": "op", "label": "op [2:0]", "side": "WEST" },
+        { "id": "offs", "label": "byte_offs [1:0]", "side": "WEST" },
+        { "id": "ext", "label": "ext [31:0]", "side": "EAST" }
       ]
     },
     {
@@ -223,10 +224,10 @@
       "stage": "wb",
       "kind": "mux",
       "ports": [
-        { "id": "alu", "label": "alu_c", "side": "WEST" },
-        { "id": "pc4", "label": "pc4", "side": "WEST" },
-        { "id": "ext", "label": "ext", "side": "WEST" },
-        { "id": "ram", "label": "ram_ext", "side": "WEST" },
+        { "id": "alu", "label": "alu_c [31:0]", "side": "WEST" },
+        { "id": "pc4", "label": "pc4 [31:0]", "side": "WEST" },
+        { "id": "ext", "label": "ext [31:0]", "side": "WEST" },
+        { "id": "ram", "label": "ram_ext [31:0]", "side": "WEST" },
         { "id": "sel", "label": "rf_wsel + ld_st_flag", "side": "WEST" },
         { "id": "out", "label": "rf_wD [31:0]", "side": "EAST" }
       ]
@@ -281,6 +282,7 @@
     { "id": "aluop", "from": "controller.alu_op", "to": "alu.op", "type": "control" },
 
     { "id": "ext_npc", "from": "sext.ext", "to": "npc.offset", "type": "data" },
+    { "id": "jalr_npc", "from": "alu.c", "to": "npc.jalr", "label": "jalr_addr", "type": "data" },
     { "id": "alu_br", "from": "alu.br", "to": "npc.br", "type": "control" },
     { "id": "npcop", "from": "controller.npc_op", "to": "npc.op", "type": "control" },
 

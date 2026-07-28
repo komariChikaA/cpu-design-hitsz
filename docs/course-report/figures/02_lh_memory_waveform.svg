@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1255" viewBox="0 0 2400 1255" role="img" aria-label="LH 半字加载：请求、返回与符号扩展波形">
+  <title>LH 半字加载：请求、返回与符号扩展波形</title>
+  <desc>LH 半字加载：请求、返回与符号扩展波形; generated directly from lh.vcd</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowInk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111827"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif; }
+      .mono { font-family: "Cascadia Mono", Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="2400" height="1255" fill="#ffffff"/>
+  <text x="54" y="62" font-size="42" font-weight="800" fill="#162033">LH 半字加载：请求、返回与符号扩展波形</text>
+<text x="54" y="104" font-size="24" fill="#64748b">展示指令、访存读使能、地址、返回数据、MEXT 扩展结果与寄存器写回</text>
+<rect x="48" y="132" width="2304" height="54" rx="12" fill="#f8fafc" stroke="#dbe4f0"/>
+<text x="70" y="167" font-size="21" fill="#162033">VCD: lh.vcd · timescale 1ps · window 240–340 ticks</text>
+<line x1="532" y1="193" x2="532" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="532" y="185" text-anchor="middle" font-size="17" fill="#64748b">240</text>
+<line x1="714" y1="193" x2="714" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="714" y="185" text-anchor="middle" font-size="17" fill="#64748b">250</text>
+<line x1="896" y1="193" x2="896" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="896" y="185" text-anchor="middle" font-size="17" fill="#64748b">260</text>
+<line x1="1078" y1="193" x2="1078" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1078" y="185" text-anchor="middle" font-size="17" fill="#64748b">270</text>
+<line x1="1260" y1="193" x2="1260" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1260" y="185" text-anchor="middle" font-size="17" fill="#64748b">280</text>
+<line x1="1442" y1="193" x2="1442" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1442" y="185" text-anchor="middle" font-size="17" fill="#64748b">290</text>
+<line x1="1624" y1="193" x2="1624" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1624" y="185" text-anchor="middle" font-size="17" fill="#64748b">300</text>
+<line x1="1806" y1="193" x2="1806" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1806" y="185" text-anchor="middle" font-size="17" fill="#64748b">310</text>
+<line x1="1988" y1="193" x2="1988" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1988" y="185" text-anchor="middle" font-size="17" fill="#64748b">320</text>
+<line x1="2170" y1="193" x2="2170" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="2170" y="185" text-anchor="middle" font-size="17" fill="#64748b">330</text>
+<line x1="2352" y1="193" x2="2352" y2="1155" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="2352" y="185" text-anchor="middle" font-size="17" fill="#64748b">340</text>
+<rect x="48" y="205" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="291" x2="2352" y2="291" stroke="#dbe4f0"/>
+<text x="68" y="239" font-size="23" font-weight="750" fill="#162033" class="mono">cpu_clk</text>
+<text x="68" y="267" font-size="16" fill="#64748b" class="mono">cpu_clk [1 bit]</text>
+<path d="M 532 226 L 623 226 L 623 270 L 714 270 L 714 226 L 805 226 L 805 270 L 896 270 L 896 226 L 987 226 L 987 270 L 1078 270 L 1078 226 L 1169 226 L 1169 270 L 1260 270 L 1260 226 L 1351 226 L 1351 270 L 1442 270 L 1442 226 L 1533 226 L 1533 270 L 1624 270 L 1624 226 L 1715 226 L 1715 270 L 1806 270 L 1806 226 L 1897 226 L 1897 270 L 1988 270 L 1988 226 L 2079 226 L 2079 270 L 2170 270 L 2170 226 L 2261 226 L 2261 270 L 2352 270" fill="none" stroke="#2563eb" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="291" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="377" x2="2352" y2="377" stroke="#dbe4f0"/>
+<text x="68" y="325" font-size="23" font-weight="750" fill="#162033" class="mono">pc</text>
+<text x="68" y="353" font-size="16" fill="#64748b" class="mono">pc [32 bit]</text>
+<rect x="532" y="309" width="364" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="714" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000008</text>
+<rect x="896" y="309" width="728" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1260" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0000000c</text>
+<rect x="1624" y="309" width="364" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1806" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000010</text>
+<rect x="1988" y="309" width="364" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="2170" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000014</text>
+<rect x="48" y="377" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="463" x2="2352" y2="463" stroke="#dbe4f0"/>
+<text x="68" y="411" font-size="23" font-weight="750" fill="#162033" class="mono">inst</text>
+<text x="68" y="439" font-size="16" fill="#64748b" class="mono">inst [32 bit]</text>
+<rect x="532" y="395" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="623" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000013</text>
+<rect x="714" y="395" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="805" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00008093</text>
+<rect x="896" y="395" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="987" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000013</text>
+<rect x="1078" y="395" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1169" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00009703</text>
+<rect x="1260" y="395" width="546" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1533" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000013</text>
+<rect x="1806" y="395" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1897" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0ff00393</text>
+<rect x="1988" y="395" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="2079" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000013</text>
+<rect x="2170" y="395" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="2261" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00200193</text>
+<rect x="48" y="463" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="549" x2="2352" y2="549" stroke="#dbe4f0"/>
+<text x="68" y="497" font-size="23" font-weight="750" fill="#162033" class="mono">ram_rop</text>
+<text x="68" y="525" font-size="16" fill="#64748b" class="mono">ram_rop [3 bit]</text>
+<rect x="532" y="481" width="546" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="805" y="513" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="1078" y="481" width="182" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1169" y="513" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x4</text>
+<rect x="1260" y="481" width="1092" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1806" y="513" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="48" y="549" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="635" x2="2352" y2="635" stroke="#dbe4f0"/>
+<text x="68" y="583" font-size="23" font-weight="750" fill="#162033" class="mono">daccess_ren</text>
+<text x="68" y="611" font-size="16" fill="#64748b" class="mono">daccess_ren [4 bit]</text>
+<rect x="532" y="567" width="728" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="896" y="599" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="1260" y="567" width="182" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1351" y="599" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0xf</text>
+<rect x="1442" y="567" width="910" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1897" y="599" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="48" y="635" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="721" x2="2352" y2="721" stroke="#dbe4f0"/>
+<text x="68" y="669" font-size="23" font-weight="750" fill="#162033" class="mono">daccess_addr</text>
+<text x="68" y="697" font-size="16" fill="#64748b" class="mono">daccess_addr [32 bit]</text>
+<rect x="532" y="653" width="364" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="714" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="896" y="653" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="987" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00002000</text>
+<rect x="1078" y="653" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1169" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="1260" y="653" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1351" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00002000</text>
+<rect x="1442" y="653" width="546" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1715" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="1988" y="653" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="2079" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x000000ff</text>
+<rect x="2170" y="653" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="2261" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="48" y="721" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="807" x2="2352" y2="807" stroke="#dbe4f0"/>
+<text x="68" y="755" font-size="23" font-weight="750" fill="#162033" class="mono">daccess_rvalid</text>
+<text x="68" y="783" font-size="16" fill="#64748b" class="mono">daccess_rvalid [1 bit]</text>
+<path d="M 532 786 L 1442 786 L 1442 742 L 1624 742 L 1624 786 L 2352 786" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="807" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="893" x2="2352" y2="893" stroke="#dbe4f0"/>
+<text x="68" y="841" font-size="23" font-weight="750" fill="#162033" class="mono">daccess_rdata</text>
+<text x="68" y="869" font-size="16" fill="#64748b" class="mono">daccess_rdata [32 bit]</text>
+<rect x="532" y="825" width="546" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="805" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0040006f</text>
+<rect x="1078" y="825" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1169" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0xff0000ff</text>
+<rect x="1260" y="825" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1351" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0040006f</text>
+<rect x="1442" y="825" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1533" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0xff0000ff</text>
+<rect x="1624" y="825" width="546" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1897" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0040006f</text>
+<rect x="2170" y="825" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="2261" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00709283</text>
+<rect x="48" y="893" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="979" x2="2352" y2="979" stroke="#dbe4f0"/>
+<text x="68" y="927" font-size="23" font-weight="750" fill="#162033" class="mono">ram_ext</text>
+<text x="68" y="955" font-size="16" fill="#64748b" class="mono">ram_ext [32 bit]</text>
+<rect x="532" y="911" width="546" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="805" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0040006f</text>
+<rect x="1078" y="911" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1169" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0xff0000ff</text>
+<rect x="1260" y="911" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1351" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0000006f</text>
+<rect x="1442" y="911" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1533" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x000000ff</text>
+<rect x="1624" y="911" width="546" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1897" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0000006f</text>
+<rect x="2170" y="911" width="182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="2261" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0xffff9283</text>
+<rect x="48" y="979" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="1065" x2="2352" y2="1065" stroke="#dbe4f0"/>
+<text x="68" y="1013" font-size="23" font-weight="750" fill="#162033" class="mono">rf_we</text>
+<text x="68" y="1041" font-size="16" fill="#64748b" class="mono">rf_we [1 bit]</text>
+<path d="M 532 1000 L 2352 1000" fill="none" stroke="#7c3aed" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="1065" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="1151" x2="2352" y2="1151" stroke="#dbe4f0"/>
+<text x="68" y="1099" font-size="23" font-weight="750" fill="#162033" class="mono">rf_wD</text>
+<text x="68" y="1127" font-size="16" fill="#64748b" class="mono">rf_wD [32 bit]</text>
+<rect x="532" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="623" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="714" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="805" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00002000</text>
+<rect x="896" y="1083" width="364" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1078" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="1260" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1351" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0000006f</text>
+<rect x="1442" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1533" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x000000ff</text>
+<rect x="1624" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1715" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="1806" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1897" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x000000ff</text>
+<rect x="1988" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="2079" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="2170" y="1083" width="182" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="2261" y="1115" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000002</text>
+<line x1="1260" y1="132" x2="1260" y2="1155" stroke="#d97706" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="1268" y="139" width="278" height="38" rx="9" fill="#fff7ed" stroke="#d97706"/>
+<text x="1280" y="165" font-size="18" font-weight="750" fill="#d97706">LH read request</text>
+<line x1="1442" y1="132" x2="1442" y2="1155" stroke="#dc2626" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="1450" y="139" width="278" height="38" rx="9" fill="#fef2f2" stroke="#dc2626"/>
+<text x="1462" y="165" font-size="18" font-weight="750" fill="#dc2626">read valid / write-back</text>
+<text x="54" y="1203" font-size="19" fill="#64748b">蓝色：数据/普通控制　橙色：访存或多周期控制　红色虚线：关键事件。数值按十六进制显示。</text>
+</svg>

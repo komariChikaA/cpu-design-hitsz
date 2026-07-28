@@ -6,7 +6,7 @@ import ELK from "elkjs/lib/elk.bundled.js";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const elk = new ELK();
 const requested = process.argv.slice(2);
-const diagrams = requested.length ? requested : ["system", "core", "compact"];
+const diagrams = requested.length ? requested : ["system", "core", "compact", "singlecycle-overview"];
 
 const palette = {
   data: { stroke: "#2563eb", width: 2.8, dash: "", marker: "arrow-data" },
@@ -31,17 +31,23 @@ function textWidth(text, size = 12) {
   return Math.ceil(units * size + 18);
 }
 
-function nodeSize(node) {
+function nodeSize(node, model) {
+  const typography = model.typography ?? {};
+  const portFont = typography.port ?? 10.5;
+  const titleFont = typography.nodeTitle ?? 16;
+  const subtitleFont = typography.nodeSubtitle ?? 10.5;
+  const headerHeight = typography.headerHeight ?? 43;
+  const portSpacing = typography.portSpacing ?? 22;
   const west = node.ports.filter((port) => port.side === "WEST").length;
   const east = node.ports.filter((port) => port.side === "EAST").length;
-  const widestPort = Math.max(...node.ports.map((port) => textWidth(port.label, 11)), 0);
-  const widestWest = Math.max(...node.ports.filter((port) => port.side === "WEST").map((port) => textWidth(port.label, 11)), 0);
-  const widestEast = Math.max(...node.ports.filter((port) => port.side === "EAST").map((port) => textWidth(port.label, 11)), 0);
+  const widestPort = Math.max(...node.ports.map((port) => textWidth(port.label, portFont)), 0);
+  const widestWest = Math.max(...node.ports.filter((port) => port.side === "WEST").map((port) => textWidth(port.label, portFont)), 0);
+  const widestEast = Math.max(...node.ports.filter((port) => port.side === "EAST").map((port) => textWidth(port.label, portFont)), 0);
   const twoSidedWidth = widestWest && widestEast ? widestWest + widestEast + 36 : 0;
-  const titleWidth = Math.max(textWidth(node.label, 16), textWidth(node.subtitle, 11));
+  const titleWidth = Math.max(textWidth(node.label, titleFont), textWidth(node.subtitle, subtitleFont));
   return {
-    width: node.width ?? Math.max(190, titleWidth + 28, widestPort + 48, twoSidedWidth),
-    height: node.height ?? Math.max(94, 62 + Math.max(west, east) * 22)
+    width: node.width ?? Math.max(typography.nodeMinWidth ?? 190, titleWidth + 28, widestPort + 48, twoSidedWidth),
+    height: node.height ?? Math.max(typography.nodeMinHeight ?? 94, headerHeight + 19 + Math.max(west, east) * portSpacing)
   };
 }
 
@@ -66,7 +72,8 @@ function toElkGraph(model) {
       "elk.padding": "[top=36,left=36,bottom=36,right=36]"
     },
     children: model.nodes.map((node) => {
-      const size = nodeSize(node);
+      const size = nodeSize(node, model);
+      const typography = model.typography ?? {};
       const sideCounts = new Map();
       for (const port of node.ports) sideCounts.set(port.side, (sideCounts.get(port.side) ?? 0) + 1);
       const sideIndices = new Map();
@@ -82,7 +89,7 @@ function toElkGraph(model) {
           const index = sideIndices.get(port.side) ?? 0;
           sideIndices.set(port.side, index + 1);
           const count = sideCounts.get(port.side);
-          const top = 58;
+          const top = (typography.headerHeight ?? 43) + 15;
           const bottom = size.height - 14;
           const centerY = count === 1 ? (top + bottom) / 2 : top + index * (bottom - top) / (count - 1);
           return {
@@ -137,7 +144,7 @@ function edgeMidpoint(section) {
   return points.at(-1);
 }
 
-function renderEdge(edge, modelEdge) {
+function renderEdge(edge, modelEdge, model) {
   const style = palette[modelEdge.type] ?? palette.data;
   const sections = edge.sections ?? [];
   const paths = sections.map((section) =>
@@ -151,13 +158,17 @@ function renderEdge(edge, modelEdge) {
   const point = elkLabel?.x != null
     ? { x: elkLabel.x + elkLabel.width / 2, y: elkLabel.y + elkLabel.height / 2 }
     : edgeMidpoint(sections[0]);
-  const width = textWidth(modelEdge.label, 10);
+  const width = textWidth(modelEdge.label, model.typography?.edgeLabel ?? 10);
   return `${paths}\n<g class="edge-label" transform="translate(${point.x - width / 2} ${point.y - 10})">` +
     `<rect width="${width}" height="20" rx="6" fill="#ffffff" fill-opacity="0.94" stroke="${style.stroke}" stroke-opacity="0.28"/>` +
     `<text x="${width / 2}" y="13.5" text-anchor="middle" fill="${style.stroke}">${escapeXml(modelEdge.label)}</text></g>`;
 }
 
-function renderNode(layoutNode, modelNode) {
+function renderNode(layoutNode, modelNode, model) {
+  const typography = model.typography ?? {};
+  const headerHeight = typography.headerHeight ?? 43;
+  const titleY = Math.round(headerHeight * 0.53);
+  const subtitleY = headerHeight - 5;
   const kindClass = `node-${modelNode.kind ?? "logic"}`;
   const statusClass = modelNode.status ? ` status-${modelNode.status}` : "";
   const portModel = new Map(modelNode.ports.map((port) => [`${modelNode.id}.${port.id}`, port]));
@@ -178,10 +189,10 @@ function renderNode(layoutNode, modelNode) {
 
   return `<g id="node-${escapeXml(modelNode.id)}" class="node ${kindClass}${statusClass}" transform="translate(${layoutNode.x} ${layoutNode.y})">` +
     `<rect class="node-body" width="${layoutNode.width}" height="${layoutNode.height}" rx="14"/>` +
-    `<rect class="node-header" x="1" y="1" width="${layoutNode.width - 2}" height="43" rx="13"/>` +
-    `<path class="header-cut" d="M 1 43 H ${layoutNode.width - 1}"/>` +
-    `<text class="node-title" x="16" y="23">${escapeXml(modelNode.label)}</text>` +
-    `<text class="node-subtitle" x="16" y="38">${escapeXml(modelNode.subtitle ?? "")}</text>` +
+    `<rect class="node-header" x="1" y="1" width="${layoutNode.width - 2}" height="${headerHeight}" rx="13"/>` +
+    `<path class="header-cut" d="M 1 ${headerHeight} H ${layoutNode.width - 1}"/>` +
+    `<text class="node-title" x="16" y="${titleY}">${escapeXml(modelNode.label)}</text>` +
+    `<text class="node-subtitle" x="16" y="${subtitleY}">${escapeXml(modelNode.subtitle ?? "")}</text>` +
     badge + portSvg + `</g>`;
 }
 
@@ -190,11 +201,34 @@ function renderStageBands(layout, model) {
   return model.stages.map((stage) => {
     const nodes = layout.children.filter((node) => byId.get(node.id)?.stage === stage.id);
     if (!nodes.length) return "";
+    if ((model.direction ?? "RIGHT") === "DOWN") {
+      const minY = Math.min(...nodes.map((node) => node.y)) - 26;
+      const maxY = Math.max(...nodes.map((node) => node.y + node.height)) + 26;
+      return `<g class="stage-band"><rect x="0" y="${minY}" width="${layout.width}" height="${maxY - minY}" rx="18" fill="${stage.color}"/>` +
+        `<text x="16" y="${minY + 22}">${escapeXml(stage.label)}</text></g>`;
+    }
     const minX = Math.min(...nodes.map((node) => node.x)) - 26;
     const maxX = Math.max(...nodes.map((node) => node.x + node.width)) + 26;
     return `<g class="stage-band"><rect x="${minX}" y="0" width="${maxX - minX}" height="${layout.height}" rx="18" fill="${stage.color}"/>` +
       `<text x="${minX + 16}" y="25">${escapeXml(stage.label)}</text></g>`;
   }).join("\n");
+}
+
+async function loadModel(name, chain = []) {
+  if (chain.includes(name)) {
+    throw new Error(`circular model inheritance: ${[...chain, name].join(" -> ")}`);
+  }
+  const modelPath = path.join(here, "model", `${name}.json`);
+  const model = JSON.parse(await fs.readFile(modelPath, "utf8"));
+  if (!model.extends) return model;
+  const base = await loadModel(model.extends, [...chain, name]);
+  const merged = {
+    ...base,
+    ...model,
+    layout: { ...(base.layout ?? {}), ...(model.layout ?? {}) }
+  };
+  delete merged.extends;
+  return merged;
 }
 
 function markers() {
@@ -216,7 +250,7 @@ function renderLegend(model) {
   let x = 0;
   return `<g class="legend">${items.map(([type, label]) => {
     const style = palette[type];
-    const width = textWidth(label, 11) + 42;
+    const width = textWidth(label, model.typography?.legend ?? 11) + 42;
     const item = `<g transform="translate(${x} 0)"><path d="M 0 8 H 28" stroke="${style.stroke}" stroke-width="${style.width}" stroke-dasharray="${style.dash}" marker-end="url(#${style.marker})"/>` +
       `<text x="38" y="12">${escapeXml(label)}</text></g>`;
     x += width;
@@ -225,6 +259,7 @@ function renderLegend(model) {
 }
 
 function renderSvg(layout, model) {
+  const typography = model.typography ?? {};
   const offsetX = 70;
   const offsetY = 138;
   const footerHeight = 56 + model.notes.length * 21;
@@ -232,8 +267,8 @@ function renderSvg(layout, model) {
   const height = layout.height + offsetY + footerHeight;
   const nodeModel = new Map(model.nodes.map((node) => [node.id, node]));
   const edgeModel = new Map(model.edges.map((edge) => [edge.id, edge]));
-  const edges = layout.edges.map((edge) => renderEdge(edge, edgeModel.get(edge.id))).join("\n");
-  const nodes = layout.children.map((node) => renderNode(node, nodeModel.get(node.id))).join("\n");
+  const edges = layout.edges.map((edge) => renderEdge(edge, edgeModel.get(edge.id), model)).join("\n");
+  const nodes = layout.children.map((node) => renderNode(node, nodeModel.get(node.id), model)).join("\n");
   const notesY = offsetY + layout.height + 35;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -247,17 +282,17 @@ function renderSvg(layout, model) {
     <style><![CDATA[
       text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif; }
       .edge { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-      .edge-label text { font-size: 10px; font-weight: 650; letter-spacing: .2px; }
+      .edge-label text { font-size: ${typography.edgeLabel ?? 10}px; font-weight: 650; letter-spacing: .2px; }
       .stage-band rect { opacity: .64; stroke: #cbd5e1; stroke-width: 1; stroke-dasharray: 5 6; }
-      .stage-band text { font-size: 13px; font-weight: 750; fill: #475569; letter-spacing: .8px; }
+      .stage-band text { font-size: ${typography.stage ?? 13}px; font-weight: 750; fill: #475569; letter-spacing: .8px; }
       .node { filter: url(#node-shadow); }
       .node-body { fill: #ffffff; stroke: #334155; stroke-width: 1.5; }
       .node-header { fill: #f8fafc; stroke: none; }
       .header-cut { stroke: #e2e8f0; stroke-width: 1; }
-      .node-title { font-size: 16px; font-weight: 760; fill: #0f172a; }
-      .node-subtitle { font-size: 10.5px; fill: #64748b; }
+      .node-title { font-size: ${typography.nodeTitle ?? 16}px; font-weight: 760; fill: #0f172a; }
+      .node-subtitle { font-size: ${typography.nodeSubtitle ?? 10.5}px; fill: #64748b; }
       .port circle { fill: #ffffff; stroke: #475569; stroke-width: 1.5; }
-      .port text { font-size: 10.5px; font-weight: 700; fill: #334155; }
+      .port text { font-size: ${typography.port ?? 10.5}px; font-weight: 700; fill: #334155; }
       .node-core .node-body { stroke: #4f46e5; stroke-width: 2.2; }
       .node-memory .node-body { stroke: #0284c7; }
       .node-register .node-body { stroke: #7c3aed; }
@@ -266,8 +301,8 @@ function renderSvg(layout, model) {
       .node-constant .node-body { stroke: #64748b; stroke-dasharray: 3 3; }
       .status-partial .node-body { stroke: #f59e0b; stroke-dasharray: 8 5; }
       .badge { font-size: 10px; font-weight: 800; fill: #b45309; }
-      .legend text { font-size: 11px; fill: #475569; }
-      .note { font-size: 11px; fill: #64748b; }
+      .legend text { font-size: ${typography.legend ?? 11}px; fill: #475569; }
+      .note { font-size: ${typography.note ?? 11}px; fill: #64748b; }
     ]]></style>
   </defs>
   <rect width="${width}" height="${height}" fill="#ffffff"/>
@@ -288,8 +323,7 @@ function renderSvg(layout, model) {
 }
 
 for (const name of diagrams) {
-  const modelPath = path.join(here, "model", `${name}.json`);
-  const model = JSON.parse(await fs.readFile(modelPath, "utf8"));
+  const model = await loadModel(name);
   const layout = await elk.layout(toElkGraph(model));
   const svg = renderSvg(layout, model);
   const outputPath = path.join(here, `${name}.svg`);

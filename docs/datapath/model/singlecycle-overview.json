@@ -1,0 +1,30 @@
+{
+  "id": "minirv-singlecycle-overview",
+  "extends": "compact",
+  "title": "miniRV 单周期 CPU 数据通路",
+  "subtitle": "报告总图：端口统一采用 RTL 英文标识并标注位宽",
+  "layout": {
+    "nodeNode": 46,
+    "nodeNodeBetweenLayers": 86,
+    "edgeNodeBetweenLayers": 24,
+    "edgeEdgeBetweenLayers": 14
+  },
+  "typography": {
+    "nodeMinWidth": 240,
+    "nodeMinHeight": 116,
+    "headerHeight": 52,
+    "portSpacing": 28,
+    "nodeTitle": 21,
+    "nodeSubtitle": 13,
+    "port": 15,
+    "edgeLabel": 13,
+    "stage": 17,
+    "legend": 14,
+    "note": 13
+  },
+  "notes": [
+    "IF、ID、EX、MEM、WB 是单周期 CPU 的逻辑分区，不代表流水级寄存器。",
+    "模块端口名称与位宽对应 miniRV_basic/src/rtl；全局 clk/rst 和握手时序在实现详图中说明。",
+    "Store 数据由 RF.rD2 送入 MREQ.ram_wdata；ALU.c 同时形成访存地址与 JALR 跳转地址。"
+  ]
+}

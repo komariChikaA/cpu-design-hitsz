@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1460" viewBox="0 0 2400 1460" role="img" aria-label="miniRV five-stage pipelined CPU datapath">
+  <title>miniRV five-stage pipelined CPU datapath</title>
+  <desc>Engineering block diagram aligned to the pipelined AXI RTL</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowInk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111827"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif; }
+      .mono { font-family: "Cascadia Mono", Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="2400" height="1460" fill="#ffffff"/>
+  <text x="48" y="58" font-size="44" font-weight="800" fill="#111827">miniRV five-stage pipelined CPU datapath</text>
+<text x="48" y="96" font-size="26" fill="#475569">Block-level report view; exact register payloads and control conditions are listed below the drawing.</text>
+<line x1="48" y1="120" x2="2352" y2="120" stroke="#111827" stroke-width="3"/>
+<g>
+<rect x="48" y="285" width="360" height="330" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="48" y="285" width="360" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="48" y="285" width="8" height="330" fill="#1d4ed8"/>
+<text x="70" y="323" font-size="30" font-weight="800" fill="#111827">IF</text>
+<text x="68" y="371" font-size="24" fill="#475569">PC / next-PC</text>
+<text x="68" y="409" font-size="25" fill="#111827" class="mono">ifetch_req, ifetch_addr</text>
+<text x="68" y="447" font-size="25" fill="#111827" class="mono">ifetch_inst, ifetch_valid</text>
+</g>
+<g>
+<rect x="516" y="285" width="360" height="330" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="516" y="285" width="360" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="516" y="285" width="8" height="330" fill="#b45309"/>
+<text x="538" y="323" font-size="30" font-weight="800" fill="#111827">ID</text>
+<text x="536" y="371" font-size="24" fill="#475569">Controller / SEXT / RF</text>
+<text x="536" y="409" font-size="25" fill="#111827" class="mono">id_inst, id_pc</text>
+<text x="536" y="447" font-size="25" fill="#111827" class="mono">rf_rd1, rf_rd2, ext</text>
+</g>
+<g>
+<rect x="984" y="285" width="360" height="330" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="984" y="285" width="360" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="984" y="285" width="8" height="330" fill="#1d4ed8"/>
+<text x="1006" y="323" font-size="30" font-weight="800" fill="#111827">EX</text>
+<text x="1004" y="371" font-size="24" fill="#475569">Forward MUX / ALU</text>
+<text x="1004" y="409" font-size="25" fill="#111827" class="mono">alu_a, alu_b, alu_c</text>
+<text x="1004" y="447" font-size="25" fill="#111827" class="mono">br, ex_bj_target</text>
+</g>
+<g>
+<rect x="1452" y="285" width="360" height="330" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="1452" y="285" width="360" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="1452" y="285" width="8" height="330" fill="#1d4ed8"/>
+<text x="1474" y="323" font-size="30" font-weight="800" fill="#111827">MEM</text>
+<text x="1472" y="371" font-size="24" fill="#475569">MREQ / AXI DATA / MEXT</text>
+<text x="1472" y="409" font-size="25" fill="#111827" class="mono">daccess_ren, daccess_wen</text>
+<text x="1472" y="447" font-size="25" fill="#111827" class="mono">ram_ext, memory_freeze</text>
+</g>
+<g>
+<rect x="1920" y="285" width="360" height="330" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="1920" y="285" width="360" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="1920" y="285" width="8" height="330" fill="#6d28d9"/>
+<text x="1942" y="323" font-size="30" font-weight="800" fill="#111827">WB</text>
+<text x="1940" y="371" font-size="24" fill="#475569">WB MUX / RF write</text>
+<text x="1940" y="409" font-size="25" fill="#111827" class="mono">wb_rd, wb_rf_we</text>
+<text x="1940" y="447" font-size="25" fill="#111827" class="mono">rf_wD, wb_valid</text>
+</g>
+<rect x="420" y="285" width="86" height="330" fill="#374151" stroke="#111827" stroke-width="3"/>
+<text transform="translate(475 585) rotate(-90)" font-size="29" font-weight="800" fill="#ffffff">IF / ID</text>
+<rect x="888" y="285" width="86" height="330" fill="#374151" stroke="#111827" stroke-width="3"/>
+<text transform="translate(943 585) rotate(-90)" font-size="29" font-weight="800" fill="#ffffff">ID / EX</text>
+<rect x="1356" y="285" width="86" height="330" fill="#374151" stroke="#111827" stroke-width="3"/>
+<text transform="translate(1411 585) rotate(-90)" font-size="29" font-weight="800" fill="#ffffff">EX / MEM</text>
+<rect x="1824" y="285" width="86" height="330" fill="#374151" stroke="#111827" stroke-width="3"/>
+<text transform="translate(1879 585) rotate(-90)" font-size="29" font-weight="800" fill="#ffffff">MEM / WB</text>
+<path d="M 408 450 L 420 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 492 450 L 516 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 876 450 L 888 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 960 450 L 984 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 1344 450 L 1356 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 1428 450 L 1452 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 1812 450 L 1824 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 1896 450 L 1920 450" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 1164 285 L 1164 205 L 228 205 L 228 285" fill="none" stroke="#b45309" stroke-width="5" stroke-dasharray="13 10" marker-end="url(#arrowOrange)"/>
+<text x="540" y="192" font-size="28" font-weight="700" fill="#b45309" class="mono" style="paint-order:stroke;stroke:#fff;stroke-width:8;stroke-linejoin:round">branch redirect: ex_bj_target -&gt; PC</text>
+<path d="M 2100 285 L 2100 155 L 696 155 L 696 285" fill="none" stroke="#6d28d9" stroke-width="5"  marker-end="url(#arrowPurple)"/>
+<text x="1260" y="143" font-size="28" font-weight="700" fill="#6d28d9" class="mono" style="paint-order:stroke;stroke:#fff;stroke-width:8;stroke-linejoin:round">write-back: rf_wD -&gt; register file</text>
+<g>
+<rect x="90" y="790" width="560" height="235" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="90" y="790" width="560" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="90" y="790" width="8" height="235" fill="#1d4ed8"/>
+<text x="112" y="828" font-size="30" font-weight="800" fill="#111827">AXI Master</text>
+<text x="110" y="876" font-size="24" fill="#475569">direct AXI access (no cache)</text>
+<text x="110" y="914" font-size="25" fill="#111827" class="mono">AR/R: instruction + data read</text>
+<text x="110" y="952" font-size="25" fill="#111827" class="mono">AW/W/B: data write</text>
+</g>
+<g>
+<rect x="825" y="790" width="600" height="235" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="825" y="790" width="600" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="825" y="790" width="8" height="235" fill="#6d28d9"/>
+<text x="847" y="828" font-size="30" font-weight="800" fill="#111827">Forward Unit</text>
+<text x="845" y="876" font-size="24" fill="#475569">EX/MEM and MEM/WB bypass</text>
+<text x="845" y="914" font-size="25" fill="#111827" class="mono">MEM hit -&gt; select 01</text>
+<text x="845" y="952" font-size="25" fill="#111827" class="mono">WB hit -&gt; select 10</text>
+</g>
+<g>
+<rect x="1600" y="790" width="710" height="235" fill="#ffffff" stroke="#111827" stroke-width="3"/>
+<rect x="1600" y="790" width="710" height="58" fill="#e5e7eb" stroke="#111827" stroke-width="3"/>
+<rect x="1600" y="790" width="8" height="235" fill="#b91c1c"/>
+<text x="1622" y="828" font-size="30" font-weight="800" fill="#111827">Hazard Control</text>
+<text x="1620" y="876" font-size="24" fill="#475569">stall / bubble / flush / resume</text>
+<text x="1620" y="914" font-size="25" fill="#111827" class="mono">load_use_hazard, duplicate</text>
+<text x="1620" y="952" font-size="25" fill="#111827" class="mono">memory_freeze, ex_bj_f</text>
+</g>
+<path d="M 260 790 L 260 705 L 170 705 L 170 615" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 480 790 L 480 720 L 1632 720 L 1632 615" fill="none" stroke="#1d4ed8" stroke-width="5"  marker-end="url(#arrowBlue)"/>
+<path d="M 1125 790 L 1125 700 L 1164 700 L 1164 615" fill="none" stroke="#6d28d9" stroke-width="5"  marker-end="url(#arrowPurple)"/>
+<path d="M 1632 615 L 1632 742 L 1290 742 L 1290 790" fill="none" stroke="#6d28d9" stroke-width="5"  marker-end="url(#arrowPurple)"/>
+<path d="M 2100 615 L 2100 755 L 1370 755 L 1370 790" fill="none" stroke="#6d28d9" stroke-width="5"  marker-end="url(#arrowPurple)"/>
+<path d="M 1955 790 L 1955 675 L 456 675" fill="none" stroke="#b91c1c" stroke-width="4" stroke-dasharray="13 10" marker-end="url(#arrowRed)"/>
+<path d="M 456 675 L 456 615" fill="none" stroke="#b91c1c" stroke-width="4" stroke-dasharray="12 9" marker-end="url(#arrowRed)"/>
+<path d="M 924 675 L 924 615" fill="none" stroke="#b91c1c" stroke-width="4" stroke-dasharray="12 9" marker-end="url(#arrowRed)"/>
+<path d="M 1392 675 L 1392 615" fill="none" stroke="#b91c1c" stroke-width="4" stroke-dasharray="12 9" marker-end="url(#arrowRed)"/>
+<path d="M 1860 675 L 1860 615" fill="none" stroke="#b91c1c" stroke-width="4" stroke-dasharray="12 9" marker-end="url(#arrowRed)"/>
+<rect x="90" y="1100" width="2220" height="245" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+<text x="120" y="1145" font-size="31" font-weight="800" fill="#111827">Pipeline-register payloads</text>
+<text x="120" y="1200" font-size="29" font-weight="800" fill="#111827">IF/ID</text>
+<text x="120" y="1242" font-size="25" fill="#334155" class="mono">id_pc, id_inst</text>
+<text x="120" y="1282" font-size="25" fill="#334155" class="mono">id_valid</text>
+<text x="665" y="1200" font-size="29" font-weight="800" fill="#111827">ID/EX</text>
+<text x="665" y="1242" font-size="25" fill="#334155" class="mono">ex_pc, ext, rs1/rs2/rd</text>
+<text x="665" y="1282" font-size="25" fill="#334155" class="mono">control, ex_valid</text>
+<text x="1210" y="1200" font-size="29" font-weight="800" fill="#111827">EX/MEM</text>
+<text x="1210" y="1242" font-size="25" fill="#334155" class="mono">mem_alu_c, store data, rd</text>
+<text x="1210" y="1282" font-size="25" fill="#334155" class="mono">control, mem_valid</text>
+<text x="1755" y="1200" font-size="29" font-weight="800" fill="#111827">MEM/WB</text>
+<text x="1755" y="1242" font-size="25" fill="#334155" class="mono">wb_alu_c, ram_ext, rd</text>
+<text x="1755" y="1282" font-size="25" fill="#334155" class="mono">control, wb_valid</text>
+<line x1="48" y1="1390" x2="2352" y2="1390" stroke="#111827" stroke-width="2"/>
+<text x="48" y="1432" font-size="27" fill="#111827">Blue: data/AXI  |  Brown: redirect/control  |  Purple: forwarding/write-back  |  Red dashed: hazard control</text>
+</svg>
