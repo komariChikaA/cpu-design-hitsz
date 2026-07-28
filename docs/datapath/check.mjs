@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+const requested = process.argv.slice(2);
 let failed = false;
 
 function fail(message) {
@@ -10,8 +11,26 @@ function fail(message) {
   console.error(`ERROR: ${message}`);
 }
 
-for (const name of ["system", "core", "compact"]) {
+async function loadModel(name, chain = []) {
+  if (chain.includes(name)) {
+    throw new Error(`circular model inheritance: ${[...chain, name].join(" -> ")}`);
+  }
   const model = JSON.parse(await fs.readFile(path.join(here, "model", `${name}.json`), "utf8"));
+  if (!model.extends) return model;
+  const base = await loadModel(model.extends, [...chain, name]);
+  const merged = {
+    ...base,
+    ...model,
+    layout: { ...(base.layout ?? {}), ...(model.layout ?? {}) }
+  };
+  delete merged.extends;
+  return merged;
+}
+
+const diagrams = requested.length ? requested : ["system", "core", "compact", "singlecycle-overview"];
+
+for (const name of diagrams) {
+  const model = await loadModel(name);
   const nodeIds = new Set();
   const portIds = new Set();
   const edgeIds = new Set();

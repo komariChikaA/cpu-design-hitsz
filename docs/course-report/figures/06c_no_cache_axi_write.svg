@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1427" viewBox="0 0 2400 1427" role="img" aria-label="无 Cache 直接 AXI 写事务：AW/W/B 通道握手">
+  <title>无 Cache 直接 AXI 写事务：AW/W/B 通道握手</title>
+  <desc>无 Cache 直接 AXI 写事务：AW/W/B 通道握手; generated directly from 06_no_cache_axi_transaction.vcd</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowInk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111827"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif; }
+      .mono { font-family: "Cascadia Mono", Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="2400" height="1427" fill="#ffffff"/>
+  <text x="54" y="62" font-size="42" font-weight="800" fill="#162033">无 Cache 直接 AXI 写事务：AW/W/B 通道握手</text>
+<text x="54" y="104" font-size="24" fill="#64748b">写地址和写数据通道可独立握手；两者完成后进入写响应阶段，并向 CPU 返回单周期响应</text>
+<rect x="48" y="132" width="2304" height="54" rx="12" fill="#f8fafc" stroke="#dbe4f0"/>
+<text x="70" y="167" font-size="21" fill="#162033">VCD: 06_no_cache_axi_transaction.vcd · timescale 1ps · window 135000–216000 ticks</text>
+<line x1="532" y1="193" x2="532" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="532" y="185" text-anchor="middle" font-size="17" fill="#64748b">135000</text>
+<line x1="714" y1="193" x2="714" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="714" y="185" text-anchor="middle" font-size="17" fill="#64748b">143100</text>
+<line x1="896" y1="193" x2="896" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="896" y="185" text-anchor="middle" font-size="17" fill="#64748b">151200</text>
+<line x1="1078" y1="193" x2="1078" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1078" y="185" text-anchor="middle" font-size="17" fill="#64748b">159300</text>
+<line x1="1260" y1="193" x2="1260" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1260" y="185" text-anchor="middle" font-size="17" fill="#64748b">167400</text>
+<line x1="1442" y1="193" x2="1442" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1442" y="185" text-anchor="middle" font-size="17" fill="#64748b">175500</text>
+<line x1="1624" y1="193" x2="1624" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1624" y="185" text-anchor="middle" font-size="17" fill="#64748b">183600</text>
+<line x1="1806" y1="193" x2="1806" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1806" y="185" text-anchor="middle" font-size="17" fill="#64748b">191700</text>
+<line x1="1988" y1="193" x2="1988" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1988" y="185" text-anchor="middle" font-size="17" fill="#64748b">199800</text>
+<line x1="2170" y1="193" x2="2170" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="2170" y="185" text-anchor="middle" font-size="17" fill="#64748b">207900</text>
+<line x1="2352" y1="193" x2="2352" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="2352" y="185" text-anchor="middle" font-size="17" fill="#64748b">216000</text>
+<rect x="48" y="205" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="291" x2="2352" y2="291" stroke="#dbe4f0"/>
+<text x="68" y="239" font-size="23" font-weight="750" fill="#162033" class="mono">clk</text>
+<text x="68" y="267" font-size="16" fill="#64748b" class="mono">clk [1 bit]</text>
+<path d="M 532 226 L 644.3456790123457 226 L 644.3456790123457 270 L 756.6913580246913 270 L 756.6913580246913 226 L 869.037037037037 226 L 869.037037037037 270 L 981.3827160493827 270 L 981.3827160493827 226 L 1093.7283950617284 226 L 1093.7283950617284 270 L 1206.074074074074 270 L 1206.074074074074 226 L 1318.4197530864199 226 L 1318.4197530864199 270 L 1430.7654320987654 270 L 1430.7654320987654 226 L 1543.1111111111113 226 L 1543.1111111111113 270 L 1655.4567901234568 270 L 1655.4567901234568 226 L 1767.8024691358025 226 L 1767.8024691358025 270 L 1880.148148148148 270 L 1880.148148148148 226 L 1992.4938271604938 226 L 1992.4938271604938 270 L 2104.8395061728397 270 L 2104.8395061728397 226 L 2217.185185185185 226 L 2217.185185185185 270 L 2329.5308641975307 270 L 2329.5308641975307 226 L 2352 226" fill="none" stroke="#2563eb" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="291" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="377" x2="2352" y2="377" stroke="#dbe4f0"/>
+<text x="68" y="325" font-size="23" font-weight="750" fill="#162033" class="mono">dut.state</text>
+<text x="68" y="353" font-size="16" fill="#64748b" class="mono">state [3 bit]</text>
+<rect x="532" y="309" width="449.3827160493827" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="756.6913580246913" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="981.3827160493827" y="309" width="898.7654320987654" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1430.7654320987654" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x3</text>
+<rect x="1880.148148148148" y="309" width="449.3827160493827" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="2104.8395061728393" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x4</text>
+<rect x="2329.5308641975307" y="309" width="22.46913580246928" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="48" y="377" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="463" x2="2352" y2="463" stroke="#dbe4f0"/>
+<text x="68" y="411" font-size="23" font-weight="750" fill="#162033" class="mono">dc_wen</text>
+<text x="68" y="439" font-size="16" fill="#64748b" class="mono">dc_wen [4 bit]</text>
+<rect x="532" y="395" width="224.69135802469134" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="644.3456790123457" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="756.6913580246913" y="395" width="224.69135802469134" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="869.037037037037" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x8</text>
+<rect x="981.3827160493827" y="395" width="1370.6172839506173" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1666.6913580246915" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="48" y="463" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="549" x2="2352" y2="549" stroke="#dbe4f0"/>
+<text x="68" y="497" font-size="23" font-weight="750" fill="#162033" class="mono">AWADDR</text>
+<text x="68" y="525" font-size="16" fill="#64748b" class="mono">awaddr [32 bit]</text>
+<rect x="532" y="481" width="449.3827160493827" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="756.6913580246913" y="513" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="981.3827160493827" y="481" width="1370.6172839506173" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1666.6913580246915" y="513" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000020</text>
+<rect x="48" y="549" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="635" x2="2352" y2="635" stroke="#dbe4f0"/>
+<text x="68" y="583" font-size="23" font-weight="750" fill="#162033" class="mono">AWVALID</text>
+<text x="68" y="611" font-size="16" fill="#64748b" class="mono">awvalid [1 bit]</text>
+<path d="M 532 614 L 981.3827160493827 614 L 981.3827160493827 570 L 1206.074074074074 570 L 1206.074074074074 614 L 2352 614" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="635" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="721" x2="2352" y2="721" stroke="#dbe4f0"/>
+<text x="68" y="669" font-size="23" font-weight="750" fill="#162033" class="mono">AWREADY</text>
+<text x="68" y="697" font-size="16" fill="#64748b" class="mono">awready [1 bit]</text>
+<path d="M 532 700 L 1003.8518518518518 700 L 1003.8518518518518 656 L 1206.074074074074 656 L 1206.074074074074 700 L 2352 700" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="721" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="807" x2="2352" y2="807" stroke="#dbe4f0"/>
+<text x="68" y="755" font-size="23" font-weight="750" fill="#162033" class="mono">WDATA</text>
+<text x="68" y="783" font-size="16" fill="#64748b" class="mono">wdata [32 bit]</text>
+<rect x="532" y="739" width="449.3827160493827" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="756.6913580246913" y="771" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="981.3827160493827" y="739" width="1370.6172839506173" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1666.6913580246915" y="771" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0xdeadbeef</text>
+<rect x="48" y="807" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="893" x2="2352" y2="893" stroke="#dbe4f0"/>
+<text x="68" y="841" font-size="23" font-weight="750" fill="#162033" class="mono">WSTRB</text>
+<text x="68" y="869" font-size="16" fill="#64748b" class="mono">wstrb [4 bit]</text>
+<rect x="532" y="825" width="449.3827160493827" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="756.6913580246913" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0</text>
+<rect x="981.3827160493827" y="825" width="1370.6172839506173" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1666.6913580246915" y="857" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x8</text>
+<rect x="48" y="893" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="979" x2="2352" y2="979" stroke="#dbe4f0"/>
+<text x="68" y="927" font-size="23" font-weight="750" fill="#162033" class="mono">WVALID</text>
+<text x="68" y="955" font-size="16" fill="#64748b" class="mono">wvalid [1 bit]</text>
+<path d="M 532 958 L 981.3827160493827 958 L 981.3827160493827 914 L 1880.148148148148 914 L 1880.148148148148 958 L 2352 958" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="979" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="1065" x2="2352" y2="1065" stroke="#dbe4f0"/>
+<text x="68" y="1013" font-size="23" font-weight="750" fill="#162033" class="mono">WREADY</text>
+<text x="68" y="1041" font-size="16" fill="#64748b" class="mono">wready [1 bit]</text>
+<path d="M 532 1044 L 1655.4567901234568 1044 L 1655.4567901234568 1000 L 1880.148148148148 1000 L 1880.148148148148 1044 L 2352 1044" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="1065" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="1151" x2="2352" y2="1151" stroke="#dbe4f0"/>
+<text x="68" y="1099" font-size="23" font-weight="750" fill="#162033" class="mono">BVALID</text>
+<text x="68" y="1127" font-size="16" fill="#64748b" class="mono">bvalid [1 bit]</text>
+<path d="M 532 1130 L 2104.8395061728397 1130 L 2104.8395061728397 1086 L 2329.5308641975307 1086 L 2329.5308641975307 1130 L 2352 1130" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="1151" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="1237" x2="2352" y2="1237" stroke="#dbe4f0"/>
+<text x="68" y="1185" font-size="23" font-weight="750" fill="#162033" class="mono">BREADY</text>
+<text x="68" y="1213" font-size="16" fill="#64748b" class="mono">bready [1 bit]</text>
+<path d="M 532 1216 L 1880.148148148148 1216 L 1880.148148148148 1172 L 2329.5308641975307 1172 L 2329.5308641975307 1216 L 2352 1216" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="1237" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="1323" x2="2352" y2="1323" stroke="#dbe4f0"/>
+<text x="68" y="1271" font-size="23" font-weight="750" fill="#162033" class="mono">dc_write_resp</text>
+<text x="68" y="1299" font-size="16" fill="#64748b" class="mono">dc_write_resp [1 bit]</text>
+<path d="M 532 1302 L 2329.5308641975307 1302 L 2329.5308641975307 1258 L 2352 1258" fill="none" stroke="#059669" stroke-width="4" stroke-linejoin="round"/>
+<line x1="756.6913580246913" y1="132" x2="756.6913580246913" y2="1327" stroke="#d97706" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="764.6913580246913" y="139" width="278" height="38" rx="9" fill="#fff7ed" stroke="#d97706"/>
+<text x="776.6913580246913" y="165" font-size="18" font-weight="750" fill="#d97706">data write request</text>
+<line x1="2329.5308641975307" y1="132" x2="2329.5308641975307" y2="1327" stroke="#059669" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="2100" y="139" width="278" height="38" rx="9" fill="#ecfdf5" stroke="#059669"/>
+<text x="2112" y="165" font-size="18" font-weight="750" fill="#059669">B response to CPU</text>
+<text x="54" y="1375" font-size="19" fill="#64748b">蓝色：数据/普通控制　橙色：访存或多周期控制　红色虚线：关键事件。数值按十六进制显示。</text>
+</svg>

@@ -61,15 +61,15 @@
   ],
   "edges": [
     { "id": "if_req", "from": "core.ifetch_req", "to": "irom.inst_rreq", "label": "request", "type": "handshake" },
-    { "id": "if_addr", "from": "core.ifetch_addr", "to": "irom.inst_addr", "label": "取指地址", "type": "data" },
+    { "id": "if_addr", "from": "core.ifetch_addr", "to": "irom.inst_addr", "label": "ifetch_addr [31:0]", "type": "data" },
     { "id": "if_valid", "from": "irom.inst_valid", "to": "core.ifetch_valid", "label": "valid", "type": "handshake" },
-    { "id": "if_inst", "from": "irom.inst_out", "to": "core.ifetch_inst", "label": "指令", "type": "data" },
+    { "id": "if_inst", "from": "irom.inst_out", "to": "core.ifetch_inst", "label": "ifetch_inst [31:0]", "type": "data" },
     { "id": "d_ren", "from": "core.daccess_ren", "to": "dram.data_ren", "label": "read enable", "type": "control" },
-    { "id": "d_addr", "from": "core.daccess_addr", "to": "dram.data_addr", "label": "访存地址", "type": "data" },
+    { "id": "d_addr", "from": "core.daccess_addr", "to": "dram.data_addr", "label": "daccess_addr [31:0]", "type": "data" },
     { "id": "d_rvalid", "from": "dram.data_valid", "to": "core.daccess_rvalid", "label": "read valid", "type": "handshake" },
-    { "id": "d_rdata", "from": "dram.data_rdata", "to": "core.daccess_rdata", "label": "读数据", "type": "data" },
+    { "id": "d_rdata", "from": "dram.data_rdata", "to": "core.daccess_rdata", "label": "daccess_rdata [31:0]", "type": "data" },
     { "id": "d_wen", "from": "core.daccess_wen", "to": "dram.data_wen", "label": "write enable", "type": "control" },
-    { "id": "d_wdata", "from": "core.daccess_wdata", "to": "dram.data_wdata", "label": "写数据", "type": "data" },
+    { "id": "d_wdata", "from": "core.daccess_wdata", "to": "dram.data_wdata", "label": "daccess_wdata [31:0]", "type": "data" },
     { "id": "d_wresp", "from": "dram.data_wresp", "to": "core.daccess_wresp", "label": "write response", "type": "handshake" }
   ],
   "notes": [

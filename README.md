@@ -19,30 +19,49 @@
 
 镜像脚本以**当前网站**为准；往年仓库只用于理解课程资料的大体组织方式。
 
-## 当前进度与目标
+## 当前进度与评分目标
 
 目前已完成支持完整 miniRV 指令集的单周期 CPU、单周期 Basic/AXI Trace、
 单周期 EGO1 上板，以及五级流水线 CPU 的 Basic/AXI Trace。四组 Trace 回归均为
 **45/45 项通过**；相应的单指令 VCD 波形保存在 `waveform/single/`。单周期 EGO1
-实板已经完成 UART、拨码和数码管程序验证，输入字符 `A` 时数码管正确显示其
-ASCII 值 `00000041`；验收程序同时会把该字符写入 LED 寄存器。
+实板已经完成 C_TEST0～2 验证，包括 UART、拨码、LED、数码管、格式化输入输出、
+递归快排、动态内存和计时器；三项均保留了独立 bitstream、Vivado 报告、串口
+截图和板级照片，核验记录与可复核证据见
+[`docs/course-report/`](docs/course-report/)。
 
-下面的路线图根据实验指导书中的实验目的、实验内容和实验步骤整理：
+课程总评由课后作业及考勤（17%）、系统实现（63%）和代码及报告（20%）组成。
+本项目以系统实现达到**优秀档**为主目标，即在良好档全部完成的基础上，让
+**流水线 SoC 在 FPGA 开发板上跑通 CoreMark**。
 
-- [x] 熟悉 miniRV 指令集、模板工程以及 CPU 的取指、译码、执行和访存过程；
-- [x] 完成 A/B 组指令的数据通路与控制信号设计，整合完整单周期 CPU；
-- [x] 实现支持完整 miniRV 指令集的单周期 CPU；
-- [x] 使用 Basic Trace 完成单周期 CPU 功能验证，并保存单指令仿真波形；
-- [x] 为单周期 CPU 接入 AXI Master、板级主存和 UART/拨码/LED/数码管等 I/O；
-- [x] 通过单周期 AXI Trace，并在 EGO1 上完成 Vivado 和实板验证；
-- [x] 将单周期 CPU 改造为五级流水线 CPU；
-- [x] 实现流水线暂停、冲刷与数据前递，解决控制冒险和数据冒险，并通过流水线 Basic Trace；
-- [x] 将无 Cache 流水线 CPU 接入 AXI Master，并通过流水线 AXI Trace；
-- [ ] 完成流水线 AXI 工程的 Vivado 综合、时序检查和 EGO1 实板验证；
-- [ ] 在流水线 CPU 上集成 ICache、DCache、AXI 总线控制器、总线桥和主存；
-- [ ] 将 CPU 集成到 SoC，在 FPGA 开发板上运行 CoreMark 或 LLaMA2，并继续进行频率、访存及时序优化。
+### 系统实现分档
 
-路线图依据：[实验一概述](mirror/lab1/0-overview/index.html)、[实验一步骤](mirror/lab1/12-step/index.html)、[实验二 A 概述](mirror/lab2-A/0-overview/index.html)和[实验二 B 概述](mirror/lab2-B/0-overview/index.html)。
+- [X] **及格**：单周期 CPU 实现全部指令并通过 Basic Trace；理想流水线通过功能仿真；单周期 CPU 实现 AXI，并通过 `lw`、`sw` 功能仿真或 Trace。
+- [X] **中等**：在及格基础上，流水线 CPU 通过 Basic Trace，单周期 CPU 通过 AXI Trace。
+- [X] **良好**：在中等基础上，流水线 CPU 通过 AXI Trace，单周期 SoC 下板跑通 C_TEST 0～2。
+  - [X] 流水线 AXI Trace 45/45。
+  - [X] 单周期 SoC 已完成 C_TEST0（UART）实板验证。
+  - [X] 单周期 SoC 已完成 C_TEST1（格式化输入输出）和 C_TEST2（递归、`malloc`、计时器）实板验证与验收记录。
+- [X] **优秀**：在良好基础上，流水线 SoC 下板跑通 CoreMark。
+  - [X] 完成流水线 AXI EGO1 工程的 Vivado 综合、实现、时序检查和 bitstream。
+  - [X] 在 EGO1 上完成流水线 SoC 的 M 扩展、UART 和板级 I/O 基础回归。
+  - [X] 在 EGO1 上稳定运行 700 次迭代 CoreMark；运行时间 32 秒，结果为
+    `Correct operation validated`，得分 21.250 CoreMark、0.425 CoreMark/MHz。
+
+### 优秀档后的加分方向
+
+加分计入系统实现部分，该部分总分上限为 70 分。下列内容不是优秀档的前置条件：
+
+- [ ] 实现 miniLA 指令集（系统实现部分加 6 分）；
+- [ ] 增加 DDR 控制器并运行 LLAMA2；
+- [ ] 集成或优化 ICache、DCache，提高主频、优化访存或运算，提升 CoreMark 性能；
+- [ ] 增加矩阵键盘、VGA、以太网等外设，并编写 C 程序下板演示；
+- [ ] 完成其他具有一定工作量和创新性的扩展。
+
+当前 **miniRV + EGO1 + CoreMark** 路线已经完成优秀档实板闭环。后续工作以整理
+报告、补齐仿真波形和现场验收材料为主；若时间允许，再选择 Cache、频率和访存优化
+争取加分。EGO1 不以 DDR/LLAMA2 作为主线。
+
+要求依据：[实验一概述](mirror/lab1/0-overview/index.html)、[实验一步骤](mirror/lab1/12-step/index.html)、[实验二 A 概述](mirror/lab2-A/0-overview/index.html)、[实验二 B 概述](mirror/lab2-B/0-overview/index.html)、[流水线与 SoC 理论课件](<materials/Lab2 流水线CPU及SoC设计/Theory2-PPT-流水线CPU及SoC设计.pdf>)和[联合调试课件](<materials/Lab2 流水线CPU及SoC设计/Lab2-PPT-流水线CPU与SoC设计-5（联合调试）.pdf>)。
 
 ### 后续实验基础工程
 
@@ -52,11 +71,15 @@ ASCII 值 `00000041`；验收程序同时会把该字符写入 LED 寄存器。
 - `miniRV_singlecycle_axi/`：已通过 AXI Trace 的单周期 AXI SoC 工程；
 - `miniRV_singlecycle_axi_ego1/`：已完成 Vivado、bitstream 和 EGO1 实板验收的独立板级工程。
 - `miniRV_pipeline_axi/`：已通过 45/45 AXI Trace 的无 Cache 五级流水线 AXI 工程。
-- `miniRV_pipeline_axi_ego1/`：已完成板级工程、IP/约束、程序和自动构建脚本准备，等待实验室 Vivado 与 EGO1 实测。
+- `miniRV_pipeline_axi_ego1/`：已完成板级工程、IP/约束、程序、自动构建脚本、流水线
+  M 扩展/UART 回归和 CoreMark 实板验收。
+- `docs/course-report/`：保存最终实验报告、可编辑数据通路图、VCD、板级照片和
+  Vivado 原始报告；不保存可重新生成的 bitstream。
 
-当前单周期 AXI/EGO1、流水线 Basic Trace 和流水线 AXI Trace 均已完成。下一阶段是
-使用 `miniRV_pipeline_axi_ego1/` 完成 Vivado 综合、时序和实板回归；之后再进入
-ICache/DCache 改造。具体边界见各工程内的 `README.md`。
+当前单周期 AXI/EGO1 C_TEST0～2、流水线 Basic Trace 和流水线 AXI Trace 均已
+完成；流水线 AXI/EGO1 也已完成 Vivado、时序、UART/M 扩展和 CoreMark 实板回归，
+系统实现达到优秀档。下一阶段先完成报告与现场验收材料，再决定是否进入
+ICache/DCache、频率和访存优化。具体边界见各工程内的 `README.md`。
 
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 

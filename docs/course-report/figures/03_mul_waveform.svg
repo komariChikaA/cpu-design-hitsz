@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1427" viewBox="0 0 2400 1427" role="img" aria-label="MUL 乘法：启动、忙等待、结果与写回波形">
+  <title>MUL 乘法：启动、忙等待、结果与写回波形</title>
+  <desc>MUL 乘法：启动、忙等待、结果与写回波形; generated directly from mul.vcd</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowInk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#111827"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "Noto Sans SC", Arial, sans-serif; }
+      .mono { font-family: "Cascadia Mono", Consolas, monospace; }
+    </style>
+  </defs>
+  <rect width="2400" height="1427" fill="#ffffff"/>
+  <text x="54" y="62" font-size="42" font-weight="800" fill="#162033">MUL 乘法：启动、忙等待、结果与写回波形</text>
+<text x="54" y="104" font-size="24" fill="#64748b">展示多周期乘法在 ALU 中的启动脉冲、busy 区间、结果产生和指令完成</text>
+<rect x="48" y="132" width="2304" height="54" rx="12" fill="#f8fafc" stroke="#dbe4f0"/>
+<text x="70" y="167" font-size="21" fill="#162033">VCD: mul.vcd · timescale 1ps · window 250–690 ticks</text>
+<line x1="532" y1="193" x2="532" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="532" y="185" text-anchor="middle" font-size="17" fill="#64748b">250</text>
+<line x1="714" y1="193" x2="714" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="714" y="185" text-anchor="middle" font-size="17" fill="#64748b">294</text>
+<line x1="896" y1="193" x2="896" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="896" y="185" text-anchor="middle" font-size="17" fill="#64748b">338</text>
+<line x1="1078" y1="193" x2="1078" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1078" y="185" text-anchor="middle" font-size="17" fill="#64748b">382</text>
+<line x1="1260" y1="193" x2="1260" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1260" y="185" text-anchor="middle" font-size="17" fill="#64748b">426</text>
+<line x1="1442" y1="193" x2="1442" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1442" y="185" text-anchor="middle" font-size="17" fill="#64748b">470</text>
+<line x1="1624" y1="193" x2="1624" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1624" y="185" text-anchor="middle" font-size="17" fill="#64748b">514</text>
+<line x1="1806" y1="193" x2="1806" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1806" y="185" text-anchor="middle" font-size="17" fill="#64748b">558</text>
+<line x1="1988" y1="193" x2="1988" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="1988" y="185" text-anchor="middle" font-size="17" fill="#64748b">602</text>
+<line x1="2170" y1="193" x2="2170" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="2170" y="185" text-anchor="middle" font-size="17" fill="#64748b">646</text>
+<line x1="2352" y1="193" x2="2352" y2="1327" stroke="#dbe4f0" stroke-width="1.4"/>
+<text x="2352" y="185" text-anchor="middle" font-size="17" fill="#64748b">690</text>
+<rect x="48" y="205" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="291" x2="2352" y2="291" stroke="#dbe4f0"/>
+<text x="68" y="239" font-size="23" font-weight="750" fill="#162033" class="mono">cpu_clk</text>
+<text x="68" y="267" font-size="16" fill="#64748b" class="mono">cpu_clk [1 bit]</text>
+<path d="M 532 226 L 552.6818181818181 226 L 552.6818181818181 270 L 573.3636363636364 270 L 573.3636363636364 226 L 594.0454545454545 226 L 594.0454545454545 270 L 614.7272727272727 270 L 614.7272727272727 226 L 635.4090909090909 226 L 635.4090909090909 270 L 656.0909090909091 270 L 656.0909090909091 226 L 676.7727272727273 226 L 676.7727272727273 270 L 697.4545454545455 270 L 697.4545454545455 226 L 718.1363636363636 226 L 718.1363636363636 270 L 738.8181818181818 270 L 738.8181818181818 226 L 759.5 226 L 759.5 270 L 780.1818181818181 270 L 780.1818181818181 226 L 800.8636363636364 226 L 800.8636363636364 270 L 821.5454545454545 270 L 821.5454545454545 226 L 842.2272727272727 226 L 842.2272727272727 270 L 862.909090909091 270 L 862.909090909091 226 L 883.590909090909 226 L 883.590909090909 270 L 904.2727272727273 270 L 904.2727272727273 226 L 924.9545454545455 226 L 924.9545454545455 270 L 945.6363636363636 270 L 945.6363636363636 226 L 966.3181818181818 226 L 966.3181818181818 270 L 987 270 L 987 226 L 1007.6818181818182 226 L 1007.6818181818182 270 L 1028.3636363636363 270 L 1028.3636363636363 226 L 1049.0454545454545 226 L 1049.0454545454545 270 L 1069.7272727272727 270 L 1069.7272727272727 226 L 1090.409090909091 226 L 1090.409090909091 270 L 1111.090909090909 270 L 1111.090909090909 226 L 1131.7727272727273 226 L 1131.7727272727273 270 L 1152.4545454545455 270 L 1152.4545454545455 226 L 1173.1363636363635 226 L 1173.1363636363635 270 L 1193.818181818182 270 L 1193.818181818182 226 L 1214.5 226 L 1214.5 270 L 1235.181818181818 270 L 1235.181818181818 226 L 1255.8636363636365 226 L 1255.8636363636365 270 L 1276.5454545454545 270 L 1276.5454545454545 226 L 1297.2272727272727 226 L 1297.2272727272727 270 L 1317.909090909091 270 L 1317.909090909091 226 L 1338.590909090909 226 L 1338.590909090909 270 L 1359.2727272727273 270 L 1359.2727272727273 226 L 1379.9545454545455 226 L 1379.9545454545455 270 L 1400.6363636363635 270 L 1400.6363636363635 226 L 1421.318181818182 226 L 1421.318181818182 270 L 1442 270 L 1442 226 L 1462.681818181818 226 L 1462.681818181818 270 L 1483.3636363636365 270 L 1483.3636363636365 226 L 1504.0454545454545 226 L 1504.0454545454545 270 L 1524.7272727272725 270 L 1524.7272727272725 226 L 1545.4090909090908 226 L 1545.4090909090908 270 L 1566.0909090909092 270 L 1566.0909090909092 226 L 1586.7727272727273 226 L 1586.7727272727273 270 L 1607.4545454545455 270 L 1607.4545454545455 226 L 1628.1363636363637 226 L 1628.1363636363637 270 L 1648.8181818181818 270 L 1648.8181818181818 226 L 1669.5 226 L 1669.5 270 L 1690.1818181818182 270 L 1690.1818181818182 226 L 1710.8636363636363 226 L 1710.8636363636363 270 L 1731.5454545454545 270 L 1731.5454545454545 226 L 1752.2272727272727 226 L 1752.2272727272727 270 L 1772.9090909090908 270 L 1772.9090909090908 226 L 1793.5909090909092 226 L 1793.5909090909092 270 L 1814.2727272727273 270 L 1814.2727272727273 226 L 1834.9545454545455 226 L 1834.9545454545455 270 L 1855.6363636363637 270 L 1855.6363636363637 226 L 1876.3181818181818 226 L 1876.3181818181818 270 L 1897 270 L 1897 226 L 1917.6818181818182 226 L 1917.6818181818182 270 L 1938.3636363636363 270 L 1938.3636363636363 226 L 1959.0454545454545 226 L 1959.0454545454545 270 L 1979.7272727272727 270 L 1979.7272727272727 226 L 2000.4090909090908 226 L 2000.4090909090908 270 L 2021.0909090909092 270 L 2021.0909090909092 226 L 2041.7727272727273 226 L 2041.7727272727273 270 L 2062.4545454545455 270 L 2062.4545454545455 226 L 2083.136363636364 226 L 2083.136363636364 270 L 2103.818181818182 270 L 2103.818181818182 226 L 2124.5 226 L 2124.5 270 L 2145.181818181818 270 L 2145.181818181818 226 L 2165.863636363636 226 L 2165.863636363636 270 L 2186.5454545454545 270 L 2186.5454545454545 226 L 2207.227272727273 226 L 2207.227272727273 270 L 2227.909090909091 270 L 2227.909090909091 226 L 2248.590909090909 226 L 2248.590909090909 270 L 2269.272727272727 270 L 2269.272727272727 226 L 2289.9545454545455 226 L 2289.9545454545455 270 L 2310.636363636364 270 L 2310.636363636364 226 L 2331.318181818182 226 L 2331.318181818182 270 L 2352 270" fill="none" stroke="#2563eb" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="291" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="377" x2="2352" y2="377" stroke="#dbe4f0"/>
+<text x="68" y="325" font-size="23" font-weight="750" fill="#162033" class="mono">pc</text>
+<text x="68" y="353" font-size="16" fill="#64748b" class="mono">pc [32 bit]</text>
+<rect x="532" y="309" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="573.3636363636364" y="309" width="82.72727272727275" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="656.0909090909091" y="309" width="1489.090909090909" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1400.6363636363635" y="341" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000010</text>
+<rect x="2145.181818181818" y="309" width="82.72727272727298" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2227.909090909091" y="309" width="82.72727272727298" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2310.636363636364" y="309" width="41.36363636363603" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="48" y="377" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="463" x2="2352" y2="463" stroke="#dbe4f0"/>
+<text x="68" y="411" font-size="23" font-weight="750" fill="#162033" class="mono">inst</text>
+<text x="68" y="439" font-size="16" fill="#64748b" class="mono">inst [32 bit]</text>
+<rect x="532" y="395" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="573.3636363636364" y="395" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="614.7272727272727" y="395" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="656.0909090909091" y="395" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="697.4545454545455" y="395" width="41.36363636363626" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="738.8181818181818" y="395" width="1447.7272727272727" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1462.681818181818" y="427" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000013</text>
+<rect x="2186.5454545454545" y="395" width="41.36363636363649" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2227.909090909091" y="395" width="41.36363636363603" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2269.272727272727" y="395" width="41.36363636363694" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2310.636363636364" y="395" width="41.36363636363603" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="48" y="463" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="549" x2="2352" y2="549" stroke="#dbe4f0"/>
+<text x="68" y="497" font-size="23" font-weight="750" fill="#162033" class="mono">is_mul</text>
+<text x="68" y="525" font-size="16" fill="#64748b" class="mono">is_mul [1 bit]</text>
+<path d="M 532 528 L 697.4545454545455 528 L 697.4545454545455 484 L 738.8181818181818 484 L 738.8181818181818 528 L 2352 528" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="549" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="635" x2="2352" y2="635" stroke="#dbe4f0"/>
+<text x="68" y="583" font-size="23" font-weight="750" fill="#162033" class="mono">alu_a</text>
+<text x="68" y="611" font-size="16" fill="#64748b" class="mono">alu_a [32 bit]</text>
+<rect x="532" y="567" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="573.3636363636364" y="567" width="124.09090909090912" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="635.409090909091" y="599" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="697.4545454545455" y="567" width="41.36363636363626" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="738.8181818181818" y="567" width="1613.1818181818182" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1545.409090909091" y="599" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="48" y="635" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="721" x2="2352" y2="721" stroke="#dbe4f0"/>
+<text x="68" y="669" font-size="23" font-weight="750" fill="#162033" class="mono">alu_b</text>
+<text x="68" y="697" font-size="16" fill="#64748b" class="mono">alu_b [32 bit]</text>
+<rect x="532" y="653" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="573.3636363636364" y="653" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="614.7272727272727" y="653" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="656.0909090909091" y="653" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="697.4545454545455" y="653" width="41.36363636363626" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="738.8181818181818" y="653" width="1447.7272727272727" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1462.681818181818" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="2186.5454545454545" y="653" width="41.36363636363649" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="2227.909090909091" y="653" width="124.09090909090901" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="2289.9545454545455" y="685" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="48" y="721" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="807" x2="2352" y2="807" stroke="#dbe4f0"/>
+<text x="68" y="755" font-size="23" font-weight="750" fill="#162033" class="mono">mul_flag</text>
+<text x="68" y="783" font-size="16" fill="#64748b" class="mono">mul_flag [1 bit]</text>
+<path d="M 532 786 L 697.4545454545455 786 L 697.4545454545455 742 L 738.8181818181818 742 L 738.8181818181818 786 L 2352 786" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="807" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="893" x2="2352" y2="893" stroke="#dbe4f0"/>
+<text x="68" y="841" font-size="23" font-weight="750" fill="#162033" class="mono">mul_div_busy</text>
+<text x="68" y="869" font-size="16" fill="#64748b" class="mono">mul_div_busy [1 bit]</text>
+<path d="M 532 872 L 738.8181818181818 872 L 738.8181818181818 828 L 2103.818181818182 828 L 2103.818181818182 872 L 2352 872" fill="none" stroke="#d97706" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="893" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="979" x2="2352" y2="979" stroke="#dbe4f0"/>
+<text x="68" y="927" font-size="23" font-weight="750" fill="#162033" class="mono">mul_res</text>
+<text x="68" y="955" font-size="16" fill="#64748b" class="mono">mul_res [64 bit]</text>
+<rect x="532" y="911" width="1571.818181818182" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="1317.909090909091" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x0000000000000000</text>
+<rect x="2103.818181818182" y="911" width="248.18181818181802" height="50" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="2227.909090909091" y="943" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x000000594000ab87</text>
+<rect x="48" y="979" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="1065" x2="2352" y2="1065" stroke="#dbe4f0"/>
+<text x="68" y="1013" font-size="23" font-weight="750" fill="#162033" class="mono">alu_c</text>
+<text x="68" y="1041" font-size="16" fill="#64748b" class="mono">alu_c [32 bit]</text>
+<rect x="532" y="997" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="573.3636363636364" y="997" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="614.7272727272727" y="997" width="41.363636363636374" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="656.0909090909091" y="997" width="1447.727272727273" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="1379.9545454545455" y="1029" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="2103.818181818182" y="997" width="82.72727272727252" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="2186.5454545454545" y="997" width="41.36363636363649" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="2227.909090909091" y="997" width="124.09090909090901" height="50" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="2289.9545454545455" y="1029" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="48" y="1065" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="1151" x2="2352" y2="1151" stroke="#dbe4f0"/>
+<text x="68" y="1099" font-size="23" font-weight="750" fill="#162033" class="mono">rf_we</text>
+<text x="68" y="1127" font-size="16" fill="#64748b" class="mono">rf_we [1 bit]</text>
+<path d="M 532 1086 L 2352 1086" fill="none" stroke="#7c3aed" stroke-width="4" stroke-linejoin="round"/>
+<rect x="48" y="1151" width="2304" height="86" fill="#f8fafc"/>
+<line x1="48" y1="1237" x2="2352" y2="1237" stroke="#dbe4f0"/>
+<text x="68" y="1185" font-size="23" font-weight="750" fill="#162033" class="mono">rf_wD</text>
+<text x="68" y="1213" font-size="16" fill="#64748b" class="mono">rf_wD [32 bit]</text>
+<rect x="532" y="1169" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="573.3636363636364" y="1169" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="614.7272727272727" y="1169" width="41.363636363636374" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="656.0909090909091" y="1169" width="1447.727272727273" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="1379.9545454545455" y="1201" text-anchor="middle" font-size="18" font-weight="650" fill="#162033" class="mono">0x00000000</text>
+<rect x="2103.818181818182" y="1169" width="82.72727272727252" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2186.5454545454545" y="1169" width="41.36363636363649" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2227.909090909091" y="1169" width="41.36363636363603" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2269.272727272727" y="1169" width="41.36363636363694" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="2310.636363636364" y="1169" width="41.36363636363603" height="50" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<rect x="48" y="1237" width="2304" height="86" fill="#ffffff"/>
+<line x1="48" y1="1323" x2="2352" y2="1323" stroke="#dbe4f0"/>
+<text x="68" y="1271" font-size="23" font-weight="750" fill="#162033" class="mono">inst_finished</text>
+<text x="68" y="1299" font-size="16" fill="#64748b" class="mono">inst_finished [1 bit]</text>
+<path d="M 532 1258 L 573.3636363636364 1258 L 573.3636363636364 1302 L 614.7272727272727 1302 L 614.7272727272727 1258 L 656.0909090909091 1258 L 656.0909090909091 1302 L 2103.818181818182 1302 L 2103.818181818182 1258 L 2145.181818181818 1258 L 2145.181818181818 1302 L 2186.5454545454545 1302 L 2186.5454545454545 1258 L 2227.909090909091 1258 L 2227.909090909091 1302 L 2269.272727272727 1302 L 2269.272727272727 1258 L 2310.636363636364 1258 L 2310.636363636364 1302 L 2352 1302" fill="none" stroke="#059669" stroke-width="4" stroke-linejoin="round"/>
+<line x1="697.4545454545455" y1="132" x2="697.4545454545455" y2="1327" stroke="#d97706" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="705.4545454545455" y="139" width="278" height="38" rx="9" fill="#fff7ed" stroke="#d97706"/>
+<text x="717.4545454545455" y="165" font-size="18" font-weight="750" fill="#d97706">MUL launch</text>
+<line x1="2103.818181818182" y1="132" x2="2103.818181818182" y2="1327" stroke="#dc2626" stroke-width="3" stroke-dasharray="10 8"/>
+<rect x="2100" y="139" width="278" height="38" rx="9" fill="#fef2f2" stroke="#dc2626"/>
+<text x="2112" y="165" font-size="18" font-weight="750" fill="#dc2626">busy falls / result ready</text>
+<text x="54" y="1375" font-size="19" fill="#64748b">蓝色：数据/普通控制　橙色：访存或多周期控制　红色虚线：关键事件。数值按十六进制显示。</text>
+</svg>
