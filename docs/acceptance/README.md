@@ -7,7 +7,10 @@
 > [`coremark-pipeline.html`](./coremark-pipeline.html)。严格代码追问看
 > [`COREMARK_PIPELINE_AXI_DEFENSE.md`](./COREMARK_PIPELINE_AXI_DEFENSE.md)，波形追问看
 > [`WAVEFORM_DEFENSE.md`](./WAVEFORM_DEFENSE.md)。五项完整留档仍在
-> [`index.html`](./index.html)。
+> [`index.html`](./index.html)。每项验收与具体代码、原始 VCD、标注图和结果证据的
+> 对照关系见
+> [`module-waveforms.html`](./module-waveforms.html)，其可打印 Markdown 版本为
+> [`MODULE_WAVEFORM_MATRIX.md`](./MODULE_WAVEFORM_MATRIX.md)。
 
 ## 0. 验收目标与顺序
 
@@ -38,6 +41,15 @@
 - 实板照片证明曾经跑通，现场仍要准备工程、匹配源码的 bitstream 和串口；
 - 本设计目前 **没有 Cache**，AXI 图解释为总线读写，不能说成 Cache miss；
 - 先讲数据通路，再打开代码和波形，最后给出 PASS/实板结果。
+
+上传前在仓库根目录执行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File docs/acceptance/verify-acceptance-bundle.ps1
+```
+
+脚本必须显示 `Raw VCD files: 47` 和最终 `PASS`，这样可确认验收模块、Trace
+报告、47 份原始波形以及关键图片全部存在并已被 Git 跟踪。
 
 ## 1. 总体结构怎么讲
 

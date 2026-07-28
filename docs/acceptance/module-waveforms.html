@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>miniRV 验收模块与波形索引</title>
+  <style>
+    :root{--ink:#17212b;--muted:#5d6872;--line:#b9c4cc;--nav:#111b23;--blue:#005e9e;--green:#14793d;--amber:#a64b00;--paper:#fff;--bg:#edf1f4}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 "Segoe UI","Microsoft YaHei",sans-serif}
+    a{color:var(--blue)}code{font-family:Consolas,monospace;background:#e5ebef;padding:2px 5px}
+    header{background:var(--nav);color:#fff;padding:34px max(24px,calc((100vw - 1320px)/2))}
+    header h1{font-size:34px;margin:4px 0 8px}header p{color:#c7d3db;margin:0;max-width:920px}
+    .eyebrow{font:700 13px Consolas;color:#65c5df;letter-spacing:1.2px}
+    .toolbar{position:sticky;top:0;z-index:10;background:#fffffff2;border-bottom:1px solid var(--line);padding:10px max(24px,calc((100vw - 1320px)/2));display:flex;gap:9px;align-items:center;backdrop-filter:blur(7px)}
+    .toolbar a{border:1px solid #8796a1;background:#fff;padding:7px 10px;text-decoration:none;color:#24313a}
+    #search{min-width:300px;flex:1;max-width:520px;padding:8px 10px;border:1px solid #8796a1;font-size:15px}
+    #result{color:var(--muted);font-size:13px}
+    main{max-width:1320px;margin:auto;padding:32px 24px 70px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+    .metric{background:#fff;border:1px solid var(--line);padding:15px}.metric b{display:block;color:var(--blue);font:700 28px Consolas}.metric span{color:var(--muted)}
+    .bundle{background:var(--paper);border:1px solid var(--line);margin:18px 0;padding:22px;scroll-margin-top:66px;box-shadow:0 2px 9px #12202c12}
+    .bundle h2{font-size:26px;border-bottom:3px solid var(--blue);padding-bottom:8px;margin:0 0 16px}.bundle h3{font-size:18px;margin:17px 0 7px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{border:1px solid #ccd4da;padding:14px;background:#f8fafb}
+    ul{margin:7px 0;padding-left:22px}.paths{list-style:none;padding:0}.paths li{border-top:1px solid #d9e0e5;padding:7px 0}.paths li:first-child{border:0}.paths a{font-family:Consolas,monospace;word-break:break-all}
+    .chain{counter-reset:n;list-style:none;padding:0}.chain li{counter-increment:n;padding:5px 0 5px 38px;position:relative}.chain li:before{content:counter(n);position:absolute;left:0;top:4px;width:25px;height:25px;border:1px solid var(--blue);color:var(--blue);text-align:center;font:700 14px/24px Consolas}
+    .wave{display:inline-block;border:1px solid #8697a3;background:#fff;padding:5px 8px;margin:3px 2px;text-decoration:none;font:13px Consolas}
+    .wave:hover{background:#e7f3fa}.pass{color:var(--green);font-weight:700}.boundary{border-left:5px solid var(--amber);background:#fff1e5;padding:12px 15px;margin:13px 0}
+    .figures{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.figures figure{margin:0;border:1px solid var(--line);background:#fff}.figures img{width:100%;height:210px;object-fit:contain;display:block;cursor:zoom-in}.figures figcaption{border-top:1px solid var(--line);padding:7px 9px;color:var(--muted);font-size:13px}
+    .inventory{background:#fff;border:1px solid var(--line);padding:22px;margin-top:22px}.inventory h2{margin-top:0}.groups{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.group{border:1px solid #d1d9df;padding:12px}.group h3{margin:0 0 8px}
+    .hidden{display:none!important}.light{display:none;position:fixed;inset:0;background:#07111bed;z-index:40;align-items:center;justify-content:center;padding:24px}.light.open{display:flex}.light img{max-width:97vw;max-height:93vh;background:#fff}.light button{position:absolute;right:18px;top:12px;font-size:25px}
+    footer{text-align:center;color:var(--muted);padding:25px}
+    @media(max-width:850px){.metrics,.grid,.figures,.groups{grid-template-columns:1fr}.toolbar{flex-wrap:wrap}#search{min-width:220px}.figures img{height:auto}}
+    @media print{.toolbar{display:none}.bundle,.inventory{break-inside:avoid;box-shadow:none}header{padding:20px}main{padding:10px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">ACCEPTANCE MODULE × RTL × VCD × RESULT</div>
+    <h1>验收模块与波形一体化索引</h1>
+    <p>每项验收都从同一张卡片打开实现代码、原始 VCD、标注图和最终证据。定向波形解释机制，Trace/实板结果证明整体验收。</p>
+  </header>
+  <div class="toolbar">
+    <a href="./coremark-pipeline.html">最终版答辩台</a>
+    <a href="./index.html">五项完整流程</a>
+    <a href="./MODULE_WAVEFORM_MATRIX.md">Markdown 索引</a>
+    <input id="search" placeholder="搜索：lw / load-use / AXI / UART / CoreMark">
+    <span id="result">5 个验收模块 · 47 份原始 VCD</span>
+  </div>
+  <main>
+    <div class="metrics">
+      <div class="metric"><b>5</b><span>验收模块</span></div>
+      <div class="metric"><b>15</b><span>关键 RTL 文件纳入自动核验</span></div>
+      <div class="metric"><b>47</b><span>Git 跟踪的原始 VCD</span></div>
+      <div class="metric"><b>3×45/45</b><span>Trace 汇总</span></div>
+    </div>
+
+    <section class="bundle searchable" data-key="单周期 AXI Trace 取指 译码 访存 AR R AW W B">
+      <h2>1 / 单周期 AXI Trace</h2>
+      <div class="grid">
+        <div class="panel"><h3>验收代码</h3><ul class="paths">
+          <li><a href="../../miniRV_singlecycle_axi/src/rtl/cpu_core.v">cpu_core.v</a> — 单周期数据通路</li>
+          <li><a href="../../miniRV_singlecycle_axi/src/rtl/cpu_top.v">cpu_top.v</a> — CPU/AXI 边界</li>
+          <li><a href="../../miniRV_singlecycle_axi/src/rtl/axi_master.v">axi_master.v</a> — 五通道状态机</li>
+          <li><a href="../../miniRV_singlecycle_axi/src/rtl/miniRV_SoC.v">miniRV_SoC.v</a> — Trace 顶层</li>
+        </ul></div>
+        <div class="panel"><h3>对应波形与结果</h3>
+          <a class="wave" href="../../waveform/single/lw.vcd">lw.vcd</a><a class="wave" href="../../waveform/single/sw.vcd">sw.vcd</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">AXI raw VCD</a>
+          <ul><li><a href="../course-report/figures/06b_no_cache_axi_read.png">AXI 读标注图</a></li><li><a href="../course-report/figures/06c_no_cache_axi_write.png">AXI 写标注图</a></li><li class="pass"><a href="../../trace_test/miniRV_AXI_report.md">Trace 45/45 报告</a></li></ul>
+        </div>
+      </div>
+      <ol class="chain"><li>单指令 VCD 讲 PC、译码、ALU、访存和写回。</li><li>AXI VCD 按 VALID 与 READY 同拍解释握手。</li><li>Trace 45/45 作为整套单周期 AXI 的通过判据。</li></ol>
+      <div class="figures"><figure><img src="../course-report/figures/01_singlecycle_datapath.png" alt="单周期数据通路"><figcaption>单周期数据通路</figcaption></figure><figure><img src="../course-report/figures/06b_no_cache_axi_read.png" alt="AXI读事务波形"><figcaption>AR/R 读事务</figcaption></figure><figure><img src="../course-report/figures/06c_no_cache_axi_write.png" alt="AXI写事务波形"><figcaption>AW/W/B 写事务</figcaption></figure></div>
+    </section>
+
+    <section class="bundle searchable" data-key="流水线 Basic Trace IF ID EX MEM WB forward load-use bubble stall flush">
+      <h2>2 / 流水线 Basic Trace</h2>
+      <div class="grid">
+        <div class="panel"><h3>验收代码</h3><ul class="paths">
+          <li><a href="../../miniRV_pipeline/src/rtl/cpu_core.v">cpu_core.v</a> — hazard/stall/flush</li>
+          <li><a href="../../miniRV_pipeline/src/rtl/pipeline/pipeline_regs.v">pipeline_regs.v</a> — 四组级间寄存器</li>
+          <li><a href="../../miniRV_pipeline/src/rtl/pipeline/forward_unit.v">forward_unit.v</a> — MEM/WB 前递</li>
+          <li><a href="../../miniRV_pipeline/src/rtl/pipeline/ALU_multicycle.v">ALU_multicycle.v</a> — M 扩展冻结</li>
+        </ul></div>
+        <div class="panel"><h3>对应波形与结果</h3>
+          <a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">load-use raw VCD</a><a class="wave" href="../../waveform/single/lw.vcd">lw.vcd</a><a class="wave" href="../../waveform/single/addi.vcd">addi.vcd</a>
+          <ul><li><a href="../course-report/figures/06a_pipeline_load_use_hazard.png">load-use 标注图</a></li><li><a href="../course-report/figures/04_pipeline_datapath.png">流水线数据通路图</a></li><li class="pass"><a href="../../trace_test/miniRV_pipeline_report.md">Basic Trace 45/45 报告</a></li></ul>
+        </div>
+      </div>
+      <ol class="chain"><li>先用 valid+PC 确认每条指令所在级。</li><li>指出 load-use 命中后保持 PC/IF-ID、向 ID/EX 注入 bubble。</li><li>数据到 WB 后前递，相关 addi 恢复执行。</li></ol>
+      <div class="figures"><figure><img src="../course-report/figures/04_pipeline_datapath.png" alt="流水线数据通路"><figcaption>IF/ID/EX/MEM/WB</figcaption></figure><figure><img src="../course-report/figures/06a_pipeline_load_use_hazard.png" alt="load-use冒险波形"><figcaption>暂停、bubble 与前递</figcaption></figure></div>
+    </section>
+
+    <section class="bundle searchable" data-key="流水线 AXI Trace pending stale fetch response freeze valid ready">
+      <h2>3 / 流水线 AXI Trace</h2>
+      <div class="grid">
+        <div class="panel"><h3>验收代码</h3><ul class="paths">
+          <li><a href="../../miniRV_pipeline_axi/src/rtl/cpu_core.v">cpu_core.v</a> — 流水线核心</li>
+          <li><a href="../../miniRV_pipeline_axi/src/rtl/cpu_top.v">cpu_top.v</a> — 防重复请求/过期取指</li>
+          <li><a href="../../miniRV_pipeline_axi/src/rtl/axi_master.v">axi_master.v</a> — AXI 仲裁与状态机</li>
+          <li><a href="../../miniRV_pipeline_axi/src/rtl/miniRV_SoC.v">miniRV_SoC.v</a> — AXI Trace 顶层</li>
+        </ul></div>
+        <div class="panel"><h3>对应波形与结果</h3>
+          <a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">pipeline raw VCD</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">AXI raw VCD</a>
+          <ul><li><a href="../course-report/figures/05_axi_state_machine.png">AXI 状态机图</a></li><li><a href="../course-report/figures/06b_no_cache_axi_read.png">AXI 读</a> / <a href="../course-report/figures/06c_no_cache_axi_write.png">AXI 写</a></li><li class="pass"><a href="../../trace_test/miniRV_pipeline_axi_report.md">流水线 AXI Trace 45/45 报告</a></li></ul>
+        </div>
+      </div>
+      <ol class="chain"><li>core 请求发出后，流水线根据等待条件保持状态。</li><li>分别指出 AR/R 或 AW/W/B 的真实握手沿。</li><li>分支改变目标后，pending 地址用于拒绝旧路径响应。</li></ol>
+      <div class="figures"><figure><img src="../course-report/figures/05_axi_state_machine.png" alt="AXI状态机"><figcaption>IDLE/RADDR/RDATA/WSEND/WRESP</figcaption></figure><figure><img src="../course-report/figures/06b_no_cache_axi_read.png" alt="AXI读事务波形"><figcaption>读地址与读数据握手</figcaption></figure><figure><img src="../course-report/figures/06c_no_cache_axi_write.png" alt="AXI写事务波形"><figcaption>写地址、写数据与写响应</figcaption></figure></div>
+    </section>
+
+    <section class="bundle searchable" data-key="C_TEST0 C_TEST1 C_TEST2 UART formatIO sort malloc LED 数码管">
+      <h2>4 / 单周期 C_TEST0～2</h2>
+      <div class="grid">
+        <div class="panel"><h3>验收代码</h3><ul class="paths">
+          <li><a href="../../miniRV_singlecycle_axi_ego1/src/rtl/axi_board_soc.v">axi_board_soc.v</a> — MMIO 地址译码</li>
+          <li><a href="../../miniRV_singlecycle_axi_ego1/src/rtl/simple_uart.v">simple_uart.v</a> — UART 收发</li>
+          <li><a href="../../miniRV_singlecycle_axi_ego1/software/c_test/0_uart_test/main.c">C_TEST0 main.c</a></li>
+          <li><a href="../../miniRV_singlecycle_axi_ego1/software/c_test/1_formatIO_test/main.c">C_TEST1 main.c</a></li>
+          <li><a href="../../miniRV_singlecycle_axi_ego1/software/c_test/2_sort_test/main.c">C_TEST2 main.c</a></li>
+        </ul></div>
+        <div class="panel"><h3>对应机制波形</h3>
+          <a class="wave" href="../../waveform/single/sb.vcd">sb/UART write</a><a class="wave" href="../../waveform/single/lw.vcd">lw/MMIO read</a><a class="wave" href="../../waveform/single/sw.vcd">sw</a><a class="wave" href="../../waveform/single/div.vcd">div</a><a class="wave" href="../../waveform/single/rem.vcd">rem</a><a class="wave" href="../../waveform/single/blt.vcd">blt/sort</a>
+          <ul><li><a href="../course-report/board-evidence/singlecycle/ctest0/uart-terminal.png">C_TEST0 串口</a></li><li><a href="../course-report/board-evidence/singlecycle/ctest1/terminal.png">C_TEST1 终端</a></li><li><a href="../course-report/board-evidence/singlecycle/ctest2/terminal-1.png">C_TEST2 终端</a></li></ul>
+        </div>
+      </div>
+      <div class="boundary">C_TEST 是长程序：这些 VCD 证明程序所依赖的指令/MMIO 机制；串口、LED、数码管和实现报告才是完整程序结果证据。</div>
+      <div class="figures"><figure><img src="../course-report/board-evidence/singlecycle/ctest0/uart-terminal.png" alt="C_TEST0串口"><figcaption>C_TEST0 UART 双向收发</figcaption></figure><figure><img src="../course-report/board-evidence/singlecycle/ctest1/terminal.png" alt="C_TEST1终端"><figcaption>C_TEST1 格式化输入输出</figcaption></figure><figure><img src="../course-report/board-evidence/singlecycle/ctest2/terminal-1.png" alt="C_TEST2终端"><figcaption>C_TEST2 排序与动态内存</figcaption></figure></div>
+    </section>
+
+    <section class="bundle searchable" data-key="CoreMark pipeline AXI RV32IM mul div rem CRC validated C0DE600D WNS">
+      <h2>5 / 流水线 CoreMark 最终版</h2>
+      <div class="grid">
+        <div class="panel"><h3>验收代码</h3><ul class="paths">
+          <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/cpu_core.v">cpu_core.v</a></li>
+          <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/cpu_top.v">cpu_top.v</a></li>
+          <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/axi_master.v">axi_master.v</a></li>
+          <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/axi_board_soc.v">axi_board_soc.v</a></li>
+          <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/pipeline/pipeline_regs.v">pipeline_regs.v</a></li>
+          <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/pipeline/ALU_multicycle.v">ALU_multicycle.v</a></li>
+        </ul></div>
+        <div class="panel"><h3>对应机制波形与结果</h3>
+          <a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">pipeline VCD</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">AXI VCD</a><a class="wave" href="../../waveform/single/mul.vcd">mul</a><a class="wave" href="../../waveform/single/div.vcd">div</a><a class="wave" href="../../waveform/single/rem.vcd">rem</a>
+          <ul><li class="pass"><a href="../course-report/board-evidence/coremark/serial-result.png">Correct operation validated</a></li><li><a href="../course-report/board-evidence/coremark/board-2.jpg">C0DE600D 实板</a></li><li><a href="../course-report/board-evidence/pipeline/implementation-status.png">实现状态/WNS</a></li></ul>
+        </div>
+      </div>
+      <div class="boundary">没有上传“完整 CoreMark 全程 VCD”。定向 VCD回答机制，CRC、运行时间、得分和 C0DE600D 证明完整程序跑通。</div>
+      <div class="figures"><figure><img src="../course-report/board-evidence/coremark/serial-result.png" alt="CoreMark串口结果"><figcaption>CRC validated、时间与得分</figcaption></figure><figure><img src="../course-report/board-evidence/coremark/board-2.jpg" alt="CoreMark板卡结果"><figcaption>结束码 C0DE600D</figcaption></figure><figure><img src="../course-report/board-evidence/pipeline/implementation-status.png" alt="Vivado实现状态"><figcaption>WNS、TNS 与资源利用率</figcaption></figure></div>
+    </section>
+
+    <section class="inventory searchable" data-key="全部 VCD inventory 指令波形">
+      <h2>47 份原始 VCD 清单</h2>
+      <p>下面每个名称都直接打开仓库中的原始波形。页面加载时由固定清单生成，上传前再运行完整性脚本确认它们全部被 Git 跟踪。</p>
+      <div id="groups" class="groups"></div>
+    </section>
+  </main>
+  <div class="light" id="light"><button aria-label="关闭">×</button><img alt=""></div>
+  <footer>miniRV acceptance module-waveform index · 2024311081_2024311453</footer>
+  <script>
+    const sets={
+      "启动、控制转移和比较":["start","auipc","lui","jal","jalr","beq","bne","blt","bltu","bge","bgeu","slt"],
+      "整数运算与立即数":["add","addi","sub","and","andi","or","ori","xor","xori","sll","slli","srl","srli","sra","srai","sltu","slti","sltiu"],
+      "Load / store":["lb","lbu","lh","lhu","lw","sb","sh","sw"],
+      "M 扩展":["mul","mulh","mulhu","div","divu","rem","remu"]
+    };
+    const groups=document.querySelector("#groups");
+    Object.entries(sets).forEach(([title,names])=>{
+      const box=document.createElement("div");box.className="group";box.innerHTML=`<h3>${title}（${names.length}）</h3>`;
+      names.forEach(n=>{const a=document.createElement("a");a.className="wave";a.href=`../../waveform/single/${n}.vcd`;a.textContent=`${n}.vcd`;box.append(a)});groups.append(box)
+    });
+    const extra=document.createElement("div");extra.className="group";extra.innerHTML='<h3>流水线与 AXI（2）</h3><a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">06_pipeline_load_use_hazard.vcd</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">06_no_cache_axi_transaction.vcd</a>';groups.append(extra);
+    const search=document.querySelector("#search"),result=document.querySelector("#result");
+    search.addEventListener("input",()=>{const q=search.value.trim().toLowerCase();let shown=0;document.querySelectorAll(".searchable").forEach(e=>{const ok=!q||(e.dataset.key+" "+e.textContent).toLowerCase().includes(q);e.classList.toggle("hidden",!ok);shown+=ok?1:0});result.textContent=q?`找到 ${shown} 个相关验收块`:"5 个验收模块 · 47 份原始 VCD"});
+    const light=document.querySelector("#light");document.querySelectorAll("img").forEach(img=>img.addEventListener("click",()=>{light.querySelector("img").src=img.src;light.querySelector("img").alt=img.alt;light.classList.add("open")}));light.addEventListener("click",()=>light.classList.remove("open"));
+  </script>
+</body>
+</html>
