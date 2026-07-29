@@ -46,13 +46,13 @@
     <a href="./index.html">五项完整流程</a>
     <a href="./MODULE_WAVEFORM_MATRIX.md">Markdown 索引</a>
     <input id="search" placeholder="搜索：lw / load-use / AXI / UART / CoreMark">
-    <span id="result">5 个验收模块 · 47 份原始 VCD</span>
+    <span id="result">5 个验收模块 · 49 份原始 VCD</span>
   </div>
   <main>
     <div class="metrics">
       <div class="metric"><b>5</b><span>验收模块</span></div>
       <div class="metric"><b>15</b><span>关键 RTL 文件纳入自动核验</span></div>
-      <div class="metric"><b>47</b><span>Git 跟踪的原始 VCD</span></div>
+      <div class="metric"><b>49</b><span>Git 跟踪的原始 VCD</span></div>
       <div class="metric"><b>3×45/45</b><span>Trace 汇总</span></div>
     </div>
 
@@ -84,7 +84,7 @@
           <li><a href="../../miniRV_pipeline/src/rtl/pipeline/ALU_multicycle.v">ALU_multicycle.v</a> — M 扩展冻结</li>
         </ul></div>
         <div class="panel"><h3>对应波形与结果</h3>
-          <a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">load-use raw VCD</a><a class="wave" href="../../waveform/single/lw.vcd">lw.vcd</a><a class="wave" href="../../waveform/single/addi.vcd">addi.vcd</a>
+          <a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">load-use raw VCD</a><a class="wave" href="../course-report/vcd/07_pipeline_five_stage_forward_branch.vcd">五级/前递/分支 raw VCD</a><a class="wave" href="../../waveform/single/lw.vcd">lw.vcd</a><a class="wave" href="../../waveform/single/addi.vcd">addi.vcd</a>
           <ul><li><a href="../course-report/figures/06a_pipeline_load_use_hazard.png">load-use 标注图</a></li><li><a href="../course-report/figures/04_pipeline_datapath.png">流水线数据通路图</a></li><li class="pass"><a href="../../trace_test/miniRV_pipeline_report.md">Basic Trace 45/45 报告</a></li></ul>
         </div>
       </div>
@@ -121,7 +121,7 @@
           <li><a href="../../miniRV_singlecycle_axi_ego1/software/c_test/2_sort_test/main.c">C_TEST2 main.c</a></li>
         </ul></div>
         <div class="panel"><h3>对应机制波形</h3>
-          <a class="wave" href="../../waveform/single/sb.vcd">sb/UART write</a><a class="wave" href="../../waveform/single/lw.vcd">lw/MMIO read</a><a class="wave" href="../../waveform/single/sw.vcd">sw</a><a class="wave" href="../../waveform/single/div.vcd">div</a><a class="wave" href="../../waveform/single/rem.vcd">rem</a><a class="wave" href="../../waveform/single/blt.vcd">blt/sort</a>
+          <a class="wave" href="../course-report/vcd/09_board_peripheral_mmio_uart.vcd">板级 MMIO/UART raw VCD</a><a class="wave" href="../../waveform/single/sb.vcd">sb/UART write</a><a class="wave" href="../../waveform/single/lw.vcd">lw/MMIO read</a><a class="wave" href="../../waveform/single/sw.vcd">sw</a><a class="wave" href="../../waveform/single/div.vcd">div</a><a class="wave" href="../../waveform/single/rem.vcd">rem</a><a class="wave" href="../../waveform/single/blt.vcd">blt/sort</a>
           <ul><li><a href="../course-report/board-evidence/singlecycle/ctest0/uart-terminal.png">C_TEST0 串口</a></li><li><a href="../course-report/board-evidence/singlecycle/ctest1/terminal.png">C_TEST1 终端</a></li><li><a href="../course-report/board-evidence/singlecycle/ctest2/terminal-1.png">C_TEST2 终端</a></li></ul>
         </div>
       </div>
@@ -141,7 +141,7 @@
           <li><a href="../../miniRV_pipeline_axi_ego1/src/rtl/pipeline/ALU_multicycle.v">ALU_multicycle.v</a></li>
         </ul></div>
         <div class="panel"><h3>对应机制波形与结果</h3>
-          <a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">pipeline VCD</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">AXI VCD</a><a class="wave" href="../../waveform/single/mul.vcd">mul</a><a class="wave" href="../../waveform/single/div.vcd">div</a><a class="wave" href="../../waveform/single/rem.vcd">rem</a>
+          <a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">load-use VCD</a><a class="wave" href="../course-report/vcd/07_pipeline_five_stage_forward_branch.vcd">五级/前递/分支 VCD</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">AXI VCD</a><a class="wave" href="../course-report/vcd/09_board_peripheral_mmio_uart.vcd">外设/UART VCD</a><a class="wave" href="../../waveform/single/mul.vcd">mul</a><a class="wave" href="../../waveform/single/div.vcd">div</a><a class="wave" href="../../waveform/single/rem.vcd">rem</a>
           <ul><li class="pass"><a href="../course-report/board-evidence/coremark/serial-result.png">Correct operation validated</a></li><li><a href="../course-report/board-evidence/coremark/board-2.jpg">C0DE600D 实板</a></li><li><a href="../course-report/board-evidence/pipeline/implementation-status.png">实现状态/WNS</a></li></ul>
         </div>
       </div>
@@ -150,7 +150,7 @@
     </section>
 
     <section class="inventory searchable" data-key="全部 VCD inventory 指令波形">
-      <h2>47 份原始 VCD 清单</h2>
+      <h2>49 份原始 VCD 清单</h2>
       <p>下面每个名称都直接打开仓库中的原始波形。页面加载时由固定清单生成，上传前再运行完整性脚本确认它们全部被 Git 跟踪。</p>
       <div id="groups" class="groups"></div>
     </section>
@@ -169,9 +169,9 @@
       const box=document.createElement("div");box.className="group";box.innerHTML=`<h3>${title}（${names.length}）</h3>`;
       names.forEach(n=>{const a=document.createElement("a");a.className="wave";a.href=`../../waveform/single/${n}.vcd`;a.textContent=`${n}.vcd`;box.append(a)});groups.append(box)
     });
-    const extra=document.createElement("div");extra.className="group";extra.innerHTML='<h3>流水线与 AXI（2）</h3><a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">06_pipeline_load_use_hazard.vcd</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">06_no_cache_axi_transaction.vcd</a>';groups.append(extra);
+    const extra=document.createElement("div");extra.className="group";extra.innerHTML='<h3>流水线、AXI 与外设（4）</h3><a class="wave" href="../course-report/vcd/06_pipeline_load_use_hazard.vcd">06_pipeline_load_use_hazard.vcd</a><a class="wave" href="../course-report/vcd/07_pipeline_five_stage_forward_branch.vcd">07_pipeline_five_stage_forward_branch.vcd</a><a class="wave" href="../course-report/vcd/06_no_cache_axi_transaction.vcd">06_no_cache_axi_transaction.vcd</a><a class="wave" href="../course-report/vcd/09_board_peripheral_mmio_uart.vcd">09_board_peripheral_mmio_uart.vcd</a>';groups.append(extra);
     const search=document.querySelector("#search"),result=document.querySelector("#result");
-    search.addEventListener("input",()=>{const q=search.value.trim().toLowerCase();let shown=0;document.querySelectorAll(".searchable").forEach(e=>{const ok=!q||(e.dataset.key+" "+e.textContent).toLowerCase().includes(q);e.classList.toggle("hidden",!ok);shown+=ok?1:0});result.textContent=q?`找到 ${shown} 个相关验收块`:"5 个验收模块 · 47 份原始 VCD"});
+    search.addEventListener("input",()=>{const q=search.value.trim().toLowerCase();let shown=0;document.querySelectorAll(".searchable").forEach(e=>{const ok=!q||(e.dataset.key+" "+e.textContent).toLowerCase().includes(q);e.classList.toggle("hidden",!ok);shown+=ok?1:0});result.textContent=q?`找到 ${shown} 个相关验收块`:"5 个验收模块 · 49 份原始 VCD"});
     const light=document.querySelector("#light");document.querySelectorAll("img").forEach(img=>img.addEventListener("click",()=>{light.querySelector("img").src=img.src;light.querySelector("img").alt=img.alt;light.classList.add("open")}));light.addEventListener("click",()=>light.classList.remove("open"));
   </script>
 </body>

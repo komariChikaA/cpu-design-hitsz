@@ -33,6 +33,11 @@ bash tests/generate_report_vcd.sh
 - `docs/course-report/vcd/06_no_cache_axi_transaction.vcd`
 - `docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd`
 
+2026-07-29 已在 Ubuntu GitHub Actions/Icarus 回归
+[`30446791756`](https://github.com/komariChikaA/cpu-design-hitsz/actions/runs/30446791756)
+中实际执行，四个 testbench 均输出 `PASS`。仓库中的 VCD 即该次构建产物，
+不是手工绘制或仅保留截图。
+
 终端应看到：
 
 ```text

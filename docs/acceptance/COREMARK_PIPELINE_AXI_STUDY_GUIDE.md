@@ -644,6 +644,17 @@ PASS: axi_master_tb
 PASS: board_peripheral_tb
 ```
 
+上述四个 testbench 已在 Ubuntu GitHub Actions/Icarus 回归
+[`30446791756`](https://github.com/komariChikaA/cpu-design-hitsz/actions/runs/30446791756)
+中实际执行并全部通过。仓库内四份 VCD 就是该次构建产物：
+
+| VCD | 字节数 | SHA-256 |
+|---|---:|---|
+| `06_pipeline_load_use_hazard.vcd` | 41,172 | `81a4ea95274f7cefbfb6249941472417b3cd4f4e2ec9f016f0a01f6682ef3965` |
+| `07_pipeline_five_stage_forward_branch.vcd` | 38,357 | `604f751f34215df13d82bc4b2bded61a64eb4d0d35c4f89702b384bef2f25df8` |
+| `06_no_cache_axi_transaction.vcd` | 4,979 | `773e05a8c059d3c7b8bfec58bc9f13bb12e978e703a051fc8ec39f7f9262957e` |
+| `09_board_peripheral_mmio_uart.vcd` | 633,295 | `bd517134842eeba48e14f41ab553f40d17575d4dec1217288e808f68a40697fc` |
+
 ## 14. 在 Surfer/GTKWave 中现场找信号
 
 ### 14.1 基本操作

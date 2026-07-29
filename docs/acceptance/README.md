@@ -52,8 +52,8 @@
 powershell -ExecutionPolicy Bypass -File docs/acceptance/verify-acceptance-bundle.ps1
 ```
 
-脚本必须显示 `Raw VCD files: 47` 和最终 `PASS`，这样可确认验收模块、Trace
-报告、47 份原始波形以及关键图片全部存在并已被 Git 跟踪。
+脚本必须显示 `Raw VCD files: 49` 和最终 `PASS`，这样可确认验收模块、Trace
+报告、49 份原始波形以及关键图片全部存在并已被 Git 跟踪。
 
 ## 1. 总体结构怎么讲
 

@@ -1,5 +1,5 @@
 $date
-	Tue Jul 28 20:12:37 2026
+	Wed Jul 29 11:14:43 2026
 $end
 $version
 	Icarus Verilog
@@ -77,42 +77,55 @@ $var wire 1 I m_axi_rvalid $end
 $var wire 1 ' m_axi_wlast $end
 $var wire 1 J m_axi_wready $end
 $var wire 1 Y _unused_ok $end
-$var reg 32 Z dc_dev_rdata [31:0] $end
+$var parameter 3 Z ST_IDLE $end
+$var parameter 3 [ ST_RADDR $end
+$var parameter 3 \ ST_RDATA $end
+$var parameter 3 ] ST_WRESP $end
+$var parameter 3 ^ ST_WSEND $end
+$var reg 32 _ dc_dev_rdata [31:0] $end
 $var reg 1 2 dc_dev_rrdy $end
 $var reg 1 1 dc_dev_rvalid $end
 $var reg 1 0 dc_dev_wrdy $end
 $var reg 1 / dc_dev_wresp $end
-$var reg 32 [ ic_dev_rdata [31:0] $end
+$var reg 32 ` ic_dev_rdata [31:0] $end
 $var reg 1 - ic_dev_rrdy $end
 $var reg 1 , ic_dev_rvalid $end
-$var reg 32 \ m_axi_araddr [31:0] $end
+$var reg 32 a m_axi_araddr [31:0] $end
 $var reg 1 7 m_axi_arvalid $end
-$var reg 32 ] m_axi_awaddr [31:0] $end
+$var reg 32 b m_axi_awaddr [31:0] $end
 $var reg 1 5 m_axi_awvalid $end
 $var reg 1 4 m_axi_bready $end
 $var reg 1 + m_axi_rready $end
-$var reg 32 ^ m_axi_wdata [31:0] $end
-$var reg 4 _ m_axi_wstrb [3:0] $end
+$var reg 32 c m_axi_wdata [31:0] $end
+$var reg 4 d m_axi_wstrb [3:0] $end
 $var reg 1 ( m_axi_wvalid $end
-$var reg 1 ` read_is_data $end
-$var reg 3 a state [2:0] $end
+$var reg 1 e read_is_data $end
+$var reg 3 f state [2:0] $end
 $upscope $end
 $scope task fail $end
-$var reg 768 b message [767:0] $end
+$var reg 768 g message [767:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b11 ^
+b100 ]
+b10 \
+b1 [
+b0 Z
+$end
 #0
 $dumpvars
+bx g
+bx f
+xe
+bx d
+bx c
 bx b
 bx a
-x`
+bx `
 bx _
-bx ^
-bx ]
-bx \
-bx [
-bx Z
 0Y
 b0 X
 b0 W
@@ -178,25 +191,25 @@ $end
 0+
 07
 b0 8
-b0 \
+b0 a
 04
 0(
 b0 )
-b0 _
+b0 d
 b0 *
-b0 ^
+b0 c
 05
 b0 6
-b0 ]
+b0 b
 0/
 b0 3
-b0 Z
+b0 _
 01
 b0 .
-b0 [
+b0 `
 0,
-0`
-b0 a
+0e
+b0 f
 1=
 #10000
 0=
@@ -220,7 +233,7 @@ b11 O
 00
 02
 0-
-b1 a
+b1 f
 17
 0D
 1=
@@ -237,7 +250,7 @@ b1 a
 0=
 #75000
 09
-b10 a
+b10 f
 1+
 07
 1=
@@ -255,10 +268,10 @@ b10010001101000101011001111000 W
 12
 10
 0I
-b0 a
+b0 f
 1,
 b10010001101000101011001111000 .
-b10010001101000101011001111000 [
+b10010001101000101011001111000 `
 0+
 1=
 #100000
@@ -282,18 +295,18 @@ b10010 K
 02
 0D
 0?
-b1 a
+b1 f
 17
 b10000 8
-b10000 \
-1`
+b10000 a
+1e
 1=
 #116000
 19
 #120000
 0=
 #125000
-b10 a
+b10 f
 1+
 07
 1I
@@ -308,10 +321,10 @@ b10100101101001010101101001011010 W
 12
 10
 0I
-b0 a
+b0 f
 11
 b10100101101001010101101001011010 3
-b10100101101001010101101001011010 Z
+b10100101101001010101101001011010 _
 0+
 1=
 #140000
@@ -334,15 +347,15 @@ b100011 L
 00
 b0 B
 b0 N
-b11 a
+b11 f
 1(
 b1000 )
-b1000 _
+b1000 d
 b11011110101011011011111011101111 *
-b11011110101011011011111011101111 ^
+b11011110101011011011111011101111 c
 15
 b100000 6
-b100000 ]
+b100000 b
 1=
 #156000
 1:
@@ -364,7 +377,7 @@ b100000 ]
 #190000
 0=
 #195000
-b100 a
+b100 f
 14
 0(
 0J
@@ -380,7 +393,7 @@ b100 a
 1-
 12
 10
-b0 a
+b0 f
 1/
 04
 0<

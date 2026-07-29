@@ -3,7 +3,9 @@
 > 对应 RTL：`miniRV_pipeline_axi_ego1/`
 > 对应 VCD：
 > `docs/course-report/vcd/06_pipeline_load_use_hazard.vcd`
+> `docs/course-report/vcd/07_pipeline_five_stage_forward_branch.vcd`
 > `docs/course-report/vcd/06_no_cache_axi_transaction.vcd`
+> `docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd`
 
 ## 1. 波形必须按时钟沿解释
 
@@ -175,6 +177,9 @@ mul_busy / div_busy
 
 ## 7. 普通前递波形
 
+直接打开：
+`docs/course-report/vcd/07_pipeline_five_stage_forward_branch.vcd`。
+
 例子：
 
 ```asm
@@ -192,6 +197,10 @@ and  x6,x7,x3
 - `mem_is_load=1` 时 MEM 前递条件被禁止。
 
 ## 8. taken branch 波形
+
+同样使用
+`docs/course-report/vcd/07_pipeline_five_stage_forward_branch.vcd`，其程序包含
+taken `beq` 和一条必须被冲刷的错误路径 `addi x5,x0,99`。
 
 建议分组：
 
@@ -297,6 +306,10 @@ wb_pc wb_valid wb_rd rf_wD
 8. dependent 指令从 MEM/WB 前递。
 
 ## 13. UART MMIO 波形
+
+直接打开：
+`docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd`。该定向测试同时包含
+LED、数码管、switch、timer、UART TX `0x55` 和 UART RX `0x41`。
 
 ### 发送字符
 
