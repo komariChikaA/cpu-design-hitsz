@@ -105,23 +105,33 @@ module board_peripheral_tb;
         input [31:0] data;
         input [ 3:0] strb;
         begin
+            // 所有主机驱动都在 negedge 改变，所有握手都在 posedge 判定，
+            // 避免 testbench 与 Slave 的时序 always 块在同一仿真区竞争。
             @(negedge clk);
             awaddr  = addr;
             wdata   = data;
             wstrb   = strb;
             awvalid = 1'b1;
             wvalid  = 1'b1;
-            while (!(awready && wready))
-                @(negedge clk);
+
+            // 保持 AWVALID/WVALID，直到某个上升沿两个 READY 同时有效。
             @(posedge clk);
+            while (!(awready && wready))
+                @(posedge clk);
+
+            // 地址和数据已经被接收，撤销请求并准备接收 B 响应。
             @(negedge clk);
             awvalid = 1'b0;
             wvalid  = 1'b0;
-            wait (bvalid);
+            bready = 1'b1;
+
+            // bvalid 可能已经在 AW/W 握手沿置位；在后续上升沿采样响应。
+            @(posedge clk);
+            while (!bvalid)
+                @(posedge clk);
             if (bresp != 2'b00)
                 $fatal(1, "FAIL: AXI write DECERR at %h", addr);
-            bready = 1'b1;
-            @(posedge clk);
+
             @(negedge clk);
             bready = 1'b0;
         end
@@ -135,17 +145,23 @@ module board_peripheral_tb;
             @(negedge clk);
             araddr  = addr;
             arvalid = 1'b1;
-            while (!arready)
-                @(negedge clk);
+
+            // 在上升沿确认 AR 握手，随后撤销 ARVALID 并拉高 RREADY。
             @(posedge clk);
+            while (!arready)
+                @(posedge clk);
             @(negedge clk);
             arvalid = 1'b0;
-            wait (rvalid);
+            rready  = 1'b1;
+
+            // MMIO 可快速返回，BRAM 则可能多等待一拍；统一等 RVALID。
+            @(posedge clk);
+            while (!rvalid)
+                @(posedge clk);
             data = rdata;
             if (rresp != 2'b00 || !rlast)
                 $fatal(1, "FAIL: AXI read response at %h", addr);
-            rready = 1'b1;
-            @(posedge clk);
+
             @(negedge clk);
             rready = 1'b0;
         end
