@@ -29,14 +29,32 @@ bash tests/generate_report_vcd.sh
 脚本会先进行自检，只有仿真断言通过才会保留以下文件：
 
 - `docs/course-report/vcd/06_pipeline_load_use_hazard.vcd`
+- `docs/course-report/vcd/07_pipeline_five_stage_forward_branch.vcd`
 - `docs/course-report/vcd/06_no_cache_axi_transaction.vcd`
+- `docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd`
+
+2026-07-29 已在 Ubuntu GitHub Actions/Icarus 回归
+[`30446791756`](https://github.com/komariChikaA/cpu-design-hitsz/actions/runs/30446791756)
+中实际执行，四个 testbench 均输出 `PASS`。仓库中的 VCD 即该次构建产物，
+不是手工绘制或仅保留截图。
 
 终端应看到：
 
 ```text
 PASS: pipeline_hazard_tb
+PASS: pipeline_flow_tb
 PASS: axi_master_tb
+PASS: board_peripheral_tb
 ```
+
+四份波形与验收问题的对应关系：
+
+| 原始 VCD | 现场回答 |
+|---|---|
+| `06_pipeline_load_use_hazard.vcd` | load-use 为什么需要 bubble，AXI 等待时哪些级保持，返回后如何从 WB 前递 |
+| `07_pipeline_five_stage_forward_branch.vcd` | 一条指令怎样经过 IF/ID/EX/MEM/WB，MEM/WB 前递，taken branch 如何冲刷错误路径 |
+| `06_no_cache_axi_transaction.vcd` | AR/R 和 AW/W/B 何时握手，AW/W 为什么可以不同拍，backpressure 时 VALID/数据为何保持 |
+| `09_board_peripheral_mmio_uart.vcd` | LED/数码管/switch/timer 的 MMIO，UART TX/RX 状态机和 AXI 访问 |
 
 ## 在 Windows 上转成报告用 PNG
 

@@ -49,7 +49,9 @@ try {
         $singleNames | ForEach-Object { "waveform/single/$_.vcd" }
     ) + @(
         'docs/course-report/vcd/06_pipeline_load_use_hazard.vcd',
-        'docs/course-report/vcd/06_no_cache_axi_transaction.vcd'
+        'docs/course-report/vcd/07_pipeline_five_stage_forward_branch.vcd',
+        'docs/course-report/vcd/06_no_cache_axi_transaction.vcd',
+        'docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd'
     )
 
     $requiredEvidence = @(

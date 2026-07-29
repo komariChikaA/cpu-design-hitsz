@@ -162,7 +162,7 @@ CoreMark 全程波形会非常大，当前没有上传，也不是最终正确�
 回答“某种机制怎么工作”，用 `Correct operation validated`、四组 CRC、运行时间和
 `C0DE600D` 回答“完整 CoreMark 是否跑通”。
 
-## 6. 原始 VCD 全清单（47/47）
+## 6. 原始 VCD 全清单（49/49）
 
 以下链接均指向 Git 跟踪的原始 VCD，不是只有截图。
 
@@ -223,10 +223,12 @@ CoreMark 全程波形会非常大，当前没有上传，也不是最终正确�
 - [`rem.vcd`](../../waveform/single/rem.vcd)
 - [`remu.vcd`](../../waveform/single/remu.vcd)
 
-### 6.5 流水线和 AXI 定向波形（2）
+### 6.5 流水线、AXI 和外设定向波形（4）
 
 - [`06_pipeline_load_use_hazard.vcd`](../course-report/vcd/06_pipeline_load_use_hazard.vcd)
+- [`07_pipeline_five_stage_forward_branch.vcd`](../course-report/vcd/07_pipeline_five_stage_forward_branch.vcd)
 - [`06_no_cache_axi_transaction.vcd`](../course-report/vcd/06_no_cache_axi_transaction.vcd)
+- [`09_board_peripheral_mmio_uart.vcd`](../course-report/vcd/09_board_peripheral_mmio_uart.vcd)
 
 ## 7. 老师临时指定指令时怎么用
 

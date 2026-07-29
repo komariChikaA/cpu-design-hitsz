@@ -5,12 +5,14 @@ on:
     paths:
       - ".github/workflows/pipeline-axi-rtl.yml"
       - "miniRV_pipeline_axi/**"
+      - "miniRV_pipeline_axi_ego1/**"
   push:
     branches:
       - main
     paths:
       - ".github/workflows/pipeline-axi-rtl.yml"
       - "miniRV_pipeline_axi/**"
+      - "miniRV_pipeline_axi_ego1/**"
 
 permissions:
   contents: read
@@ -24,3 +26,13 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y iverilog
       - name: Run directed RTL regressions
         run: bash miniRV_pipeline_axi/tests/run_iverilog.sh
+      - name: Run final EGO1 CoreMark pipeline AXI regressions
+        run: bash miniRV_pipeline_axi_ego1/tests/run_iverilog.sh
+      - name: Generate final EGO1 acceptance VCD files
+        run: bash miniRV_pipeline_axi_ego1/tests/generate_report_vcd.sh
+      - name: Upload final EGO1 acceptance VCD files
+        uses: actions/upload-artifact@v4
+        with:
+          name: miniRV-pipeline-axi-ego1-vcd
+          path: docs/course-report/vcd/*.vcd
+          if-no-files-found: error

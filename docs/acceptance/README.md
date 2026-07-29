@@ -10,7 +10,11 @@
 > [`index.html`](./index.html)。每项验收与具体代码、原始 VCD、标注图和结果证据的
 > 对照关系见
 > [`module-waveforms.html`](./module-waveforms.html)，其可打印 Markdown 版本为
-> [`MODULE_WAVEFORM_MATRIX.md`](./MODULE_WAVEFORM_MATRIX.md)。
+> [`MODULE_WAVEFORM_MATRIX.md`](./MODULE_WAVEFORM_MATRIX.md)。下一次验收前用于系统
+> 学习最终 CoreMark 版本的材料见
+> [`training/miniRV_CoreMark流水线AXI_代码与波形自学手册.html`](./training/miniRV_CoreMark流水线AXI_代码与波形自学手册.html)
+> 和
+> [`training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf`](./training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf)。
 
 ## 0. 验收目标与顺序
 
@@ -48,8 +52,8 @@
 powershell -ExecutionPolicy Bypass -File docs/acceptance/verify-acceptance-bundle.ps1
 ```
 
-脚本必须显示 `Raw VCD files: 47` 和最终 `PASS`，这样可确认验收模块、Trace
-报告、47 份原始波形以及关键图片全部存在并已被 Git 跟踪。
+脚本必须显示 `Raw VCD files: 49` 和最终 `PASS`，这样可确认验收模块、Trace
+报告、49 份原始波形以及关键图片全部存在并已被 Git 跟踪。
 
 ## 1. 总体结构怎么讲
 
