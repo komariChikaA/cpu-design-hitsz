@@ -10,7 +10,11 @@
 > [`index.html`](./index.html)。每项验收与具体代码、原始 VCD、标注图和结果证据的
 > 对照关系见
 > [`module-waveforms.html`](./module-waveforms.html)，其可打印 Markdown 版本为
-> [`MODULE_WAVEFORM_MATRIX.md`](./MODULE_WAVEFORM_MATRIX.md)。
+> [`MODULE_WAVEFORM_MATRIX.md`](./MODULE_WAVEFORM_MATRIX.md)。下一次验收前用于系统
+> 学习最终 CoreMark 版本的材料见
+> [`training/miniRV_CoreMark流水线AXI_代码与波形自学手册.html`](./training/miniRV_CoreMark流水线AXI_代码与波形自学手册.html)
+> 和
+> [`training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf`](./training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf)。
 
 ## 0. 验收目标与顺序
 
