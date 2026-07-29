@@ -98,19 +98,19 @@ mul_busy / div_busy
 
 | 事件 | 波形判据 | 代码 |
 |---|---|---|
-| 提出取指地址 | `ifetch_req=1`，`ifetch_addr=PC` | `cpu_core.v:429-439` |
-| AXI 接受读地址 | `ARVALID && ARREADY` | `axi_master.v:149-154` |
-| AXI 返回指令 | `RVALID && RREADY` | `axi_master.v:157-168` |
-| CPU 得到指令 | `ifetch_valid=1`，`ifetch_inst` 有效 | `cpu_top.v:95-97` |
-| 进入 ID | 上升沿后 `id_valid=1`、`id_pc/id_inst` 更新 | `pipeline_regs.v:104-118` |
+| 提出取指地址 | `ifetch_req=1`，`ifetch_addr=PC` | `cpu_core.v:521-534`（搜 `ifetch_req`） |
+| AXI 接受读地址 | `ARVALID && ARREADY` | `axi_master.v:165-168`（搜 `m_axi_arvalid`） |
+| AXI 返回指令 | `RVALID && RREADY` | `axi_master.v:174-183`（搜 `m_axi_rvalid`） |
+| CPU 得到指令 | `ifetch_valid=1`，`ifetch_inst` 有效 | `cpu_top.v:98-120`（搜 `ic2cpu_valid`） |
+| 进入 ID | 上升沿后 `id_valid=1`、`id_pc/id_inst` 更新 | `pipeline_regs.v:114-141`（搜 `IF/ID`） |
 | ID 译码 | 同一周期观察 opcode、alu_op、ram_rop/wop、rf_wsel | `Controller.v` |
-| 进入 EX | 下一上升沿后 `ex_valid=1`、`ex_pc` 等于该指令 PC | `pipeline_regs.v:154-207` |
-| EX 运算 | 同周期观察 `alu_a/alu_b/alu_c`、前递选择、分支信号 | `cpu_core.v:327-384` |
-| 进入 MEM | 下一上升沿后 `mem_valid=1`、`mem_pc` 对应指令 | `pipeline_regs.v:231-255` |
-| 发出 load/store | `daccess_ren!=0` 或 `daccess_wen!=0` | `cpu_core.v:392-415` |
-| 访存完成 | `daccess_rvalid=1` 或 `daccess_wresp=1` | `cpu_core.v:247-256` |
-| 进入 WB | 完成后的上升沿后 `wb_valid=1` | `pipeline_regs.v:275-295` |
-| 写寄存器 | 上升沿前 `wb_valid && wb_rf_we`，`wb_rd/rf_wD` 有效 | `RF.v:23-29` |
+| 进入 EX | 下一上升沿后 `ex_valid=1`、`ex_pc` 等于该指令 PC | `pipeline_regs.v:145-239`（搜 `ID/EX`） |
+| EX 运算 | 同周期观察 `alu_a/alu_b/alu_c`、前递选择、分支信号 | `cpu_core.v:398-466`（搜 `forward_unit` / `U_ALU`） |
+| 进入 MEM | 下一上升沿后 `mem_valid=1`、`mem_pc` 对应指令 | `pipeline_regs.v:241-293`（搜 `EX/MEM`） |
+| 发出 load/store | `daccess_ren!=0` 或 `daccess_wen!=0` | `cpu_core.v:475-500`（搜 `mem_op_active`） |
+| 访存完成 | `daccess_rvalid=1` 或 `daccess_wresp=1` | `cpu_core.v:306-318`（搜 `ld_st_done`） |
+| 进入 WB | 完成后的上升沿后 `wb_valid=1` | `pipeline_regs.v:295-329`（搜 `MEM/WB`） |
+| 写寄存器 | 上升沿前 `wb_valid && wb_rf_we`，`wb_rd/rf_wD` 有效 | `RF.v:29-35`（搜 `we &&`） |
 
 ## 4. 取指到译码的完整解释
 

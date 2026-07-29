@@ -97,7 +97,7 @@
     </section>
 
     <section id="pipeline"><h2>3 / 五级流水</h2>
-      <article class="find" data-key="IF 取指 地址 PC"><h3>IF：地址什么时候提出？</h3><pre><button class="copy">复制</button><code>// cpu_core.v:29-35, 437-439
+      <article class="find" data-key="IF 取指 地址 PC"><h3>IF：地址什么时候提出？</h3><pre><button class="copy">复制</button><code>// cpu_core.v:43-56, 521-534（搜索 ifetch_addr）
 if (ex_bj_f) pc &lt;= ex_bj_target;
 else if (ifetch_valid &amp;&amp; !stall_if) pc &lt;= pc + 4;
 assign ifetch_addr = ex_bj_f ? ex_bj_target : pc;</code></pre><p>地址出现不等于取到指令；AR 握手接受地址，R 握手返回数据，ifetch_valid 周期结束时 IF/ID 才锁存。</p></article>

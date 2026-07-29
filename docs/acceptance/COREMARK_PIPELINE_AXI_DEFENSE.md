@@ -193,7 +193,7 @@ CoreMark 是长时间综合负载，覆盖列表、矩阵、状态机、CRC、�
 
 ### 4.1 IF：PC 和取指
 
-位置：`cpu_core.v:26-35`、`429-439`。
+位置：`cpu_core.v:43-56`、`521-534`（也可搜索 `ifetch_req` / `ifetch_addr`）。
 
 ```verilog
 always @(posedge cpu_clk or posedge cpu_rst) begin
@@ -218,7 +218,7 @@ assign ifetch_addr = ex_bj_f ? ex_bj_target : pc;
 
 ### 4.2 IF/ID
 
-位置：`pipeline_regs.v:96-118`。
+位置：`pipeline_regs.v:114-141`（搜索 `IF/ID`）。
 
 ```verilog
 if (flush) begin
@@ -235,12 +235,12 @@ end
 
 ### 4.3 ID：译码、寄存器和立即数
 
-位置：`cpu_core.v:79-88`、`190-235`。
+位置：`cpu_core.v:109-117`、`216-285`（搜索 `U_CU` / `U_RF` / `U_SEXT`）。
 
 ID 先从 opcode 判断该指令是否真的使用 rs1/rs2，避免把立即数字段误判成数据相关；
 Controller 生成控制，RF 读两个源操作数，SEXT 产生立即数。
 
-WB 同拍旁路在 `cpu_core.v:222-227`：
+WB 同拍旁路在 `cpu_core.v:269-274`（搜索 `wb_fwd_rs1`）：
 
 ```verilog
 wire wb_fwd_rs1 = wb_rf_we && wb_valid && (wb_rd != 0)
@@ -252,14 +252,14 @@ wire [31:0] rf_rd1_fwd = wb_fwd_rs1 ? rf_wD : rf_rd1;
 
 ### 4.4 ID/EX
 
-位置：`pipeline_regs.v:120-207`。
+位置：`pipeline_regs.v:145-239`（搜索 `ID/EX`）。
 
 它不只保存数据，还保存 rs1/rs2/rd、ALU 操作、访存控制、写回选择和 valid。冒险时
 `id_valid_for_ex=0` 注入 bubble；真正全局冻结时 `stall_id=1` 保持原 EX 指令。
 
 ### 4.5 EX：前递、ALU、分支
 
-位置：`cpu_core.v:327-384`。
+位置：`cpu_core.v:398-466`（搜索 `U_FWD` / `U_ALU`）。
 
 ```verilog
 assign fwd_a = (forward_a_sel == 2'b01) ? mem_wb_data :
@@ -273,7 +273,7 @@ assign alu_b = ex_alub_sel ? ex_ext : fwd_b;
 
 `01` 表示从较近的 MEM 级前递，优先级高；`10` 表示从 WB 前递。
 
-分支位置：`cpu_core.v:273-294`。
+分支位置：`cpu_core.v:339-393`（搜索 `ex_bj_target` / `flush`）。
 
 ```verilog
 assign ex_bj_target = ex_is_jalr ? {alu_c[31:1], 1'b0}
@@ -285,14 +285,14 @@ assign ex_bj_taken = (ex_is_branch && br) || ex_is_jal || ex_is_jalr;
 
 ### 4.6 EX/MEM
 
-位置：`pipeline_regs.v:209-255`。
+位置：`pipeline_regs.v:241-293`（搜索 `EX/MEM`）。
 
 保存 ALU 结果、store 数据、访存类型、rd 和写回选择。特别注意 store 数据传入的是
 `fwd_store_data`，不是 ID 时读到的旧 `ex_rf_rd2`。
 
 ### 4.7 MEM：请求、等待和子字节
 
-位置：`cpu_core.v:386-415`。
+位置：`cpu_core.v:475-500`（搜索 `U_MEM_REQ` / `mem_op_active`）。
 
 - MREQ 把地址低两位变成 byte strobe 和移位后的写数据；
 - `mem_op_active` 保证 bubble 不发请求；
@@ -301,7 +301,7 @@ assign ex_bj_taken = (ex_is_branch && br) || ex_is_jal || ex_is_jalr;
 
 ### 4.8 MEM/WB 与 WB
 
-位置：`pipeline_regs.v:257-295`、`cpu_core.v:417-427`。
+位置：`pipeline_regs.v:295-329`、`cpu_core.v:505-518`（搜索 `MEM/WB` / `wb_rf_wsel`）。
 
 ```verilog
 case (wb_rf_wsel)
@@ -340,7 +340,7 @@ sub x4, x3, x5
 | C4 | MEM | EX | `mem_rd==ex_rs1`，从 EX/MEM 前递 add 结果 |
 | C5 | WB | MEM | 不需要 stall |
 
-代码：`forward_unit.v:20-32`、`cpu_core.v:342-360`。
+代码：`forward_unit.v:25-39`、`cpu_core.v:398-434`（搜索 `forward_a_sel` / `fwd_a`）。
 
 为什么 MEM load 被排除：
 
@@ -359,7 +359,7 @@ lw   x2, 0(x1)
 addi x3, x2, 1
 ```
 
-检测：`cpu_core.v:237-242`。
+检测：`cpu_core.v:288-296`（搜索 `load_use_hazard`）。
 
 ```verilog
 wire load_use_hazard = ex_is_load && ex_rf_we && (ex_rd != 0) &&
@@ -403,7 +403,7 @@ sw 同时需要：
 - rs1 作为地址基址，走 `fwd_a`；
 - rs2 作为写数据，走 `fwd_store_data`。
 
-代码：`cpu_core.v:358-360`，在实例化 pipeline_regs 时通过
+代码：`cpu_core.v:433-434`，在实例化 `pipeline_regs` 的 `cpu_core.v:167-168` 通过
 `ex_rf_rd2_in(fwd_store_data)` 写入 EX/MEM。
 
 如果是：
@@ -462,7 +462,7 @@ add x4, x3, x5
 实板 ALU 在启动边沿锁存已经前递后的 a/b，`busy` 从启动拍就拉高，冻结 EX 及前面
 流水级，直到乘法器完成。结果进入 EX/MEM 后，add 可从 MEM 前递。
 
-关键代码：`ALU_multicycle.v:88-130`。
+关键代码：`ALU_multicycle.v:100-144`（搜索 `operation_start` / `operation_issued`）。
 
 为什么 `busy` 包含 `operation_start`：
 
@@ -488,7 +488,7 @@ wire [4:0] active_alu_op = ex_valid ? ex_alu_op : `ALU_ADD;
 > 以前 load/M 进入 EX 时把 IF 停住，同一条指令仍留在 ID；长延迟操作完成后它又进入
 > EX，造成重复执行。UART 状态 load 被重复后，前递甚至把返回值当下一次地址基址。
 
-最终代码 `cpu_core.v:301-322`：
+最终代码 `cpu_core.v:366-389`（搜索 `load_duplicate` / `id_valid_for_ex`）：
 
 ```verilog
 wire load_duplicate = id_is_ld_st   && ex_is_ld_st;
@@ -520,7 +520,7 @@ assign id_valid_for_ex = id_valid && !load_use_hazard
 
 ### 5.9 AXI 响应后的重复事务
 
-位置：`cpu_top.v:71-79`。
+位置：`cpu_top.v:89-91`（搜索 `ic_axi_req` / `dc_axi_rreq`）。
 
 ```verilog
 wire       ic_axi_req  = cpu2ic_rreq && !ic_axi_valid;
@@ -534,7 +534,7 @@ Master 在产生 response 的同一拍回 IDLE，但 core 到下一时钟沿才�
 
 ### 5.10 分支后的过期取指
 
-位置：`cpu_top.v:81-97`。
+位置：`cpu_top.v:98-110`（搜索 `ic_pending_word_addr`）。
 
 AXI 接受取指时记录 `ic_pending_word_addr`。返回时只有它仍等于 core 当前请求地址，
 才产生 `ic2cpu_valid`。分支改变 PC 后，旧地址响应即使正常返回也被丢弃。
@@ -635,7 +635,7 @@ start bit、8 data bits、stop bit。
 
 ### 7.1 AXI Master 状态机
 
-位置：`axi_master.v:70-74`。
+位置：`axi_master.v:77-81`（搜索 `ST_IDLE`）。
 
 ```text
 ST_IDLE
@@ -643,7 +643,7 @@ ST_IDLE
 └─ 写 → ST_WSEND --AW和W均握手--> ST_WRESP --B握手--> ST_IDLE
 ```
 
-请求优先级在 `axi_master.v:87-97`：data write > data read > instruction read。
+请求优先级在 `axi_master.v:139-160`：data write > data read > instruction read。
 所有访问单拍、32 位，AR/AW 地址按 4 字节对齐，子字节由 WSTRB/MEXT 处理。
 
 ### 7.2 为什么 AW/W 要分别记录？
@@ -860,18 +860,18 @@ MREQ 产生精确 WSTRB；BRAM/AXI Slave 只使能对应 byte lane。
 
 | 老师关键词 | 立刻打开 |
 |---|---|
-| 五级/valid/stall/flush | `cpu_core.v:26-176` + `pipeline_regs.v` |
-| 前递/RAW | `forward_unit.v` + `cpu_core.v:327-360` |
-| load-use | `cpu_core.v:237-242, 296-325` + hazard 波形 |
-| store 数据 | `cpu_core.v:142, 358-360` + `MREQ.v` |
-| 分支/JAL/JALR | `cpu_core.v:273-294, 324-325, 439` |
-| 乘除法 | `ALU_multicycle.v:41-162` |
-| AXI 握手 | `axi_master.v:70-190` + AXI 波形 |
-| 重复事务 | `cpu_top.v:71-79` |
-| 过期取指 | `cpu_top.v:81-97` |
-| MMIO/UART | `axi_board_soc.v:161-225` + `simple_uart.v` |
+| 五级/valid/stall/flush | `cpu_core.v:43-211, 366-393` + `pipeline_regs.v` |
+| 前递/RAW | `forward_unit.v:25-39` + `cpu_core.v:398-434` |
+| load-use | `cpu_core.v:288-296, 366-389` + hazard 波形 |
+| store 数据 | `cpu_core.v:167-168, 433-434, 475-485` + `MREQ.v` |
+| 分支/JAL/JALR | `cpu_core.v:339-393, 534` |
+| 乘除法 | `ALU_multicycle.v:39-179` |
+| AXI 握手 | `axi_master.v:77-207` + AXI 波形 |
+| 重复事务 | `cpu_top.v:89-91` |
+| 过期取指 | `cpu_top.v:98-110` |
+| MMIO/UART | `axi_board_soc.v:190-261` + `simple_uart.v:65-188` |
 | CoreMark 计时 | `core_portme.c:36-71, 100-130, 164-194` |
-| 调试/ILA | `miniRV_SoC.v:164-194` + `ILA_DEBUG_GUIDE.md` |
+| 调试/ILA | `miniRV_SoC.v:192-238` + `ILA_DEBUG_GUIDE.md` |
 
 ## 13. 最后一分钟总结
 
