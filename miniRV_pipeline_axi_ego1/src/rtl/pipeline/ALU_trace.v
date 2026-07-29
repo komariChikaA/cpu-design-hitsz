@@ -3,6 +3,7 @@
 `include "defines.vh"
 
 module ALU_trace (
+    // Trace 专用组合 ALU：端口与下板 ALU_multicycle 相同，但不引入多周期等待。
     input  wire         rst,
     input  wire         clk,
     input  wire [ 4:0]  op,
@@ -14,6 +15,7 @@ module ALU_trace (
     output wire         busy
 );
 
+    // 仿真器直接计算 RV32M 结果。signed/unsigned 分开，避免 Verilog 隐式类型转换。
     wire [63:0] fast_mul     = a * b;
     wire [63:0] fast_mul_s   = $signed(a) * $signed(b);
     wire [31:0] a_abs_d = a[31] ? (~a + 1'b1) : a;
@@ -26,6 +28,7 @@ module ALU_trace (
     wire [31:0] fast_div_signed = sign_ab ? (~fast_div_s + 1'b1) : fast_div_s;
     wire [31:0] fast_rem_signed = a[31] ? (~fast_rem_s + 1'b1) : fast_rem_s;
 
+    // 普通算术/逻辑结果送 c；六种条件分支只更新 br，c 清零。
     always @(*) begin
         br = 1'b0;
         case (op)
@@ -58,6 +61,7 @@ module ALU_trace (
         endcase
     end
 
+    // Trace 环境的乘除法组合完成，所以永不冻结流水线。
     assign busy = 1'b0;
 
 endmodule

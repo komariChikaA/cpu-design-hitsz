@@ -3,12 +3,15 @@
 `include "defines.vh"
 
 module MEXT (
+    // op 指定 LB/LBU/LH/LHU/LW；din 是总线返回的完整 32 位字。
     input  wire [ 2:0]  op,
     input  wire [31:0]  din,
     input  wire [ 1:0]  byte_offs,
     output reg  [31:0]  ext
 );
 
+    // 第一步：根据原地址低两位，把目标字节移动到 real_din[7:0]。
+    // 半字访问最终只使用低 16 位，因此同一移位也适用于 LH/LHU。
     reg [31:0] real_din;
     always @(*) begin
         case (byte_offs)
@@ -19,8 +22,7 @@ module MEXT (
         endcase
     end
 
-    // 根据访存指令的功能要求，对 从主存读取回来的数据 进行扩展.
-    // 即根据op，使用real_din产生ext
+    // 第二步：根据 load 类型做有符号或零扩展；LW/default 保留完整 32 位。
     always @(*) begin
         case (op)
             `RAM_EXT_B : ext = {{24{real_din[7]}}, real_din[7:0]};

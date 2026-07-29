@@ -56,6 +56,29 @@ iverilog -g2012 -Wall -DRUN_TRACE -I "$rtl_dir" \
     "$rtl_dir/pipeline/pipeline_regs.v"
 vvp "$build_dir/cpu_core_mext_trace_tb.vvp"
 
+# Five-stage movement, forwarding and branch-flush directed test.
+iverilog -g2012 -Wall -I "$rtl_dir" \
+    -s pipeline_flow_tb \
+    -o "$build_dir/pipeline_flow_tb.vvp" \
+    "$script_dir/pipeline_flow_tb.v" \
+    "$rtl_dir/cpu_core.v" \
+    "$rtl_dir/ALU.v" \
+    "$rtl_dir/Controller.v" \
+    "$rtl_dir/MEXT.v" \
+    "$rtl_dir/MREQ.v" \
+    "$rtl_dir/RF.v" \
+    "$rtl_dir/SEXT.v" \
+    "$rtl_dir/multiplier.v" \
+    "$rtl_dir/divider.v" \
+    "$rtl_dir/pipeline/ALU_multicycle.v" \
+    "$rtl_dir/pipeline/ALU_trace.v" \
+    "$rtl_dir/pipeline/forward_unit.v" \
+    "$rtl_dir/pipeline/pipeline_regs.v"
+(
+    cd -- "$build_dir"
+    vvp "$build_dir/pipeline_flow_tb.vvp"
+)
+
 iverilog -g2012 -Wall -I "$rtl_dir" \
     -s axi_master_tb \
     -o "$build_dir/axi_master_tb.vvp" \
@@ -117,6 +140,21 @@ iverilog -g2012 -Wall -I "$rtl_dir" \
     "${board_rtl[@]}"
 
 printf 'PASS: EGO1 board hierarchy elaboration\n'
+
+# Exercise the final AXI board Slave and all course-visible peripherals.
+iverilog -g2012 -Wall -I "$rtl_dir" \
+    -s board_peripheral_tb \
+    -o "$build_dir/board_peripheral_tb.vvp" \
+    "$script_dir/board_peripheral_tb.v" \
+    "$rtl_dir/axi_board_soc.v" \
+    "$rtl_dir/board_bram.v" \
+    "$rtl_dir/simple_uart.v" \
+    "$rtl_dir/sevenseg_display.v" \
+    "$script_dir/board_ip_stubs.v"
+(
+    cd -- "$build_dir"
+    vvp "$build_dir/board_peripheral_tb.vvp"
+)
 
 iverilog -g2012 -Wall -I "$rtl_dir" \
     -s soc_simple_tb \
