@@ -175,6 +175,7 @@ module board_peripheral_tb;
     reg [31:0] read_value;
     reg [31:0] timer_low_0;
     reg [31:0] timer_low_1;
+    integer test_stage = 0;
 
     initial begin
         repeat (5) @(posedge clk);
@@ -182,12 +183,16 @@ module board_peripheral_tb;
         repeat (3) @(posedge clk);
 
         // LED 和数码管写：波形中观察 write_accept、WSTRB、寄存器和物理输出。
+        test_stage = 1;
+        $display("INFO: board_peripheral_tb stage 1 LED/digled");
         axi_write(`PERI_ADDR_LED,    32'h0000_00a5, 4'b0011);
         axi_write(`PERI_ADDR_DIGLED, 32'h600d_600d, 4'b1111);
         if (led !== 16'h00a5 || dut.digled_reg !== 32'h600d_600d)
             $fatal(1, "FAIL: LED/digled MMIO write");
 
         // switch 和 timer 读：观察 AR 握手后同拍准备 MMIO R 数据。
+        test_stage = 2;
+        $display("INFO: board_peripheral_tb stage 2 switch/timer");
         axi_read(`PERI_ADDR_SWITCH, read_value);
         if (read_value !== 32'h0000_1234)
             $fatal(1, "FAIL: switch read %h", read_value);
@@ -198,13 +203,19 @@ module board_peripheral_tb;
             $fatal(1, "FAIL: timer did not advance");
 
         // TX：向 UART+4 写 0x55，观察 tx_active、bit_index 和串行 tx。
+        test_stage = 3;
+        $display("INFO: board_peripheral_tb stage 3 UART TX");
         axi_write(`PERI_ADDR_UART + 32'h4, 32'h0000_0055, 4'b0001);
         wait (dut.uart_tx_busy);
         wait (!dut.uart_tx_busy);
 
         // RX：串行发送 'A'，先读状态确认 valid，再读 FIFO 并触发 rx_pop。
+        test_stage = 4;
+        $display("INFO: board_peripheral_tb stage 4 UART RX serial frame");
         send_uart_byte(8'h41);
         wait (rx_valid);
+        test_stage = 5;
+        $display("INFO: board_peripheral_tb stage 5 UART status/data MMIO");
         axi_read(`PERI_ADDR_UART + 32'h8, read_value);
         if (!read_value[0])
             $fatal(1, "FAIL: UART status did not report RX data");
@@ -213,12 +224,17 @@ module board_peripheral_tb;
             $fatal(1, "FAIL: UART RX expected 41, actual %h", read_value[7:0]);
 
         repeat (4) @(posedge clk);
+        test_stage = 6;
         $display("PASS: board_peripheral_tb");
         $finish;
     end
 
     initial begin
         repeat (20_000) @(posedge clk);
+        $display(
+            "DEBUG: stage=%0d bvalid=%b rvalid=%b tx_busy=%b rx_state=%0d rx_valid=%b rx_data=%h",
+            test_stage, bvalid, rvalid, dut.uart_tx_busy, rx_state, rx_valid, rx_data
+        );
         $fatal(1, "FAIL: board_peripheral_tb timeout");
     end
 
