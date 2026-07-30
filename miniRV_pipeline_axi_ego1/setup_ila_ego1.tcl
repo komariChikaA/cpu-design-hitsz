@@ -1,7 +1,7 @@
 # This file is sourced by rebuild_ego1.tcl while the synthesized design is
 # open. It is not intended to be run directly.
 
-set expected_probe_width 187
+set expected_probe_width 200
 set marked_nets [get_nets -hier -quiet -filter {MARK_DEBUG == 1}]
 set ordered_probe_nets [lrepeat $expected_probe_width ""]
 set matched_probe_count 0

@@ -11,7 +11,8 @@
 // EGO1 板级 AXI4 Slave：BRAM + MMIO 外设
 // -----------------------------------------------------------------------------
 // 把 150 KiB 片上存储器、拨码开关、LED、数码管、UART 和 64-bit timer
-// 映射到同一个 AXI 地址空间。只支持单拍事务，与本工程单事务 Master 配套。
+// 映射到同一个 AXI 地址空间。写事务和 MMIO 读为单拍；BRAM 读支持
+// ARLEN 描述的 INCR burst，供 ICache/DCache 一次 refill 一条 cache line。
 // Trace 构建不实例化它，而使用 cdp-tests 提供的 bram_axi 模型。
 module axi_board_soc #(
     parameter integer MEMORY_WORDS = `BOARD_MEMORY_WORDS
@@ -68,8 +69,13 @@ module axi_board_soc #(
     reg [15:0] led_reg;
     reg [31:0] digled_reg;
     reg [63:0] timer;
-    // BRAM 同步读有 1 拍延迟，pending 记录已接受但尚未返回的内存读。
+    // BRAM 同步读有 1 拍延迟。read_active/beat/len 保存当前 burst，
+    // pending 表示已向 BRAM 发出读命令、下一拍需要锁存 read_data。
     reg        memory_read_pending;
+    reg        read_active;
+    reg [31:0] read_addr_reg;
+    reg [ 7:0] read_len_reg;
+    reg [ 7:0] read_beat_reg;
     wire [31:0] memory_read_data;
 
     // UART MMIO 与串行模块之间的单拍控制脉冲/数据。
@@ -129,15 +135,23 @@ module axi_board_soc #(
     assign s_axi_awready = !s_axi_bvalid && s_axi_wvalid;
     assign s_axi_wready  = !s_axi_bvalid && s_axi_awvalid;
 
-    // 上一个读数据或 BRAM pending 未结束前，不接受新 AR。
-    assign s_axi_arready = !s_axi_rvalid && !memory_read_pending;
-    // 所有读都是单 beat，所以当前 beat 永远也是最后一 beat。
-    assign s_axi_rlast   = 1'b1;
+    // 同一时刻只维护一个读事务。当前 burst 完成前不能接受新 AR。
+    assign s_axi_arready = !read_active && !s_axi_rvalid &&
+                           !memory_read_pending;
+    assign s_axi_rlast   = s_axi_rvalid &&
+                           (read_beat_reg == read_len_reg);
 
     // 低于 MEMORY_WORDS*4 的字节地址属于 BRAM，其余按 MMIO 精确地址译码。
     wire write_is_memory = s_axi_awaddr < (MEMORY_WORDS * 4);
     wire read_is_memory  = s_axi_araddr < (MEMORY_WORDS * 4);
     wire memory_read_accept = s_axi_arvalid && s_axi_arready && read_is_memory;
+    // 前一拍 R 数据被接收且还没到最后一拍时，立即对 BRAM 发下一地址。
+    wire memory_read_continue = s_axi_rvalid && s_axi_rready &&
+                                read_active &&
+                                (read_beat_reg < read_len_reg);
+    wire memory_read_issue = memory_read_accept || memory_read_continue;
+    wire [31:0] memory_read_issue_addr =
+        memory_read_accept ? s_axi_araddr : (read_addr_reg + 32'd4);
     // 只有真正完成写握手且目标为 BRAM 时，才把 WSTRB 送到存储器。
     wire [3:0] memory_write_en =
         (write_accept && write_is_memory) ? s_axi_wstrb : 4'h0;
@@ -145,8 +159,8 @@ module axi_board_soc #(
     // AXI 字节地址 [17:2] 转换为 BRAM 32-bit word 地址。
     board_bram U_memory (
         .clk        (aclk),
-        .read_en    (memory_read_accept),
-        .read_addr  (s_axi_araddr[17:2]),
+        .read_en    (memory_read_issue),
+        .read_addr  (memory_read_issue_addr[17:2]),
         .read_data  (memory_read_data),
         .write_en   (memory_write_en),
         .write_addr (s_axi_awaddr[17:2]),
@@ -161,6 +175,10 @@ module axi_board_soc #(
             digled_reg    <= 32'h0;
             timer         <= 64'h0;
             memory_read_pending <= 1'b0;
+            read_active    <= 1'b0;
+            read_addr_reg  <= 32'h0;
+            read_len_reg   <= 8'h0;
+            read_beat_reg  <= 8'h0;
             uart_tx_start <= 1'b0;
             uart_tx_data  <= 8'h0;
             uart_tx_clear <= 1'b0;
@@ -225,11 +243,22 @@ module axi_board_soc #(
                 end
             end
 
-            // Master 接受 R 数据后释放返回寄存器。
-            if (s_axi_rvalid && s_axi_rready)
+            // Master 接受一个 R beat。若 burst 未结束，同时发起下一次 BRAM 读；
+            // 最后一拍则释放整个读事务。
+            if (s_axi_rvalid && s_axi_rready) begin
                 s_axi_rvalid <= 1'b0;
+                if (read_active) begin
+                    if (read_beat_reg == read_len_reg) begin
+                        read_active <= 1'b0;
+                    end else begin
+                        read_addr_reg         <= read_addr_reg + 32'd4;
+                        read_beat_reg         <= read_beat_reg + 8'd1;
+                        memory_read_pending   <= 1'b1;
+                    end
+                end
+            end
 
-            // BRAM 在接受地址后一拍给数据。pending 拍把数据锁存到 AXI R 通道。
+            // BRAM 在发出读命令后一拍给数据。pending 拍把数据锁存到 R 通道。
             if (memory_read_pending) begin
                 s_axi_rdata         <= memory_read_data;
                 s_axi_rresp         <= 2'b00;
@@ -241,11 +270,17 @@ module axi_board_soc #(
             // 读事务：BRAM 路径先置 pending；MMIO 路径可在本拍准备返回寄存器。
             // -----------------------------------------------------------------
             if (s_axi_arvalid && s_axi_arready) begin
+                read_active   <= 1'b1;
+                read_addr_reg <= s_axi_araddr;
+                read_beat_reg <= 8'd0;
                 if (read_is_memory) begin
+                    read_len_reg         <= s_axi_arlen;
                     memory_read_pending <= 1'b1;
                 end else begin
+                    // 外设只能单拍读。误发 burst 时仍只回一拍，并用 DECERR 报错。
+                    read_len_reg <= 8'd0;
                     s_axi_rvalid <= 1'b1;
-                    s_axi_rresp  <= 2'b00;
+                    s_axi_rresp  <= (s_axi_arlen == 8'd0) ? 2'b00 : 2'b11;
                     case (s_axi_araddr)
                         // 0xFFFF0000：16 个拨码开关，零扩展到 32 位。
                         `PERI_ADDR_SWITCH: s_axi_rdata <= {16'h0, sw};
@@ -269,9 +304,8 @@ module axi_board_soc #(
         end
     end
 
-    // Slave 功能固定为单拍，burst 描述字段不参与控制；显式引用以消除告警。
+    // 当前只实现 32-bit INCR burst；其余描述字段由集成测试约束为合法值。
     wire _unused_axi = &{1'b0, s_axi_awlen, s_axi_awsize, s_axi_awburst,
-                         s_axi_wlast, s_axi_arlen, s_axi_arsize,
-                         s_axi_arburst};
+                         s_axi_wlast, s_axi_arsize, s_axi_arburst};
 
 endmodule

@@ -1,0 +1,609 @@
+rm -rf obj_dir waveform meminit.bin
+make[1]: Entering directory '/root/cdp-tests/obj_dir'
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o test.o ../csrc/test.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o emu.o ../golden_model/emu.c
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o onboard.o ../golden_model/peripheral/onboard.c
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o result_monitor.o ../golden_model/peripheral/result_monitor.c
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o EX.o ../golden_model/stage/EX.c
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o ID.o ../golden_model/stage/ID.c
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o IF.o ../golden_model/stage/IF.c
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o MEM.o ../golden_model/stage/MEM.c
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -Os  -c -o WB.o ../golden_model/stage/WB.c
+ccache g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -c -o verilated.o /usr/local/share/verilator/include/verilated.cpp
+ccache g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -c -o verilated_dpi.o /usr/local/share/verilator/include/verilated_dpi.cpp
+ccache g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -c -o verilated_vcd_c.o /usr/local/share/verilator/include/verilated_vcd_c.cpp
+ccache g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -c -o verilated_threads.o /usr/local/share/verilator/include/verilated_threads.cpp
+python3 /usr/local/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include VminiRV_SoC.cpp VminiRV_SoC___024root__0.cpp VminiRV_SoC_miniRV_SoC__0.cpp VminiRV_SoC_cpu_top__0.cpp VminiRV_SoC_cpu_core__0.cpp VminiRV_SoC__Dpi.cpp VminiRV_SoC__Trace__0.cpp VminiRV_SoC___024root__Slow.cpp VminiRV_SoC___024root__0__Slow.cpp VminiRV_SoC_miniRV_SoC__Slow.cpp VminiRV_SoC_miniRV_SoC__0__Slow.cpp VminiRV_SoC_cpu_top__Slow.cpp VminiRV_SoC_cpu_top__0__Slow.cpp VminiRV_SoC_cpu_core__Slow.cpp VminiRV_SoC_cpu_core__0__Slow.cpp VminiRV_SoC__Syms__Slow.cpp VminiRV_SoC__Trace__0__Slow.cpp VminiRV_SoC__TraceDecls__0__Slow.cpp > VminiRV_SoC__ALL.cpp
+ccache g++ -Os  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVERILATOR=1 -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TIMING=0 -DVM_TRACE=1 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=1 -DVM_TRACE_SAIF=0 -DVM_VPI=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-int-in-bool-context -Wno-shadow -Wno-sign-compare -Wno-subobject-linkage -Wno-tautological-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable    -DPATH=meminit.bin -DARCH_ON=0 -I/root/cdp-tests/golden_model/include   -c -o VminiRV_SoC__ALL.o VminiRV_SoC__ALL.cpp
+g++    test.o emu.o onboard.o result_monitor.o EX.o ID.o IF.o MEM.o WB.o verilated.o verilated_dpi.o verilated_vcd_c.o verilated_threads.o VminiRV_SoC__ALL.a    -pthread -lpthread -latomic   -o VminiRV_SoC
+rm VminiRV_SoC__ALL.verilator_deplist.tmp
+make[1]: Leaving directory '/root/cdp-tests/obj_dir'
+- V e r i l a t i o n   R e p o r t: Verilator 5.051 devel rev v5.050-74-g796d5174f
+- Verilator: Built from 2.116 MB sources in 27 modules, into 0.619 MB in 18 C++ files needing 0.001 MB
+- Verilator: Walltime 4.966 s (elab=0.016, cvt=0.174, bld=4.710); cpu 0.256 s on 1 threads; allocated 45.215 MB
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000274, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x0000031c, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000078, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004f0, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000005c4, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000204, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002a8, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000120, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000120, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000508, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x0000037c, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000070, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002e8, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000005ac, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000000fc, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004e0, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004a0, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x0000020c, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004ec, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002e0, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002b4, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x0000029c, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+Digit: 0x25000000
+Digit: 0x25000001
+Digit: 0x25000002
+Digit: 0x25000003
+Digit: 0x25000004
+Digit: 0x25000005
+Digit: 0x25000006
+Digit: 0x25000007
+Digit: 0x25000008
+Digit: 0x25000009
+Digit: 0x2500000a
+Digit: 0x2500000b
+Digit: 0x2500000c
+Digit: 0x2500000d
+Digit: 0x2500000e
+Digit: 0x2500000f
+Digit: 0x25000010
+Digit: 0x25000011
+Digit: 0x25000012
+Digit: 0x25000013
+Digit: 0x25000014
+Digit: 0x25000015
+Digit: 0x25000016
+Digit: 0x25000017
+Digit: 0x25000018
+Digit: 0x25000019
+Digit: 0x2500001a
+Digit: 0x2500001b
+Digit: 0x2500001c
+Digit: 0x2500001d
+Digit: 0x2500001e
+Digit: 0x2500001f
+Digit: 0x25000020
+Digit: 0x25000021
+Digit: 0x25000022
+Digit: 0x25000023
+Digit: 0x25000024
+Digit: 0x25000025
+[1;34mECALL at PC = 0x00000268, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002e8, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004ac, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000088, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002ec, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002ac, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000578, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004e8, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x0000041c, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000120, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000120, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004f0, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000120, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000001e8, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000004e8, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000120, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000120, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000348, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002b0, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000274, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x0000029c, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x000002c8, Stop now.
+[0mTest Point Pass!
+[1;34mPeripheral name: MONITOR	base: 0x80000000	addr len: 0x00000008	
+[0m[1;34mPeripheral name: Digit	base: 0xffff2000	addr len: 0x00000004	
+[0m[mycpu] Resetting ...
+[INFO] Instruction ROM initialized with meminit.bin
+[mycpu] Reset done.
+[difftest] Test Start!
+[1;34mECALL at PC = 0x00000294, Stop now.
+[0mTest Point Pass!
+
+
+==================== Testing lb ====================
+==================== lb END ==================== 
+
+
+==================== Testing bltu ====================
+==================== bltu END ==================== 
+
+
+==================== Testing jal ====================
+==================== jal END ==================== 
+
+
+==================== Testing slt ====================
+==================== slt END ==================== 
+
+
+==================== Testing sra ====================
+==================== sra END ==================== 
+
+
+==================== Testing ori ====================
+==================== ori END ==================== 
+
+
+==================== Testing lhu ====================
+==================== lhu END ==================== 
+
+
+==================== Testing rem ====================
+==================== rem END ==================== 
+
+
+==================== Testing div ====================
+==================== div END ==================== 
+
+
+==================== Testing add ====================
+==================== add END ==================== 
+
+
+==================== Testing bgeu ====================
+==================== bgeu END ==================== 
+
+
+==================== Testing auipc ====================
+==================== auipc END ==================== 
+
+
+==================== Testing beq ====================
+==================== beq END ==================== 
+
+
+==================== Testing srl ====================
+==================== srl END ==================== 
+
+
+==================== Testing jalr ====================
+==================== jalr END ==================== 
+
+
+==================== Testing and ====================
+==================== and END ==================== 
+
+
+==================== Testing sh ====================
+==================== sh END ==================== 
+
+
+==================== Testing xori ====================
+==================== xori END ==================== 
+
+
+==================== Testing or ====================
+==================== or END ==================== 
+
+
+==================== Testing srai ====================
+==================== srai END ==================== 
+
+
+==================== Testing lw ====================
+==================== lw END ==================== 
+
+
+==================== Testing slti ====================
+==================== slti END ==================== 
+
+
+==================== Testing start ====================
+==================== start END ==================== 
+
+
+==================== Testing blt ====================
+==================== blt END ==================== 
+
+
+==================== Testing sw ====================
+==================== sw END ==================== 
+
+
+==================== Testing lui ====================
+==================== lui END ==================== 
+
+
+==================== Testing bne ====================
+==================== bne END ==================== 
+
+
+==================== Testing slli ====================
+==================== slli END ==================== 
+
+
+==================== Testing sll ====================
+==================== sll END ==================== 
+
+
+==================== Testing sub ====================
+==================== sub END ==================== 
+
+
+==================== Testing sb ====================
+==================== sb END ==================== 
+
+
+==================== Testing remu ====================
+==================== remu END ==================== 
+
+
+==================== Testing mul ====================
+==================== mul END ==================== 
+
+
+==================== Testing sltu ====================
+==================== sltu END ==================== 
+
+
+==================== Testing mulhu ====================
+==================== mulhu END ==================== 
+
+
+==================== Testing andi ====================
+==================== andi END ==================== 
+
+
+==================== Testing xor ====================
+==================== xor END ==================== 
+
+
+==================== Testing mulh ====================
+==================== mulh END ==================== 
+
+
+==================== Testing divu ====================
+==================== divu END ==================== 
+
+
+==================== Testing bge ====================
+==================== bge END ==================== 
+
+
+==================== Testing addi ====================
+==================== addi END ==================== 
+
+
+==================== Testing lbu ====================
+==================== lbu END ==================== 
+
+
+==================== Testing sltiu ====================
+==================== sltiu END ==================== 
+
+
+==================== Testing srli ====================
+==================== srli END ==================== 
+
+
+==================== Testing lh ====================
+==================== lh END ==================== 
+
+
+==================== SUMMARY ==================== 
+Passed Tests (45):
+lb, bltu, jal, slt, sra, ori, lhu, rem, div, add, bgeu, auipc, beq, srl, jalr, and, sh, xori, or, srai, lw, slti, start, blt, sw, lui, bne, slli, sll, sub, sb, remu, mul, sltu, mulhu, andi, xor, mulh, divu, bge, addi, lbu, sltiu, srli, lh
+------------------------------------------------- 
+Failed Tests (0):
+

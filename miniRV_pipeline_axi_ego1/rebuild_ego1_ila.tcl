@@ -1,7 +1,7 @@
 # Run from the Vivado Tcl Console after opening miniRV.xpr:
 #   source rebuild_ego1_ila.tcl
 #
-# This enables the deterministic 187-bit ILA probe bus and then reuses the
+# This enables the deterministic 200-bit Cache/UART ILA probe bus and then reuses the
 # normal fresh-IP/synthesis/implementation flow.
 
 set ::MINIRV_ENABLE_ILA 1

@@ -154,10 +154,10 @@ Write-Host 'PASS: fixed M-extension, AXI redirect, long-latency replay and BRAM-
 
 $topText = [IO.File]::ReadAllText((Join-Path $root 'src/rtl/miniRV_SoC.v'))
 $ilaSetupText = [IO.File]::ReadAllText((Join-Path $root 'setup_ila_ego1.tcl'))
-Assert-True ($topText -match 'wire\s+\[186:0\]\s+ila_probe') '187-bit UART RX ILA probe bus is missing'
+Assert-True ($topText -match 'wire\s+\[199:0\]\s+ila_probe') '200-bit Cache/UART ILA probe bus is missing'
 Assert-True ($topText.Contains('board_debug_pc')) 'CPU PC is not connected to the board ILA bus'
 Assert-True ($topText.Contains('uart_debug_rx_state')) 'UART RX state is not connected to the board ILA bus'
-Assert-True ($ilaSetupText.Contains('set expected_probe_width 187')) 'ILA setup expects the wrong probe width'
+Assert-True ($ilaSetupText.Contains('set expected_probe_width 200')) 'ILA setup expects the wrong probe width'
 Assert-True ($ilaSetupText.Contains('create_debug_core u_ila_boot ila')) 'ILA debug core creation is missing'
 Write-Host 'PASS: deterministic ILA board-debug flow is present'
 

@@ -53,7 +53,10 @@
 
 - [ ] 实现 miniLA 指令集（系统实现部分加 6 分）；
 - [ ] 增加 DDR 控制器并运行 LLAMA2；
-- [ ] 集成或优化 ICache、DCache，提高主频、优化访存或运算，提升 CoreMark 性能；
+- [X] 在流水线 EGO1 工程集成 ICache/DCache：64-line direct-mapped、
+  16-byte line，支持四拍 AXI refill、write-through 和 MMIO Uncached；
+- [ ] 用 Cache 版本重新完成课程 AXI Trace、Vivado 时序和实板 CoreMark，
+  取得可与无 Cache 基线比较的性能结果；
 - [ ] 增加矩阵键盘、VGA、以太网等外设，并编写 C 程序下板演示；
 - [ ] 完成其他具有一定工作量和创新性的扩展。
 
@@ -71,15 +74,18 @@
 - `miniRV_singlecycle_axi/`：已通过 AXI Trace 的单周期 AXI SoC 工程；
 - `miniRV_singlecycle_axi_ego1/`：已完成 Vivado、bitstream 和 EGO1 实板验收的独立板级工程。
 - `miniRV_pipeline_axi/`：已通过 45/45 AXI Trace 的无 Cache 五级流水线 AXI 工程。
-- `miniRV_pipeline_axi_ego1/`：已完成板级工程、IP/约束、程序、自动构建脚本、流水线
-  M 扩展/UART 回归和 CoreMark 实板验收。
+- `miniRV_pipeline_axi_ego1/`：无 Cache 基线已完成流水线 M 扩展/UART/CoreMark
+  实板验收；当前 Cache 版本已完成 RTL、本地/服务器 Icarus 回归和课程 AXI Trace
+  45/45，等待重新跑 Vivado 时序和实板 CoreMark。
 - `docs/course-report/`：保存最终实验报告、可编辑数据通路图、VCD、板级照片和
   Vivado 原始报告；不保存可重新生成的 bitstream。
 
 当前单周期 AXI/EGO1 C_TEST0～2、流水线 Basic Trace 和流水线 AXI Trace 均已
 完成；流水线 AXI/EGO1 也已完成 Vivado、时序、UART/M 扩展和 CoreMark 实板回归，
-系统实现达到优秀档。下一阶段先完成报告与现场验收材料，再决定是否进入
-ICache/DCache、频率和访存优化。具体边界见各工程内的 `README.md`。
+系统实现达到优秀档。当前在不改变五级流水线功能的前提下继续完成 ICache/DCache
+加分项；Cache 的本地定向测试和课程 AXI Trace 45/45 已通过，但必须等新版本
+Vivado 时序和实板结果后，才能声称 Cache 版本完成板级闭环。具体边界见各工程内的
+`README.md`。
 
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 

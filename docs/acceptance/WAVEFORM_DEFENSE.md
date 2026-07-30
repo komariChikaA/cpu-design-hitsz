@@ -4,7 +4,8 @@
 > 对应 VCD：
 > `docs/course-report/vcd/06_pipeline_load_use_hazard.vcd`
 > `docs/course-report/vcd/07_pipeline_five_stage_forward_branch.vcd`
-> `docs/course-report/vcd/06_no_cache_axi_transaction.vcd`
+> `docs/course-report/vcd/08_axi_cacheline_burst.vcd`
+> `docs/course-report/vcd/10_cache_refill_hit_uncached.vcd`
 > `docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd`
 
 ## 1. 波形必须按时钟沿解释
@@ -211,7 +212,8 @@ ex_bj_taken ex_bj_target ex_bj_f
 flush
 id_pc id_valid
 ifetch_addr pc
-ic_pending_word_addr ic_axi_valid ic2cpu_valid
+U_icache.state U_icache.cpu_hit U_icache.miss_line_addr
+U_icache.dev_ren U_icache.dev_rvalid ic2cpu_valid
 ```
 
 逐步解释：
@@ -220,38 +222,61 @@ ic_pending_word_addr ic_axi_valid ic2cpu_valid
 2. `br` 和 `ex_bj_taken` 在该周期组合产生；
 3. `ex_bj_f=1` 后，`ifetch_addr` 组合选择 target；
 4. 下一上升沿，PC 锁存 target，IF/ID 和 ID/EX 的 valid 被清 0；
-5. 原来顺序路径的 AXI 取指可能仍返回；
-6. `ic_pending_word_addr != cpu2ic_addr[31:2]`，所以 `ic2cpu_valid=0`；
-7. target 的新请求被接受后，正常进入流水线。
+5. 原来顺序路径的 ICache refill 可能仍完成并安装旧 line；
+6. ICache 回 IDLE 后用当前 target PC 重新比较 tag，旧 line 不会产生 hit/valid；
+7. target 发生新 miss 或命中后，正常进入流水线。
 
-不要把 `RVALID=1` 直接说成“旧指令执行了”。只有通过 pending-address 过滤并产生
-`ifetch_valid`，再被 IF/ID 锁存，才会进入 core。
+不要把 `RVALID=1` 直接说成“旧指令执行了”。AXI R beat 先组成 line，只有 ICache
+对当前 PC 命中并产生 `ifetch_valid`，再被 IF/ID 锁存，才会进入 core。
 
-## 9. AXI 读波形
+## 9. Cache miss/refill/hit 波形
 
-推荐图：[无 Cache AXI 读](../course-report/figures/06b_no_cache_axi_read.png)。
+打开 `10_cache_refill_hit_uncached.vcd`，先看：
+
+```text
+U_icache.cpu_ren cpu_raddr cpu_hit state
+U_icache.miss_line_addr dev_ren dev_rrdy dev_rvalid
+U_dcache.cpu_ren cpu_addr cpu_hit cpu_cacheable
+U_dcache.req_uncached dev_uncached
+```
+
+逐步解释：
+
+1. `cpu_ren=1` 且 tag/valid 不匹配，`cpu_hit=0`；
+2. FSM 从 IDLE 进入 REQ，`miss_line_addr[3:0]=0`；
+3. `dev_ren && dev_rrdy` 后进入 WAIT；
+4. `dev_rvalid` 时安装 128-bit data、tag、valid；
+5. 回到 IDLE 后当前地址命中，选择 `addr[3:2]` 对应 word；
+6. DCache 地址为 `ffff_xxxx` 时 `cpu_cacheable=0/dev_uncached=1`，不安装 line。
+
+## 10. AXI 读波形
+
+打开 `08_axi_cacheline_burst.vcd`。旧的无 Cache AXI 读图仅用于单周期项目，
+当前流水线 Cache refill 应按 burst 解释。
 
 ### 地址阶段
 
 - 请求出现后，Master 锁存并对齐地址；
 - `ARVALID=1` 表示地址有效；
 - 若 `ARREADY=0`，ARADDR 和 ARVALID 必须保持；
+- Cache refill 的 `ARLEN=3` 表示 4 个 beat；Uncached 的 `ARLEN=0`；
 - `ARVALID && ARREADY` 的上升沿完成地址握手。
 
 ### 数据阶段
 
 - 地址握手后 `ARVALID` 撤销、`RREADY=1`；
 - `RVALID=0` 可以等待任意拍；
-- `RVALID && RREADY` 时 RDATA 才有本事务意义；
-- Master 按 `read_is_data` 把数据送到取指或 load 端；
-- CPU 侧 valid 是单拍脉冲。
+- 每次 `RVALID && RREADY` 接收一个 32-bit RDATA；
+- `read_beat` 从 0 到 3，将四拍拼入 `read_buffer`；
+- 第四拍 `RLAST=1`，Master 按 `read_is_data` 把完整 line 送到 ICache/DCache；
+- Cache 安装后重新 hit，才给 CPU 侧 valid。
 
 老师若问“地址什么时候取”：说“ARVALID/ARREADY 握手时从机接受地址”，不是只看
 ARADDR 改变。
 
-## 10. AXI 写波形
+## 11. AXI 写波形
 
-推荐图：[无 Cache AXI 写](../course-report/figures/06c_no_cache_axi_write.png)。
+写通道仍为单拍 write-through；可用 `08_axi_cacheline_burst.vcd` 的 AW/W/B 段。
 
 1. Master 同时准备 AWADDR、WDATA、WSTRB，并拉 AWVALID/WVALID；
 2. AWREADY 与 WREADY 可以不同拍；
@@ -267,7 +292,7 @@ ARADDR 改变。
 - 只在 `AWVALID && AWREADY` 讨论 AWADDR；
 - AW/W 先后顺序不改变它们属于同一笔单事务。
 
-## 11. sb/sh/sw 波形
+## 12. sb/sh/sw 波形
 
 以地址低两位 offset 为准：
 
@@ -279,7 +304,7 @@ ARADDR 改变。
 
 Master 的 AWADDR 清低两位，字节位置由 WSTRB 表示。
 
-## 12. M 扩展波形
+## 13. M 扩展波形
 
 推荐分组：
 
@@ -305,7 +330,7 @@ wb_pc wb_valid wb_rd rf_wD
 7. `operation_issued` 清零，允许下一条相同 M 指令启动；
 8. dependent 指令从 MEM/WB 前递。
 
-## 13. UART MMIO 波形
+## 14. UART MMIO 波形
 
 直接打开：
 `docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd`。该定向测试同时包含
@@ -334,7 +359,7 @@ LED、数码管、switch、timer、UART TX `0x55` 和 UART RX `0x41`。
 7. 再 load `FFFF3000`，slave 返回 41 并产生 `rx_pop`；
 8. rx_valid 清零。
 
-## 14. WB 和“指令完成”怎么判断
+## 15. WB 和“指令完成”怎么判断
 
 取指 PC 不是退休 PC。真正判断寄存器指令完成要看：
 
@@ -350,7 +375,7 @@ store 没有 rd，判断完成看 `daccess_wresp`；Trace 中看
 `debug_mem_we!=0` 的单拍。branch 通常不写寄存器，判断它的架构效果看重定向和
 错误路径 valid 被清除。
 
-## 15. 波形常见误读
+## 16. 波形常见误读
 
 ### valid=0 时还看到旧控制信号
 
@@ -379,7 +404,7 @@ store 没有 rd，判断完成看 `daccess_wresp`；Trace 中看
 不一定。load-use 时只保持前端并向 EX 注 bubble；`effective_freeze` 才让
 ID/EX/MEM 相关级整体保持。
 
-## 16. 严格验收回答模板
+## 17. 严格验收回答模板
 
 老师指某个波形区域时，按五句回答：
 

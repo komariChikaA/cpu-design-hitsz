@@ -5,9 +5,15 @@
 // 否则会绕过多周期乘除法，得到与 FPGA 实现不一致的时序模型。
 // `define RUN_TRACE
 
-// 当前最终版没有 Cache。这两个宏保留接口兼容性，但不能在验收时宣称已实现 Cache。
-// `define ENABLE_ICACHE
-// `define ENABLE_DCACHE
+// 最终 Cache 构建：I/D Cache 均为 64-line direct-mapped、16-byte line。
+// 关闭任一宏仍可回到无 Cache 调试路径，用于隔离 AXI 或 Cache 问题。
+`define ENABLE_ICACHE
+`define ENABLE_DCACHE
+
+`define IC_LINE_COUNT 64
+`define DC_LINE_COUNT 64
+// 只有片上普通存储区参与缓存；所有 0xFFFF_xxxx MMIO 必须 Uncached。
+`define CACHEABLE_LIMIT 32'h0008_0000
 
 // 复位后第一条取指地址。
 `define PC_INIT_VAL 32'h0
@@ -86,7 +92,7 @@
 `define PERI_ADDR_UART      32'hFFFF_3000
 `define PERI_ADDR_TIMER     32'hFFFF_4000
 
-// Cache 关闭时，一次总线请求只传一个 32 位字；宏打开时预留 4-word burst 宽度。
+// Cache 关闭时，一次总线请求只传一个 32 位字；打开时一条 line 为 4 words。
 `ifdef ENABLE_ICACHE
     `define IC_BLK_LEN  4
     `define IC_BLK_SIZE (`IC_BLK_LEN*32)

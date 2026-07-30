@@ -9,7 +9,7 @@
 - 因此需要直接观察时钟锁定、复位、PC、AXI 取指和 AXI 写事务。
 
 本调试版不需要 Linux 服务器。ILA 使用 50 MHz `sys_clk`，采样深度为
-2048，探针宽度为 187 bit。
+2048，探针宽度为 200 bit。
 
 ## 构建
 
@@ -50,6 +50,9 @@ ILA 完全不可见本身就是时钟/Debug Hub 方向的重要证据。
 
 | ILA 位 | 信号 |
 |---|---|
+| `[199:192]` | `m_axi_arlen`，Cache refill 应为 `03` |
+| `[191]` | `m_axi_rlast`，第四个 R beat 拉高 |
+| `[190:187]` | `m_axi_wstrb` |
 | `[186]` | FPGA 原始 `rx` 引脚 |
 | `[185]` | UART 两级同步后的 `rx_sync[1]` |
 | `[184:183]` | UART RX 状态机 |
@@ -115,7 +118,12 @@ ILA 完全不可见本身就是时钟/Debug Hub 方向的重要证据。
 - `[172]=0`，PC 始终为 0，`arvalid=0`：CPU/AXI Master 未发出第一条取指。
 - `arvalid=1`、`arready=0`：板级 AXI Slave 未接受地址。
 - `arvalid/arready` 已握手，但 `rvalid` 始终为 0：IROM/板级读响应路径故障。
-- `rvalid/rready` 已握手，但 `ifetch_valid=0`：检查流水线取指待决地址过滤。
+- Cache miss 时 `[199:192]` 不是 `03`：检查 Cache 的 Uncached 判定和
+  `axi_master.read_len`。
+- 四个 `rvalid/rready` 已握手但 `[191]` 未在第四拍拉高：检查板端
+  `read_len_reg/read_beat_reg`。
+- refill 完成后 `ifetch_valid=0`：检查 ICache tag/valid 和当前 PC；分支导致当前
+  PC 已改变时，旧 line 不产生 valid 是正确行为。
 - PC 正常前进，但启动探针没有写出：查看写地址是否出现 `FFFF1000` 和
   `FFFF2000`，再依次检查 AW/W/B 三个通道的握手。
 

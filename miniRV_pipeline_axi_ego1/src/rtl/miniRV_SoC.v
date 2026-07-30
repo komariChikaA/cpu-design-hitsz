@@ -72,7 +72,8 @@ module miniRV_SoC(
     assign tx       = 1'b1;
 
     // 模块名 bram_axi 和实例名 U_bram 是 cdp-tests 层级检查契约的一部分，不能改名。
-    // ID/cache/prot 等未使用字段固定为 0，本设计只发单拍 32-bit 访问。
+    // ID/cache/prot 等未使用字段固定为 0；Cache refill 由 ARLEN 描述四拍，
+    // Uncached read 和所有 write 仍为单拍 32-bit 访问。
     bram_axi U_bram (
         .s_aclk          (sys_clk),
         .s_aresetn       (!sys_rst),
@@ -187,9 +188,12 @@ module miniRV_SoC(
 
     // 单一拼接 probe 总线使 ILA 插入脚本保持确定；位映射见 ILA_DEBUG_GUIDE.md。
     (* keep = "true" *) wire ila_clk = sys_clk;
-    // 高位新增 UART RX 诊断；原 [173:0] 映射保持不变，旧 AXI 截图仍可对应。
-    // 拼接顺序从左到右对应高位到低位：[186] rx ... [0] bready。
-    (* mark_debug = "true", keep = "true" *) wire [186:0] ila_probe = {
+    // Cache 版本在高位新增 ARLEN/RLAST/WSTRB；原 [186:0] 映射保持不变，
+    // 旧 UART/AXI 截图仍可对应。左侧为高位，右侧最终仍是 [0] bready。
+    (* mark_debug = "true", keep = "true" *) wire [199:0] ila_probe = {
+        m_axi_arlen,
+        m_axi_rlast,
+        m_axi_wstrb,
         rx,
         uart_debug_rx_sync,
         uart_debug_rx_state,

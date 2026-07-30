@@ -1,0 +1,577 @@
+$date
+	Thu Jul 30 23:18:01 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module board_burst_tb $end
+$var wire 1 ! tx $end
+$var wire 1 " rvalid $end
+$var wire 2 # rresp [1:0] $end
+$var wire 1 $ rlast $end
+$var wire 32 % rdata [31:0] $end
+$var wire 16 & led [15:0] $end
+$var wire 8 ' dig_seg [7:0] $end
+$var wire 8 ( dig_en [7:0] $end
+$var wire 1 ) arready $end
+$var wire 1 * _unused $end
+$var reg 32 + araddr [31:0] $end
+$var reg 8 , arlen [7:0] $end
+$var reg 1 - arvalid $end
+$var reg 1 . clk $end
+$var reg 32 / expected [31:0] $end
+$var reg 1 0 rready $end
+$var reg 1 1 rst $end
+$var integer 32 2 beat [31:0] $end
+$scope module U_dut $end
+$var wire 1 . aclk $end
+$var wire 1 1 areset $end
+$var wire 1 3 memory_read_accept $end
+$var wire 1 4 memory_read_continue $end
+$var wire 1 5 memory_read_issue $end
+$var wire 1 6 rx $end
+$var wire 32 7 s_axi_araddr [31:0] $end
+$var wire 2 8 s_axi_arburst [1:0] $end
+$var wire 8 9 s_axi_arlen [7:0] $end
+$var wire 1 ) s_axi_arready $end
+$var wire 3 : s_axi_arsize [2:0] $end
+$var wire 1 - s_axi_arvalid $end
+$var wire 32 ; s_axi_awaddr [31:0] $end
+$var wire 2 < s_axi_awburst [1:0] $end
+$var wire 8 = s_axi_awlen [7:0] $end
+$var wire 1 > s_axi_awready $end
+$var wire 3 ? s_axi_awsize [2:0] $end
+$var wire 1 @ s_axi_awvalid $end
+$var wire 1 A s_axi_bready $end
+$var wire 1 $ s_axi_rlast $end
+$var wire 1 0 s_axi_rready $end
+$var wire 32 B s_axi_wdata [31:0] $end
+$var wire 1 C s_axi_wlast $end
+$var wire 1 D s_axi_wready $end
+$var wire 4 E s_axi_wstrb [3:0] $end
+$var wire 1 F s_axi_wvalid $end
+$var wire 16 G sw [15:0] $end
+$var wire 1 H write_accept $end
+$var wire 1 I write_is_memory $end
+$var wire 1 J uart_tx_busy $end
+$var wire 4 K uart_status [3:0] $end
+$var wire 1 L uart_rx_valid $end
+$var wire 8 M uart_rx_data [7:0] $end
+$var wire 1 N uart_debug_rx_valid $end
+$var wire 1 O uart_debug_rx_sync $end
+$var wire 2 P uart_debug_rx_state [1:0] $end
+$var wire 8 Q uart_debug_rx_data [7:0] $end
+$var wire 1 ! tx $end
+$var wire 1 R read_is_memory $end
+$var wire 4 S memory_write_en [3:0] $end
+$var wire 32 T memory_read_issue_addr [31:0] $end
+$var wire 32 U memory_read_data [31:0] $end
+$var wire 16 V led [15:0] $end
+$var wire 8 W dig_seg [7:0] $end
+$var wire 8 X dig_en [7:0] $end
+$var wire 1 Y _unused_axi $end
+$var reg 32 Z digled_reg [31:0] $end
+$var reg 16 [ led_reg [15:0] $end
+$var reg 1 \ memory_read_pending $end
+$var reg 1 ] read_active $end
+$var reg 32 ^ read_addr_reg [31:0] $end
+$var reg 8 _ read_beat_reg [7:0] $end
+$var reg 8 ` read_len_reg [7:0] $end
+$var reg 2 a s_axi_bresp [1:0] $end
+$var reg 1 b s_axi_bvalid $end
+$var reg 32 c s_axi_rdata [31:0] $end
+$var reg 2 d s_axi_rresp [1:0] $end
+$var reg 1 " s_axi_rvalid $end
+$var reg 64 e timer [63:0] $end
+$var reg 1 f uart_rx_clear $end
+$var reg 1 g uart_rx_pop $end
+$var reg 1 h uart_tx_clear $end
+$var reg 8 i uart_tx_data [7:0] $end
+$var reg 1 j uart_tx_start $end
+$scope module U_display $end
+$var wire 1 . clk $end
+$var wire 1 1 rst $end
+$var wire 32 k value [31:0] $end
+$var wire 3 l digit_index [2:0] $end
+$var reg 8 m dig_en [7:0] $end
+$var reg 8 n dig_seg [7:0] $end
+$var reg 4 o digit_value [3:0] $end
+$var reg 16 p scan_counter [15:0] $end
+$upscope $end
+$scope module U_memory $end
+$var wire 1 . clk $end
+$var wire 16 q read_addr [15:0] $end
+$var wire 1 5 read_en $end
+$var wire 16 r write_addr [15:0] $end
+$var wire 32 s write_data [31:0] $end
+$var wire 4 t write_en [3:0] $end
+$var wire 32 u read_data [31:0] $end
+$var wire 32 v irom_read_data [31:0] $end
+$var wire 4 w dram_write_en [3:0] $end
+$var wire 16 x dram_word_addr [15:0] $end
+$var wire 32 y dram_read_data [31:0] $end
+$var wire 1 z access_is_write $end
+$var wire 1 { access_dram $end
+$var wire 16 | access_addr [15:0] $end
+$var reg 1 } read_from_dram $end
+$scope module U_data_memory $end
+$var wire 15 ~ addra [14:0] $end
+$var wire 1 . clka $end
+$var wire 32 !" dina [31:0] $end
+$var wire 4 "" wea [3:0] $end
+$var wire 1 #" _unused $end
+$var reg 32 $" douta [31:0] $end
+$upscope $end
+$scope module U_program_memory $end
+$var wire 14 %" addra [13:0] $end
+$var wire 1 . clka $end
+$var reg 32 &" douta [31:0] $end
+$upscope $end
+$upscope $end
+$scope module U_uart $end
+$var wire 1 . clk $end
+$var wire 8 '" debug_rx_data [7:0] $end
+$var wire 2 (" debug_rx_state [1:0] $end
+$var wire 1 N debug_rx_valid $end
+$var wire 1 1 rst $end
+$var wire 1 6 rx $end
+$var wire 1 f rx_clear $end
+$var wire 1 g rx_pop $end
+$var wire 1 J tx_busy $end
+$var wire 1 h tx_clear $end
+$var wire 8 )" tx_data [7:0] $end
+$var wire 1 j tx_start $end
+$var wire 1 ! tx $end
+$var wire 4 *" status [3:0] $end
+$var wire 1 O debug_rx_sync $end
+$var reg 3 +" rx_bit_index [2:0] $end
+$var reg 16 ," rx_clock_count [15:0] $end
+$var reg 8 -" rx_data [7:0] $end
+$var reg 8 ." rx_shift [7:0] $end
+$var reg 2 /" rx_state [1:0] $end
+$var reg 2 0" rx_sync [1:0] $end
+$var reg 1 L rx_valid $end
+$var reg 1 1" tx_active $end
+$var reg 4 2" tx_bit_index [3:0] $end
+$var reg 16 3" tx_clock_count [15:0] $end
+$var reg 10 4" tx_shift [9:0] $end
+$upscope $end
+$upscope $end
+$scope task fail $end
+$var reg 768 5" message [767:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 5"
+bx 4"
+bx 3"
+bx 2"
+x1"
+bx 0"
+bx /"
+bx ."
+bx -"
+bx ,"
+bx +"
+bx *"
+bx )"
+bx ("
+bx '"
+bx &"
+bx %"
+bx $"
+0#"
+b0 ""
+b0 !"
+bx ~
+x}
+bx |
+x{
+0z
+bx y
+bx x
+b0 w
+bx v
+bx u
+b0 t
+b0 s
+b0 r
+bx q
+bx p
+bx o
+bx n
+bx m
+bx l
+bx k
+xj
+bx i
+xh
+xg
+xf
+bx e
+bx d
+bx c
+xb
+bx a
+bx `
+bx _
+bx ^
+x]
+x\
+bx [
+bx Z
+0Y
+bx X
+bx W
+bx V
+bx U
+bx T
+b0 S
+1R
+bx Q
+bx P
+xO
+xN
+bx M
+xL
+bx K
+xJ
+1I
+0H
+b0 G
+0F
+b0 E
+0D
+1C
+b0 B
+0A
+0@
+b10 ?
+0>
+b0 =
+b1 <
+b0 ;
+b10 :
+b0 9
+b1 8
+b0 7
+16
+05
+04
+03
+bx 2
+11
+00
+bx /
+0.
+0-
+b0 ,
+b0 +
+0*
+x)
+bx (
+bx '
+bx &
+bx %
+x$
+bx #
+x"
+x!
+$end
+#10000
+b100111000000001 ~
+0{
+b1100111000000001 x
+b1 |
+b1 %"
+b1 (
+b1 X
+b1 m
+b1 q
+1)
+b0 l
+1O
+1!
+b0xxxxxxxxxxxxxxx U
+b0xxxxxxxxxxxxxxx u
+0$
+b100 T
+b11111100 '
+b11111100 W
+b11111100 n
+b0 o
+b0 p
+b11 0"
+0J
+01"
+b0 3"
+b0 2"
+b1111111111 4"
+b100 K
+b100 *"
+0N
+0L
+b0 Q
+b0 '"
+b0 M
+b0 -"
+b0 ."
+b0 +"
+b0 ,"
+b0 P
+b0 ("
+b0 /"
+b0xxxxxxxxxxxxxx v
+b0xxxxxxxxxxxxxx &"
+b0xxxxxxxxxxxxxxx y
+b0xxxxxxxxxxxxxxx $"
+0"
+b0 #
+b0 d
+b0 %
+b0 c
+0b
+b0 a
+0f
+0g
+0h
+b0 i
+b0 )"
+0j
+b0 _
+b0 `
+b0 ^
+0]
+0\
+b0 e
+b0 Z
+b0 k
+b0 &
+b0 V
+b0 [
+1.
+#20000
+0.
+#30000
+b0x00xxx000000001 U
+b0x00xxx000000001 u
+b100111000000001 y
+b100111000000001 $"
+b1 v
+b1 &"
+1.
+#40000
+0.
+#50000
+1.
+#60000
+0.
+#70000
+b1 p
+01
+1.
+#80000
+0.
+#90000
+b10 p
+b1 e
+1.
+#100000
+0.
+#110000
+b11 p
+b10 e
+1.
+#120000
+b100111000010000 ~
+b1100111000010000 x
+b10000 |
+b10000 %"
+b10000 q
+15
+b1000000 T
+13
+1-
+b11 ,
+b11 9
+b1000000 +
+b1000000 7
+0.
+#130000
+b100111000010001 ~
+b1100111000010001 x
+b10001 |
+b10001 %"
+b10001 q
+05
+b1000100 T
+03
+b10000 U
+b10000 u
+0)
+b100 p
+b10000 v
+b10000 &"
+b100111000010000 y
+b100111000010000 $"
+0}
+1\
+b11 `
+b1000000 ^
+1]
+b11 e
+1.
+#140000
+b0 2
+10
+0-
+0.
+#150000
+15
+14
+b10001 U
+b10001 u
+b101 p
+0\
+1"
+b10000 %
+b10000 c
+b100 e
+b100111000010001 y
+b100111000010001 $"
+b10001 v
+b10001 &"
+1.
+#160000
+0.
+#170000
+b100111000010010 ~
+05
+b1100111000010010 x
+b10010 |
+b10010 %"
+04
+b10010 q
+b1001000 T
+b110 p
+1\
+b1 _
+b1000100 ^
+0"
+b101 e
+b1 2
+b10000 /
+1.
+#180000
+0.
+#190000
+15
+14
+b10010 U
+b10010 u
+b111 p
+0\
+1"
+b10001 %
+b10001 c
+b110 e
+b100111000010010 y
+b100111000010010 $"
+b10010 v
+b10010 &"
+1.
+#200000
+0.
+#210000
+b100111000010011 ~
+05
+b1100111000010011 x
+b10011 |
+b10011 %"
+04
+b10011 q
+b1001100 T
+b1000 p
+1\
+b10 _
+b1001000 ^
+0"
+b111 e
+b10 2
+b10001 /
+1.
+#220000
+0.
+#230000
+15
+14
+b10011 U
+b10011 u
+b1001 p
+0\
+1"
+b10010 %
+b10010 c
+b1000 e
+b100111000010011 y
+b100111000010011 $"
+b10011 v
+b10011 &"
+1.
+#240000
+0.
+#250000
+b100111000010100 ~
+b1100111000010100 x
+b10100 |
+b10100 %"
+05
+b10100 q
+04
+b1010000 T
+b1010 p
+1\
+b11 _
+b1001100 ^
+0"
+b1001 e
+b11 2
+b10010 /
+1.
+#260000
+0.
+#270000
+1$
+b10100 U
+b10100 u
+b1011 p
+0\
+1"
+b10011 %
+b10011 c
+b1010 e
+b100111000010100 y
+b100111000010100 $"
+b10100 v
+b10100 &"
+1.
+#280000
+0.
+#290000
+1)
+0$
+b1100 p
+0]
+0"
+b1011 e
+b100 2
+b10011 /
+1.
+#300000
+00
+0.

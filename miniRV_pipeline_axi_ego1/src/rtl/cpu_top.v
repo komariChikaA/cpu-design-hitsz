@@ -54,15 +54,13 @@ module cpu_top(
     output wire         board_debug_ifetch_valid
 );
 
-    // core <-> instruction adapter。
+    // core <-> instruction side。
     wire        cpu2ic_rreq;
     wire [31:0] cpu2ic_addr;
     wire        ic2cpu_valid;
     wire [31:0] ic2cpu_inst;
-    wire        ic_axi_valid;
-    wire [31:0] ic_axi_inst;
 
-    // core <-> data adapter。
+    // core <-> data side。
     wire [ 3:0] cpu2dc_ren;
     wire [31:0] cpu2dc_addr;
     wire        dc2cpu_valid;
@@ -76,39 +74,95 @@ module cpu_top(
     wire        dc_dev_rrdy;
     wire        dc_dev_wrdy;
 
+    // Cache/device <-> AXI Master。即使关闭 Cache，也通过这一组统一信号接线。
+    wire        master_ic_ren;
+    wire [31:0] master_ic_raddr;
+    wire        master_ic_rvalid;
+    wire [`IC_BLK_SIZE-1:0] master_ic_rdata;
+
+    wire [ 3:0] master_dc_wen;
+    wire [31:0] master_dc_waddr;
+    wire [31:0] master_dc_wdata;
+    wire        master_dc_wresp;
+    wire        master_dc_ren;
+    wire [31:0] master_dc_raddr;
+    wire        master_dc_uncached;
+    wire        master_dc_rvalid;
+    wire [`DC_BLK_SIZE-1:0] master_dc_rdata;
+
     // ILA 看到的是 core 原始请求以及过滤后真正交给 core 的返回。
     assign board_debug_ifetch_req   = cpu2ic_rreq;
     assign board_debug_ifetch_valid = ic2cpu_valid;
 
-    // -------------------------------------------------------------------------
-    // 修复 1：响应拍防重复请求
-    // -------------------------------------------------------------------------
-    // Master 发响应的同拍已回 IDLE，但 core 要到下一个上升沿才撤销旧请求。
-    // 因此响应为 1 时屏蔽对应请求，防止刚完成的访问被再次接受。
-    // 真正的背靠背访问会在 core 推进后于下一拍重新出现，不会丢失。
-    wire       ic_axi_req  = cpu2ic_rreq && !ic_axi_valid;
-    wire       dc_axi_rreq = (|cpu2dc_ren) && !dc2cpu_valid;
-    wire [3:0] dc_axi_wen  = cpu2dc_wen & {4{!dc2cpu_wresp}};
-
-    // -------------------------------------------------------------------------
-    // 修复 2：过滤分支后的过期取指响应
-    // -------------------------------------------------------------------------
-    // 分支重定向时，旧 PC 的读请求可能仍在 AXI 中。记录真正被 Master 接受的字地址，
-    // 只有它仍等于 core 当前所需地址时才把响应 valid 转发给 core。
+`ifdef ENABLE_ICACHE
+    // ICache 命中时直接在 core 侧返回；未命中时按 16-byte line 请求 AXI。
+    // 分支改变 PC 时，旧 refill 可以写入 Cache，但 ICache 会重新检查当前地址，
+    // 不会把旧地址数据误当成新 PC 的指令。
+    ICache #(.LINE_COUNT(`IC_LINE_COUNT)) U_icache (
+        .clk        (cpu_clk),
+        .rst        (cpu_rst),
+        .cpu_ren    (cpu2ic_rreq),
+        .cpu_raddr  (cpu2ic_addr),
+        .cpu_rvalid (ic2cpu_valid),
+        .cpu_rdata  (ic2cpu_inst),
+        .dev_rrdy   (ic_dev_rrdy),
+        .dev_ren    (master_ic_ren),
+        .dev_raddr  (master_ic_raddr),
+        .dev_rvalid (master_ic_rvalid),
+        .dev_rdata  (master_ic_rdata)
+    );
+`else
+    // 无 Cache 调试路径：屏蔽响应拍的重复请求，并过滤分支后的旧取指响应。
+    wire ic_direct_req = cpu2ic_rreq && !master_ic_rvalid;
     reg [31:2] ic_pending_word_addr;
-
-    // ic_axi_req && ic_dev_rrdy 表示 CPU 侧取指请求在本拍被 Master 接受。
     always @(posedge cpu_clk or posedge cpu_rst) begin
         if (cpu_rst)
             ic_pending_word_addr <= 30'h0;
-        else if (ic_axi_req && ic_dev_rrdy)
+        else if (ic_direct_req && ic_dev_rrdy)
             ic_pending_word_addr <= cpu2ic_addr[31:2];
     end
+    assign master_ic_ren   = ic_direct_req;
+    assign master_ic_raddr = cpu2ic_addr;
+    assign ic2cpu_valid    = master_ic_rvalid &&
+                             (ic_pending_word_addr == cpu2ic_addr[31:2]);
+    assign ic2cpu_inst     = master_ic_rdata[31:0];
+`endif
 
-    // 地址不匹配的返回数据被丢弃；core 会继续保持新目标请求直到重新获得响应。
-    assign ic2cpu_valid = ic_axi_valid &&
-                          (ic_pending_word_addr == cpu2ic_addr[31:2]);
-    assign ic2cpu_inst  = ic_axi_inst;
+`ifdef ENABLE_DCACHE
+    // DCache 为 write-through/no-write-allocate；MMIO 自动走 Uncached 单拍访问。
+    DCache #(.LINE_COUNT(`DC_LINE_COUNT)) U_dcache (
+        .clk          (cpu_clk),
+        .rst          (cpu_rst),
+        .cpu_ren      (cpu2dc_ren),
+        .cpu_addr     (cpu2dc_addr),
+        .cpu_rvalid   (dc2cpu_valid),
+        .cpu_rdata    (dc2cpu_rdata),
+        .cpu_wen      (cpu2dc_wen),
+        .cpu_wdata    (cpu2dc_wdata),
+        .cpu_wresp    (dc2cpu_wresp),
+        .dev_rrdy     (dc_dev_rrdy),
+        .dev_ren      (master_dc_ren),
+        .dev_raddr    (master_dc_raddr),
+        .dev_uncached (master_dc_uncached),
+        .dev_rvalid   (master_dc_rvalid),
+        .dev_rdata    (master_dc_rdata),
+        .dev_wrdy     (dc_dev_wrdy),
+        .dev_wen      (master_dc_wen),
+        .dev_waddr    (master_dc_waddr),
+        .dev_wdata    (master_dc_wdata),
+        .dev_wresp    (master_dc_wresp)
+    );
+`else
+    assign master_dc_wen      = cpu2dc_wen & {4{!master_dc_wresp}};
+    assign master_dc_waddr    = cpu2dc_addr;
+    assign master_dc_wdata    = cpu2dc_wdata;
+    assign master_dc_ren      = (|cpu2dc_ren) && !master_dc_rvalid;
+    assign master_dc_raddr    = cpu2dc_addr;
+    assign master_dc_uncached = 1'b1;
+    assign dc2cpu_valid       = master_dc_rvalid;
+    assign dc2cpu_rdata       = master_dc_rdata[31:0];
+    assign dc2cpu_wresp       = master_dc_wresp;
+`endif
 
     // 五级 RV32IM 流水线核心，只看简单的取指/数据请求响应。
     cpu_core U_core (
@@ -128,25 +182,26 @@ module cpu_top(
         .board_debug_pc (board_debug_pc)
     );
 
-    // 无 Cache AXI Master，完成仲裁、地址锁存和五通道握手。
+    // AXI Master 仲裁：D 写 > D 读 > I 读；Cache refill 使用四拍 burst。
     axi_master U_aximaster (
         .aclk           (cpu_clk),
         .areset         (cpu_rst),
         .ic_dev_rrdy    (ic_dev_rrdy),
-        .ic_cpu_ren     (ic_axi_req),
-        .ic_cpu_raddr   (cpu2ic_addr),
-        .ic_dev_rvalid  (ic_axi_valid),
-        .ic_dev_rdata   (ic_axi_inst),
+        .ic_cpu_ren     (master_ic_ren),
+        .ic_cpu_raddr   (master_ic_raddr),
+        .ic_dev_rvalid  (master_ic_rvalid),
+        .ic_dev_rdata   (master_ic_rdata),
         .dc_dev_wrdy    (dc_dev_wrdy),
-        .dc_cpu_wen     (dc_axi_wen),
-        .dc_cpu_waddr   (cpu2dc_addr),
-        .dc_cpu_wdata   (cpu2dc_wdata),
-        .dc_dev_wresp   (dc2cpu_wresp),
+        .dc_cpu_wen     (master_dc_wen),
+        .dc_cpu_waddr   (master_dc_waddr),
+        .dc_cpu_wdata   (master_dc_wdata),
+        .dc_dev_wresp   (master_dc_wresp),
         .dc_dev_rrdy    (dc_dev_rrdy),
-        .dc_cpu_ren     (dc_axi_rreq),
-        .dc_cpu_raddr   (cpu2dc_addr),
-        .dc_dev_rvalid  (dc2cpu_valid),
-        .dc_dev_rdata   (dc2cpu_rdata),
+        .dc_cpu_ren     (master_dc_ren),
+        .dc_cpu_raddr   (master_dc_raddr),
+        .dc_cpu_uncached(master_dc_uncached),
+        .dc_dev_rvalid  (master_dc_rvalid),
+        .dc_dev_rdata   (master_dc_rdata),
         .m_axi_awaddr   (m_axi_awaddr),
         .m_axi_awlen    (m_axi_awlen),
         .m_axi_awsize   (m_axi_awsize),

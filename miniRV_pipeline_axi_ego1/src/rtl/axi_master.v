@@ -3,11 +3,12 @@
 `include "defines.vh"
 
 // -----------------------------------------------------------------------------
-// 无 Cache、单未决事务 AXI4 Master
+// I/D Cache 共用、单未决事务 AXI4 Master
 // -----------------------------------------------------------------------------
 // CPU 侧有取指读、数据读、数据写三个简单请求口，本模块把它们转换为 AXI 五通道。
 // 仲裁优先级：data write > data read > instruction read。
-// 每次均为对齐的 32-bit 单拍传输；SB/SH 通过 WSTRB 选择有效 byte lane。
+// read line refill 为 4 个 32-bit beat；Uncached read 和 write 为单拍。
+// SB/SH 通过 WSTRB 选择有效 byte lane。
 // “请求有效”不等于“事务完成”：只有 VALID && READY 的上升沿才完成对应通道握手。
 module axi_master(
     // 与 CPU/板级 Slave 同一个 50 MHz 时钟域；areset 高有效同步复位。
@@ -32,6 +33,7 @@ module axi_master(
     output reg          dc_dev_rrdy,
     input  wire         dc_cpu_ren,
     input  wire [31:0]  dc_cpu_raddr,
+    input  wire         dc_cpu_uncached,
     output reg          dc_dev_rvalid,
     output reg  [`DC_BLK_SIZE-1:0] dc_dev_rdata,
 
@@ -83,15 +85,34 @@ module axi_master(
     reg [2:0] state;
     // 锁存当前读事务来源，因为到 RDATA 时原始 CPU 请求可能已变化。
     reg       read_is_data;
+    reg [7:0] read_len;
+    reg [7:0] read_beat;
+    reg [127:0] read_buffer;
+    reg [127:0] read_buffer_next;
 
-    // 当前实现固定为 1 beat、每 beat 4 bytes、INCR burst。
+    localparam [7:0] IC_AXI_LEN = `IC_BLK_LEN - 1;
+    localparam [7:0] DC_AXI_LEN = `DC_BLK_LEN - 1;
+
+    // 写仍是单拍 write-through；Cache line refill 使用 4-beat INCR burst。
     assign m_axi_awlen   = 8'd0;
     assign m_axi_awsize  = 3'b010; // four bytes per beat
     assign m_axi_awburst = 2'b01;  // INCR
     assign m_axi_wlast   = 1'b1;
-    assign m_axi_arlen   = 8'd0;
+    assign m_axi_arlen   = read_len;
     assign m_axi_arsize  = 3'b010;
     assign m_axi_arburst = 2'b01;
+
+    // 构造“包含本拍”的 line。最后一拍握手时要立即返回完整 line，
+    // 因此不能只依赖在同一沿更新、下一拍才可见的 read_buffer。
+    always @(*) begin
+        read_buffer_next = read_buffer;
+        case (read_beat[1:0])
+            2'd0: read_buffer_next[31:0]   = m_axi_rdata;
+            2'd1: read_buffer_next[63:32]  = m_axi_rdata;
+            2'd2: read_buffer_next[95:64]  = m_axi_rdata;
+            2'd3: read_buffer_next[127:96] = m_axi_rdata;
+        endcase
+    end
 
     // CPU 侧组合 ready 仲裁。只有 IDLE 才接收新事务；重叠请求时只有最高优先级
     // 接口看到 ready=1，避免同拍接受两个请求。
@@ -114,6 +135,9 @@ module axi_master(
         if (areset) begin
             state           <= ST_IDLE;
             read_is_data    <= 1'b0;
+            read_len        <= 8'd0;
+            read_beat       <= 8'd0;
+            read_buffer     <= 128'h0;
             ic_dev_rvalid   <= 1'b0;
             ic_dev_rdata    <= {`IC_BLK_SIZE{1'b0}};
             dc_dev_rvalid   <= 1'b0;
@@ -149,12 +173,18 @@ module axi_master(
                         // 接受数据读并记住返回目标。
                         read_is_data  <= 1'b1;
                         m_axi_araddr  <= {dc_cpu_raddr[31:2], 2'b00};
+                        read_len      <= dc_cpu_uncached ? 8'd0 : DC_AXI_LEN;
+                        read_beat     <= 8'd0;
+                        read_buffer   <= 128'h0;
                         m_axi_arvalid <= 1'b1;
                         state         <= ST_RADDR;
                     end else if (ic_cpu_ren && ic_dev_rrdy) begin
                         // 接受取指读；与数据读共用 AR/R 通道。
                         read_is_data  <= 1'b0;
                         m_axi_araddr  <= {ic_cpu_raddr[31:2], 2'b00};
+                        read_len      <= IC_AXI_LEN;
+                        read_beat     <= 8'd0;
+                        read_buffer   <= 128'h0;
                         m_axi_arvalid <= 1'b1;
                         state         <= ST_RADDR;
                     end
@@ -170,17 +200,23 @@ module axi_master(
                 end
 
                 ST_RDATA: begin
-                    // RVALID && RREADY 才消费数据。按 read_is_data 路由并产生 CPU pulse。
+                    // RVALID && RREADY 才消费一拍。RREADY 在 burst 中保持为 1；
+                    // 收到 RLAST（或达到已锁存的 ARLEN）后才返回完整 line。
                     if (m_axi_rvalid && m_axi_rready) begin
-                        m_axi_rready <= 1'b0;
-                        if (read_is_data) begin
-                            dc_dev_rdata  <= m_axi_rdata;
-                            dc_dev_rvalid <= 1'b1;
+                        read_buffer <= read_buffer_next;
+                        if (m_axi_rlast || (read_beat == read_len)) begin
+                            m_axi_rready <= 1'b0;
+                            if (read_is_data) begin
+                                dc_dev_rdata  <= read_buffer_next[`DC_BLK_SIZE-1:0];
+                                dc_dev_rvalid <= 1'b1;
+                            end else begin
+                                ic_dev_rdata  <= read_buffer_next[`IC_BLK_SIZE-1:0];
+                                ic_dev_rvalid <= 1'b1;
+                            end
+                            state <= ST_IDLE;
                         end else begin
-                            ic_dev_rdata  <= m_axi_rdata;
-                            ic_dev_rvalid <= 1'b1;
+                            read_beat <= read_beat + 8'd1;
                         end
-                        state <= ST_IDLE;
                     end
                 end
 
@@ -213,8 +249,8 @@ module axi_master(
         end
     end
 
-    // 当前 CPU 简单接口没有异常返回通道，因此 BRESP/RRESP/RLAST 不影响功能；
+    // 当前 CPU 简单接口没有异常返回通道，因此 BRESP/RRESP 仅供 testbench 检查；
     // 保留引用以消除综合未使用告警，AXI testbench 仍会检查它们。
-    wire _unused_ok = &{1'b0, m_axi_bresp, m_axi_rresp, m_axi_rlast};
+    wire _unused_ok = &{1'b0, m_axi_bresp, m_axi_rresp};
 
 endmodule

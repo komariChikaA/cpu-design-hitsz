@@ -537,7 +537,8 @@ module cpu_core(
     // -------------------------------------------------------------------------
     // 课程 Trace 观测口
     // -------------------------------------------------------------------------
-    // verilator public 让外部 C++ 测试读取按序 WB 提交和 store 提交信息。
+    // The public attributes below expose in-order WB and store commits to
+    // the external C++ Trace checker.
     wire [31:0] debug_wb_pc    /* verilator public */ ;
     wire        debug_wb_rf_we /* verilator public */ ;
     wire [ 4:0] debug_wb_rf_wR /* verilator public */ ;
@@ -549,7 +550,10 @@ module cpu_core(
     wire [31:0] debug_mem_wdata /* verilator public */ ;
 
     assign debug_wb_pc    = wb_pc;
-    assign debug_wb_rf_we = wb_rf_we && wb_valid;
+    // A frozen WB register still contains the preceding instruction.  It is
+    // available for forwarding, but it must not be reported repeatedly as a
+    // new architectural commit while a Cache miss or M operation is pending.
+    assign debug_wb_rf_we = wb_rf_we && wb_valid && !effective_freeze;
     assign debug_wb_rf_wR = wb_rd;
     assign debug_wb_rf_wD = rf_wD;
 

@@ -351,6 +351,7 @@ figcaption {
   table { font-size: 9.6pt; }
   figure img { max-height: 220mm; }
   a { color: inherit; text-decoration: none; }
+  .cache-vcd-page-break { break-before: page; }
 }
 """
 
@@ -358,6 +359,11 @@ figcaption {
 def add_figures(source: str) -> str:
     for heading, figure in FIGURE_INSERTS.items():
         source = source.replace(heading, heading + figure, 1)
+    source = source.replace(
+        "<!-- PDF_BREAK_CACHE_VCD -->",
+        '<div class="cache-vcd-page-break"></div>',
+        1,
+    )
     return source
 
 
