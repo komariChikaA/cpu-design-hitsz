@@ -360,6 +360,24 @@ figcaption {
 <li><a href="#195">19.5 两组交接句</a></li>
 </ul>
 </li>
+<li><a href="#20-b-cacheaxi">20. B 组：把 Cache、AXI 和外设波形连成一条行为链</a><ul>
+<li><a href="#201">20.1 先按地址判断“这次应该看哪条路径”</a></li>
+<li><a href="#202-icache-missrefill">20.2 ICache miss、refill、再命中的逐拍对应</a></li>
+<li><a href="#203-dcache-load-missload-hitfreeze">20.3 DCache load miss、load hit与流水线freeze</a></li>
+<li><a href="#204-dcache-write-throughwstrb">20.4 DCache write-through和WSTRB怎样在波形中体现</a></li>
+<li><a href="#205-mmio-uncachedcacheaxi">20.5 MMIO Uncached怎样从Cache波形过渡到AXI波形</a></li>
+<li><a href="#206-axi-masterrefill">20.6 AXI Master四拍refill逐拍讲法</a></li>
+<li><a href="#207-slavebram">20.7 板端Slave怎样把四拍请求变成四次BRAM地址</a></li>
+<li><a href="#208-ledaxi">20.8 LED和数码管：AXI写如何变成物理输出</a></li>
+<li><a href="#209-switchtimeraxi">20.9 Switch和timer：AXI读如何返回会变化的外设值</a></li>
+<li><a href="#2010-uart-txmmio10bit">20.10 UART TX：一次MMIO写怎样产生串行10个bit</a></li>
+<li><a href="#2011-uart-rxa">20.11 UART RX：串行A怎样经过状态寄存器和数据寄存器</a></li>
+<li><a href="#2012-storeled">20.12 一条store到LED的完整端到端讲法</a></li>
+<li><a href="#2013-loadbram-miss">20.13 一条load从BRAM miss到写回的完整端到端讲法</a></li>
+<li><a href="#2014">20.14 波形回答固定句式</a></li>
+<li><a href="#2015-b">20.15 B组现场练习题</a></li>
+</ul>
+</li>
 </ul>
 </div>
 
@@ -1229,9 +1247,15 @@ forward_a_sel rf_wD
 <li>addi 恢复且 <code>forward_a_sel=10</code>。</li>
 </ol>
 <h3 id="144-axi">14.4 AXI 波形</h3>
-<p>打开：</p>
+<p>无 Cache 历史基线打开：</p>
 <pre><code class="language-text">06_no_cache_axi_transaction.vcd
 </code></pre>
+<p>当前 Cache 版本必须另外打开：</p>
+<pre><code class="language-text">08_axi_cacheline_burst.vcd
+</code></pre>
+<p>不能只展示 <code>06_no_cache_axi_transaction.vcd</code> 就声称已经解释当前 Cache。
+<code>06</code> 适合解释单拍 AXI 握手；<code>08</code> 才包含 <code>ARLEN=3</code>、四拍 <code>RDATA</code>、
+<code>read_beat/read_buffer</code> 和 <code>RLAST</code>。</p>
 <p>Scope：</p>
 <pre><code class="language-text">axi_master_tb / dut
 </code></pre>
@@ -1241,14 +1265,19 @@ ic_cpu_ren ic_dev_rrdy ic_dev_rvalid
 dc_cpu_ren dc_dev_rrdy dc_dev_rvalid
 dc_cpu_wen dc_dev_wrdy dc_dev_wresp
 m_axi_araddr m_axi_arvalid m_axi_arready
-m_axi_rdata m_axi_rvalid m_axi_rready
+m_axi_arlen m_axi_arsize m_axi_arburst
+m_axi_rdata m_axi_rvalid m_axi_rready m_axi_rlast
 m_axi_awaddr m_axi_awvalid m_axi_awready
 m_axi_wdata m_axi_wstrb m_axi_wvalid m_axi_wready
 m_axi_bvalid m_axi_bready
+read_len read_beat read_buffer
 </code></pre>
 <p>重点找：</p>
 <ul>
 <li>ARVALID 等待 ARREADY 时地址保持；</li>
+<li>Cache refill 时 <code>ARLEN=03</code>，Uncached 外设读时 <code>ARLEN=00</code>；</li>
+<li>四次 <code>RVALID &amp;&amp; RREADY</code> 分别写入 <code>read_buffer</code> 的四个 32-bit lane；</li>
+<li>第四拍 <code>RLAST=1</code> 后才产生 <code>ic_dev_rvalid/dc_dev_rvalid</code>；</li>
 <li>RVALID/RREADY 同拍才返回 CPU；</li>
 <li>AW 已握手后 AWVALID 清零，但 WVALID 在 backpressure 下保持；</li>
 <li>WDATA/WSTRB 在 WREADY=0 时不变；</li>
@@ -1598,6 +1627,619 @@ IDLE 后会用当前 PC 重新检查 hit，不把旧 line 当作新指令。</p>
 </blockquote>
 <p>两组都必须知道：<code>daccess_rvalid/wresp</code> 一方面是 B 组 AXI 事务的完成证据，另一方面
 会解除 A 组流水线中的 <code>memory_freeze</code>。</p>
+<h2 id="20-b-cacheaxi">20. B 组：把 Cache、AXI 和外设波形连成一条行为链</h2>
+<p>这一节不是要求在一张波形中同时看到全部模块。现有四份 VCD 是四个不同层次的
+定向 testbench：</p>
+<table>
+<thead>
+<tr>
+<th>VCD</th>
+<th>所在层次</th>
+<th>能证明什么</th>
+<th>证据边界</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10_cache_refill_hit_uncached.vcd</code></td>
+<td>ICache/DCache 内部</td>
+<td>tag/index/hit、refill、write-through、Uncached</td>
+<td>真实 AXI 五通道</td>
+</tr>
+<tr>
+<td><code>08_axi_cacheline_burst.vcd</code></td>
+<td>AXI Master</td>
+<td>仲裁、ARLEN、四拍拼接、AW/W/B</td>
+<td>板端地址译码</td>
+</tr>
+<tr>
+<td><code>11_board_bram_burst.vcd</code></td>
+<td>板端 AXI Slave + BRAM</td>
+<td>连续地址、同步 BRAM 延迟、RLAST</td>
+<td>CPU 的 hit/miss</td>
+</tr>
+<tr>
+<td><code>09_board_peripheral_mmio_uart.vcd</code></td>
+<td>板端 AXI Slave + MMIO</td>
+<td>LED/数码管/UART/timer 的寄存器行为</td>
+<td>Cache 内部数组</td>
+</tr>
+</tbody>
+</table>
+<p>现场正确说法：</p>
+<blockquote>
+<p>我按同一事务的四个层次关联证据，而不是声称四份独立 testbench 是一条同时采集的
+全系统波形。Cache 波形证明为何发请求，Master 波形证明请求怎样变成 AXI，
+Slave 波形证明地址怎样到 BRAM/外设，最后再用响应信号说明流水线何时继续。</p>
+</blockquote>
+<h3 id="201">20.1 先按地址判断“这次应该看哪条路径”</h3>
+<table>
+<thead>
+<tr>
+<th>CPU行为</th>
+<th style="text-align: right;">地址示例</th>
+<th>Cache行为</th>
+<th>AXI行为</th>
+<th>Slave行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>取指</td>
+<td style="text-align: right;"><code>0x00000024</code></td>
+<td>ICache hit 或四拍 refill</td>
+<td>AR/R burst</td>
+<td>读 BRAM</td>
+</tr>
+<tr>
+<td>普通 load</td>
+<td style="text-align: right;"><code>0x00000044</code></td>
+<td>DCache hit 或四拍 refill</td>
+<td>AR/R burst</td>
+<td>读 BRAM</td>
+</tr>
+<tr>
+<td>普通 store</td>
+<td style="text-align: right;"><code>0x00000044</code></td>
+<td>write-through</td>
+<td>AW/W/B 单拍写</td>
+<td>写 BRAM</td>
+</tr>
+<tr>
+<td>读拨码</td>
+<td style="text-align: right;"><code>0xFFFF0000</code></td>
+<td>DCache Uncached</td>
+<td><code>ARLEN=0</code></td>
+<td>返回 <code>sw</code></td>
+</tr>
+<tr>
+<td>写 LED</td>
+<td style="text-align: right;"><code>0xFFFF1000</code></td>
+<td>不分配 Cache Line</td>
+<td>AW/W/B</td>
+<td>更新 <code>led_reg</code></td>
+</tr>
+<tr>
+<td>写数码管</td>
+<td style="text-align: right;"><code>0xFFFF2000</code></td>
+<td>不分配 Cache Line</td>
+<td>AW/W/B</td>
+<td>更新 <code>digled_reg</code></td>
+</tr>
+<tr>
+<td>UART RX</td>
+<td style="text-align: right;"><code>0xFFFF3000</code></td>
+<td>Uncached</td>
+<td><code>ARLEN=0</code></td>
+<td>返回字节并 <code>rx_pop</code></td>
+</tr>
+<tr>
+<td>UART TX</td>
+<td style="text-align: right;"><code>0xFFFF3004</code></td>
+<td>write-through 到外设</td>
+<td>AW/W/B</td>
+<td><code>tx_start</code> 单拍</td>
+</tr>
+<tr>
+<td>UART状态</td>
+<td style="text-align: right;"><code>0xFFFF3008</code></td>
+<td>Uncached</td>
+<td><code>ARLEN=0</code></td>
+<td>返回 <code>uart_status</code></td>
+</tr>
+<tr>
+<td>读计时器</td>
+<td style="text-align: right;"><code>0xFFFF4000/+8</code></td>
+<td>Uncached</td>
+<td><code>ARLEN=0</code></td>
+<td>返回 timer 低/高 32 位</td>
+</tr>
+</tbody>
+</table>
+<p>这里必须主动解释：MMIO 如果进入 Cache，switch、UART状态和timer可能返回旧值，
+UART RX 的读副作用也可能丢失或重复。因此 <code>0xFFFF_xxxx</code> 绝不能分配到 DCache。</p>
+<h3 id="202-icache-missrefill">20.2 ICache miss、refill、再命中的逐拍对应</h3>
+<p>打开 <code>10_cache_refill_hit_uncached.vcd</code>，Scope 选择：</p>
+<pre><code class="language-text">cache_tb / U_icache
+</code></pre>
+<p>加入：</p>
+<pre><code class="language-text">clk rst state
+cpu_ren cpu_raddr cpu_index cpu_tag cpu_hit cpu_rvalid cpu_rdata
+miss_line_addr miss_index miss_tag
+dev_ren dev_rrdy dev_raddr dev_rvalid dev_rdata
+</code></pre>
+<p>用地址值定位：</p>
+<pre><code class="language-text">cpu_raddr = 00000024   第一次访问，miss
+dev_raddr = 00000020   16-byte 对齐后的 line 地址
+cpu_raddr = 0000002C   同一 line 的另一个 word，hit
+</code></pre>
+<p>沿时钟解释：</p>
+<table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>Cache状态/信号</th>
+<th>具体行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T0</td>
+<td><code>state=IDLE, cpu_ren=1, cpu_hit=0</code></td>
+<td><code>valid</code>或tag不匹配，不能给CPU指令</td>
+</tr>
+<tr>
+<td>T1</td>
+<td><code>state=REQ, dev_ren=1, dev_raddr=0x20</code></td>
+<td>保存miss的tag/index，并请求整条16-byte line</td>
+</tr>
+<tr>
+<td>T2</td>
+<td><code>dev_ren &amp;&amp; dev_rrdy</code></td>
+<td>Master接受请求，Cache进入WAIT</td>
+</tr>
+<tr>
+<td>T3</td>
+<td><code>state=WAIT, dev_rvalid=1</code></td>
+<td>128-bit line写入data/tag/valid数组</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>回到<code>IDLE, cpu_hit=1</code></td>
+<td><code>cpu_raddr[3:2]=01</code>，选择第二个word并拉高<code>cpu_rvalid</code></td>
+</tr>
+<tr>
+<td>T5</td>
+<td>地址改成<code>0x2C</code>，<code>cpu_hit=1</code></td>
+<td>选择第四个word；<code>dev_ren</code>不再出现</td>
+</tr>
+</tbody>
+</table>
+<p>这一段最后要指着 <code>ic_request_count=1</code> 说：</p>
+<blockquote>
+<p>第一次miss只产生一次设备请求；同一line内第二次取指直接hit，这就是空间局部性。</p>
+</blockquote>
+<h3 id="203-dcache-load-missload-hitfreeze">20.3 DCache load miss、load hit与流水线freeze</h3>
+<p>同一文件选择：</p>
+<pre><code class="language-text">cache_tb / U_dcache
+</code></pre>
+<p>加入：</p>
+<pre><code class="language-text">state cpu_addr cpu_ren cpu_index cpu_tag cpu_hit cpu_cacheable
+cached_read_hit cpu_rvalid cpu_rdata
+req_addr req_uncached miss_index miss_tag
+dev_ren dev_rrdy dev_raddr dev_rvalid dev_rdata
+</code></pre>
+<p>用 <code>cpu_addr=0x00000044</code> 定位。行为是：</p>
+<table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>DCache</th>
+<th>AXI/CPU含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T0</td>
+<td><code>cpu_ren=F, cpu_hit=0, cpu_cacheable=1</code></td>
+<td>load miss，CPU尚未收到完成</td>
+</tr>
+<tr>
+<td>T1</td>
+<td><code>state=RREQ, dev_raddr=0x40, dev_uncached=0</code></td>
+<td>请求四拍Cache Line</td>
+</tr>
+<tr>
+<td>T2</td>
+<td><code>dev_ren &amp;&amp; dev_rrdy</code></td>
+<td>请求被Master接受，进入RWAIT</td>
+</tr>
+<tr>
+<td>T3</td>
+<td><code>dev_rvalid=1</code></td>
+<td>128-bit line安装到DCache</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>回IDLE后<code>cached_read_hit=1</code></td>
+<td>从<code>addr[3:2]=01</code>选择<code>BBBB0001</code></td>
+</tr>
+<tr>
+<td>T4</td>
+<td><code>cpu_rvalid=1</code></td>
+<td>对接到core的<code>daccess_rvalid</code>，解除<code>memory_freeze</code></td>
+</tr>
+</tbody>
+</table>
+<p>Cache testbench中没有完整 <code>cpu_core</code>，所以 <code>memory_freeze</code> 要在流水线仿真或代码中
+关联解释：</p>
+<pre><code class="language-verilog">ld_st_done   = daccess_rvalid || daccess_wresp;
+memory_freeze = ld_st_suspend &amp;&amp; !ld_st_done;
+</code></pre>
+<p>不能说“Cache miss直接暂停AXI”；正确说法是：</p>
+<blockquote>
+<p>miss让<code>daccess_rvalid</code>暂时不返回，core看到访存事务未完成而冻结在途流水级；
+refill完成后DCache给出<code>rvalid</code>，同一个完成事件解除freeze。</p>
+</blockquote>
+<h3 id="204-dcache-write-throughwstrb">20.4 DCache write-through和WSTRB怎样在波形中体现</h3>
+<p>仍看<code>10_cache_refill_hit_uncached.vcd</code>，用以下值定位：</p>
+<pre><code class="language-text">cpu_addr  = 00000044
+cpu_wdata = 0000AA00
+cpu_wen   = 0010
+</code></pre>
+<p>逐项说明：</p>
+<ol>
+<li>这是已缓存line上的写命中；</li>
+<li><code>cpu_wen=0010</code>表示只写byte lane 1；</li>
+<li><code>merge_bytes</code>把原来的<code>BBBB0001</code>更新为<code>BBBBAA01</code>；</li>
+<li>同时进入<code>ST_WREQ</code>，设备侧出现：</li>
+</ol>
+<pre><code class="language-text">dev_waddr = 00000044
+dev_wdata = 0000AA00
+dev_wen   = 0010
+</code></pre>
+<ol start="5">
+<li><code>dev_wresp=1</code>时<code>cpu_wresp=1</code>，store才算架构完成；</li>
+<li>随后再次读取同一地址，<code>cpu_rdata=BBBBAA01</code>且没有新refill。</li>
+</ol>
+<p>答辩结论：</p>
+<blockquote>
+<p>写命中既更新Cache副本，又用同一WSTRB写入下级，所以叫write-through；
+写miss直接写下级、不取整行，所以叫no-write-allocate；因此不需要dirty bit。</p>
+</blockquote>
+<h3 id="205-mmio-uncachedcacheaxi">20.5 MMIO Uncached怎样从Cache波形过渡到AXI波形</h3>
+<p>在<code>10_cache_refill_hit_uncached.vcd</code>中用以下值定位：</p>
+<pre><code class="language-text">cpu_addr       = FFFF0002
+cpu_cacheable  = 0
+req_addr       = FFFF0000
+req_uncached   = 1
+dev_uncached   = 1
+cpu_rdata      = 00001234
+</code></pre>
+<p>这说明DCache完成了三件事：</p>
+<ol>
+<li>判断地址不允许缓存；</li>
+<li>只做32-bit字对齐，不做16-byte line对齐；</li>
+<li>返回时只使用<code>dev_rdata[31:0]</code>，不写tag/data/valid数组。</li>
+</ol>
+<p>随后切换到<code>08_axi_cacheline_burst.vcd</code>，用<code>dc_uncached=1</code>定位。必须指出：</p>
+<pre><code class="language-text">read_len = 0
+m_axi_arlen = 00
+</code></pre>
+<p>所以Uncached读只消费一次<code>RVALID &amp;&amp; RREADY</code>，而不是四拍refill。</p>
+<h3 id="206-axi-masterrefill">20.6 AXI Master四拍refill逐拍讲法</h3>
+<p>打开<code>08_axi_cacheline_burst.vcd</code>：</p>
+<pre><code class="language-text">axi_master_tb / dut
+</code></pre>
+<p>加入：</p>
+<pre><code class="language-text">state read_is_data read_len read_beat read_buffer read_buffer_next
+ic_cpu_ren ic_cpu_raddr ic_dev_rrdy ic_dev_rvalid ic_dev_rdata
+dc_cpu_ren dc_cpu_raddr dc_cpu_uncached dc_dev_rvalid dc_dev_rdata
+m_axi_araddr m_axi_arlen m_axi_arsize m_axi_arburst
+m_axi_arvalid m_axi_arready
+m_axi_rdata m_axi_rvalid m_axi_rready m_axi_rlast
+</code></pre>
+<p>先用<code>ic_cpu_raddr=0x00000003</code>定位取指refill：</p>
+<table>
+<thead>
+<tr>
+<th>观察点</th>
+<th>波形现象</th>
+<th>对应总线规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地址对齐</td>
+<td><code>m_axi_araddr=0x00000000</code></td>
+<td>取Cache Line首地址</td>
+</tr>
+<tr>
+<td>长度</td>
+<td><code>m_axi_arlen=03</code></td>
+<td>四个beat</td>
+</tr>
+<tr>
+<td>每拍大小</td>
+<td><code>m_axi_arsize=010</code></td>
+<td>每beat 4 byte</td>
+</tr>
+<tr>
+<td>突发类型</td>
+<td><code>m_axi_arburst=01</code></td>
+<td>INCR，地址每拍+4</td>
+</tr>
+<tr>
+<td>地址握手</td>
+<td><code>ARVALID &amp;&amp; ARREADY</code></td>
+<td>Slave接受整次burst描述</td>
+</tr>
+<tr>
+<td>数据第0拍</td>
+<td><code>RDATA=11110000, read_beat=0</code></td>
+<td>写<code>buffer[31:0]</code></td>
+</tr>
+<tr>
+<td>数据第1拍</td>
+<td><code>RDATA=22220001, read_beat=1</code></td>
+<td>写<code>buffer[63:32]</code></td>
+</tr>
+<tr>
+<td>数据第2拍</td>
+<td><code>RDATA=33330002, read_beat=2</code></td>
+<td>写<code>buffer[95:64]</code></td>
+</tr>
+<tr>
+<td>数据第3拍</td>
+<td><code>RDATA=44440003, RLAST=1</code></td>
+<td>写<code>buffer[127:96]</code></td>
+</tr>
+<tr>
+<td>完成</td>
+<td><code>ic_dev_rvalid=1</code></td>
+<td>完整128-bit line一次返回ICache</td>
+</tr>
+</tbody>
+</table>
+<p>一定要说明为什么代码使用<code>read_buffer_next</code>：</p>
+<blockquote>
+<p>最后一拍RDATA和<code>RLAST</code>在同一个沿到达。如果只读取旧<code>read_buffer</code>，最后32位尚未
+写进去；<code>read_buffer_next</code>把当前RDATA先组合进line，再在该拍返回完整128位数据。</p>
+</blockquote>
+<p>再用数据读和取指同时出现的片段解释仲裁：</p>
+<pre><code class="language-text">dc_cpu_ren=1 且 ic_cpu_ren=1
+dc_dev_rrdy=1
+ic_dev_rrdy=0
+m_axi_araddr=00000010
+</code></pre>
+<p>结论：</p>
+<blockquote>
+<p>Master优先级为D写、D读、I读；MEM级数据事务会冻结流水线，所以先完成数据侧事务。</p>
+</blockquote>
+<h3 id="207-slavebram">20.7 板端Slave怎样把四拍请求变成四次BRAM地址</h3>
+<p>打开<code>11_board_bram_burst.vcd</code>：</p>
+<pre><code class="language-text">board_burst_tb / U_dut
+</code></pre>
+<p>加入：</p>
+<pre><code class="language-text">s_axi_araddr s_axi_arlen s_axi_arvalid s_axi_arready
+s_axi_rdata s_axi_rvalid s_axi_rready s_axi_rlast
+read_active read_addr_reg read_len_reg read_beat_reg
+memory_read_accept memory_read_continue memory_read_issue
+memory_read_pending memory_read_data
+</code></pre>
+<p>逐拍对应：</p>
+<table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>Slave内部</th>
+<th>BRAM/AXI含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T0</td>
+<td><code>ARVALID &amp;&amp; ARREADY, ARLEN=3</code></td>
+<td>锁存起始地址和burst长度</td>
+</tr>
+<tr>
+<td>T1</td>
+<td><code>memory_read_issue=1</code></td>
+<td>向同步BRAM发第0个字地址</td>
+</tr>
+<tr>
+<td>T2</td>
+<td><code>memory_read_pending=1</code></td>
+<td>BRAM数据有效，产生第0拍RVALID</td>
+</tr>
+<tr>
+<td>T3</td>
+<td><code>RVALID &amp;&amp; RREADY</code>且未结束</td>
+<td><code>read_addr_reg += 4</code>，<code>read_beat_reg += 1</code></td>
+</tr>
+<tr>
+<td>后续</td>
+<td>重复发起BRAM读</td>
+<td>地址依次为base、base+4、base+8、base+12</td>
+</tr>
+<tr>
+<td>最后一拍</td>
+<td><code>read_beat_reg == read_len_reg</code></td>
+<td><code>s_axi_rlast=1</code></td>
+</tr>
+<tr>
+<td>最后一拍握手</td>
+<td><code>RVALID &amp;&amp; RREADY &amp;&amp; RLAST</code></td>
+<td>清除<code>read_active</code>，burst结束</td>
+</tr>
+</tbody>
+</table>
+<p>Master波形中的四个R beat和Slave波形中的四次BRAM地址是一一对应的：</p>
+<pre><code class="language-text">Cache Line word0 ← base+0
+Cache Line word1 ← base+4
+Cache Line word2 ← base+8
+Cache Line word3 ← base+12，RLAST
+</code></pre>
+<h3 id="208-ledaxi">20.8 LED和数码管：AXI写如何变成物理输出</h3>
+<p>打开<code>09_board_peripheral_mmio_uart.vcd</code>，先加入：</p>
+<pre><code class="language-text">test_stage
+s_axi_awaddr s_axi_awvalid s_axi_awready
+s_axi_wdata s_axi_wstrb s_axi_wvalid s_axi_wready
+write_accept write_is_memory
+s_axi_bvalid s_axi_bready
+led_reg led digled_reg dig_en dig_seg
+</code></pre>
+<p>定位<code>test_stage=1</code>。</p>
+<p>LED事务：</p>
+<pre><code class="language-text">AWADDR = FFFF1000
+WDATA  = 000000A5
+WSTRB  = 0011
+</code></pre>
+<p>需要沿时钟说清楚：</p>
+<ol>
+<li>AW和W各自在<code>VALID &amp;&amp; READY</code>时被接受；</li>
+<li><code>write_accept=1</code>且<code>write_is_memory=0</code>，说明不是BRAM写；</li>
+<li>地址译码命中LED；</li>
+<li><code>WSTRB=0011</code>更新LED低16位；</li>
+<li><code>led_reg</code>由<code>0000</code>变为<code>00A5</code>，物理端口<code>led</code>同步变为<code>00A5</code>；</li>
+<li>Slave拉高<code>BVALID</code>，Master收到B响应后才向DCache/core报告写完成。</li>
+</ol>
+<p>数码管事务：</p>
+<pre><code class="language-text">AWADDR = FFFF2000
+WDATA  = 600D600D
+WSTRB  = 1111
+</code></pre>
+<p><code>digled_reg</code>立即保存<code>600D600D</code>，但<code>dig_en/dig_seg</code>是扫描输出，会按位循环变化。
+所以波形中应该用<code>digled_reg=600D600D</code>证明软件写入值正确，用
+<code>dig_en/dig_seg</code>证明显示驱动正在扫描，不能要求段选始终等于一个固定值。</p>
+<h3 id="209-switchtimeraxi">20.9 Switch和timer：AXI读如何返回会变化的外设值</h3>
+<p>仍看<code>09_board_peripheral_mmio_uart.vcd</code>，定位<code>test_stage=2</code>，加入：</p>
+<pre><code class="language-text">s_axi_araddr s_axi_arvalid s_axi_arready
+s_axi_rdata s_axi_rvalid s_axi_rready s_axi_rlast
+read_is_memory sw timer
+</code></pre>
+<p>Switch：</p>
+<pre><code class="language-text">ARADDR = FFFF0000
+read_is_memory = 0
+RDATA = 00001234
+RLAST = 1
+</code></pre>
+<p>Timer：</p>
+<pre><code class="language-text">ARADDR = FFFF4000
+RDATA = timer[31:0]
+</code></pre>
+<p>两次timer读之间等待8拍，第二次返回值应更大。这个波形正好说明为什么timer必须
+Uncached：如果DCache返回第一次读到的旧副本，第二次值不会增长。</p>
+<h3 id="2010-uart-txmmio10bit">20.10 UART TX：一次MMIO写怎样产生串行10个bit</h3>
+<p>定位<code>test_stage=3</code>，加入：</p>
+<pre><code class="language-text">s_axi_awaddr s_axi_wdata s_axi_wstrb write_accept
+uart_tx_start uart_tx_data uart_tx_busy
+U_uart/tx_active U_uart/tx_shift U_uart/tx_bit_index U_uart/tx_clock_count tx
+</code></pre>
+<p>事务入口：</p>
+<pre><code class="language-text">AWADDR = FFFF3004
+WDATA  = 00000055
+WSTRB  = 0001
+</code></pre>
+<p>行为链：</p>
+<pre><code class="language-text">AXI写握手
+→ 地址译码命中UART+4
+→ uart_tx_data=55，uart_tx_start产生单拍脉冲
+→ U_uart锁存为10-bit帧：start + 8 data + stop
+→ tx_active/uart_tx_busy保持
+→ tx_bit_index逐位增加
+→ tx引脚输出8N1、LSB-first串行波形
+</code></pre>
+<p><code>0x55=01010101</code>，LSB-first发送，所以数据位在波形中呈交替0/1。老师问“为什么
+串口只收到U”时，<code>0x55</code>的ASCII正是<code>'U'</code>，这不是乱码。</p>
+<h3 id="2011-uart-rxa">20.11 UART RX：串行A怎样经过状态寄存器和数据寄存器</h3>
+<p>定位<code>test_stage=4</code>和<code>test_stage=5</code>，加入：</p>
+<pre><code class="language-text">rx uart_debug_rx_sync uart_debug_rx_state uart_debug_rx_valid uart_debug_rx_data
+uart_rx_valid uart_rx_data uart_status uart_rx_pop
+s_axi_araddr s_axi_rdata s_axi_rvalid s_axi_rready
+</code></pre>
+<p>接收链路：</p>
+<pre><code class="language-text">rx出现start bit
+→ rx_state从IDLE进入START/DATA/STOP
+→ rx_bit_index从0到7
+→ 收到41
+→ uart_rx_valid=1，uart_status[0]=1
+</code></pre>
+<p>软件先读状态：</p>
+<pre><code class="language-text">ARADDR = FFFF3008
+RDATA[0] = 1
+</code></pre>
+<p>再读数据：</p>
+<pre><code class="language-text">ARADDR = FFFF3000
+RDATA[7:0] = 41
+uart_rx_pop = 1
+</code></pre>
+<p>读<code>0xFFFF3000</code>不仅返回数据，还消费当前RX字节，所以必须Uncached。否则Cache hit
+可能跳过真实MMIO读，<code>uart_rx_pop</code>不会出现，软件会重复看到旧字符。</p>
+<h3 id="2012-storeled">20.12 一条store到LED的完整端到端讲法</h3>
+<p>老师如果要求不分文件、直接讲完整链路，可按以下七句：</p>
+<ol>
+<li>MEM级产生<code>daccess_wen/wdata/addr</code>，地址为<code>0xFFFF1000</code>；</li>
+<li>DCache判断它是MMIO，不做Cache Line分配；store统一走write-through写路径；</li>
+<li>AXI Master在仲裁中选择D写，锁存地址、数据和WSTRB；</li>
+<li>AW、W通道可以不同拍握手，未握手的VALID和payload必须保持；</li>
+<li><code>axi_board_soc</code>发现地址不属于BRAM而命中LED，按WSTRB更新<code>led_reg</code>；</li>
+<li>Slave给B响应，Master产生<code>dc_dev_wresp</code>，DCache再产生<code>daccess_wresp</code>；</li>
+<li><code>daccess_wresp</code>解除<code>memory_freeze</code>，流水线允许后续指令继续。</li>
+</ol>
+<p>对应波形证据：</p>
+<pre><code class="language-text">daccess_wen
+→ dc_dev_wen
+→ AWVALID/AWREADY + WVALID/WREADY
+→ write_accept
+→ led_reg
+→ BVALID/BREADY
+→ dc_dev_wresp
+→ daccess_wresp
+</code></pre>
+<h3 id="2013-loadbram-miss">20.13 一条load从BRAM miss到写回的完整端到端讲法</h3>
+<ol>
+<li>MEM级发出load地址，DCache第一次检查<code>cpu_hit=0</code>；</li>
+<li>DCache保存tag/index和16-byte对齐地址，进入RREQ/RWAIT；</li>
+<li>AXI Master发送<code>ARLEN=3, ARSIZE=2, ARBURST=INCR</code>；</li>
+<li>Slave对BRAM发出base、base+4、base+8、base+12四次读取；</li>
+<li>四个R beat由Master拼成128-bit，最后一拍<code>RLAST=1</code>；</li>
+<li>DCache安装data/tag/valid，回到IDLE重新检查原请求；</li>
+<li>这次hit，按<code>addr[3:2]</code>选一个32-bit word并产生<code>daccess_rvalid</code>；</li>
+<li>core进行lb/lh/lw符号或零扩展，load进入WB；</li>
+<li>依赖指令通过load-use bubble和WB前递获得正确值。</li>
+</ol>
+<h3 id="2014">20.14 波形回答固定句式</h3>
+<p>每解释一个事务都按这六句，不容易漏：</p>
+<ol>
+<li><strong>行为</strong>：CPU正在取指、load、store还是访问哪个外设；</li>
+<li><strong>Cache判断</strong>：地址、cacheable、index/tag、hit/miss；</li>
+<li><strong>请求握手</strong>：哪个<code>VALID &amp;&amp; READY</code>接受了什么地址/数据；</li>
+<li><strong>下级动作</strong>：BRAM读写或哪个MMIO寄存器/脉冲发生变化；</li>
+<li><strong>响应握手</strong>：R/B何时完成，<code>RLAST</code>或<code>WSTRB</code>说明什么；</li>
+<li><strong>流水线结果</strong>：<code>rvalid/wresp</code>何时解除freeze，指令如何继续或写回。</li>
+</ol>
+<p>严禁只说“波形这里动了，所以成功”。必须把信号变化解释成协议事件：</p>
+<pre><code class="language-text">错误：这里ARVALID变高，然后RDATA出来了。
+
+正确：Master保持ARVALID和地址，直到ARREADY同拍完成地址握手；随后每次
+RVALID与RREADY同拍才消费一个beat，第四拍RLAST表明整条Cache Line结束，
+此后Master才向ICache/DCache给出一次完整line响应。
+</code></pre>
+<h3 id="2015-b">20.15 B组现场练习题</h3>
+<p>不看答案，对着VCD完成：</p>
+<ol>
+<li>在<code>10</code>中指出<code>0x24</code>为什么对齐成<code>0x20</code>，并找出随后<code>0x2C</code>未再次refill；</li>
+<li>在<code>10</code>中用<code>0010</code>和<code>BBBBAA01</code>证明byte merge；</li>
+<li>在<code>10</code>和<code>08</code>中分别证明MMIO Uncached以及<code>ARLEN=0</code>；</li>
+<li>在<code>08</code>中指出四个RDATA最终位于128-bit line的哪四段；</li>
+<li>在<code>08</code>中指出AW已完成、W仍等待时哪些信号必须保持；</li>
+<li>在<code>11</code>中逐拍读出四个BRAM地址，并指出最后一拍RLAST；</li>
+<li>在<code>09</code>中从AW/W握手讲到<code>led_reg=00A5</code>再讲到B响应；</li>
+<li>在<code>09</code>中解释<code>digled_reg</code>与扫描输出<code>dig_en/dig_seg</code>的区别；</li>
+<li>在<code>09</code>中从<code>tx_start</code>讲到串行<code>0x55</code>；</li>
+<li>在<code>09</code>中从串行<code>0x41</code>讲到状态读、数据读和<code>rx_pop</code>。</li>
+</ol>
     </main>
   </div>
 </body>
