@@ -342,7 +342,7 @@ bash miniRV_pipeline_axi/tests/run_iverilog.sh</code></pre>
       <details><summary>流水线 AXI 最关键的 bug 是什么？</summary><div>AXI 响应出现时 Master 已可回到 IDLE，但核心到下一拍才撤销旧请求，旧 store 可能被重复接受；分支时还可能收到旧 PC 的在途取指。修复是响应拍屏蔽旧请求、写提交只脉冲一次、过滤过期取指。</div></details>
       <details><summary>为什么没有 Cache？</summary><div>本次实现目标是无 Cache AXI SoC。CPU 请求接口与 AXI Master 已解耦，为后续插入 ICache/DCache 留出边界，但当前不声称已经实现 Cache。</div></details>
       <details><summary>CoreMark 分数为什么不高？</summary><div>当前是单发射五级流水，访存走单事务 AXI/BRAM，M 扩展是多周期单元，也没有 Cache。当前先证明正确性；主频、Cache、AXI 吞吐和乘除法结构是后续性能优化方向。</div></details>
-      <details><summary>两位同学怎么分工讲？</summary><div>同学 A 讲单周期 AXI、AXI 状态机和 C_TEST；同学 B 讲五级流水、冒险/冲刷、流水线 AXI 修复和 CoreMark。两人都要能回答 Basic 与 AXI Trace 的边界。</div></details>
+      <details><summary>流水线 A/B 组怎么分工讲？</summary><div>A 组讲理想 IF/ID/EX/MEM/WB 划分、级间 valid 和前递、load-use、store 数据、flush、freeze、M busy；B 组从 ifetch/daccess 接口接手，讲 I/D 侧接口、AXI 五通道和 BRAM/MMIO 外设。当前没有真正 ICache/DCache，必须表述为“保留 I/D 侧接口、无 Cache 直连 AXI”。</div></details>
     </section>
 
     <section id="checklist">

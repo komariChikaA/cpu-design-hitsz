@@ -900,3 +900,128 @@ ILA 看不到当前完整的 ID/EX/MEM/WB 内部信号，所以：
 6. 从 `axi_board_soc` 指出 `0xFFFF3008` 的返回值；
 7. 在 VCD 中找到同一逻辑的信号变化；
 8. 用五句话模板完整解释，不使用“这里大概是”“应该是”。
+
+## 19. 流水线 A/B 组验收分工
+
+完整逐段讲稿见
+[`PIPELINE_AB_GROUP_SCRIPT.md`](./PIPELINE_AB_GROUP_SCRIPT.md)。现场分工不是把工程割裂成
+两个互不相干的模块，而是在同一条请求链上交接：
+
+```text
+A 组
+cpu_core：IF → ID → EX → MEM → WB
+          前递 / load-use / stall / flush / M busy
+                         │
+                         │ ifetch_* / daccess_*
+                         ▼
+B 组
+cpu_top：I-side / D-side 请求适配、防重、过期取指过滤
+                         ↓
+axi_master：data write > data read > instruction read
+                         ↓ AXI AR/R/AW/W/B
+axi_board_soc：150 KiB BRAM + switch/LED/数码管/UART/timer
+```
+
+### 19.1 A 组：理想流水线划分
+
+A 组按以下顺序讲：
+
+1. IF：PC 和 `ifetch_req/addr`；
+2. IF/ID：锁存指令、PC 和 valid；
+3. ID：Controller、RF、SEXT；
+4. ID/EX：锁存操作数、rs/rd 和全部后级控制；
+5. EX：前递、ALU、分支判断；
+6. EX/MEM：锁存 ALU 结果和已经前递后的 store 数据；
+7. MEM：MREQ/MEXT 和 `daccess_*`；
+8. MEM/WB、WB：四选一结果写回 RF。
+
+A 组必须用 `07_pipeline_five_stage_forward_branch.vcd` 展示多条指令同时处于不同级，
+并用 `id/ex/mem/wb_pc + valid` 确认真实在途指令。
+
+### 19.2 A 组：冒险处理
+
+| 冲突 | 处理 | 关键代码 | 波形 |
+|---|---|---|---|
+| ALU RAW | MEM/WB 前递，MEM 优先 | `forward_unit.v`、`fwd_a/fwd_b` | `forward_*_sel` |
+| load-use | 保持 PC/IF-ID，ID/EX 注入 bubble | `load_use_hazard`、`id_valid_for_ex` | `06_pipeline_load_use_hazard.vcd` |
+| store 数据相关 | rs2 单独走 `fwd_store_data` | `cpu_core.v`、`MREQ.v` | `daccess_wdata/wen` |
+| taken branch | EX 改 PC，flush IF/ID 与 ID/EX | `ex_bj_f`、`flush` | `ex_bj_target`、各级 valid |
+| AXI 长延迟 | `memory_freeze` 保持在途状态 | `ld_st_suspend/done` | `stall_*`、`daccess_rvalid/wresp` |
+| MUL/DIV 长延迟 | busy 冻结，issued 防重复启动 | `ALU_multicycle.v` | `ex_mul_div_busy` |
+
+A 组不能把 load-use 说成“全部级停一拍”。正确过程是：相关指令暂时不能进入 EX，
+老 load 继续进入 MEM；AXI 真正未完成时才触发更广的 freeze。
+
+### 19.3 B 组：所谓 ICache/DCache 的准确边界
+
+当前最终版没有真正 Cache。`defines.vh` 中 `ENABLE_ICACHE/DCACHE` 保持关闭，
+`cpu2ic/ic2cpu` 与 `cpu2dc/dc2cpu` 是 I/D 侧接口命名。当前没有 tag/data array、
+hit/miss、替换、refill 或 write-back 状态机，请求直接进入 `axi_master`。
+
+正确回答：
+
+> 我们保留了 ICache/DCache 侧接口边界，当前是无 Cache 单字直连 AXI。未来 Cache
+> 应插在 `cpu_core` 请求接口和 `axi_master` 之间；对外 AXI 和板级 Slave 不必改变。
+
+### 19.4 B 组：连接关系
+
+取指：
+
+```text
+cpu_core.ifetch_*
+→ cpu_top.cpu2ic/ic2cpu
+→ axi_master.ic_cpu_*
+→ AXI AR/R
+→ BRAM
+→ IF/ID
+```
+
+数据：
+
+```text
+cpu_core.daccess_*
+→ cpu_top.cpu2dc/dc2cpu
+→ axi_master.dc_cpu_*
+→ AXI AR/R 或 AW/W/B
+→ BRAM 或 MMIO
+```
+
+`cpu_top` 还处理两件容易被追问的事：
+
+1. response 当拍屏蔽尚未撤销的旧请求，防止重复事务；
+2. 记录在途取指地址，taken branch 后过滤过期响应。
+
+`axi_master` 的仲裁优先级是：
+
+```text
+data write > data read > instruction read
+```
+
+`axi_board_soc` 按地址连接：
+
+| 地址 | 对象 |
+|---|---|
+| 低地址 150 KiB | `board_bram` |
+| `0xFFFF0000` | switch |
+| `0xFFFF1000` | LED |
+| `0xFFFF2000` | 数码管 |
+| `0xFFFF3000-300C` | UART |
+| `0xFFFF4000/+8` | 64 位 timer |
+
+B 组用 `06_no_cache_axi_transaction.vcd` 解释五通道握手，用
+`09_board_peripheral_mmio_uart.vcd` 解释地址译码和外设寄存器变化。
+
+### 19.5 两组交接句
+
+A 组结束：
+
+> MEM 级已经形成 `daccess_ren/wen/addr/wdata`；请求如何经过 I/D 侧接口、AXI 和
+> 地址译码到达 BRAM 或外设，由 B 组继续说明。
+
+B 组开始：
+
+> 我从 `ifetch_*` 和 `daccess_*` 接口继续。当前 I/D 侧没有真正 Cache，而是由
+> `cpu_top` 做防重和过期响应过滤后直接进入 AXI Master。
+
+两组都必须知道：`daccess_rvalid/wresp` 一方面是 B 组 AXI 事务的完成证据，另一方面
+会解除 A 组流水线中的 `memory_freeze`。

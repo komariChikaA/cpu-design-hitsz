@@ -5,6 +5,7 @@
 - [可搜索 HTML 手册](./miniRV_CoreMark流水线AXI_代码与波形自学手册.html)
 - [固定版 PDF 手册](./miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf)
 - [Markdown 源讲义](../COREMARK_PIPELINE_AXI_STUDY_GUIDE.md)
+- [流水线 A/B 组逐段讲稿](../PIPELINE_AB_GROUP_SCRIPT.md)
 
 内容只针对 `miniRV_pipeline_axi_ego1/` 最终 CoreMark 工程，覆盖：
 
@@ -16,6 +17,7 @@
 6. 四份原始 VCD 的生成、Surfer/GTKWave 打开方式和信号组；
 7. Vivado Behavioral Simulation 与实板 ILA 的适用边界；
 8. 下一次验收前的自测题。
+9. 流水线 A 组（五级与冒险）和 B 组（I/D 侧接口、AXI、外设）的分工讲稿。
 
 重新生成 HTML/PDF：
 
