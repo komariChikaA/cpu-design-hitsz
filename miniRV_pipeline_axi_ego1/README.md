@@ -57,6 +57,9 @@ python3 run_all_tests.py
 `prepare_trace.sh` 会先把原 `mySoC` 重命名留档，不会直接删除旧实现。
 
 到实验室后先阅读 [START_COREMARK_ACCEPTANCE.md](./START_COREMARK_ACCEPTANCE.md)。
+使用 Windows 时直接阅读
+[START_WINDOWS_CACHE_COREMARK.md](./START_WINDOWS_CACHE_COREMARK.md)，其中包含
+Windows Vivado 构建、COM 串口记录和验收拍照流程。
 当前镜像无需在 Linux 服务器重新编译，必须重新生成 bitstream，因为程序内容会被初始化进
 FPGA 的 Block RAM。
 
@@ -88,12 +91,14 @@ outputs/vivado/miniRV_pipeline_axi_ego1.bit
 Windows PowerShell：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verify_coremark_package.ps1
+.\verify_cache_coremark_windows.cmd
 ```
 
-通用工程检查：
+该入口会先执行通用工程/CoreMark 镜像校验，再明确检查 ICache、DCache 实例和 AXI
+Cache-Line Burst。基础检查也可以分别执行：
 
 ```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verify_coremark_package.ps1
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\verify_package.ps1
 ```
 
