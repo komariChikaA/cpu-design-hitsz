@@ -6,6 +6,11 @@ Push-Location $repoRoot
 try {
     $requiredAcceptanceDocs = @(
         'docs/acceptance/README.md',
+        'docs/acceptance/coremark-pipeline.html',
+        'docs/acceptance/COREMARK_PIPELINE_AXI_DEFENSE.md',
+        'docs/acceptance/COREMARK_PIPELINE_AXI_STUDY_GUIDE.md',
+        'docs/acceptance/PIPELINE_AB_GROUP_SCRIPT.md',
+        'docs/acceptance/WAVEFORM_DEFENSE.md',
         'docs/acceptance/module-waveforms.html',
         'docs/acceptance/MODULE_WAVEFORM_MATRIX.md',
         'docs/acceptance/verify-acceptance-bundle.ps1'

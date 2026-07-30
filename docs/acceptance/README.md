@@ -15,6 +15,8 @@
 > [`training/miniRV_CoreMark流水线AXI_代码与波形自学手册.html`](./training/miniRV_CoreMark流水线AXI_代码与波形自学手册.html)
 > 和
 > [`training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf`](./training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf)。
+> 两位同学按流水线 A/B 组分工时，直接使用
+> [`PIPELINE_AB_GROUP_SCRIPT.md`](./PIPELINE_AB_GROUP_SCRIPT.md)。
 
 ## 0. 验收目标与顺序
 
