@@ -16,7 +16,9 @@
 > 和
 > [`training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf`](./training/miniRV_CoreMark流水线AXI_代码与波形自学手册.pdf)。
 > 两位同学按流水线 A/B 组分工时，直接使用
-> [`PIPELINE_AB_GROUP_SCRIPT.md`](./PIPELINE_AB_GROUP_SCRIPT.md)。
+> [`PIPELINE_AB_GROUP_SCRIPT.md`](./PIPELINE_AB_GROUP_SCRIPT.md)。Cache 版本的逐状态
+> 代码与波形讲解见
+> [`CACHE_IMPLEMENTATION_AND_DEFENSE.md`](./CACHE_IMPLEMENTATION_AND_DEFENSE.md)。
 
 ## 0. 验收目标与顺序
 
@@ -45,7 +47,10 @@
 
 - Trace 证明 RTL 功能，不等同于 Vivado 或实板通过；
 - 实板照片证明曾经跑通，现场仍要准备工程、匹配源码的 bitstream 和串口；
-- 本设计目前 **没有 Cache**，AXI 图解释为总线读写，不能说成 Cache miss；
+- 单周期 AXI 项仍是无 Cache；最终流水线分支已经实现 ICache/DCache。必须根据
+  打开的工程和波形分别表述；Cache 版 45/45 使用
+  [`miniRV_pipeline_cache_axi_report.md`](../../trace_test/miniRV_pipeline_cache_axi_report.md)，
+  旧 CoreMark、bitstream 和时序仍不能冒充 Cache 版实板结果；
 - 先讲数据通路，再打开代码和波形，最后给出 PASS/实板结果。
 
 上传前在仓库根目录执行：
@@ -54,8 +59,8 @@
 powershell -ExecutionPolicy Bypass -File docs/acceptance/verify-acceptance-bundle.ps1
 ```
 
-脚本必须显示 `Raw VCD files: 49` 和最终 `PASS`，这样可确认验收模块、Trace
-报告、49 份原始波形以及关键图片全部存在并已被 Git 跟踪。
+脚本必须显示 `Raw VCD files: 52` 和最终 `PASS`，这样可确认验收模块、Trace
+报告、52 份原始波形以及关键图片全部存在并已被 Git 跟踪。
 
 ## 1. 总体结构怎么讲
 
@@ -472,16 +477,19 @@ LUT 23%，FF 13%，BRAM 96%，Total On-Chip Power 0.221 W
 
 三者定位不同，不能相互替代。
 
-### 为什么没有 Cache？
+### Cache 是怎样实现的？
 
-当前目标是无 Cache AXI SoC。CPU 侧接口和 AXI Master 已解耦，为后续插入
-ICache/DCache 保留边界，但这次验收不声称已经实现 Cache。
+最终流水线分支在 `cpu_core` 和 `axi_master` 之间加入 64-line、16-byte line 的
+direct-mapped ICache/DCache。read miss 用 `ARLEN=3` 四拍 refill；DCache 为
+write-through/no-write-allocate；`0xFFFF_xxxx` MMIO 使用 Uncached 单拍。具体状态、
+信号和现场波形见
+[`CACHE_IMPLEMENTATION_AND_DEFENSE.md`](./CACHE_IMPLEMENTATION_AND_DEFENSE.md)。
 
 ### CoreMark 分数为什么不高？
 
-当前设计是单发射五级流水，访存直接经过单事务 AXI/BRAM，且 M 扩展采用多周期单元，
-没有 Cache。分数首先用于证明长时间正确执行；提升主频、增加 Cache、改善 AXI
-吞吐和优化乘除法才是后续性能方向。
+已留档的 21.250 CoreMark 是无 Cache 基线，主要受单发射、单未决 AXI 和多周期 M
+扩展影响。新增 Cache 能减少取指和普通数据 read 的 AXI 次数，但真实性能必须用
+Cache 版 bitstream 重新测量；在新时序和实板数据产生前不能直接宣称提速。
 
 ### 波形中最值得指出的信号是什么？
 

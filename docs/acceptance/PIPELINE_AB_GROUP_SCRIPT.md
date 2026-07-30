@@ -8,26 +8,30 @@
 
 ## 0. 两组都必须先说清的设计边界
 
-当前版本是 **无 Cache** 的五级流水线 AXI SoC。
+当前版本是 **带 ICache/DCache** 的五级流水线 AXI SoC。
 
 代码中存在：
 
-- `cpu2ic/ic2cpu`：CPU 的取指侧请求/响应接口；
-- `cpu2dc/dc2cpu`：CPU 的数据侧请求/响应接口；
-- `ENABLE_ICACHE/ENABLE_DCACHE`：为兼容和后续扩展保留的宏。
+- `cpu2ic/ic2cpu`：CPU 与 ICache 的取指请求/响应；
+- `cpu2dc/dc2cpu`：CPU 与 DCache 的数据请求/响应；
+- `ENABLE_ICACHE/ENABLE_DCACHE`：当前均开启；
+- `ICache.v/DCache.v`：tag、data、valid、hit/miss 和 refill 状态机；
+- `axi_master.v`：将四个 AXI R beat 拼成 128-bit cache line。
 
-但当前工程不存在 Cache 必需的 tag array、data array、valid/dirty、hit/miss、
-替换策略和 refill/write-back 状态机。因此 B 组应说：
+本实现采用 direct-mapped、64 line、16-byte line。DCache 是
+write-through/no-write-allocate，所以不需要 dirty bit 和 write-back FSM；不能因为
+没有 dirty bit 就说它“不是 Cache”。B 组应说：
 
-> 当前保留 ICache/DCache 侧接口边界，但请求直接进入 `axi_master`，每次只传输一个
-> 32 位字。这里讲的是接口和未来 Cache 插入位置，不声称已经实现 Cache。
+> 取指和普通数据 read 命中时不进入 AXI；miss 时对齐到 16 byte，并以
+> `ARLEN=3` 读取四拍。store 始终 write-through；`0xFFFF_xxxx` MMIO 保持
+> Uncached 单拍访问。
 
 代码证据：
 
-- `src/rtl/defines.vh:8-10`：两个 Cache 宏保持关闭；
-- `src/rtl/cpu_top.v:58-72`：I/D 两侧请求响应信号；
-- `src/rtl/cpu_top.v:114-167`：`cpu_core` 直接连接 `axi_master`；
-- `src/rtl/axi/README.md`：明确说明当前为无 Cache 配置。
+- `src/rtl/defines.vh`：Cache 开关、line 数量、Cacheable 地址上限；
+- `src/rtl/cpu_top.v`：`U_core → U_icache/U_dcache → U_aximaster`；
+- `src/rtl/ICache.v`、`DCache.v`：实际数组和状态机；
+- `CACHE_IMPLEMENTATION_AND_DEFENSE.md`：逐状态代码、指令和波形讲解。
 
 ## 1. 两组衔接用的一张总图
 
@@ -44,9 +48,10 @@
               B 组讲解范围
 ┌───────────────────────────────────────────────┐
 │ cpu_top                                      │
-│ I-side / D-side 接口、防重、过期取指过滤      │
+│ ICache：read-only、4-word refill             │
+│ DCache：read allocate、write-through、MMIO   │
 │                    ↓                         │
-│ axi_master：data write > data read > ifetch │
+│ axi_master：D write > D read > I read       │
 │                    ↓ AXI AR/R/AW/W/B          │
 │ axi_board_soc：BRAM + 地址译码 + MMIO 外设    │
 └───────────────────────────────────────────────┘
@@ -59,8 +64,8 @@ A 组结束语：
 
 B 组开场语：
 
-> B 组从 A 组给出的 `ifetch_*` 和 `daccess_*` 接口接着讲。当前接口后面没有真正
-> Cache，而是由 `cpu_top` 做适配后直接进入 AXI Master。
+> B 组从 A 组给出的 `ifetch_*` 和 `daccess_*` 接口接着讲。先判断 Cache
+> hit/miss，再讲 miss 如何通过 AXI burst refill；最后讲 MMIO 为什么绕过 Cache。
 
 ## 2. A 组：理想五级流水划分
 
@@ -249,13 +254,13 @@ A 组讲波形固定顺序：
 ### 4.1 30 秒总述
 
 > `cpu_core` 不直接处理 AXI 五通道，只提供取指侧 `ifetch_*` 和数据侧
-> `daccess_*` 请求响应接口。`cpu_top` 把它们命名为 I-side 和 D-side 接口，并负责
-> 屏蔽响应拍的旧请求以及过滤分支后的过期取指。当前没有真正 ICache/DCache，请求
-> 直接交给 `axi_master`；Master 按数据写、数据读、取指读的优先级仲裁，再转换成
-> AXI AR/R/AW/W/B。`axi_board_soc` 最后按地址选择 150 KiB BRAM 或
-> switch、LED、数码管、UART、timer。
+> `daccess_*` 请求响应接口。`cpu_top` 中 ICache/DCache 先检查 tag/valid：hit
+> 直接返回，read miss 以 4-word line 请求 `axi_master`。Master 按数据写、数据读、
+> 取指读的优先级仲裁，再转换成 AXI AR/R/AW/W/B。DCache 对 `0xFFFF_xxxx`
+> 标记 Uncached，因此外设仍每次真实访问。`axi_board_soc` 最后按地址选择
+> 150 KiB BRAM 或 switch、LED、数码管、UART、timer。
 
-### 4.2 ICache 侧接口：当前是无 Cache 取指通路
+### 4.2 ICache：取指 hit 和 refill
 
 通路：
 
@@ -263,23 +268,26 @@ A 组讲波形固定顺序：
 PC
 → cpu_core.ifetch_req / ifetch_addr
 → cpu_top.cpu2ic_rreq / cpu2ic_addr
-→ axi_master.ic_cpu_ren / ic_cpu_raddr
-→ AXI AR/R
-→ ic_dev_rdata / ic_dev_rvalid
+→ ICache tag/valid 比较
+  ├─ hit → 选择 line 内 word
+  └─ miss → dev_ren / line-aligned dev_raddr
+           → axi_master → AXI ARLEN=3 / 四个 R beat
+           → 128-bit dev_rdata → 安装 tag/data/valid
 → cpu_top.ic2cpu_inst / ic2cpu_valid
 → IF/ID
 ```
 
-`cpu_top` 在 AXI 接受取指时记录 `ic_pending_word_addr`。响应回来时，只有该地址仍然
-等于 core 当前请求地址才产生 `ic2cpu_valid`，从而过滤 taken branch 后的旧响应。
+地址分解为 tag=`[31:10]`、index=`[9:4]`、word offset=`[3:2]`。miss 经过
+`ST_IDLE → ST_REQ → ST_WAIT → ST_IDLE`。taken branch 改变 PC 时，旧 line 可以
+完成安装，但 ICache 回 IDLE 后重新检查当前地址，不会把旧指令交给 core。
 
 关键位置：
 
-- `cpu_core.v:22-25, 531-534`；
-- `cpu_top.v:58-61, 98-120`；
-- `axi_master.v:154-183`。
+- `cpu_top.v` 的 `U_icache`；
+- `ICache.v` 的 `cpu_hit`、`miss_line_addr` 和三态 FSM；
+- `cpu_top_fetch_tb.v` 的 redirect-during-refill 定向测试。
 
-### 4.3 DCache 侧接口：当前是无 Cache 数据通路
+### 4.3 DCache：read、write-through 和 Uncached
 
 通路：
 
@@ -288,7 +296,12 @@ MEM 的 ALU 地址/操作类型/store 数据
 → MREQ：ren/wen/addr/wdata
 → cpu_core.daccess_*
 → cpu_top.cpu2dc_* / dc2cpu_*
-→ axi_master.dc_cpu_*
+→ DCache
+  ├─ cached read hit：直接返回
+  ├─ cached read miss：四拍 refill
+  ├─ store：write-through；命中时按 byte lane 更新副本
+  └─ MMIO read：Uncached 单拍
+→ axi_master
 → AXI
 → BRAM 或 MMIO
 ```
@@ -296,18 +309,19 @@ MEM 的 ALU 地址/操作类型/store 数据
 `ren/wen` 是 4 位 byte lane。读回后 `MEXT` 根据地址低两位选择 byte/half/word，
 并进行符号或零扩展。
 
-`cpu_top.v:89-91` 还在 response 当拍屏蔽旧请求，避免 Master 回到 IDLE 后把未及时
-撤销的同一请求再次接受。
+DCache 使用五态 FSM：`IDLE/RREQ/RWAIT/WREQ/WWAIT`。write-through 表示每个 store
+都发 AXI 写；no-write-allocate 表示写不命中不先读整条 line。MMIO 地址满足
+`cpu_cacheable=0`，`dev_uncached=1`，不会更新数组。
 
 ### 4.4 I/D 请求怎样共享一个 AXI Master
 
-`axi_master.v:139-160` 的优先级：
+`axi_master.v` 的优先级：
 
 ```text
 data write > data read > instruction read
 ```
 
-这解决的是共享端口的结构冲突。当前 Master 一次只处理一个事务，状态机为：
+这解决共享端口的结构冲突。Master 一次只处理一个事务，状态机为：
 
 ```text
 读：IDLE → RADDR → RDATA → IDLE
@@ -318,8 +332,9 @@ data write > data read > instruction read
 
 1. ARVALID/ARREADY 接受地址；
 2. Master 进入 RDATA；
-3. RVALID/RREADY 接受返回数据；
-4. 根据 `read_is_data` 把响应送给 I-side 或 D-side。
+3. Cache refill 时 `ARLEN=3`；Uncached 时 `ARLEN=0`；
+4. 每次 RVALID/RREADY 接受一个 beat，写入 `read_buffer`；
+5. RLAST 时根据 `read_is_data` 把完整 line 送给 ICache 或 DCache。
 
 写通道：
 
@@ -353,27 +368,50 @@ axi_board_soc U_board_soc
 | `0xFFFF300C` | - | UART clear |
 | `0xFFFF4000/+8` | 64 位 timer 低/高字 | - |
 
-写路径在 `axi_board_soc.v:126-220`，读路径在 `axi_board_soc.v:243-261`。
+板端读状态由 `read_active/read_addr_reg/read_len_reg/read_beat_reg` 保存。BRAM
+burst 每次地址加 4，最后一拍产生 `RLAST`；外设读要求 `ARLEN=0`。
 
 ### 4.6 B 组必须现场打开的波形
 
-#### AXI 五通道
+#### Cache miss/refill/hit
 
-打开 `06_no_cache_axi_transaction.vcd`，加入：
+打开 `10_cache_refill_hit_uncached.vcd`，加入：
 
 ```text
-clk rst state read_is_data
-ic_cpu_ren ic_dev_rrdy ic_dev_rvalid
-dc_cpu_ren dc_dev_rrdy dc_dev_rvalid
-dc_cpu_wen dc_dev_wrdy dc_dev_wresp
-m_axi_araddr m_axi_arvalid m_axi_arready
-m_axi_rdata m_axi_rvalid m_axi_rready
+U_icache.cpu_ren cpu_raddr cpu_hit state
+U_icache.miss_line_addr dev_ren dev_rrdy dev_rvalid
+U_dcache.cpu_ren cpu_addr cpu_hit cpu_cacheable
+U_dcache.req_uncached dev_uncached
+U_dcache.cpu_wen dev_wen dev_wresp
+```
+
+#### AXI cache-line burst
+
+打开 `08_axi_cacheline_burst.vcd`，加入：
+
+```text
+state read_is_data read_len read_beat read_buffer
+m_axi_araddr m_axi_arlen m_axi_arvalid m_axi_arready
+m_axi_rdata m_axi_rvalid m_axi_rready m_axi_rlast
 m_axi_awaddr m_axi_awvalid m_axi_awready
 m_axi_wdata m_axi_wstrb m_axi_wvalid m_axi_wready
 m_axi_bvalid m_axi_bready
 ```
 
-#### BRAM 与外设
+先指出 `ARLEN=3`，再数四次 R 握手，最后指出 `RLAST` 和整条 line 返回。
+
+#### 板端 BRAM burst
+
+打开 `11_board_bram_burst.vcd`，加入：
+
+```text
+s_axi_araddr s_axi_arlen s_axi_arvalid s_axi_arready
+s_axi_rdata s_axi_rvalid s_axi_rready s_axi_rlast
+read_active read_addr_reg read_len_reg read_beat_reg
+memory_read_pending
+```
+
+#### Uncached 外设
 
 打开 `09_board_peripheral_mmio_uart.vcd`，加入：
 
@@ -391,8 +429,8 @@ uart_rx_valid uart_rx_data uart_rx_pop rx
 
 B 组讲波形固定顺序：
 
-> 先说 CPU 发的是取指、数据读还是数据写；再指出 Master 接受请求和当前 state；
-> 接着找对应 AXI 握手；最后用返回 valid、写响应或外设寄存器变化证明事务完成。
+> 先说 hit 还是 miss；miss 时指出对齐 line 地址和 Cache FSM；再数 AR/R burst；
+> 最后用 Cache hit、写响应或外设寄存器变化证明事务完成。
 
 ## 5. 老师最可能追问
 
@@ -409,21 +447,22 @@ B 组讲波形固定顺序：
 
 ### B 组
 
-1. 你们是否真的实现了 ICache/DCache？
-2. I-side 和 D-side 为什么要分开？
-3. 如果未来加入 Cache，应插在哪里？
-4. 取指和数据读同时请求时谁优先？
-5. 为什么 AW 和 W 必须分别记录握手？
-6. WSTRB 怎样实现 byte/half store？
-7. BRAM 和外设怎样共用同一 AXI 地址空间？
-8. 分支后的旧取指响应为什么不能直接交给 CPU？
-9. UART 的 status、TX data 和 RX data 地址分别是什么？
+1. tag/index/offset 各是哪几位，hit 条件是什么？
+2. 为什么 `ARLEN=3` 是四拍，`RLAST` 在哪一拍？
+3. 为什么 DCache 选 write-through/no-write-allocate？
+4. MMIO 为什么必须 Uncached，代码怎样判断？
+5. 取指和数据读同时 miss 时谁优先？
+6. 为什么 AW 和 W 必须分别记录握手？
+7. WSTRB 怎样更新 DCache 副本和内存 byte lane？
+8. 分支发生在 ICache refill 中间会怎样？
+9. blocking Cache 为什么一次只能处理一个 miss？
+10. UART 的 status、TX data 和 RX data 地址分别是什么？
 
 ## 6. 两组都必须能回答的交叉问题
 
 - A 组至少要能从 `daccess_*` 解释到“请求交给 B 组的 AXI 接口”；
 - B 组至少要知道 `daccess_rvalid/wresp` 会解除 A 组的 `memory_freeze`；
-- 两组都必须知道当前无 Cache；
+- 两组都必须知道 hit 只影响 B 组访存延迟，load-use 检测仍属于 A 组；
 - 两组都必须会用 valid 判断波形中的 PC 是否属于真实指令；
 - 两组都不能只背文件名，必须能在现场搜索信号并指出握手或寄存器更新条件。
 
@@ -431,11 +470,11 @@ B 组讲波形固定顺序：
 
 | 时间 | 内容 | 主讲 |
 |---:|---|---|
-| 0:00-0:40 | 总体层级和无 Cache 边界 | 两组任一人 |
+| 0:00-0:40 | 总体层级和 Cache 参数 | 两组任一人 |
 | 0:40-3:30 | 理想五级、级间寄存器、valid | A |
 | 3:30-6:30 | 前递、load-use、flush、freeze | A |
 | 6:30-7:30 | A 组两份波形 | A |
-| 7:30-10:00 | I/D 侧接口和 AXI 状态机 | B |
+| 7:30-10:00 | I/D Cache、refill 和 AXI 状态机 | B |
 | 10:00-12:00 | BRAM、MMIO、UART、timer | B |
-| 12:00-13:00 | B 组两份波形 | B |
+| 12:00-13:30 | B 组 Cache/AXI/外设波形 | B |
 | 13:00 后 | 老师随机追问 | 被问到的人先答，另一人定位代码 |

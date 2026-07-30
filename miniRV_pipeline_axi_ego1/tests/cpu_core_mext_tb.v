@@ -71,6 +71,14 @@ module cpu_core_mext_tb;
         end
     endtask
 
+`ifdef RUN_TRACE
+    // A held WB pipeline register is not a second architectural commit.
+    always @(posedge clk) begin
+        if (!rst && dut.effective_freeze && dut.debug_wb_rf_we)
+            $fatal(1, "FAIL: Trace reported a duplicate WB commit while frozen");
+    end
+`endif
+
     integer i;
     initial begin
         for (i = 0; i < 64; i = i + 1)

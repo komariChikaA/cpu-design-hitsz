@@ -655,6 +655,20 @@ PASS: board_peripheral_tb
 | `06_no_cache_axi_transaction.vcd` | 4,979 | `773e05a8c059d3c7b8bfec58bc9f13bb12e978e703a051fc8ec39f7f9262957e` |
 | `09_board_peripheral_mmio_uart.vcd` | 633,295 | `bd517134842eeba48e14f41ab553f40d17575d4dec1217288e808f68a40697fc` |
 
+<!-- PDF_BREAK_CACHE_VCD -->
+
+本分支新增 Cache 后，本地 Icarus 回归另外生成了三份逐层证据。它们证明
+Cache testbench、AXI Master burst 和板端 BRAM burst 的仿真行为。当前 Cache
+RTL 另已在 Linux 课程 AXI Trace 中通过 45/45，见
+[`miniRV_pipeline_cache_axi_report.md`](../../trace_test/miniRV_pipeline_cache_axi_report.md)；
+但 VCD/Trace 都不能被表述为 Vivado 综合或实际下板结果：
+
+| VCD | 字节数 | SHA-256 |
+|---|---:|---|
+| `10_cache_refill_hit_uncached.vcd` | 6,749 | `5e3e07b8df56c4f563d984509079e7f8ab81b0bc8a493d8cd6dc1480ac34576c` |
+| `08_axi_cacheline_burst.vcd` | 7,376 | `59281b2a249999858c0fa22592fedbf50891cf4d072dd002e669c9089adb4713` |
+| `11_board_bram_burst.vcd` | 8,446 | `f8dd0ec617ac29cfa46bb4d994862b8aa1fe02be3f5954bbec41458f6e50db21` |
+
 ## 14. 在 Surfer/GTKWave 中现场找信号
 
 ### 14.1 基本操作
@@ -843,10 +857,13 @@ Add Sources
 
 ## 16. 实板 ILA 能看什么
 
-当前 `ila_probe[186:0]` 位于 `miniRV_SoC.v`，适合板级定位：
+当前 `ila_probe[199:0]` 位于 `miniRV_SoC.v`，适合板级定位：
 
 | 位 | 信号 |
 |---|---|
+| 199:192 | ARLEN，Cache refill 为 03 |
+| 191 | RLAST |
+| 190:187 | WSTRB |
 | 186 | 原始 `rx` |
 | 185 | UART 同步后 rx |
 | 184:183 | UART RX state |
@@ -915,9 +932,9 @@ cpu_core：IF → ID → EX → MEM → WB
                          │ ifetch_* / daccess_*
                          ▼
 B 组
-cpu_top：I-side / D-side 请求适配、防重、过期取指过滤
+cpu_top：ICache / DCache、MMIO Uncached
                          ↓
-axi_master：data write > data read > instruction read
+axi_master：D write > D read > I read、4-beat line refill
                          ↓ AXI AR/R/AW/W/B
 axi_board_soc：150 KiB BRAM + switch/LED/数码管/UART/timer
 ```
@@ -952,16 +969,20 @@ A 组必须用 `07_pipeline_five_stage_forward_branch.vcd` 展示多条指令同
 A 组不能把 load-use 说成“全部级停一拍”。正确过程是：相关指令暂时不能进入 EX，
 老 load 继续进入 MEM；AXI 真正未完成时才触发更广的 freeze。
 
-### 19.3 B 组：所谓 ICache/DCache 的准确边界
+### 19.3 B 组：ICache/DCache 的准确边界
 
-当前最终版没有真正 Cache。`defines.vh` 中 `ENABLE_ICACHE/DCACHE` 保持关闭，
-`cpu2ic/ic2cpu` 与 `cpu2dc/dc2cpu` 是 I/D 侧接口命名。当前没有 tag/data array、
-hit/miss、替换、refill 或 write-back 状态机，请求直接进入 `axi_master`。
+当前版本已经打开 `ENABLE_ICACHE/DCACHE`，并实例化 `ICache.v/DCache.v`。两者均为
+64-line direct-mapped、16-byte line，包含 tag/data/valid、hit/miss 和 refill
+状态机。DCache 使用 write-through/no-write-allocate，因此有 write FSM 但不需要
+dirty bit 与 write-back FSM。
 
 正确回答：
 
-> 我们保留了 ICache/DCache 侧接口边界，当前是无 Cache 单字直连 AXI。未来 Cache
-> 应插在 `cpu_core` 请求接口和 `axi_master` 之间；对外 AXI 和板级 Slave 不必改变。
+> I/D read hit 直接返回；miss 对齐到 16 byte，用 `ARLEN=3` 四拍 refill。store
+> 始终 write-through，写命中同步更新对应 byte lane；外设地址 Uncached、单拍访问。
+
+完整逐状态讲解见
+[`CACHE_IMPLEMENTATION_AND_DEFENSE.md`](./CACHE_IMPLEMENTATION_AND_DEFENSE.md)。
 
 ### 19.4 B 组：连接关系
 
@@ -970,8 +991,9 @@ hit/miss、替换、refill 或 write-back 状态机，请求直接进入 `axi_ma
 ```text
 cpu_core.ifetch_*
 → cpu_top.cpu2ic/ic2cpu
+→ ICache hit，或 miss/refill
 → axi_master.ic_cpu_*
-→ AXI AR/R
+→ AXI AR/R（refill 为四拍）
 → BRAM
 → IF/ID
 ```
@@ -981,15 +1003,15 @@ cpu_core.ifetch_*
 ```text
 cpu_core.daccess_*
 → cpu_top.cpu2dc/dc2cpu
+→ DCache hit/read refill/write-through/Uncached
 → axi_master.dc_cpu_*
 → AXI AR/R 或 AW/W/B
 → BRAM 或 MMIO
 ```
 
-`cpu_top` 还处理两件容易被追问的事：
-
-1. response 当拍屏蔽尚未撤销的旧请求，防止重复事务；
-2. 记录在途取指地址，taken branch 后过滤过期响应。
+Cache 设备侧 FSM 只在 `REQ` 状态发一次请求，响应后回 IDLE，因此持久的 core
+请求不会重复进入 AXI。taken branch 期间旧 ICache refill 可以完成安装，但回到
+IDLE 后会用当前 PC 重新检查 hit，不把旧 line 当作新指令。
 
 `axi_master` 的仲裁优先级是：
 
@@ -1008,8 +1030,10 @@ data write > data read > instruction read
 | `0xFFFF3000-300C` | UART |
 | `0xFFFF4000/+8` | 64 位 timer |
 
-B 组用 `06_no_cache_axi_transaction.vcd` 解释五通道握手，用
-`09_board_peripheral_mmio_uart.vcd` 解释地址译码和外设寄存器变化。
+B 组用 `10_cache_refill_hit_uncached.vcd` 解释 Cache 内部，用
+`08_axi_cacheline_burst.vcd` 解释 Master 四拍拼接，用
+`11_board_bram_burst.vcd` 解释板端 Slave burst，并用
+`09_board_peripheral_mmio_uart.vcd` 解释地址译码和外设寄存器。
 
 ### 19.5 两组交接句
 
@@ -1020,8 +1044,8 @@ A 组结束：
 
 B 组开始：
 
-> 我从 `ifetch_*` 和 `daccess_*` 接口继续。当前 I/D 侧没有真正 Cache，而是由
-> `cpu_top` 做防重和过期响应过滤后直接进入 AXI Master。
+> 我从 `ifetch_*` 和 `daccess_*` 接口继续。I/D Cache 先判断 hit；read miss
+> 经过 AXI 四拍 refill，store write-through，MMIO 则绕过 Cache 单拍访问。
 
 两组都必须知道：`daccess_rvalid/wresp` 一方面是 B 组 AXI 事务的完成证据，另一方面
 会解除 A 组流水线中的 `memory_freeze`。

@@ -707,6 +707,9 @@ do {
 
 | 位 | 信号 | 用途 |
 |---|---|---|
+| `[199:192]` | ARLEN | Cache refill 应为 `03`，MMIO 为 `00` |
+| `[191]` | RLAST | 四拍 refill 的最后一拍 |
+| `[190:187]` | WSTRB | store 的有效 byte lane |
 | `[186]` | 原始 RX | PC 是否真的把 UART 数据送到 FPGA |
 | `[185]` | 同步后 RX | 输入同步是否工作 |
 | `[184:183]` | RX state | IDLE/START/DATA/STOP |
@@ -730,11 +733,11 @@ do {
 | LED/数码管全 0，串口无输出 | PLL lock、sys_rst、PC、第一笔 AR |
 | PC 不变，ARVALID=0 | core 取指请求/复位 |
 | AR 握手但 RVALID 不来 | board_bram/AXI Slave 读响应 |
-| R 握手但 ifetch_valid=0 | pending address 过滤是否误判 |
+| 四个 R beat 后 ifetch_valid=0 | ICache 是否安装 line；当前 PC 是否因分支改变 |
 | 能收到板发的 U，但 PC 发 A 无效 | RX 原始引脚→同步→状态机→rx_valid→CPU status load |
 | ILA 中 rx_data 一直 41，CPU仍无反应 | 看 CPU 是否读 `FFFF3008/FFFF3000`，以及 load 是否重复发射 |
 | store 重复出现 | response 拍屏蔽、`debug_mem_we` 是否只在 wresp 脉冲 |
-| 分支后执行旧指令 | flush valid、pending fetch address |
+| 分支后执行旧指令 | flush valid、ICache refill 后是否用当前 PC 重新查 tag |
 | MUL 后结果错/重复 | 启动拍 busy、操作数是否前递后锁存、operation_issued |
 
 ### 9.4 本项目真正修过的三类问题
@@ -817,12 +820,15 @@ EX/MEM 中只有 load 地址，数据要等 AXI R 通道完成，再经过 MEXT�
 
 ### 有没有 Cache？
 
-没有。`ENABLE_ICACHE/ENABLE_DCACHE` 均关闭，当前每次取指/访存直接经过单事务 AXI。
+有。`ENABLE_ICACHE/ENABLE_DCACHE` 均开启；I/D Cache 为 64-line direct-mapped、
+16-byte line。read miss 用 `ARLEN=3` 四拍 refill；DCache write-through、
+no-write-allocate，MMIO Uncached。逐状态说明见
+[`CACHE_IMPLEMENTATION_AND_DEFENSE.md`](./CACHE_IMPLEMENTATION_AND_DEFENSE.md)。
 
 ### AXI 是 AXI4 还是 AXI4-Lite？
 
-接口保留 AXI4 的 len/size/burst/last，本实现固定 `len=0`、单 beat、32 位 INCR，
-使用方式接近单拍 AXI4 子集，不支持多笔 outstanding。
+接口使用 AXI4 的 len/size/burst/last。Cache read refill 为 `ARLEN=3` 的四拍
+32-bit INCR burst，Uncached read 和 write 仍为单拍；不支持多笔 outstanding。
 
 ### 为什么数据写优先于取指？
 
@@ -867,17 +873,18 @@ MREQ 产生精确 WSTRB；BRAM/AXI Slave 只使能对应 byte lane。
 | 分支/JAL/JALR | `cpu_core.v:339-393, 534` |
 | 乘除法 | `ALU_multicycle.v:39-179` |
 | AXI 握手 | `axi_master.v:77-207` + AXI 波形 |
-| 重复事务 | `cpu_top.v:89-91` |
-| 过期取指 | `cpu_top.v:98-110` |
+| Cache hit/miss | `ICache.v`、`DCache.v` + Cache 波形 |
+| 四拍 refill | `axi_master.v` 的 `read_len/read_beat/read_buffer` |
+| 过期取指 | `ICache.v` 回 IDLE 后重新检查当前地址 |
 | MMIO/UART | `axi_board_soc.v:190-261` + `simple_uart.v:65-188` |
 | CoreMark 计时 | `core_portme.c:36-71, 100-130, 164-194` |
 | 调试/ILA | `miniRV_SoC.v:192-238` + `ILA_DEBUG_GUIDE.md` |
 
 ## 13. 最后一分钟总结
 
-> 最终版本是无 Cache、单发射、五级 RV32IM 流水线 AXI SoC。核心通过 valid、
+> 最终版本是带 ICache/DCache、单发射、五级 RV32IM 流水线 AXI SoC。核心通过 valid、
 > 前递、load-use bubble、taken flush、AXI memory freeze 和 M 扩展 busy 保持按序
-> 一次提交；cpu_top 进一步解决 AXI 响应拍重复请求和分支过期取指；板级 AXI Slave
+> 一次提交；I/D Cache 以四拍 burst refill，DCache 对 MMIO 保持 Uncached；板级 AXI Slave
 > 连接 150 KiB BRAM、UART、LED、数码管和 64 位计时器。功能证据包括流水线 Basic
-> 45/45、流水线 AXI 45/45、定向 hazard/AXI/M 扩展/UART 回归，以及 50 MHz EGO1
-> 上 CoreMark 32 秒、700 次迭代、CRC validated。
+> 45/45、Cache/AXI 定向回归、Cache 版课程 AXI Trace 45/45 和旧无 Cache EGO1
+> CoreMark 基线。Cache 版 Vivado 时序和实板 CoreMark必须重新执行后才能作为新结果。

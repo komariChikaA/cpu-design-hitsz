@@ -62,7 +62,7 @@ iverilog -g2012 -Wall -I "$rtl_dir" \
 cp -- "$build_dir/07_pipeline_five_stage_forward_branch.vcd" \
     "$output_dir/07_pipeline_five_stage_forward_branch.vcd"
 
-# 3. Master 定向 AXI 读写：展示 AR/R、AW/W/B 独立握手和 backpressure。
+# 3. Master 定向 AXI：展示四拍 Cache line refill 和 Uncached/写事务。
 iverilog -g2012 -Wall -DDUMP_VCD -I "$rtl_dir" \
     -s axi_master_tb \
     -o "$build_dir/axi_master_tb.vvp" \
@@ -72,10 +72,41 @@ iverilog -g2012 -Wall -DDUMP_VCD -I "$rtl_dir" \
     cd -- "$build_dir"
     vvp "$build_dir/axi_master_tb.vvp"
 )
-cp -- "$build_dir/06_no_cache_axi_transaction.vcd" \
-    "$output_dir/06_no_cache_axi_transaction.vcd"
+cp -- "$build_dir/08_axi_cacheline_burst.vcd" \
+    "$output_dir/08_axi_cacheline_burst.vcd"
 
-# 4. 最终板级 Slave 外设：LED、数码管、switch、timer、UART TX/RX。
+# 4. Cache 内部：miss/refill/hit、write-through 和 MMIO Uncached。
+iverilog -g2012 -Wall -DDUMP_VCD -I "$rtl_dir" \
+    -s cache_tb \
+    -o "$build_dir/cache_tb.vvp" \
+    "$script_dir/cache_tb.v" \
+    "$rtl_dir/ICache.v" \
+    "$rtl_dir/DCache.v"
+(
+    cd -- "$build_dir"
+    vvp "$build_dir/cache_tb.vvp"
+)
+cp -- "$build_dir/10_cache_refill_hit_uncached.vcd" \
+    "$output_dir/10_cache_refill_hit_uncached.vcd"
+
+# 5. 板端 BRAM：展示 ARLEN、递增读地址、四个 R beat 和 RLAST。
+iverilog -g2012 -Wall -I "$rtl_dir" \
+    -s board_burst_tb \
+    -o "$build_dir/board_burst_tb.vvp" \
+    "$script_dir/board_burst_tb.v" \
+    "$rtl_dir/axi_board_soc.v" \
+    "$rtl_dir/board_bram.v" \
+    "$rtl_dir/simple_uart.v" \
+    "$rtl_dir/sevenseg_display.v" \
+    "$script_dir/board_ip_stubs.v"
+(
+    cd -- "$build_dir"
+    vvp "$build_dir/board_burst_tb.vvp"
+)
+cp -- "$build_dir/11_board_bram_burst.vcd" \
+    "$output_dir/11_board_bram_burst.vcd"
+
+# 6. 最终板级 Slave 外设：LED、数码管、switch、timer、UART TX/RX。
 iverilog -g2012 -Wall -I "$rtl_dir" \
     -s board_peripheral_tb \
     -o "$build_dir/board_peripheral_tb.vvp" \
@@ -95,5 +126,7 @@ cp -- "$build_dir/09_board_peripheral_mmio_uart.vcd" \
 printf 'Generated report VCD files:\n'
 printf '  %s\n' "$output_dir/06_pipeline_load_use_hazard.vcd"
 printf '  %s\n' "$output_dir/07_pipeline_five_stage_forward_branch.vcd"
-printf '  %s\n' "$output_dir/06_no_cache_axi_transaction.vcd"
+printf '  %s\n' "$output_dir/08_axi_cacheline_burst.vcd"
+printf '  %s\n' "$output_dir/10_cache_refill_hit_uncached.vcd"
 printf '  %s\n' "$output_dir/09_board_peripheral_mmio_uart.vcd"
+printf '  %s\n' "$output_dir/11_board_bram_burst.vcd"

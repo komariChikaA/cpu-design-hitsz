@@ -51,6 +51,8 @@ if {[string first "RUN_TRACE" $source_defines] >= 0} {
 set design_sources [list \
     ALU.v \
     Controller.v \
+    DCache.v \
+    ICache.v \
     MEXT.v \
     MREQ.v \
     RF.v \

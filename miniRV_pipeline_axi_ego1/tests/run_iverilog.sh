@@ -86,9 +86,19 @@ iverilog -g2012 -Wall -I "$rtl_dir" \
     "$rtl_dir/axi_master.v"
 vvp "$build_dir/axi_master_tb.vvp"
 
+iverilog -g2012 -Wall -I "$rtl_dir" \
+    -s cache_tb \
+    -o "$build_dir/cache_tb.vvp" \
+    "$script_dir/cache_tb.v" \
+    "$rtl_dir/ICache.v" \
+    "$rtl_dir/DCache.v"
+vvp "$build_dir/cache_tb.vvp"
+
 common_rtl=(
     "$rtl_dir/cpu_top.v"
     "$rtl_dir/cpu_core.v"
+    "$rtl_dir/ICache.v"
+    "$rtl_dir/DCache.v"
     "$rtl_dir/axi_master.v"
     "$rtl_dir/ALU.v"
     "$rtl_dir/Controller.v"
@@ -140,6 +150,21 @@ iverilog -g2012 -Wall -I "$rtl_dir" \
     "${board_rtl[@]}"
 
 printf 'PASS: EGO1 board hierarchy elaboration\n'
+
+# Exercise the BRAM read burst required by ICache/DCache refill.
+iverilog -g2012 -Wall -I "$rtl_dir" \
+    -s board_burst_tb \
+    -o "$build_dir/board_burst_tb.vvp" \
+    "$script_dir/board_burst_tb.v" \
+    "$rtl_dir/axi_board_soc.v" \
+    "$rtl_dir/board_bram.v" \
+    "$rtl_dir/simple_uart.v" \
+    "$rtl_dir/sevenseg_display.v" \
+    "$script_dir/board_ip_stubs.v"
+(
+    cd -- "$build_dir"
+    vvp "$build_dir/board_burst_tb.vvp"
+)
 
 # Exercise the final AXI board Slave and all course-visible peripherals.
 iverilog -g2012 -Wall -I "$rtl_dir" \

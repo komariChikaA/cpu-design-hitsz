@@ -9,9 +9,9 @@
 - 学号：`2024311081_2024311453`
 - 程序镜像：38,400 × 32 bit
 
-## 2026-07-29 实板结果
+## 2026-07-29 无 Cache 基线实板结果
 
-本工程已经在 EGO1 上完成实板验证：
+以下结果来自加入 Cache 之前的基线版本，不能作为 Cache 版本的新成绩：
 
 - 流水线 M 扩展自检：`PASS`
 - UART 输入 `A`：正确回显，数码管显示 `00000041`
@@ -22,6 +22,39 @@
 - 实现后时序：WNS 1.702 ns，TNS 0 ns，失败端点 0
 
 详细记录见 [BOARD_ACCEPTANCE_RESULT.md](./BOARD_ACCEPTANCE_RESULT.md)。
+
+## 当前 Cache 版本
+
+当前 RTL 已在 `cpu_core` 与 `axi_master` 之间接入 ICache/DCache：
+
+- 64 line direct-mapped，16-byte（4-word）cache line；
+- ICache 和 DCache read miss 通过 `ARLEN=3` 的 AXI burst refill；
+- DCache 为 write-through、no-write-allocate；
+- `0xFFFF_xxxx` MMIO 使用 Uncached 单拍访问；
+- 板端 `axi_board_soc` 已支持 BRAM burst 和最后一拍 `RLAST`。
+
+本地和 Linux 服务器的 `tests/run_iverilog.sh` 已覆盖 Cache refill/hit、
+write-through、MMIO Uncached、分支期间旧 refill、AXI 四拍拼接和板端 burst。
+当前 RTL 已在课程 `cdp-tests` 中通过 AXI Trace 45/45，原始日志和调试闭环见
+[`miniRV_pipeline_cache_axi_report.md`](../trace_test/miniRV_pipeline_cache_axi_report.md)。
+Vivado 时序和 Cache 版实板 CoreMark仍需用本次 RTL 重新执行；完成前不得沿用
+下方旧 bitstream 或旧分数声称 Cache 版本已上板。
+
+代码与现场讲解见
+[CACHE_IMPLEMENTATION_AND_DEFENSE.md](../docs/acceptance/CACHE_IMPLEMENTATION_AND_DEFENSE.md)。
+
+在 Linux `cdp-tests` 中安装当前 Cache RTL：
+
+```bash
+cd ~/miniRV_pipeline_axi_ego1
+bash prepare_trace.sh ~/cdp-tests
+cd ~/cdp-tests
+make clean
+make
+python3 run_all_tests.py
+```
+
+`prepare_trace.sh` 会先把原 `mySoC` 重命名留档，不会直接删除旧实现。
 
 到实验室后先阅读 [START_COREMARK_ACCEPTANCE.md](./START_COREMARK_ACCEPTANCE.md)。
 当前镜像无需在 Linux 服务器重新编译，必须重新生成 bitstream，因为程序内容会被初始化进

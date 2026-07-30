@@ -9,6 +9,7 @@ try {
         'docs/acceptance/coremark-pipeline.html',
         'docs/acceptance/COREMARK_PIPELINE_AXI_DEFENSE.md',
         'docs/acceptance/COREMARK_PIPELINE_AXI_STUDY_GUIDE.md',
+        'docs/acceptance/CACHE_IMPLEMENTATION_AND_DEFENSE.md',
         'docs/acceptance/PIPELINE_AB_GROUP_SCRIPT.md',
         'docs/acceptance/WAVEFORM_DEFENSE.md',
         'docs/acceptance/module-waveforms.html',
@@ -30,6 +31,8 @@ try {
         'miniRV_singlecycle_axi_ego1/src/rtl/simple_uart.v',
         'miniRV_pipeline_axi_ego1/src/rtl/cpu_core.v',
         'miniRV_pipeline_axi_ego1/src/rtl/cpu_top.v',
+        'miniRV_pipeline_axi_ego1/src/rtl/ICache.v',
+        'miniRV_pipeline_axi_ego1/src/rtl/DCache.v',
         'miniRV_pipeline_axi_ego1/src/rtl/axi_master.v',
         'miniRV_pipeline_axi_ego1/src/rtl/axi_board_soc.v'
     )
@@ -40,7 +43,10 @@ try {
         'trace_test/miniRV_pipeline_report.md',
         'trace_test/miniRV_pipeline_run_all_tests.log',
         'trace_test/miniRV_pipeline_axi_report.md',
-        'trace_test/miniRV_pipeline_axi_run_all_tests.log'
+        'trace_test/miniRV_pipeline_axi_run_all_tests.log',
+        'trace_test/miniRV_pipeline_cache_axi_report.md',
+        'trace_test/miniRV_pipeline_cache_axi_run_all_tests.log',
+        'trace_test/miniRV_pipeline_cache_iverilog.log'
     )
 
     $singleNames = @(
@@ -56,6 +62,9 @@ try {
         'docs/course-report/vcd/06_pipeline_load_use_hazard.vcd',
         'docs/course-report/vcd/07_pipeline_five_stage_forward_branch.vcd',
         'docs/course-report/vcd/06_no_cache_axi_transaction.vcd',
+        'docs/course-report/vcd/08_axi_cacheline_burst.vcd',
+        'docs/course-report/vcd/10_cache_refill_hit_uncached.vcd',
+        'docs/course-report/vcd/11_board_bram_burst.vcd',
         'docs/course-report/vcd/09_board_peripheral_mmio_uart.vcd'
     )
 

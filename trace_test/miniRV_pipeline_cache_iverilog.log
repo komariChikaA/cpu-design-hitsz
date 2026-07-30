@@ -1,0 +1,24 @@
+PASS: alu_multicycle_tb
+PASS: cpu_core_mext_tb
+PASS: cpu_core_mext_tb
+VCD info: dumpfile 07_pipeline_five_stage_forward_branch.vcd opened for output.
+PASS: pipeline_flow_tb
+PASS: axi_master_tb
+PASS: cache_tb
+PASS: cpu_top_fetch_tb
+PASS: cpu_top FPGA and RUN_TRACE elaboration
+/root/miniRV_pipeline_cache_20260730-235143/miniRV_pipeline_axi_ego1/src/rtl/miniRV_SoC.v:190: warning: Attributes are not supported on net declaration assignments and will be discarded.
+/root/miniRV_pipeline_cache_20260730-235143/miniRV_pipeline_axi_ego1/src/rtl/miniRV_SoC.v:193: warning: Attributes are not supported on net declaration assignments and will be discarded.
+PASS: EGO1 board hierarchy elaboration
+VCD info: dumpfile 11_board_bram_burst.vcd opened for output.
+PASS: board_burst_tb
+VCD info: dumpfile 09_board_peripheral_mmio_uart.vcd opened for output.
+INFO: board_peripheral_tb stage 1 LED/digled
+INFO: board_peripheral_tb stage 2 switch/timer
+INFO: board_peripheral_tb stage 3 UART TX
+INFO: board_peripheral_tb stage 4 UART RX serial frame
+INFO: board_peripheral_tb stage 5 UART status/data MMIO
+PASS: board_peripheral_tb
+/root/miniRV_pipeline_cache_20260730-235143/miniRV_pipeline_axi_ego1/src/rtl/miniRV_SoC.v:190: warning: Attributes are not supported on net declaration assignments and will be discarded.
+/root/miniRV_pipeline_cache_20260730-235143/miniRV_pipeline_axi_ego1/src/rtl/miniRV_SoC.v:193: warning: Attributes are not supported on net declaration assignments and will be discarded.
+PASS: Vivado simulation hierarchy elaboration

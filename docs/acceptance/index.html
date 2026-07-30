@@ -153,7 +153,7 @@
           </table>
         </div>
       </div>
-      <div class="callout warn"><strong>边界必须主动说明</strong>Trace 不等于上板；照片不替代可重建工程；当前无 Cache。AXI 图是直接总线事务，不是 Cache miss。</div>
+      <div class="callout warn"><strong>边界必须主动说明</strong>Trace 不等于上板；照片不替代可重建工程；当前 Cache 版已有独立 45/45 Trace，但旧 bitstream、旧时序和旧 CoreMark 分数仍属于无 Cache 实板基线。</div>
     </section>
 
     <section id="architecture">
@@ -340,9 +340,9 @@ bash miniRV_pipeline_axi/tests/run_iverilog.sh</code></pre>
       <details open><summary>单周期 C_TEST0～2 和流水线 CoreMark 的区别？</summary><div>前者验证单周期 SoC 与板级外设联调；后者还要求五级流水、冒险处理、M 扩展长延迟和 AXI 等待在持续负载下同时正确。课程评分表中，单周期 C_TEST0～2 对应“良好”的板级目标，流水线 AXI + CoreMark 对应“优秀”目标。</div></details>
       <details><summary>为什么 Basic Trace、AXI Trace、上板三个都要？</summary><div>Basic 隔离 CPU/流水线；AXI 加入可变延迟和握手；上板再验证 Vivado 时序、时钟复位、BRAM、UART 与真实引脚。三层定位不同，不能互相替代。</div></details>
       <details><summary>流水线 AXI 最关键的 bug 是什么？</summary><div>AXI 响应出现时 Master 已可回到 IDLE，但核心到下一拍才撤销旧请求，旧 store 可能被重复接受；分支时还可能收到旧 PC 的在途取指。修复是响应拍屏蔽旧请求、写提交只脉冲一次、过滤过期取指。</div></details>
-      <details><summary>为什么没有 Cache？</summary><div>本次实现目标是无 Cache AXI SoC。CPU 请求接口与 AXI Master 已解耦，为后续插入 ICache/DCache 留出边界，但当前不声称已经实现 Cache。</div></details>
-      <details><summary>CoreMark 分数为什么不高？</summary><div>当前是单发射五级流水，访存走单事务 AXI/BRAM，M 扩展是多周期单元，也没有 Cache。当前先证明正确性；主频、Cache、AXI 吞吐和乘除法结构是后续性能优化方向。</div></details>
-      <details><summary>流水线 A/B 组怎么分工讲？</summary><div>A 组讲理想 IF/ID/EX/MEM/WB 划分、级间 valid 和前递、load-use、store 数据、flush、freeze、M busy；B 组从 ifetch/daccess 接口接手，讲 I/D 侧接口、AXI 五通道和 BRAM/MMIO 外设。当前没有真正 ICache/DCache，必须表述为“保留 I/D 侧接口、无 Cache 直连 AXI”。</div></details>
+      <details><summary>Cache 怎样实现？</summary><div>I/D Cache 均为 64-line direct-mapped、16-byte line；read miss 用 ARLEN=3 四拍 refill；DCache write-through/no-write-allocate；MMIO Uncached。详见 CACHE_IMPLEMENTATION_AND_DEFENSE.md。</div></details>
+      <details><summary>CoreMark 分数为什么不高？</summary><div>当前留档分数是无 Cache 基线，受单发射、单未决 AXI 和多周期 M 扩展影响。Cache 版必须重新测量后再比较。</div></details>
+      <details><summary>流水线 A/B 组怎么分工讲？</summary><div>A 组讲 IF/ID/EX/MEM/WB、valid、前递、load-use、flush、freeze、M busy；B 组接着讲 I/D Cache 的 hit/miss/refill、AXI burst、BRAM/MMIO 和 UART。</div></details>
     </section>
 
     <section id="checklist">

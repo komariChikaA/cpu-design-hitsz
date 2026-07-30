@@ -13,7 +13,8 @@
 3. C_TEST 和 CoreMark 是长程序，不把一小段定向仿真冒充完整程序全程波形；
 4. C_TEST 用相关的 load/store、AXI、UART/MMIO 波形解释机制，以串口和实板照片证明结果；
 5. CoreMark 用流水线冒险、AXI、M 扩展波形解释机制，以 CRC validated 和实板结果证明运行；
-6. 本项目没有 Cache，AXI 波形只能称为“无 Cache AXI 读写事务”。
+6. 单周期与历史流水线 AXI 项仍使用无 Cache 证据；最终 EGO1 流水线分支已实现
+   ICache/DCache，必须使用新增 Cache/AXI burst VCD，并把旧实板结果标为基线。
 
 ## 1. 单周期 AXI Trace
 
@@ -137,6 +138,8 @@ C_TEST 是长程序，现有仓库没有三份“程序全程 VCD”。验收时
 
 - [`miniRV_pipeline_axi_ego1/src/rtl/cpu_core.v`](../../miniRV_pipeline_axi_ego1/src/rtl/cpu_core.v)；
 - [`cpu_top.v`](../../miniRV_pipeline_axi_ego1/src/rtl/cpu_top.v)；
+- [`ICache.v`](../../miniRV_pipeline_axi_ego1/src/rtl/ICache.v)；
+- [`DCache.v`](../../miniRV_pipeline_axi_ego1/src/rtl/DCache.v)；
 - [`axi_master.v`](../../miniRV_pipeline_axi_ego1/src/rtl/axi_master.v)；
 - [`axi_board_soc.v`](../../miniRV_pipeline_axi_ego1/src/rtl/axi_board_soc.v)；
 - [`pipeline_regs.v`](../../miniRV_pipeline_axi_ego1/src/rtl/pipeline/pipeline_regs.v)；
@@ -146,7 +149,9 @@ C_TEST 是长程序，现有仓库没有三份“程序全程 VCD”。验收时
 ### 5.2 与本项绑定的波形和实板证据
 
 - 流水线相关：[`06_pipeline_load_use_hazard.vcd`](../course-report/vcd/06_pipeline_load_use_hazard.vcd)；
-- AXI 相关：[`06_no_cache_axi_transaction.vcd`](../course-report/vcd/06_no_cache_axi_transaction.vcd)；
+- Cache 内部：[`10_cache_refill_hit_uncached.vcd`](../course-report/vcd/10_cache_refill_hit_uncached.vcd)；
+- AXI 四拍 refill：[`08_axi_cacheline_burst.vcd`](../course-report/vcd/08_axi_cacheline_burst.vcd)；
+- 板端 burst/MMIO：[`09_board_peripheral_mmio_uart.vcd`](../course-report/vcd/09_board_peripheral_mmio_uart.vcd)；
 - M 扩展：[`mul.vcd`](../../waveform/single/mul.vcd)、
   [`mulh.vcd`](../../waveform/single/mulh.vcd)、
   [`mulhu.vcd`](../../waveform/single/mulhu.vcd)、
@@ -158,11 +163,12 @@ C_TEST 是长程序，现有仓库没有三份“程序全程 VCD”。验收时
 - [C0DE600D 板卡结果](../course-report/board-evidence/coremark/board-2.jpg)；
 - [实现状态与 WNS](../course-report/board-evidence/pipeline/implementation-status.png)。
 
-CoreMark 全程波形会非常大，当前没有上传，也不是最终正确性的主要判据。现场用定向 VCD
-回答“某种机制怎么工作”，用 `Correct operation validated`、四组 CRC、运行时间和
-`C0DE600D` 回答“完整 CoreMark 是否跑通”。
+CoreMark 全程波形会非常大，当前没有上传。Cache 定向 VCD证明机制，当前 Cache
+课程 AXI Trace 已通过 45/45；现有 `Correct operation validated`、运行时间和
+`C0DE600D` 仍只证明旧无 Cache 实板基线曾跑通。Cache 版本必须重新完成 Vivado
+和实板 CoreMark 才形成新的板级端到端判据。
 
-## 6. 原始 VCD 全清单（49/49）
+## 6. 原始 VCD 全清单（52/52）
 
 以下链接均指向 Git 跟踪的原始 VCD，不是只有截图。
 

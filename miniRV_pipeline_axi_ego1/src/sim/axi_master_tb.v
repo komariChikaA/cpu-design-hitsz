@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-
 `include "defines.vh"
 
 module axi_master_tb;
@@ -11,12 +10,12 @@ module axi_master_tb;
     reg [31:0] ic_addr = 32'h0;
     wire ic_ready;
     wire ic_valid;
-    wire [31:0] ic_data;
+    wire [`IC_BLK_SIZE-1:0] ic_data;
     reg dc_read = 1'b0;
     reg [31:0] dc_addr = 32'h0;
     wire dc_read_ready;
     wire dc_valid;
-    wire [31:0] dc_data;
+    wire [`DC_BLK_SIZE-1:0] dc_data;
     reg [3:0] dc_wen = 4'h0;
     reg [31:0] dc_waddr = 32'h0;
     reg [31:0] dc_wdata = 32'h0;
@@ -46,7 +45,7 @@ module axi_master_tb;
     wire rready;
     reg [31:0] rdata = 32'h0;
     reg [1:0] rresp = 2'b00;
-    reg rlast = 1'b1;
+    reg rlast = 1'b0;
     reg rvalid = 1'b0;
 
     axi_master dut (
@@ -56,6 +55,7 @@ module axi_master_tb;
         .dc_dev_wrdy(dc_write_ready), .dc_cpu_wen(dc_wen),
         .dc_cpu_waddr(dc_waddr), .dc_cpu_wdata(dc_wdata), .dc_dev_wresp(dc_write_resp),
         .dc_dev_rrdy(dc_read_ready), .dc_cpu_ren(dc_read), .dc_cpu_raddr(dc_addr),
+        .dc_cpu_uncached(1'b1),
         .dc_dev_rvalid(dc_valid), .dc_dev_rdata(dc_data),
         .m_axi_awaddr(awaddr), .m_axi_awlen(awlen), .m_axi_awsize(awsize),
         .m_axi_awburst(awburst), .m_axi_awvalid(awvalid), .m_axi_awready(awready),
@@ -76,6 +76,20 @@ module axi_master_tb;
         end
     endtask
 
+    task send_rbeat;
+        input [31:0] value;
+        input        last;
+        begin
+            rdata  <= value;
+            rlast  <= last;
+            rvalid <= 1'b1;
+            @(posedge clk);
+            rvalid <= 1'b0;
+            rlast  <= 1'b0;
+            #1;
+        end
+    endtask
+
     initial begin
         repeat (3) @(posedge clk);
         rst <= 1'b0;
@@ -84,13 +98,17 @@ module axi_master_tb;
         @(posedge clk); ic_addr <= 32'h0000_0003; ic_req <= 1'b1;
         @(posedge clk); ic_req <= 1'b0;
         repeat (2) @(posedge clk);
-        if (!arvalid || araddr != 32'h0000_0000 || arlen != 0 || arsize != 3'b010)
+        if (!arvalid || araddr != 32'h0000_0000 || arlen != 3 || arsize != 3'b010)
             fail("instruction AR channel");
         arready <= 1'b1;
         @(posedge clk); arready <= 1'b0;
-        @(posedge clk); rdata <= 32'h1234_5678; rvalid <= 1'b1;
-        @(posedge clk); rvalid <= 1'b0;
-        #1 if (!ic_valid || ic_data != 32'h1234_5678) fail("instruction R response");
+        send_rbeat(32'h1111_0000, 1'b0);
+        send_rbeat(32'h2222_0001, 1'b0);
+        send_rbeat(32'h3333_0002, 1'b0);
+        send_rbeat(32'h4444_0003, 1'b1);
+        #1 if (!ic_valid ||
+               ic_data != 128'h44440003_33330002_22220001_11110000)
+            fail("instruction R response");
 
         // Data read has priority over an instruction request.
         @(posedge clk); dc_addr <= 32'h0000_0012; dc_read <= 1'b1;
@@ -99,9 +117,9 @@ module axi_master_tb;
         #1 if (araddr != 32'h0000_0010) fail("data-read priority/alignment");
         arready <= 1'b1;
         @(posedge clk); arready <= 1'b0;
-        rdata <= 32'ha5a5_5a5a; rvalid <= 1'b1;
-        @(posedge clk); rvalid <= 1'b0;
-        #1 if (!dc_valid || dc_data != 32'ha5a5_5a5a) fail("data R response");
+        send_rbeat(32'ha5a5_5a5a, 1'b1);
+        #1 if (!dc_valid || dc_data[31:0] != 32'ha5a5_5a5a)
+            fail("data R response");
 
         // AW and W may complete in different cycles; WSTRB must be preserved.
         @(posedge clk); dc_waddr <= 32'h0000_0023; dc_wdata <= 32'hdead_beef; dc_wen <= 4'b1000;

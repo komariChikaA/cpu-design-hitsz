@@ -25,6 +25,7 @@ module cpu_top_fetch_tb;
     reg arready = 1'b0;
     reg [31:0] rdata = 32'h0;
     reg rvalid = 1'b0;
+    reg rlast = 1'b0;
 
     cpu_top dut (
         .cpu_clk(clk),
@@ -52,7 +53,7 @@ module cpu_top_fetch_tb;
         .m_axi_rready(rready),
         .m_axi_rdata(rdata),
         .m_axi_rresp(2'b00),
-        .m_axi_rlast(1'b1),
+        .m_axi_rlast(rlast),
         .m_axi_rvalid(rvalid)
     );
 
@@ -60,6 +61,21 @@ module cpu_top_fetch_tb;
         input [8*96-1:0] message;
         begin
             $fatal(1, "FAIL: %0s", message);
+        end
+    endtask
+
+    task send_rbeat;
+        input [31:0] value;
+        input        last;
+        begin
+            @(negedge clk);
+            rdata  = value;
+            rlast  = last;
+            rvalid = 1'b1;
+            @(posedge clk);
+            @(negedge clk);
+            rvalid = 1'b0;
+            rlast  = 1'b0;
         end
     endtask
 
@@ -84,6 +100,8 @@ module cpu_top_fetch_tb;
         end
         if (araddr != 32'h0000_0000)
             fail("first fetch address mismatch");
+        if (arlen != 8'd3)
+            fail("ICache refill must request four beats");
 
         arready <= 1'b1;
         @(posedge clk);
@@ -91,11 +109,10 @@ module cpu_top_fetch_tb;
 
         // Redirect the core before the old response returns.
         force dut.cpu2ic_addr = 32'h0000_0100;
-        @(posedge clk);
-        rdata <= 32'h1111_1111;
-        rvalid <= 1'b1;
-        @(posedge clk);
-        rvalid <= 1'b0;
+        send_rbeat(32'h1111_0000, 1'b0);
+        send_rbeat(32'h1111_0001, 1'b0);
+        send_rbeat(32'h1111_0002, 1'b0);
+        send_rbeat(32'h1111_0003, 1'b1);
         #1;
         if (dut.ic2cpu_valid)
             fail("stale fetch response reached the core");
@@ -113,11 +130,12 @@ module cpu_top_fetch_tb;
         arready <= 1'b1;
         @(posedge clk);
         arready <= 1'b0;
+        send_rbeat(32'h2222_2222, 1'b0);
+        send_rbeat(32'h2222_0001, 1'b0);
+        send_rbeat(32'h2222_0002, 1'b0);
+        send_rbeat(32'h2222_0003, 1'b1);
+        // refill 安装发生在时钟沿，下一拍 ICache 才以 hit 返回 core。
         @(posedge clk);
-        rdata <= 32'h2222_2222;
-        rvalid <= 1'b1;
-        @(posedge clk);
-        rvalid <= 1'b0;
         #1;
         if (!dut.ic2cpu_valid || dut.ic2cpu_inst != 32'h2222_2222)
             fail("redirected fetch response was not delivered");
