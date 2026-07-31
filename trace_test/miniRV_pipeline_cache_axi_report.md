@@ -100,6 +100,10 @@ assign debug_wb_rf_we = wb_rf_we && wb_valid && !effective_freeze;
 ## 6. 证据边界
 
 这次结果证明当前 Cache RTL 在课程 Verilator/AXI Trace 环境下通过完整
-RV32IM 45 项测试，也证明同一上传工程的 Icarus 定向回归通过。它不等同于
-Vivado 综合、实现时序或 EGO1 实板 CoreMark；Cache 版 bitstream、WNS 和实板
-性能仍需用当前源码重新生成和测量。
+RV32IM 45 项测试，也证明同一上传工程的 Icarus 定向回归通过。后续使用当前
+Cache RTL 重新生成 bitstream 并在 EGO1 上完成 700 次 CoreMark：14 秒、
+48.814 CoreMark、0.976 CoreMark/MHz，CRC validated 并输出 `FINISH`。
+
+Trace 仍不等同于 Vivado 时序或实板；Cache 版原始 Timing/Utilization/DRC、
+bitstream 和板卡显示照片尚待从实验室电脑补回。实板数值与证据边界见
+[`cache-result.md`](../docs/course-report/board-evidence/coremark/cache-result.md)。

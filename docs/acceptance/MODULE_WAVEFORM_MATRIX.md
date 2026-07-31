@@ -159,14 +159,16 @@ C_TEST 是长程序，现有仓库没有三份“程序全程 VCD”。验收时
   [`divu.vcd`](../../waveform/single/divu.vcd)、
   [`rem.vcd`](../../waveform/single/rem.vcd)、
   [`remu.vcd`](../../waveform/single/remu.vcd)；
-- [CoreMark 串口结果](../course-report/board-evidence/coremark/serial-result.png)；
-- [C0DE600D 板卡结果](../course-report/board-evidence/coremark/board-2.jpg)；
-- [实现状态与 WNS](../course-report/board-evidence/pipeline/implementation-status.png)。
+- [无 Cache CoreMark 串口结果](../course-report/board-evidence/coremark/serial-result.png)；
+- [Cache CoreMark 结果抄录](../course-report/board-evidence/coremark/cache-result.md)；
+- [无 Cache C0DE600D 板卡结果](../course-report/board-evidence/coremark/board-2.jpg)；
+- [无 Cache 实现状态与 WNS](../course-report/board-evidence/pipeline/implementation-status.png)。
 
 CoreMark 全程波形会非常大，当前没有上传。Cache 定向 VCD证明机制，当前 Cache
-课程 AXI Trace 已通过 45/45；现有 `Correct operation validated`、运行时间和
-`C0DE600D` 仍只证明旧无 Cache 实板基线曾跑通。Cache 版本必须重新完成 Vivado
-和实板 CoreMark 才形成新的板级端到端判据。
+课程 AXI Trace 已通过 45/45；Cache 版实板 CoreMark 已得到 48.814 CoreMark、
+0.976 CoreMark/MHz，CRC validated 并到达 `FINISH`。旧 `serial-result.png`、
+`C0DE600D` 照片和 WNS 1.702 ns 仍只证明无 Cache 基线；Cache 版原始串口 PNG、
+Timing/Utilization/DRC、bitstream 和板卡照片尚待归档。
 
 ## 6. 原始 VCD 全清单（52/52）
 

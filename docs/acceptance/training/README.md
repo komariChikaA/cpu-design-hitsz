@@ -18,6 +18,7 @@
 7. Vivado Behavioral Simulation 与实板 ILA 的适用边界；
 8. 下一次验收前的自测题。
 9. 流水线 A 组（五级与冒险）和 B 组（I/D 侧接口、AXI、外设）的分工讲稿。
+10. Cache 版实板 CoreMark 48.814、0.976/MHz 与无 Cache 基线的 2.30 倍对比。
 
 重新生成 HTML/PDF：
 

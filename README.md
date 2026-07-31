@@ -27,7 +27,9 @@
 实板已经完成 C_TEST0～2 验证，包括 UART、拨码、LED、数码管、格式化输入输出、
 递归快排、动态内存和计时器；三项均保留了独立 bitstream、Vivado 报告、串口
 截图和板级照片，核验记录与可复核证据见
-[`docs/course-report/`](docs/course-report/)。
+[`docs/course-report/`](docs/course-report/)。流水线 AXI SoC 的 Cache 版本也已在
+EGO1 上完成 700 次 CoreMark：50 MHz 下得到 48.814 CoreMark、0.976 CoreMark/MHz，
+CRC 校验正确并输出 `FINISH`。
 
 课程总评由课后作业及考勤（17%）、系统实现（63%）和代码及报告（20%）组成。
 本项目以系统实现达到**优秀档**为主目标，即在良好档全部完成的基础上，让
@@ -46,6 +48,9 @@
   - [X] 在 EGO1 上完成流水线 SoC 的 M 扩展、UART 和板级 I/O 基础回归。
   - [X] 在 EGO1 上稳定运行 700 次迭代 CoreMark；运行时间 32 秒，结果为
     `Correct operation validated`，得分 21.250 CoreMark、0.425 CoreMark/MHz。
+  - [X] 在加入 ICache/DCache 后重新下板：700 次迭代运行 14 秒，结果仍为
+    `Correct operation validated`，得分提升到 48.814 CoreMark、
+    0.976 CoreMark/MHz。
 
 ### 优秀档后的加分方向
 
@@ -55,8 +60,10 @@
 - [ ] 增加 DDR 控制器并运行 LLAMA2；
 - [X] 在流水线 EGO1 工程集成 ICache/DCache：64-line direct-mapped、
   16-byte line，支持四拍 AXI refill、write-through 和 MMIO Uncached；
-- [ ] 用 Cache 版本重新完成课程 AXI Trace、Vivado 时序和实板 CoreMark，
-  取得可与无 Cache 基线比较的性能结果；
+- [X] Cache 版本课程 AXI Trace 45/45，并在 EGO1 上完成 CoreMark 实测；
+- [X] 获得可与无 Cache 基线直接比较的结果：CoreMark 和 CoreMark/MHz 均提升
+  约 2.30 倍；
+- [ ] 补回 Cache 构建的 Timing/Utilization/DRC 原始报告、最终 bitstream 和板卡照片；
 - [ ] 增加矩阵键盘、VGA、以太网等外设，并编写 C 程序下板演示；
 - [ ] 完成其他具有一定工作量和创新性的扩展。
 
@@ -74,18 +81,17 @@
 - `miniRV_singlecycle_axi/`：已通过 AXI Trace 的单周期 AXI SoC 工程；
 - `miniRV_singlecycle_axi_ego1/`：已完成 Vivado、bitstream 和 EGO1 实板验收的独立板级工程。
 - `miniRV_pipeline_axi/`：已通过 45/45 AXI Trace 的无 Cache 五级流水线 AXI 工程。
-- `miniRV_pipeline_axi_ego1/`：无 Cache 基线已完成流水线 M 扩展/UART/CoreMark
-  实板验收；当前 Cache 版本已完成 RTL、本地/服务器 Icarus 回归和课程 AXI Trace
-  45/45，等待重新跑 Vivado 时序和实板 CoreMark。
+- `miniRV_pipeline_axi_ego1/`：同时保留无 Cache 基线和当前 ICache/DCache 版本；
+  Cache RTL、Icarus、课程 AXI Trace 45/45 和 EGO1 CoreMark 均已完成，当前成绩为
+  48.814 CoreMark、0.976 CoreMark/MHz。
 - `docs/course-report/`：保存最终实验报告、可编辑数据通路图、VCD、板级照片和
   Vivado 原始报告；不保存可重新生成的 bitstream。
 
-当前单周期 AXI/EGO1 C_TEST0～2、流水线 Basic Trace 和流水线 AXI Trace 均已
-完成；流水线 AXI/EGO1 也已完成 Vivado、时序、UART/M 扩展和 CoreMark 实板回归，
-系统实现达到优秀档。当前在不改变五级流水线功能的前提下继续完成 ICache/DCache
-加分项；Cache 的本地定向测试和课程 AXI Trace 45/45 已通过，但必须等新版本
-Vivado 时序和实板结果后，才能声称 Cache 版本完成板级闭环。具体边界见各工程内的
-`README.md`。
+当前单周期 AXI/EGO1 C_TEST0～2、流水线 Basic/AXI Trace 和流水线 CoreMark
+均已完成，系统实现达到优秀档。ICache/DCache 加分项已经完成 RTL、定向仿真、
+课程 AXI Trace 45/45 和 Cache 版 EGO1 CoreMark 功能/性能闭环。仍需从实验室电脑
+补回本次 Cache 构建的原始 Timing/Utilization/DRC、bitstream 和板卡照片，证据边界
+见各工程内的 `README.md`。
 
 Trace 测试、远程实验平台连接、代码上传和常见故障处理见 [Trace 测试文档](docs/TRACE_TESTING.md)。文档中的账号和密码均由使用者在运行时自行输入，仓库不会保存个人凭据。
 

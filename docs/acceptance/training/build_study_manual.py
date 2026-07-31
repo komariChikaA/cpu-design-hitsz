@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -21,7 +22,7 @@ FIGURE_INSERTS = {
     "## 1. 先建立完整层级": """
 
 <figure>
-  <img src="../../course-report/figures/04_pipeline_datapath.png"
+  <img src="../course-report/figures/04_pipeline_datapath.png"
        alt="最终流水线 CPU 数据通路">
   <figcaption>图 1　最终流水线 CPU 数据通路。阅读时按 IF → ID → EX → MEM → WB 追踪；橙色回路是前递和控制回送。</figcaption>
 </figure>
@@ -29,7 +30,7 @@ FIGURE_INSERTS = {
     "## 5.2 Load-use": """
 
 <figure>
-  <img src="../../course-report/figures/06a_pipeline_load_use_hazard.png"
+  <img src="../course-report/figures/06a_pipeline_load_use_hazard.png"
        alt="load-use 冒险波形">
   <figcaption>图 2　load-use 定向波形。现场必须结合 valid、目的/源寄存器、stall 与返回数据解释，不能只看 PC 残值。</figcaption>
 </figure>
@@ -37,7 +38,7 @@ FIGURE_INSERTS = {
     "## 9. AXI Master 五通道": """
 
 <figure>
-  <img src="../../course-report/figures/05_axi_state_machine.png"
+  <img src="../course-report/figures/05_axi_state_machine.png"
        alt="AXI Master 状态机">
   <figcaption>图 3　AXI Master 状态机。读事务由 AR/R 完成，写事务由 AW/W/B 完成。</figcaption>
 </figure>
@@ -45,7 +46,7 @@ FIGURE_INSERTS = {
     "## 9.1 读事务": """
 
 <figure>
-  <img src="../../course-report/figures/06b_no_cache_axi_read.png"
+  <img src="../course-report/figures/06b_no_cache_axi_read.png"
        alt="AXI 读通道波形">
   <figcaption>图 4　AXI 读通道。只有 VALID 与 READY 同时为 1 的上升沿才完成一次传输。</figcaption>
 </figure>
@@ -53,7 +54,7 @@ FIGURE_INSERTS = {
     "## 9.2 写事务": """
 
 <figure>
-  <img src="../../course-report/figures/06c_no_cache_axi_write.png"
+  <img src="../course-report/figures/06c_no_cache_axi_write.png"
        alt="AXI 写通道波形">
   <figcaption>图 5　AXI 写通道。AW 与 W 独立握手，二者完成后再等待 B 响应。</figcaption>
 </figure>
@@ -367,6 +368,35 @@ def add_figures(source: str) -> str:
     return source
 
 
+def rebase_local_urls(fragment: str, source_dir: Path, output_dir: Path) -> str:
+    """Keep Markdown-relative links valid after writing HTML one directory deeper."""
+
+    pattern = re.compile(
+        r'(?P<prefix>\b(?:href|src)=["\'])(?P<url>[^"\']+)(?P<suffix>["\'])'
+    )
+
+    def replace(match: re.Match[str]) -> str:
+        url = match.group("url")
+        if url.startswith(("#", "/", "http:", "https:", "data:", "mailto:", "javascript:")):
+            return match.group(0)
+
+        path_and_query, marker, fragment_id = url.partition("#")
+        path_only, query_marker, query = path_and_query.partition("?")
+        if not path_only:
+            return match.group(0)
+
+        target = (source_dir / path_only).resolve()
+        relative = os.path.relpath(target, output_dir).replace(os.sep, "/")
+        rebased = relative
+        if query_marker:
+            rebased += "?" + query
+        if marker:
+            rebased += "#" + fragment_id
+        return match.group("prefix") + rebased + match.group("suffix")
+
+    return pattern.sub(replace, fragment)
+
+
 def build_html(markdown_path: Path, html_path: Path) -> None:
     source = add_figures(markdown_path.read_text(encoding="utf-8"))
     converter = markdown.Markdown(
@@ -379,6 +409,7 @@ def build_html(markdown_path: Path, html_path: Path) -> None:
         extension_configs={"toc": {"permalink": False, "toc_depth": "2-3"}},
     )
     body = converter.convert(source)
+    body = rebase_local_urls(body, markdown_path.parent, html_path.parent)
     toc = converter.toc
 
     document = f"""<!doctype html>

@@ -584,11 +584,22 @@ rx 两级同步
 ```text
 四组 CRC 与参考值一致
 Correct operation validated
-CoreMark 21.250
-CoreMark/MHz 0.425
+Iterations 700
 FINISH
-数码管 C0DE600D
 ```
+
+当前 Cache 版实板结果为：
+
+```text
+Total ticks 717005179
+Total time 14 s
+CoreMark 48.814
+CoreMark/MHz 0.976
+```
+
+无 Cache 基线是 32 秒、21.250、0.425/MHz。主频、迭代次数和四组 CRC 相同，
+所以 Cache 版约 2.30 倍的差异可以直接比较。板卡 `C0DE600D` 照片和 WNS
+仍属于旧基线；Cache 版原始截图、时序报告和板卡照片尚待归档。
 
 ## 12. 最终版每个 RTL 文件做什么
 

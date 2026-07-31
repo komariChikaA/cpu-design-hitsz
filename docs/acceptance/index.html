@@ -141,7 +141,7 @@
       <div class="grid">
         <div class="card span-4"><div class="metric">3 × 45/45</div><p>单周期 AXI、流水线 Basic、流水线 AXI 的真实课程 Trace。</p></div>
         <div class="card span-4"><div class="metric">C_TEST 0–2</div><p>单周期 SoC 的 UART、格式化 I/O、排序、动态内存和板级 MMIO。</p></div>
-        <div class="card span-4"><div class="metric">21.250 <small>CoreMark</small></div><p>50 MHz 实板，700 次迭代，运行 32 秒，CRC 正确。</p></div>
+        <div class="card span-4"><div class="metric">48.814 <small>CoreMark</small></div><p>Cache 版 50 MHz 实板，700 次迭代，14 秒，CRC 正确；约为基线 2.30 倍。</p></div>
         <div class="card span-12">
           <table>
             <thead><tr><th>层次</th><th>先展示</th><th>再解释</th><th>最后给结论</th></tr></thead>
@@ -153,7 +153,7 @@
           </table>
         </div>
       </div>
-      <div class="callout warn"><strong>边界必须主动说明</strong>Trace 不等于上板；照片不替代可重建工程；当前 Cache 版已有独立 45/45 Trace，但旧 bitstream、旧时序和旧 CoreMark 分数仍属于无 Cache 实板基线。</div>
+      <div class="callout warn"><strong>边界必须主动说明</strong>Trace 不等于上板；当前 Cache 版已有独立 45/45 Trace 和 48.814/0.976 实板结果，但旧 bitstream、WNS 1.702 ns、C0DE600D 照片和 21.250 分仍属于无 Cache 基线。</div>
     </section>
 
     <section id="architecture">
@@ -309,10 +309,10 @@ bash miniRV_pipeline_axi/tests/run_iverilog.sh</code></pre>
           <table>
             <tr><th>频率</th><td>50 MHz</td></tr>
             <tr><th>运行</th><td>32 s / 700 iterations</td></tr>
-            <tr><th>CoreMark</th><td>21.250</td></tr>
-            <tr><th>CoreMark/MHz</th><td>0.425</td></tr>
+            <tr><th>CoreMark</th><td>48.814（无 Cache：21.250）</td></tr>
+            <tr><th>CoreMark/MHz</th><td>0.976（无 Cache：0.425）</td></tr>
             <tr><th>校验</th><td class="pass">Correct operation validated</td></tr>
-            <tr><th>板卡结束码</th><td><code>C0DE600D</code></td></tr>
+            <tr><th>板卡结束码</th><td><code>C0DE600D</code>（当前照片为无 Cache 基线）</td></tr>
           </table>
           <h3>代码入口</h3>
           <ul class="path-list">
@@ -331,8 +331,8 @@ bash miniRV_pipeline_axi/tests/run_iverilog.sh</code></pre>
         <figure class="figure"><img src="../course-report/board-evidence/coremark/board-2.jpg" alt="CoreMark 板卡 2"><figcaption><span>结束码 C0DE600D</span><span>放大</span></figcaption></figure>
         <figure class="figure"><img src="../course-report/board-evidence/pipeline/implementation-status.png" alt="流水线实现状态"><figcaption><span>WNS 1.702 ns / 0 failing endpoints</span><span>放大</span></figcaption></figure>
       </div>
-      <div class="talk"><strong>现场讲：</strong>分数不是唯一重点。CoreMark 连续运行 32 秒、完成 700 次迭代，四组 CRC 正确并输出 validated，证明控制流、访存、M 扩展长延迟、计时器和 UART 在持续负载下共同正确。</div>
-      <div class="callout warn"><strong>仍需补回的原始文件</strong>流水线/CoreMark 最终 bitstream、ltx、Timing Summary、Utilization 和 Power 原始报告目前不在仓库；现有截图和照片足以说明已跑通，但现场最好把实验室原始文件一并带上。</div>
+      <div class="talk"><strong>现场讲：</strong>Cache 版 CoreMark 连续运行 14 秒、完成 700 次迭代，四组 CRC 正确并输出 validated/FINISH；同频率下从 21.250 提升至 48.814，说明 Cache 在保持控制流、访存和 M 扩展正确性的同时减少了重复 AXI/BRAM 访问。</div>
+      <div class="callout warn"><strong>仍需补回的原始文件</strong>Cache 串口原图、最终 bitstream、Timing Summary、Utilization、DRC/Power 和板卡显示照片目前不在仓库；旧无 Cache 截图不能替代这些材料。</div>
     </section>
 
     <section id="qa">
@@ -341,7 +341,7 @@ bash miniRV_pipeline_axi/tests/run_iverilog.sh</code></pre>
       <details><summary>为什么 Basic Trace、AXI Trace、上板三个都要？</summary><div>Basic 隔离 CPU/流水线；AXI 加入可变延迟和握手；上板再验证 Vivado 时序、时钟复位、BRAM、UART 与真实引脚。三层定位不同，不能互相替代。</div></details>
       <details><summary>流水线 AXI 最关键的 bug 是什么？</summary><div>AXI 响应出现时 Master 已可回到 IDLE，但核心到下一拍才撤销旧请求，旧 store 可能被重复接受；分支时还可能收到旧 PC 的在途取指。修复是响应拍屏蔽旧请求、写提交只脉冲一次、过滤过期取指。</div></details>
       <details><summary>Cache 怎样实现？</summary><div>I/D Cache 均为 64-line direct-mapped、16-byte line；read miss 用 ARLEN=3 四拍 refill；DCache write-through/no-write-allocate；MMIO Uncached。详见 CACHE_IMPLEMENTATION_AND_DEFENSE.md。</div></details>
-      <details><summary>CoreMark 分数为什么不高？</summary><div>当前留档分数是无 Cache 基线，受单发射、单未决 AXI 和多周期 M 扩展影响。Cache 版必须重新测量后再比较。</div></details>
+      <details><summary>Cache 带来多少性能提升？</summary><div>相同 50 MHz、700 次和 CRC 下，无 Cache 为 21.250/0.425，Cache 版为 48.814/0.976，约提升 2.30 倍；仍受单发射、阻塞式 miss 和多周期 M 扩展限制。</div></details>
       <details><summary>流水线 A/B 组怎么分工讲？</summary><div>A 组讲 IF/ID/EX/MEM/WB、valid、前递、load-use、flush、freeze、M busy；B 组接着讲 I/D Cache 的 hit/miss/refill、AXI burst、BRAM/MMIO 和 UART。</div></details>
     </section>
 
@@ -363,7 +363,7 @@ bash miniRV_pipeline_axi/tests/run_iverilog.sh</code></pre>
           <li>两人均能解释 stall、flush 和 AXI VALID/READY。</li>
         </ul></div>
       </div>
-      <div class="callout good"><strong>最后一句</strong>三类 Trace 均 45/45，单周期 C_TEST0～2 实板通过，流水线 CoreMark 运行 32 秒且 CRC 校验正确；结构、代码、波形、日志与实板证据能够逐项对应。</div>
+      <div class="callout good"><strong>最后一句</strong>三类 Trace 均 45/45，单周期 C_TEST0～2 实板通过，Cache 版流水线 CoreMark 运行 14 秒、得到 48.814 且 CRC 校验正确；结构、代码、波形、日志与实板结果能够逐项对应。</div>
     </section>
   </main>
 

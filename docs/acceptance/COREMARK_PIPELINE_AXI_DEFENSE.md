@@ -138,9 +138,10 @@ AW 与 W 相互独立，不能假定它们同一拍完成。
 ### 2.10 CoreMark 证明什么？
 
 CoreMark 是长时间综合负载，覆盖列表、矩阵、状态机、CRC、控制流、访存和算术。
-本次实板 50 MHz、700 次迭代、32 秒，输出四组正确 CRC 和
-`Correct operation validated`。它比一个短指令自测更能暴露偶发的流水线、总线和
-长延迟问题，但它不替代逐条 Trace。
+无 Cache 基线在 50 MHz、700 次迭代下运行 32 秒；当前 Cache 版运行 14 秒，
+两者都输出相同的四组正确 CRC 和 `Correct operation validated`。Cache 版得到
+48.814 CoreMark、0.976 CoreMark/MHz，约为基线的 2.30 倍。长时间综合负载比短
+指令自测更能暴露偶发的流水线、总线和长延迟问题，但它不替代逐条 Trace。
 
 ## 3. 全部 RTL 文件怎么解释
 
@@ -759,13 +760,13 @@ do {
 
 ## 10. CoreMark 结果怎么解释
 
-实板记录：
+Cache 版实板记录：
 
 ```text
 CoreMark Size    : 666
-Total ticks      : 1647025964
-Total time (secs): 32
-Iterations/Sec   : 21
+Total ticks      : 717005179
+Total time (secs): 14
+Iterations/Sec   : 50
 Iterations       : 700
 seedcrc          : 0xe9f5
 [0]crclist       : 0xe714
@@ -773,8 +774,8 @@ seedcrc          : 0xe9f5
 [0]crcstate      : 0x8e3a
 [0]crcfinal      : 0x65c5
 Correct operation validated.
-CoreMark 1.0 : 21.250
-CoreMark/MHz : 0.425
+CoreMark 1.0 : 48.814
+CoreMark/MHz : 0.976
 FINISH
 ```
 
@@ -784,7 +785,7 @@ FINISH
 - CRC 与已知 seed 配置匹配；
 - 输出 `Correct operation validated`；
 - 没有 `Errors detected`；
-- 结束时 LED=`C0A5`，数码管=`C0DE600D`。
+- 程序最终到达 `FINISH`。
 
 得分计算来自 `core_portme.c:188-189`：
 
@@ -794,6 +795,11 @@ CoreMark = CoreMark_Per_MHZ * 50;
 ```
 
 不要把 CoreMark/MHz 说成 IPC 或 CPI，它是基准得分按 MHz 归一化。
+
+无 Cache 基线为 21.250 CoreMark、0.425 CoreMark/MHz、32 秒；两次测试的频率、
+迭代次数、seed 和四组 CRC 相同，因此可以直接比较。Cache 版约为基线的 2.30 倍。
+当前串口原图、Cache Timing/Utilization/DRC 和板卡显示照片仍需归档；不能拿无 Cache
+图片或 WNS 冒充 Cache 版证据。
 
 ## 11. 快速问答
 
@@ -886,5 +892,6 @@ MREQ 产生精确 WSTRB；BRAM/AXI Slave 只使能对应 byte lane。
 > 前递、load-use bubble、taken flush、AXI memory freeze 和 M 扩展 busy 保持按序
 > 一次提交；I/D Cache 以四拍 burst refill，DCache 对 MMIO 保持 Uncached；板级 AXI Slave
 > 连接 150 KiB BRAM、UART、LED、数码管和 64 位计时器。功能证据包括流水线 Basic
-> 45/45、Cache/AXI 定向回归、Cache 版课程 AXI Trace 45/45 和旧无 Cache EGO1
-> CoreMark 基线。Cache 版 Vivado 时序和实板 CoreMark必须重新执行后才能作为新结果。
+> 45/45、Cache/AXI 定向回归、Cache 版课程 AXI Trace 45/45，以及 Cache 版 EGO1
+> CoreMark 的 48.814/0.976、CRC validated 和 FINISH。Cache 构建的原始时序报告、
+> bitstream 和板卡照片还需从实验室电脑补回。

@@ -12,6 +12,11 @@
 - CoreMark：700 次迭代；
 - 学号：`2024311081_2024311453`。
 
+2026-07-31 使用本包 Cache RTL 在 EGO1 上实测：14 秒完成 700 次迭代，
+四组 CRC 正确，输出 `Correct operation validated` 和 `FINISH`，得到
+48.814 CoreMark、0.976 CoreMark/MHz。包内
+`CACHE_COREMARK_RESULT_20260731.md` 保存完整串口抄录和与无 Cache 基线的对比。
+
 ## 1. 解压并校验
 
 建议解压到纯英文短路径，例如：

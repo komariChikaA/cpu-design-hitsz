@@ -309,7 +309,9 @@ blocking cache。优点是控制简单、返回不需要 transaction ID；缺点
 
 不能只凭 RTL 推断。必须重新生成 bitstream，检查 WNS/TNS，实板运行相同迭代数，
 记录 elapsed ticks 和 CoreMark/MHz，再与无 Cache 基线对比。Trace 证明功能正确，
-不证明 FPGA 性能。
+不证明 FPGA 性能。本项目已经完成其中的实板对比：50 MHz、700 次和相同 CRC 下，
+CoreMark 从 21.250 提升到 48.814，CoreMark/MHz 从 0.425 提升到 0.976，
+约为原来的 2.30 倍；运行时间从 32 秒降到 14 秒。Cache 版原始时序报告仍需归档。
 
 ## 11. 验证命令与证据边界
 
@@ -333,5 +335,8 @@ PASS: cpu_top FPGA and RUN_TRACE elaboration
 
 课程 AXI Trace 已在 `cdp-tests` 中用当前 RTL 重新构建并通过 45/45，详见
 [`miniRV_pipeline_cache_axi_report.md`](../../trace_test/miniRV_pipeline_cache_axi_report.md)。
-EGO1 CoreMark 仍必须用 Cache 版本重新实现、检查时序并下板。旧 bitstream 和旧
-CoreMark 分数只能作为无 Cache 基线，不能冒充 Cache 版本结果。
+EGO1 Cache 版 CoreMark 已重新实现并下板，700 次迭代通过 CRC 校验，结果为
+48.814 CoreMark、0.976 CoreMark/MHz，详见
+[`cache-result.md`](../course-report/board-evidence/coremark/cache-result.md)。旧
+21.250/0.425 分数和 WNS 1.702 ns 仍只属于无 Cache 基线；Cache 构建的原始
+Timing/Utilization/DRC、bitstream 和板卡照片尚待从实验室电脑补回。

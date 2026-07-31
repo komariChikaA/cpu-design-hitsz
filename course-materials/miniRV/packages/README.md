@@ -23,7 +23,7 @@ miniRV_pipeline_axi_ego1_CACHE_COREMARK_700_WINDOWS_20260731.zip
 SHA-256：
 
 ```text
-EBD59206BD0A5F4E49D836EAEEC9038C5BD435D75F53CCD972E4F535889A9A7C
+C73E773081ED5C72154E8964262A0F46B4A0407413893824DC3F63C3C312BF06
 ```
 
 解压后首先阅读 `START_WINDOWS_CACHE_COREMARK.md`，并运行：
@@ -35,3 +35,7 @@ verify_cache_coremark_windows.cmd
 本包提供正式 CoreMark 存储镜像和完整 Vivado 工程，不包含冒充新结果的历史
 bitstream。必须在当前 Windows/Vivado 环境重新执行 `source rebuild_ego1.tcl`，
 检查时序后烧录新生成的 bitstream。
+
+包内 `CACHE_COREMARK_RESULT_20260731.md` 记录了 Cache 版实板结果：
+48.814 CoreMark、0.976 CoreMark/MHz、14 秒、700 次迭代、CRC validated 和
+`FINISH`。

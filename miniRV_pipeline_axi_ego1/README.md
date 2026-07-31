@@ -23,7 +23,22 @@
 
 详细记录见 [BOARD_ACCEPTANCE_RESULT.md](./BOARD_ACCEPTANCE_RESULT.md)。
 
-## 当前 Cache 版本
+## 2026-07-31 Cache 版实板结果
+
+使用当前 ICache/DCache RTL 和同一份 700 次 CoreMark 镜像重新生成 bitstream，
+Windows MobaXterm 串口实测：
+
+- CoreMark：700 次迭代，14 秒；
+- CoreMark 校验：`Correct operation validated`；
+- CoreMark 得分：48.814 CoreMark，0.976 CoreMark/MHz；
+- 四组 CRC 与无 Cache 基线及官方校验值一致；
+- 最终输出：`FINISH`。
+
+相对 50 MHz、700 次、32 秒的无 Cache 基线，得分和单位频率得分均提升约 2.30 倍。
+完整抄录和证据边界见
+[`cache-result.md`](../docs/course-report/board-evidence/coremark/cache-result.md)。
+
+## 当前 Cache 实现
 
 当前 RTL 已在 `cpu_core` 与 `axi_master` 之间接入 ICache/DCache：
 
@@ -37,8 +52,10 @@
 write-through、MMIO Uncached、分支期间旧 refill、AXI 四拍拼接和板端 burst。
 当前 RTL 已在课程 `cdp-tests` 中通过 AXI Trace 45/45，原始日志和调试闭环见
 [`miniRV_pipeline_cache_axi_report.md`](../trace_test/miniRV_pipeline_cache_axi_report.md)。
-Vivado 时序和 Cache 版实板 CoreMark仍需用本次 RTL 重新执行；完成前不得沿用
-下方旧 bitstream 或旧分数声称 Cache 版本已上板。
+Cache 版 CoreMark 已在 EGO1 上得到 48.814 CoreMark、0.976 CoreMark/MHz，并通过
+全部 CRC 校验。当前仍缺本次 Cache 构建的 Timing/Utilization/DRC 原始报告、
+最终 bitstream 和板卡显示照片；这些材料补回前，不得沿用旧无 Cache 构建的 WNS、
+资源占用或照片充当 Cache 版证据。
 
 代码与现场讲解见
 [CACHE_IMPLEMENTATION_AND_DEFENSE.md](../docs/acceptance/CACHE_IMPLEMENTATION_AND_DEFENSE.md)。

@@ -11,12 +11,15 @@
 - [x] C_TEST0～2 原始照片和 Vivado 报告；
 - [x] 流水线 M 扩展、UART、实现状态截图；
 - [x] CoreMark 完整串口结果和板卡同框照片；
+- [x] Cache 版 CoreMark 串口数值抄录：48.814 CoreMark、0.976 CoreMark/MHz；
 - [x] 插入高清图片的实验报告 DOCX 工作稿。
 
 ## 报告提交前仍需人工完成
 
 - [ ] 填写报告封面、小组成员、日期和所有正文分析；
-- [ ] 明确写出本设计为“无 Cache 直接 AXI 访问”，不要冒充 Cache miss；
+- [ ] 明确区分无 Cache 基线和当前 ICache/DCache 版本，不混用分数、波形或时序；
+- [ ] 保存 Cache 版 MobaXterm 原始截图为 `coremark/cache-serial-result.png`；
+- [ ] 补回 Cache 构建的 Timing/Utilization/DRC、bitstream 和板卡显示照片；
 - [ ] 用 Word/LibreOffice 打开 DOCX，检查本机字体、分页和图片清晰度；
 - [ ] 选择最清楚的 C_TEST、流水线和 CoreMark 照片插入正文，不必把所有原图都放入；
 - [ ] 导出最终 PDF，并逐页检查没有裁切、重叠和空白页。
@@ -27,7 +30,8 @@
 - [ ] 能展示并讲解完整单周期 CPU 数据通路图；
 - [ ] 携带最终流水线 CoreMark `.bit`，使用 ILA 时同时携带匹配 `.ltx`；
 - [ ] 携带流水线 CoreMark Timing、Utilization、Power、DRC 原始报告；
-- [ ] 能重新烧录并运行 CoreMark，串口出现 `Correct operation validated`；
+- [ ] 能重新烧录并运行 Cache 版 CoreMark，串口出现
+  `Correct operation validated`、48.814、0.976 和 `FINISH`；
 - [ ] 能展示 50 MHz、WNS/TNS、失败端点和 `C0DE600D`；
 - [ ] 保留完整 Vivado 工程和当前 `src/coe/main.mem`；
 - [ ] 备份单周期 C_TEST0～2 三份 bitstream，以便老师抽查。

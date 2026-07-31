@@ -46,7 +46,8 @@ try {
         'trace_test/miniRV_pipeline_axi_run_all_tests.log',
         'trace_test/miniRV_pipeline_cache_axi_report.md',
         'trace_test/miniRV_pipeline_cache_axi_run_all_tests.log',
-        'trace_test/miniRV_pipeline_cache_iverilog.log'
+        'trace_test/miniRV_pipeline_cache_iverilog.log',
+        'docs/course-report/board-evidence/coremark/cache-result.md'
     )
 
     $singleNames = @(
@@ -129,7 +130,7 @@ try {
     Write-Host 'Acceptance bundle inventory'
     Write-Host "  Acceptance docs: $($requiredAcceptanceDocs.Count)"
     Write-Host "  Code modules : $($requiredCode.Count)"
-    Write-Host "  Trace reports: $($requiredReports.Count)"
+    Write-Host "  Reports/results: $($requiredReports.Count)"
     Write-Host "  Raw VCD files: $($requiredVcd.Count)"
     Write-Host "  Figures/photos: $($requiredEvidence.Count)"
 

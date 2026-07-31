@@ -1000,11 +1000,18 @@ simple_uart 锁存 {stop,data,start}
 <p>完整正确性不是只看“有输出”，而是：</p>
 <pre><code class="language-text">四组 CRC 与参考值一致
 Correct operation validated
-CoreMark 21.250
-CoreMark/MHz 0.425
+Iterations 700
 FINISH
-数码管 C0DE600D
 </code></pre>
+<p>当前 Cache 版实板结果为：</p>
+<pre><code class="language-text">Total ticks 717005179
+Total time 14 s
+CoreMark 48.814
+CoreMark/MHz 0.976
+</code></pre>
+<p>无 Cache 基线是 32 秒、21.250、0.425/MHz。主频、迭代次数和四组 CRC 相同，
+所以 Cache 版约 2.30 倍的差异可以直接比较。板卡 <code>C0DE600D</code> 照片和 WNS
+仍属于旧基线；Cache 版原始截图、时序报告和板卡照片尚待归档。</p>
 <h2 id="12-rtl">12. 最终版每个 RTL 文件做什么</h2>
 <table>
 <thead>
@@ -1157,7 +1164,7 @@ PASS: board_peripheral_tb
 <p>本分支新增 Cache 后，本地 Icarus 回归另外生成了三份逐层证据。它们证明
 Cache testbench、AXI Master burst 和板端 BRAM burst 的仿真行为。当前 Cache
 RTL 另已在 Linux 课程 AXI Trace 中通过 45/45，见
-<a href="../../trace_test/miniRV_pipeline_cache_axi_report.md"><code>miniRV_pipeline_cache_axi_report.md</code></a>；
+<a href="../../../trace_test/miniRV_pipeline_cache_axi_report.md"><code>miniRV_pipeline_cache_axi_report.md</code></a>；
 但 VCD/Trace 都不能被表述为 Vivado 综合或实际下板结果：</p>
 <table>
 <thead>
@@ -1459,7 +1466,7 @@ forward_a_sel=10 选择 WB 的 42，最终写 x3=43。</p>
 </ol>
 <h2 id="19-ab">19. 流水线 A/B 组验收分工</h2>
 <p>完整逐段讲稿见
-<a href="./PIPELINE_AB_GROUP_SCRIPT.md"><code>PIPELINE_AB_GROUP_SCRIPT.md</code></a>。现场分工不是把工程割裂成
+<a href="../PIPELINE_AB_GROUP_SCRIPT.md"><code>PIPELINE_AB_GROUP_SCRIPT.md</code></a>。现场分工不是把工程割裂成
 两个互不相干的模块，而是在同一条请求链上交接：</p>
 <pre><code class="language-text">A 组
 cpu_core：IF → ID → EX → MEM → WB
@@ -1550,7 +1557,7 @@ dirty bit 与 write-back FSM。</p>
 始终 write-through，写命中同步更新对应 byte lane；外设地址 Uncached、单拍访问。</p>
 </blockquote>
 <p>完整逐状态讲解见
-<a href="./CACHE_IMPLEMENTATION_AND_DEFENSE.md"><code>CACHE_IMPLEMENTATION_AND_DEFENSE.md</code></a>。</p>
+<a href="../CACHE_IMPLEMENTATION_AND_DEFENSE.md"><code>CACHE_IMPLEMENTATION_AND_DEFENSE.md</code></a>。</p>
 <h3 id="194-b">19.4 B 组：连接关系</h3>
 <p>取指：</p>
 <pre><code class="language-text">cpu_core.ifetch_*

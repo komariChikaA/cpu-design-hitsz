@@ -31,7 +31,7 @@
 | 2 | 流水线 Basic Trace | 五级流水、前递、暂停、冲刷和 M 扩展正确 | 45/45 Trace 日志、数据通路图、load-use 波形 |
 | 3 | 流水线 AXI Trace | 流水线在 AXI 延迟下不会重复提交或接受过期取指 | 45/45 Trace 日志、AXI 波形、关键修复代码 |
 | 4 | 单周期 C_TEST0～2 | CPU、AXI、BRAM、UART、LED、数码管和计时器在 EGO1 上联调通过 | 三项实板照片、终端截图、Timing/Utilization/Power 报告 |
-| 5 | 流水线 CoreMark | RV32IM 流水线持续执行、长延迟运算、AXI/MMIO 与计时正确 | CoreMark 有效结果、实板照片、实现状态截图 |
+| 5 | 流水线 CoreMark | RV32IM 流水线、Cache、AXI/MMIO 与计时持续正确 | Cache 版 48.814/0.976 结果记录；无 Cache 原始照片；Cache 原始图/报告待补 |
 
 推荐总时长约 15 分钟：
 
@@ -50,7 +50,8 @@
 - 单周期 AXI 项仍是无 Cache；最终流水线分支已经实现 ICache/DCache。必须根据
   打开的工程和波形分别表述；Cache 版 45/45 使用
   [`miniRV_pipeline_cache_axi_report.md`](../../trace_test/miniRV_pipeline_cache_axi_report.md)，
-  旧 CoreMark、bitstream 和时序仍不能冒充 Cache 版实板结果；
+  Cache 版实板 CoreMark 已得到 48.814 CoreMark、0.976 CoreMark/MHz；旧
+  CoreMark 图片、bitstream 和时序仍不能冒充 Cache 版原始证据；
 - 先讲数据通路，再打开代码和波形，最后给出 PASS/实板结果。
 
 上传前在仓库根目录执行：
@@ -59,8 +60,8 @@
 powershell -ExecutionPolicy Bypass -File docs/acceptance/verify-acceptance-bundle.ps1
 ```
 
-脚本必须显示 `Raw VCD files: 52` 和最终 `PASS`，这样可确认验收模块、Trace
-报告、52 份原始波形以及关键图片全部存在并已被 Git 跟踪。
+脚本必须显示 `Raw VCD files: 52` 和最终 `PASS`，这样可确认验收模块、
+Trace/实板结果记录、52 份原始波形以及关键图片全部存在并已被 Git 跟踪。
 
 ## 1. 总体结构怎么讲
 
@@ -397,18 +398,18 @@ Vivado Tcl Console：
 source rebuild_ego1.tcl
 ```
 
-烧录后按 `S6 RST`，串口 `115200 8N1`。等待约 32 秒，直到输出 `FINISH`，
-数码管应显示 `C0DE600D`。
+烧录后按 `S6 RST`，串口 `115200 8N1`。Cache 版实测约 14 秒，必须等到输出
+`FINISH`。程序设计的最终板级状态为 LED `C0A5`、数码管 `C0DE600D`。
 
 ### 6.2 结果怎么讲
 
-实板结果：
+Cache 版实板结果：
 
 ```text
 CoreMark Size    : 666
-Total ticks      : 1647025964
-Total time (secs): 32
-Iterations/Sec   : 21
+Total ticks      : 717005179
+Total time (secs): 14
+Iterations/Sec   : 50
 Iterations       : 700
 seedcrc          : 0xe9f5
 [0]crclist       : 0xe714
@@ -416,8 +417,8 @@ seedcrc          : 0xe9f5
 [0]crcstate      : 0x8e3a
 [0]crcfinal      : 0x65c5
 Correct operation validated.
-CoreMark 1.0 : 21.250
-CoreMark/MHz : 0.425
+CoreMark 1.0 : 48.814
+CoreMark/MHz : 0.976
 FINISH
 ```
 
@@ -426,14 +427,17 @@ FINISH
 > 有效性比单一分数更重要。运行超过 10 秒，迭代数为 700，四组 CRC 与参考值一致，
 > 输出 `Correct operation validated`，没有 `Errors detected`。这说明流水线在较长
 > 连续负载下，控制流、访存、乘除法、计时器和 UART 输出均保持正确。当前 50 MHz
-> 得分是 21.250，CoreMark/MHz 为 0.425。
+> Cache 版得分是 48.814，CoreMark/MHz 为 0.976；相对无 Cache 基线
+> 21.250/0.425 约提升 2.30 倍。
 
 证据：
 
-- [CoreMark 串口完整结果](../course-report/board-evidence/coremark/serial-result.png)
-- [CoreMark 板卡状态 1](../course-report/board-evidence/coremark/board-1.jpg)
-- [CoreMark 板卡状态 2](../course-report/board-evidence/coremark/board-2.jpg)
-- [流水线实现状态](../course-report/board-evidence/pipeline/implementation-status.png)
+- [Cache CoreMark 结果抄录](../course-report/board-evidence/coremark/cache-result.md)
+- [无 Cache 串口完整结果](../course-report/board-evidence/coremark/serial-result.png)
+- [无 Cache 板卡状态](../course-report/board-evidence/coremark/board-2.jpg)
+- [无 Cache 流水线实现状态](../course-report/board-evidence/pipeline/implementation-status.png)
+
+Cache 串口原始 PNG、Timing/Utilization/DRC 和板卡显示照片仍需补回。
 
 代码入口：
 
@@ -487,9 +491,10 @@ write-through/no-write-allocate；`0xFFFF_xxxx` MMIO 使用 Uncached 单拍。�
 
 ### CoreMark 分数为什么不高？
 
-已留档的 21.250 CoreMark 是无 Cache 基线，主要受单发射、单未决 AXI 和多周期 M
-扩展影响。新增 Cache 能减少取指和普通数据 read 的 AXI 次数，但真实性能必须用
-Cache 版 bitstream 重新测量；在新时序和实板数据产生前不能直接宣称提速。
+无 Cache 基线 21.250 CoreMark 主要受单发射、单未决 AXI 和多周期 M 扩展影响。
+当前 Cache 版已经重新下板，在相同 50 MHz、700 次和 CRC 下得到 48.814 CoreMark、
+0.976 CoreMark/MHz，约为基线的 2.30 倍。它仍是阻塞式直接映射 Cache，miss 时
+整条流水线等待，且 M 扩展为多周期，因此仍有继续优化空间。
 
 ### 波形中最值得指出的信号是什么？
 
@@ -501,9 +506,10 @@ Cache 版 bitstream 重新测量；在新时序和实板数据产生前不能直
 ## 8. 结束时的总结
 
 > 我们按由局部到系统的顺序完成了三层验证：三类 Trace 均为 45/45；单周期
-> C_TEST0～2 在 EGO1 上验证了完整板级外设；流水线 CoreMark 运行 32 秒、700 次
-> 迭代并通过 CRC 校验。代码、数据通路图、定向波形、Trace 日志、Vivado 截图和
-> 实板照片可以相互对应，形成完整验收闭环。
+> C_TEST0～2 在 EGO1 上验证了完整板级外设；带 ICache/DCache 的流水线 CoreMark
+> 运行 14 秒、700 次迭代并通过 CRC 校验，得到 48.814 CoreMark。代码、数据通路图、
+> 定向波形、Trace 日志和实板串口结果可以相互对应；Cache 版原始 Vivado 报告和
+> 板卡照片仍需补齐归档。
 
 ## 9. 现场文件检查
 

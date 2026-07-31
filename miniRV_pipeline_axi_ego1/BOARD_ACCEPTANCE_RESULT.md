@@ -1,6 +1,7 @@
 # 流水线 AXI EGO1 实板验收结果
 
-验收日期：2026-07-29
+- 基线验收日期：2026-07-29
+- Cache 版 CoreMark 日期：2026-07-31
 板卡：EGO1，`xc7a35tcsg324-1`
 CPU：miniRV 五级流水线 AXI，RV32IM，50 MHz
 小组学号：`2024311081_2024311453`
@@ -26,7 +27,7 @@ UART 输入 A：数码管 00000041
 
 这项测试覆盖流水线 M 扩展长延迟指令、AXI 访存、UART 收发、LED 和数码管 MMIO。
 
-## 2. CoreMark
+## 2. 无 Cache CoreMark 基线
 
 实板串口结果：
 
@@ -50,7 +51,33 @@ FINISH
 最终数码管显示 `C0DE600D`。运行时间超过 CoreMark 有效结果要求的 10 秒，且没有
 CRC 错误或 `Errors detected`。
 
-## 3. Vivado 实现结果
+## 3. Cache 版 CoreMark
+
+当前 64-line ICache/DCache、16-byte line、四拍 AXI refill 版本重新下板后，
+Windows MobaXterm 串口输出：
+
+```text
+CoreMark Size    : 666
+Total ticks      : 717005179
+Total time (secs): 14
+Iterations/Sec   : 50
+Iterations       : 700
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0x65c5
+Correct operation validated. See README.md for run and reporting rules.
+CoreMark 1.0 : 48.814
+CoreMark/MHz : 0.976
+FINISH
+```
+
+50 MHz 和 700 次迭代保持不变；四组 CRC 与无 Cache 基线完全一致。CoreMark 从
+21.250 提升至 48.814，CoreMark/MHz 从 0.425 提升至 0.976，均约为原来的
+2.30 倍；运行时间从 32 秒下降到 14 秒。
+
+## 4. 无 Cache 基线 Vivado 实现结果
 
 流水线 AXI EGO1 的 Post-Implementation 截图记录：
 
@@ -70,7 +97,11 @@ Total On-Chip Power：0.221 W
 
 该截图来自带 ILA 的验收构建，因此 BRAM 使用率高于普通构建。实现无时序违例。
 
-## 4. 关键 RTL 修复
+这里的 WNS 和资源数据属于 2026-07-29 无 Cache/ILA 构建。Cache 版本虽然已经生成
+可运行 bitstream 并完成 CoreMark，但尚未把对应 Timing/Utilization/DRC 原始报告
+复制回仓库，因此不能把本节数值标成 Cache 构建结果。
+
+## 5. 关键 RTL 修复
 
 实板调试发现：长延迟 load/M 指令进入 EX 时，如果 IF 因
 `load_entering_id`/`mul_entering_id` 被暂停，同一条指令会继续留在 ID；操作完成后
@@ -86,7 +117,7 @@ Total On-Chip Power：0.221 W
 
 修复后的全系统仿真、流水线 M 扩展/UART 实板测试和 CoreMark 实板测试均通过。
 
-## 5. 证据位置与边界
+## 6. 证据位置与边界
 
 用于 PR 审阅和报告复核的证据保存在：
 
@@ -95,9 +126,9 @@ docs/course-report/board-evidence/pipeline/
 docs/course-report/board-evidence/coremark/
 ```
 
-目录中保存原始照片和实现状态截图；可重新生成的 bitstream、仿真可执行文件和工具缓存
-不进入 Git。
+无 Cache 基线目录中保存原始照片和实现状态截图。Cache 版串口截图的逐项抄录和性能
+对比保存在 `docs/course-report/board-evidence/coremark/cache-result.md`。
 
-目前流水线照片目录没有保存实验室生成的最终 `.bit`、`.ltx` 和 `.rpt` 文件。提交报告
-前应从实验室电脑补回 CoreMark 构建的 bitstream、Timing Summary、Utilization 和
-Power 报告，避免只有截图而没有原始报告。
+当前对话没有提供 Cache 串口截图的本地文件路径，因此原始 PNG 尚未进入仓库。提交报告
+前应保存该图，并从实验室电脑补回 Cache CoreMark 构建的 bitstream、Timing Summary、
+Utilization、DRC/Power 和板卡显示照片，避免只有数值抄录而没有原始证据。
