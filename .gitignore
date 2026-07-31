@@ -4,6 +4,12 @@
 materials/
 outputs/
 
+# Course-report local export intermediates and Word lock files
+docs/course-report/report-final.docx
+docs/course-report/report-final.pdf
+docs/course-report/report-final-name.txt
+docs/course-report/~$*.docx
+
 # Python bytecode
 __pycache__/
 *.py[cod]

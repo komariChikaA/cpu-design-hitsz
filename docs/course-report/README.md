@@ -7,7 +7,11 @@ bitstream、仿真可执行文件、工具缓存和重复打包文件不在此�
 
 ```text
 docs/course-report/
-├── 计算机设计与实践-实验报告.docx
+├── 计算机设计与实践-实验报告.docx          # 原始工作稿
+├── 计算机设计与实践-实验报告-最终版.docx    # 可编辑交付版
+├── 计算机设计与实践-实验报告-最终版.pdf     # 打印/提交版
+├── build_full_report.py                    # 最终报告生成脚本
+├── generate_cache_waveforms.py             # 从 VCD 生成 Cache/AXI 波形
 ├── figures/                 # 报告高清 PNG 与可编辑 SVG
 ├── vcd/                     # 生成流水线/AXI 波形图的原始 VCD
 └── board-evidence/
@@ -21,15 +25,18 @@ docs/course-report/
 - 单周期 SoC：C_TEST0、C_TEST1、C_TEST2 均有实板照片和 Timing、Utilization、
   Power 原始报告；
 - 流水线 SoC：有 M 扩展自测、UART 输入 `A` 和板级显示证据；
-- CoreMark：有两位学号、50 MHz、700 次迭代、CRC、得分和
-  `Correct operation validated` 的完整串口截图；
-- Vivado：流水线实现截图显示 WNS 1.702 ns、TNS 0 ns、失败端点 0；
+- CoreMark：最终 Cache 版在 50 MHz 下完成 700 次迭代，用时 14 s，
+  CoreMark=48.814、CoreMark/MHz=0.976，CRC 全部正确并输出 `FINISH`；
+- Vivado：最终 Cache 版实现后 WNS 0.986 ns、TNS 0 ns、失败端点
+  0/20810；LUT 30%、FF 15%、BRAM 98%，片上功耗 0.215 W；
 - 报告插图：单周期完整数据通路、半字访存、乘法、流水线数据通路、AXI
   状态机、流水线冒险、AXI 读写事务；
-- 原始波形：保留流水线 load-use 和无 Cache AXI 事务 VCD。
+- 原始波形：保留 load-use、无 Cache AXI 基线、Cache refill、AXI 四拍
+  burst 和外设 MMIO/UART VCD。
 
-本设计没有实现 Cache。报告中的总线波形应准确描述为“无 Cache 的直接 AXI
-读写事务”，不能写成 Cache miss。
+最终版已实现分离式 ICache/DCache：两者均为 1 KiB、64 行、每行
+16 Byte（128 bit）、直接映射。无 Cache 图和分数仅作基线对比，最终
+结论以 Cache 版为准。
 
 ## 重新生成图和报告
 
@@ -39,10 +46,14 @@ docs/course-report/
 node docs/datapath/generate_report_evidence.mjs
 python docs/datapath/build_report_figures.py
 python docs/datapath/make_a4_figure_preview.py
+python docs/course-report/generate_cache_waveforms.py
+python docs/course-report/build_full_report.py
+powershell -ExecutionPolicy Bypass -File docs/course-report/export_report_pdf.ps1
 ```
 
-前两条命令更新本目录中的报告图和 DOCX；第三条仅把 A4 可读性预览写入被忽略的
-`outputs/report/qa/`。
+前三条更新基础报告图及 A4 预览；后三条从现有 VCD 生成
+Cache/AXI 波形，填充课程模板并导出最终 PDF。QA 预览仍写入被忽略的
+`outputs/report/`。
 
 流水线 VCD 可在带 Icarus Verilog 的 Linux 环境重新生成：
 
